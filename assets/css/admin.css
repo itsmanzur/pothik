@@ -2451,9 +2451,15 @@ kbd {
 .pk-admin .pkg-sub-cell{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px}
 .pk-admin .limit-banner{margin-bottom:18px;border-color:var(--gold);background:var(--gold-100);color:var(--g950);padding:14px 18px;display:flex;align-items:center;justify-content:space-between}
 .pk-admin .share-sel{width:auto;height:40px;border-radius:10px;border:1px solid var(--line);background:#fff;padding:0 12px;font-weight:600}
-.pk-admin .pk-del-confirm{padding:6px 10px;font-size:12px;display:flex;align-items:center;gap:6px}
-.pk-admin .pk-confirm-yes{color:var(--clay);font-weight:700;background:none;border:0;padding:2px 4px;cursor:pointer}
-.pk-admin .pk-confirm-no{color:var(--muted);background:none;border:0;padding:2px 4px;cursor:pointer}
+.pk-admin [hidden]{display:none !important}
+.pk-admin .pk-del-confirm{padding:8px 10px;font-size:13px;display:flex;flex-direction:column;gap:6px;background:var(--clay-50,#fdf3f0);border-radius:8px;margin-top:4px}
+.pk-admin .pk-del-confirm[hidden]{display:none !important}
+.pk-admin .pk-del-confirm span{font-weight:600;color:var(--clay);line-height:1.3}
+.pk-admin .pk-del-confirm-actions{display:flex;align-items:center;justify-content:flex-end;gap:6px;margin-top:2px}
+.pk-admin .pk-confirm-yes{color:#fff;background:var(--clay);font-weight:700;border:0;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:12px}
+.pk-admin .pk-confirm-yes:hover{background:#96351b}
+.pk-admin .pk-confirm-no{color:var(--muted);background:#fff;border:1px solid var(--line);padding:4px 10px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600}
+.pk-admin .pk-confirm-no:hover{background:var(--line-2);color:var(--ink)}
 .pk-admin .back-link{text-decoration:none;font-weight:700}
 .pk-admin .gap-10{gap:10px}
 .pk-admin .quick-amt{display:flex;gap:8px;flex-wrap:wrap}

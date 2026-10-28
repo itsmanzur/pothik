@@ -779,8 +779,10 @@ final class Screens
         echo '</form>';
         echo '<div class="pk-del-confirm" hidden>';
         echo '<span>' . esc_html(I18n::t('Delete this package?')) . '</span>';
-        echo '<button type="button" class="pk-confirm-yes danger">' . esc_html(I18n::t('Yes')) . '</button>';
+        echo '<div class="pk-del-confirm-actions">';
         echo '<button type="button" class="pk-confirm-no">' . esc_html(I18n::t('Cancel')) . '</button>';
+        echo '<button type="button" class="pk-confirm-yes danger">' . esc_html(I18n::t('Yes')) . '</button>';
+        echo '</div>';
         echo '</div>';
         echo '</div>'; // .pk-del-wrap
 
