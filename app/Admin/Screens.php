@@ -57,10 +57,10 @@ final class Screens
         // Oldest waiting calculation
         global $wpdb;
         $inq_table = InquiryRepository::table_name();
-        $oldest_row = $wpdb->get_row("SELECT created_gmt, created FROM {$inq_table} WHERE replied = 0 ORDER BY id ASC LIMIT 1");
+        $oldest_row = $wpdb->get_row("SELECT created_gmt FROM {$inq_table} WHERE replied = 0 ORDER BY id ASC LIMIT 1");
         $oldest_diff = '';
-        if ($oldest_row) {
-            $t = strtotime((string) ($oldest_row->created_gmt ?: $oldest_row->created));
+        if ($oldest_row && !empty($oldest_row->created_gmt)) {
+            $t = strtotime((string) $oldest_row->created_gmt);
             if ($t) {
                 $oldest_diff = human_time_diff($t, time()) . ' ' . I18n::t('ago');
             }
@@ -129,8 +129,8 @@ final class Screens
         $rc_date = !empty($receipt['date']) ? wp_date('j M', strtotime((string) $receipt['date'])) : '';
 
         // Setup checklist (5 real steps)
-        $opt = Settings::get();
-        $s1 = !empty($opt['name']) && !empty($opt['phone']);
+        $opt = Settings::get_all();
+        $s1 = (!empty($opt['agency']) || !empty($opt['name'])) && !empty($opt['phone']);
         $s2 = $packages_count > 0;
         $s3 = !empty($opt['whatsapp']);
         $s4 = !empty($opt['logo_url']) || !empty($opt['logo_id']);
@@ -316,7 +316,8 @@ final class Screens
                 $share_txt = I18n::choice('share', (string) $r->share);
                 $city_txt = (string) $r->city;
                 $pax_num = (int) $r->adults + (int) $r->children + (int) $r->infants;
-                $time_str = human_time_diff(strtotime((string) ($r->created_gmt ?: $r->created)), time()) . ' ' . I18n::t('ago');
+                $time_raw = !empty($r->created_gmt) ? (string) $r->created_gmt : (string) ($r->created ?? '');
+                $time_str = $time_raw !== '' ? human_time_diff(strtotime($time_raw), time()) . ' ' . I18n::t('ago') : '';
                 $inq_id = (string) ($r->uuid ?: $r->id);
                 $wa_href = Format::whatsapp_href($phone, I18n::t('Office reply about your Umrah inquiry.'));
                 $tel_href = Format::phone_href($phone);

@@ -19,6 +19,16 @@ if (!defined('ABSPATH')) {
 final class Settings
 {
     /**
+     * Alias for get_all() for convenience and backwards-compatibility.
+     *
+     * @return array<string, mixed>
+     */
+    public static function get(): array
+    {
+        return self::get_all();
+    }
+
+    /**
      * Whitelist and return all settings merged with defaults.
      *
      * @return array<string, mixed>
