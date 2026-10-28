@@ -2,8 +2,8 @@
 /**
  * Plugin Name:       Pothik
  * Plugin URI:        https://thereadscope.com/pothik
- * Description:       Umrah package page, inquiries, and one receipt. Pro rooms here are a title and one line.
- * Version:           0.1.0
+ * Description:       Create Umrah and Hajj package landing pages, collect pilgrim inquiries with WhatsApp integration, and print payment receipts.
+ * Version:           0.3.0
  * Requires at least: 6.5
  * Requires PHP:      8.1
  * Author:            itsmanzur
@@ -11,6 +11,7 @@
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       pothik
+ * Domain Path:       /languages
  *
  * @package Pothik
  */
@@ -21,7 +22,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('POTHIK_VERSION', '0.1.0');
+define('POTHIK_VERSION', '0.3.0');
 define('POTHIK_FILE', __FILE__);
 define('POTHIK_DIR', plugin_dir_path(__FILE__));
 define('POTHIK_URL', plugin_dir_url(__FILE__));

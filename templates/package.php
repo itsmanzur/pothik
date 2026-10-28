@@ -5,6 +5,7 @@
  * @var array<string, mixed> $package
  * @var string $result
  * @var string $seat_line
+ * @var bool $is_preview
  *
  * @package Pothik
  */
@@ -14,6 +15,7 @@ declare(strict_types=1);
 use Pothik\Format;
 use Pothik\Front\PackagePage;
 use Pothik\I18n;
+use Pothik\InquiryStore;
 use Pothik\PackageStore;
 
 if (!defined('ABSPATH')) {
@@ -30,10 +32,12 @@ $price_rows = [
     'child_nobed' => ['Child without bed', 'Agency age band'],
     'infant' => ['Infant', 'On a lap'],
 ];
-$phone_href = Format::phone_href((string) ($package['phone'] ?? ''));
+$contact = PackageStore::contact($package);
+$phone = $contact['phone'];
+$phone_href = $contact['phone_href'];
 $page_title = I18n::field($package, 'title');
 $wa_href = Format::whatsapp_href(
-    (string) ($package['whatsapp'] ?? ''),
+    $contact['whatsapp'],
     sprintf(I18n::t('I want to ask about %s.'), $page_title !== '' ? $page_title : 'Umrah')
 );
 $page_url = PackagePage::url((string) ($package['id'] ?? ''));
@@ -53,11 +57,20 @@ $facts = array_filter([
     I18n::field($package, 'group_note'),
 ]);
 ?>
+<?php if (!empty($is_preview)) : ?>
+    <div style="background:#fff3cd;color:#856404;padding:12px 20px;text-align:center;font-weight:600;border-bottom:1px solid #ffeeba;">
+        <?php echo esc_html(I18n::t('Draft Preview — Not published to the public.')); ?>
+    </div>
+<?php endif; ?>
 <article class="pk">
     <header class="pk-bar" id="top">
         <a class="pk-brand" href="<?php echo esc_url($many ? $catalog_url : '#top'); ?>">
-            <span>Pothik</span>
-            <small><?php echo esc_html(I18n::field($package, 'agency')); ?></small>
+            <?php if ($contact['logo_url'] !== '') : ?>
+                <img src="<?php echo esc_url($contact['logo_url']); ?>" alt="<?php echo esc_attr($contact['agency']); ?>" style="max-height:32px;width:auto;vertical-align:middle;margin-right:8px;">
+            <?php else : ?>
+                <span>Pothik</span>
+            <?php endif; ?>
+            <small><?php echo esc_html($contact['agency']); ?></small>
         </a>
         <div class="pk-bar-actions">
             <?php echo I18n::toggle(); ?>
@@ -65,7 +78,7 @@ $facts = array_filter([
                 <a href="<?php echo esc_url($share_href); ?>" target="_blank" rel="noopener"><?php echo esc_html(I18n::t('Send this page')); ?></a>
             <?php endif; ?>
             <?php if ($phone_href !== '') : ?>
-                <a href="<?php echo esc_url($phone_href); ?>"><?php echo esc_html((string) $package['phone']); ?></a>
+                <a href="<?php echo esc_url($phone_href); ?>"><?php echo esc_html($phone); ?></a>
             <?php endif; ?>
             <?php if ($wa_href !== '') : ?>
                 <a class="pk-bar-wa" href="<?php echo esc_url($wa_href); ?>" target="_blank" rel="noopener"><?php echo esc_html(I18n::t('WhatsApp')); ?></a>
@@ -99,13 +112,20 @@ $facts = array_filter([
                         ['Madinah', 'madinah_hotel', 'madinah_similar', 'madinah_stars', 'madinah_meters', 'the Prophet\'s Mosque'],
                     ];
                     foreach ($hotels as $hotel) :
+                        $hotel_name = I18n::field($package, $hotel[1]);
+                        if (trim($hotel_name) === '') {
+                            continue;
+                        }
+                        $meters = (int) ($package[$hotel[4]] ?? 0);
                         ?>
                         <section>
                             <p><?php echo esc_html(I18n::t($hotel[0])); ?></p>
-                            <h2><?php echo esc_html(I18n::field($package, $hotel[1])); ?></h2>
+                            <h2><?php echo esc_html($hotel_name); ?></h2>
                             <span><?php echo esc_html(I18n::field($package, $hotel[2])); ?> · <?php echo esc_html(I18n::field($package, $hotel[3])); ?></span>
-                            <strong><?php echo esc_html((string) (int) ($package[$hotel[4]] ?? 0)); ?> m</strong>
-                            <em><?php echo esc_html(sprintf(I18n::t('Walking from %s'), I18n::t($hotel[5]))); ?></em>
+                            <?php if ($meters > 0) : ?>
+                                <strong><?php echo esc_html((string) $meters); ?> m</strong>
+                                <em><?php echo esc_html(sprintf(I18n::t('Walking from %s'), I18n::t($hotel[5]))); ?></em>
+                            <?php endif; ?>
                         </section>
                     <?php endforeach; ?>
                 </div>
@@ -117,6 +137,10 @@ $facts = array_filter([
                     <tbody>
                     <?php foreach ($price_rows as $key => $meta) : ?>
                         <?php
+                        $amount = (int) ($prices[$key] ?? 0);
+                        if ($amount <= 0 && $key !== 'quad') {
+                            continue;
+                        }
                         $row_class = [];
                         if ($key === 'quad') {
                             $row_class[] = 'is-lead';
@@ -124,19 +148,24 @@ $facts = array_filter([
                         if (isset($pickable[$key])) {
                             $row_class[] = 'is-pick';
                         }
+                        $price_text = $amount > 0 ? Format::money($amount) : I18n::t('Contact the office');
                         ?>
                         <tr data-share="<?php echo esc_attr($key); ?>"<?php echo $row_class !== [] ? ' class="' . esc_attr(implode(' ', $row_class)) . '"' : ''; ?><?php echo isset($pickable[$key]) ? ' tabindex="0" role="button" aria-pressed="' . ($key === 'quad' ? 'true' : 'false') . '"' : ''; ?>>
                             <th>
                                 <?php echo esc_html(I18n::t($meta[0])); ?>
                                 <small><?php echo esc_html(I18n::t($meta[1])); ?></small>
                             </th>
-                            <td><?php echo esc_html(Format::money((int) ($prices[$key] ?? 0))); ?></td>
+                            <td><?php echo esc_html($price_text); ?></td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
                 </table>
+                <?php
+                $quad_amount = (int) ($prices['quad'] ?? 0);
+                $quad_line = $quad_amount > 0 ? Format::money($quad_amount) : I18n::t('Contact the office');
+                ?>
                 <p class="pk-estimate">
-                    <strong data-pk-estimate-line><?php echo esc_html('1 ' . I18n::t('Adults') . ' · ' . I18n::choice('share', 'quad') . ' · ' . Format::money((int) ($prices['quad'] ?? 0))); ?></strong>
+                    <strong data-pk-estimate-line><?php echo esc_html('1 ' . I18n::t('Adults') . ' · ' . I18n::choice('share', 'quad') . ' · ' . $quad_line); ?></strong>
                     <span data-pk-estimate-extra><?php echo esc_html(I18n::t('Published share prices. This does not hold a seat.')); ?></span>
                 </p>
                 <?php if (I18n::field($package, 'food_note') !== '') : ?>
@@ -191,11 +220,68 @@ $facts = array_filter([
                 <?php endif; ?>
             </div>
             <?php if ($result === 'sent') : ?>
+                <?php
+                $ptk_token = isset($_GET['ptk']) ? sanitize_key((string) wp_unslash($_GET['ptk'])) : '';
+                $sent_info = [];
+                if ($ptk_token !== '') {
+                    $saved_sent = get_transient('pothik_sent_' . $ptk_token);
+                    if (is_array($saved_sent)) {
+                        $sent_info = $saved_sent;
+                    }
+                }
+                $sent_name = (string) ($sent_info['name'] ?? '');
+                $sent_pkg = (string) ($sent_info['package_title'] ?? $page_title);
+                $sent_share = (string) ($sent_info['share'] ?? 'quad');
+                $sent_adults = (int) ($sent_info['adults'] ?? 1);
+                $sent_children = (int) ($sent_info['children'] ?? 0);
+                $sent_infants = (int) ($sent_info['infants'] ?? 0);
+
+                if (I18n::is_bn()) {
+                    $wa_cta_body = sprintf(
+                        "আসসালামু আলাইকুম, আমি %s প্যাকেজের জন্য ইনকোয়ারি জমা দিয়েছি।\nনাম: %s\nরুম শেয়ার: %s\nযাত্রী: %d জন প্রাপ্তবয়স্ক, %d জন শিশু, %d জন নবজাতক।",
+                        $sent_pkg !== '' ? $sent_pkg : 'উমরা',
+                        $sent_name !== '' ? $sent_name : 'যাত্রী',
+                        I18n::choice('share', $sent_share),
+                        $sent_adults,
+                        $sent_children,
+                        $sent_infants
+                    );
+                } else {
+                    $wa_cta_body = sprintf(
+                        "Salam, I submitted an inquiry for %s.\nName: %s\nShare: %s\nPilgrims: %d adult(s), %d child(ren), %d infant(s).",
+                        $sent_pkg !== '' ? $sent_pkg : 'Umrah',
+                        $sent_name !== '' ? $sent_name : 'Visitor',
+                        I18n::choice('share', $sent_share),
+                        $sent_adults,
+                        $sent_children,
+                        $sent_infants
+                    );
+                }
+                $wa_cta_href = Format::whatsapp_href($contact['whatsapp'], $wa_cta_body);
+                ?>
                 <div class="pk-notice" role="status">
                     <strong><?php echo esc_html(I18n::t('Received.')); ?></strong>
                     <span><?php echo esc_html(I18n::t('The office will contact this number.')); ?></span>
+                    <?php if ($wa_cta_href !== '') : ?>
+                        <p style="margin-top:14px;margin-bottom:0;">
+                            <a class="pk-btn pk-btn-wa" href="<?php echo esc_url($wa_cta_href); ?>" target="_blank" rel="noopener">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:6px;"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                                <?php echo esc_html(I18n::t('Chat with the office on WhatsApp')); ?>
+                            </a>
+                        </p>
+                    <?php endif; ?>
                 </div>
             <?php else : ?>
+                <?php
+                $ptk_token = isset($_GET['ptk']) ? sanitize_key((string) wp_unslash($_GET['ptk'])) : '';
+                $prefill = [];
+                if ($ptk_token !== '') {
+                    $saved = get_transient('pothik_form_' . $ptk_token);
+                    if (is_array($saved)) {
+                        $prefill = $saved;
+                    }
+                }
+                ?>
                 <?php if ($result === 'missing') : ?>
                     <p class="pk-alert" role="alert"><?php echo esc_html(I18n::t('Name and phone are both required.')); ?></p>
                 <?php elseif ($result === 'limit') : ?>
@@ -203,31 +289,35 @@ $facts = array_filter([
                 <?php endif; ?>
                 <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
                     <input type="hidden" name="action" value="pothik_inquiry">
-                    <?php wp_nonce_field('pothik_inquiry', 'pothik_inquiry_nonce'); ?>
+                    <input type="hidden" name="pothik_trap" value="<?php echo esc_attr(InquiryStore::generate_time_trap()); ?>">
                     <input type="hidden" name="package_id" value="<?php echo esc_attr((string) ($package['id'] ?? '')); ?>">
-                    <label class="pk-trap">Website<input type="text" name="company_website" tabindex="-1" autocomplete="off"></label>
+                    <label class="pk-trap" aria-hidden="true">Website<input type="text" name="company_website" tabindex="-1" autocomplete="off"></label>
                     <div class="pk-form-grid">
-                        <label><?php echo esc_html(I18n::t('Name')); ?><input name="name" required autocomplete="name"></label>
-                        <label><?php echo esc_html(I18n::t('Phone')); ?><input name="phone" required autocomplete="tel"></label>
-                        <label><?php echo esc_html(I18n::t('WhatsApp')); ?><input name="whatsapp" autocomplete="tel"></label>
-                        <label><?php echo esc_html(I18n::t('City')); ?><input name="city" placeholder="<?php echo esc_attr(I18n::t('Dhaka')); ?>"></label>
+                        <label><?php echo esc_html(I18n::t('Name')); ?><input name="name" required autocomplete="name" value="<?php echo esc_attr((string) ($prefill['name'] ?? '')); ?>"></label>
+                        <label><?php echo esc_html(I18n::t('Phone')); ?><input name="phone" required autocomplete="tel" value="<?php echo esc_attr((string) ($prefill['phone'] ?? '')); ?>"></label>
+                        <label><?php echo esc_html(I18n::t('WhatsApp')); ?><input name="whatsapp" autocomplete="tel" value="<?php echo esc_attr((string) ($prefill['whatsapp'] ?? '')); ?>"></label>
+                        <label><?php echo esc_html(I18n::t('City')); ?><input name="city" placeholder="<?php echo esc_attr(I18n::t('Dhaka')); ?>" value="<?php echo esc_attr((string) ($prefill['city'] ?? '')); ?>"></label>
                         <label><?php echo esc_html(I18n::t('Share')); ?>
                             <select name="share">
-                                <?php foreach (['quad', 'triple', 'double', 'single'] as $share) : ?>
-                                    <option value="<?php echo esc_attr($share); ?>"><?php echo esc_html(I18n::choice('share', $share)); ?></option>
+                                <?php
+                                $selected_share = (string) ($prefill['share'] ?? 'quad');
+                                foreach (['quad', 'triple', 'double', 'single'] as $share) :
+                                    ?>
+                                    <option value="<?php echo esc_attr($share); ?>" <?php selected($selected_share, $share); ?>><?php echo esc_html(I18n::choice('share', $share)); ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </label>
                         <label><?php echo esc_html(I18n::t('Type')); ?>
                             <select name="trip">
-                                <option value="group"><?php echo esc_html(I18n::choice('trip', 'group')); ?></option>
-                                <option value="private"><?php echo esc_html(I18n::choice('trip', 'private')); ?></option>
+                                <?php $selected_trip = (string) ($prefill['trip'] ?? 'group'); ?>
+                                <option value="group" <?php selected($selected_trip, 'group'); ?>><?php echo esc_html(I18n::choice('trip', 'group')); ?></option>
+                                <option value="private" <?php selected($selected_trip, 'private'); ?>><?php echo esc_html(I18n::choice('trip', 'private')); ?></option>
                             </select>
                         </label>
-                        <label><?php echo esc_html(I18n::t('Adults')); ?><input name="adults" type="number" min="1" max="30" value="1"></label>
-                        <label><?php echo esc_html(I18n::t('Children')); ?><input name="children" type="number" min="0" max="20" value="0"></label>
-                        <label><?php echo esc_html(I18n::t('Infants')); ?><input name="infants" type="number" min="0" max="10" value="0"></label>
-                        <label class="pk-span"><?php echo esc_html(I18n::t('Note')); ?><textarea name="note" rows="3"></textarea></label>
+                        <label><?php echo esc_html(I18n::t('Adults')); ?><input name="adults" type="number" min="1" max="30" value="<?php echo esc_attr((string) ($prefill['adults'] ?? '1')); ?>"></label>
+                        <label><?php echo esc_html(I18n::t('Children')); ?><input name="children" type="number" min="0" max="20" value="<?php echo esc_attr((string) ($prefill['children'] ?? '0')); ?>"></label>
+                        <label><?php echo esc_html(I18n::t('Infants')); ?><input name="infants" type="number" min="0" max="10" value="<?php echo esc_attr((string) ($prefill['infants'] ?? '0')); ?>"></label>
+                        <label class="pk-span"><?php echo esc_html(I18n::t('Note')); ?><textarea name="note" rows="3"><?php echo esc_textarea((string) ($prefill['note'] ?? '')); ?></textarea></label>
                     </div>
                     <button class="pk-btn" type="submit"><?php echo esc_html(I18n::t('Send an inquiry')); ?></button>
                 </form>

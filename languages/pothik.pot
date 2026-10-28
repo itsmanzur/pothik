@@ -1,0 +1,1355 @@
+# Copyright (C) 2026 itsmanzur
+# This file is distributed under the GPL v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Pothik 0.3.0\n"
+"Report-Msgid-Bugs-To: https://thereadscope.com/pothik\n"
+"Last-Translator: itsmanzur <info@thereadscope.com>\n"
+"Language-Team: Bengali <info@thereadscope.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-28 06:48:10+0000\n"
+"PO-Revision-Date: 2026-10-28 06:48:10+0000\n"
+"X-Generator: Pothik i18n Tool\n"
+"X-Domain: pothik\n\n#: app/Admin/Screens.php
+msgid "%d Madinah"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "%d nights Makkah"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "%d nights do not fit inside %d days"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "%d nights fit inside %d days"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "%d of 40 packages"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "%d steps left before you go live"
+msgstr ""
+
+#: app/Admin/Menu.php
+#: app/Admin/Screens.php
+msgid "A pilgrim's dua at the Multazam may include your name."
+msgstr ""
+
+#: app/Admin/Menu.php
+msgid "Actions"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Add agency name & phone"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Add day"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Add email and press Enter"
+msgstr ""
+
+#: app/Plugin.php
+msgid "Admin"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Advance for Umrah package, quad share…"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Agency"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Agency details"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Agency name"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Agency name · English"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Agency name · বাংলা"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Agent commissions"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "All"
+msgstr ""
+
+#: app/Admin/Menu.php
+#: app/Admin/Screens.php
+msgid "All caught up, alhamdulillah"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "All inquiries"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "All packages"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Amount received"
+msgstr ""
+
+#: app/Admin/Chrome.php
+#: app/Admin/Menu.php
+msgid "Analytics"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Any share"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Assalamu alaikum! Thank you for your Umrah inquiry. Our office will call you today."
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Assalamu alaikum,\n\nThis is a test notification from your Pothik Umrah plugin.\nWhen a pilgrim submits an inquiry on your site, you will receive an alert like this.\n\n— Pothik Desk"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Assalamu alaikum, %s.<br><mark data-pk-wait-count data-wait-count>%d</mark> guests of Allah are waiting for your reply."
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Assalamu alaikum, %s.<br>All guests of Allah have been answered. Alhamdulillah."
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Basics"
+msgstr ""
+
+#: app/Admin/Analytics.php
+msgid "By room share"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Call"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Call %s"
+msgstr ""
+
+#: app/Admin/Menu.php
+#: app/Admin/Screens.php
+msgid "Cancel"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Cancellation"
+msgstr ""
+
+#: app/Admin/Menu.php
+msgid "Changes discarded"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Channel"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Chat with the office on WhatsApp"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Child + bed"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Child, no bed"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "City"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Clear"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Click to toggle"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Close"
+msgstr ""
+
+#: app/Admin/Chrome.php
+msgid "Command palette"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Contact"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Contact for this package"
+msgstr ""
+
+#: app/Admin/Menu.php
+msgid "Copied [pothik_catalog]"
+msgstr ""
+
+#: app/Admin/Menu.php
+msgid "Copied."
+msgstr ""
+
+#: app/Admin/Menu.php
+msgid "Copy"
+msgstr ""
+
+#: app/Admin/Menu.php
+msgid "Copy [pothik_catalog]"
+msgstr ""
+
+#: app/Admin/Analytics.php
+msgid "Copy catalog link"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Copy for WhatsApp"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Copy shortcode"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Create fresh or draft"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Create receipt & copy"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Create your first Umrah package"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Create your first package"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Creates the page again with the shortcode"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "DAYS"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Data"
+msgstr ""
+
+#: app/Admin/Analytics.php
+#: app/Admin/Screens.php
+msgid "Date"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Day by day"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Default country code"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Delete"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Delete everything on uninstall"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Delete selected?"
+msgstr ""
+
+#: app/Admin/Menu.php
+#: app/Admin/Screens.php
+msgid "Delete this package?"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Demo"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Demo & uninstall"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Demo data"
+msgstr ""
+
+#: app/Admin/Chrome.php
+msgid "Demo data loaded."
+msgstr ""
+
+#: app/Admin/Chrome.php
+msgid "Demo data removed."
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Departures board"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Departures, pilgrim files, rooming lists, installments and the visa board — built for Bangladeshi agencies."
+msgstr ""
+
+#: app/Admin/Chrome.php
+#: app/Admin/Menu.php
+msgid "Desk"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Direct 1-on-1 agency support"
+msgstr ""
+
+#: app/Admin/Menu.php
+#: app/Admin/Screens.php
+msgid "Discard"
+msgstr ""
+
+#: app/Plugin.php
+msgid "Dismiss"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Distance to Prophet's Mosque"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Distance to the Haram"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Distance to the Haram sells more than stars — keep it honest."
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Documents"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Double"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Download all inquiries"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Draft"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Drop your logo here or click to choose"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Duplicate"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Each package gets a dedicated mobile-friendly landing page with pricing, hotels and instant WhatsApp inquiry."
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Edit"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Editing English. Switch to বাংলা above to fill the Bangla version — empty Bangla fields fall back to English."
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Editing বাংলা. Switch to English above to fill the English version — empty Bangla fields fall back to English."
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Email & spam guard"
+msgstr ""
+
+#: app/Admin/Menu.php
+#: app/Admin/Screens.php
+msgid "Every reply you send could be someone's first step towards the Haram."
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Explore Pro features"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Export"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Export CSV"
+msgstr ""
+
+#: app/Admin/Menu.php
+msgid "Export inquiries CSV"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Eyebrow"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Feature"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Finish setting up"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Flight"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Flight & group departures board"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Flight dates, seats left and group or private quotas at a glance."
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Flight direction"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Food note"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Free Version"
+msgstr ""
+
+#: app/Admin/Chrome.php
+#: app/Admin/Screens.php
+msgid "Free version is limited to 40 packages. Upgrade to Pothik Pro for unlimited packages."
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Free version keeps one receipt. Full history is in Pro."
+msgstr ""
+
+#: app/Admin/Menu.php
+msgid "Go to"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Group note"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Grow with Pothik Pro"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Hajj / Umrah license number"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Hajj in"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Here are the full prices and hotel details for your package…"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Hide"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Hide setup checklist"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Hotel"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Hotels"
+msgstr ""
+
+#: app/Admin/Analytics.php
+msgid "Hover a bar"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Included"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Infant"
+msgstr ""
+
+#: app/Admin/Analytics.php
+#: app/Admin/Chrome.php
+#: app/Admin/Menu.php
+msgid "Inquiries"
+msgstr ""
+
+#: app/Admin/Analytics.php
+msgid "Inquiries by day"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Inquiries · last 7 days"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Inquiries, packages, receipt and settings are removed for good when the plugin is deleted."
+msgstr ""
+
+#: app/Admin/Menu.php
+msgid "Inquiry"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Inquiry details"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Inquiry form, WhatsApp, email alerts"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Installment ledger"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Installment ledger & bKash matching"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Journey & terms"
+msgstr ""
+
+#: app/Admin/Chrome.php
+msgid "Language"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Last receipt"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Leave a tier at 0 to hide it on the site. The lowest price is shown as \"from\"."
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Leave empty to use the agency phone and WhatsApp from Settings."
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "License"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Live preview"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Load demo"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Load demo data"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Logo"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Madinah"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Madinah al-Munawwarah"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Madinah hotel"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Madinah nights"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Makkah"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Makkah & Madinah bed / rooming lists"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Makkah al-Mukarramah"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Makkah hotel"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Makkah nights"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Manage"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Mark replied"
+msgstr ""
+
+#: app/Admin/Menu.php
+msgid "Marked replied."
+msgstr ""
+
+#: app/Admin/Menu.php
+msgid "Marked waiting."
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Max inquiries from one IP per hour"
+msgstr ""
+
+#: app/Admin/Menu.php
+#: app/Admin/Screens.php
+msgid "May Allah accept the Umrah of every pilgrim you serve."
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "More"
+msgstr ""
+
+#: app/Admin/Menu.php
+msgid "Moved to draft"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Name, phone, logo"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Needs reply"
+msgstr ""
+
+#: app/Admin/Menu.php
+#: app/Admin/Screens.php
+msgid "New inquiries will appear here."
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "New inquiry email"
+msgstr ""
+
+#: app/Admin/Menu.php
+#: app/Admin/Screens.php
+msgid "New package"
+msgstr ""
+
+#: app/Admin/Analytics.php
+msgid "No city"
+msgstr ""
+
+#: app/Admin/Analytics.php
+msgid "No inquiries in this period"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "No packages created yet."
+msgstr ""
+
+#: app/Admin/Menu.php
+msgid "No results found."
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Not included"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Note"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Nothing matches"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Notifications"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Office phone"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Office reply about your Umrah inquiry."
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "One package"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Open reply queue"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Or similar"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "PNG or SVG, square works best. Opens the Media Library."
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Package"
+msgstr ""
+
+#: app/Admin/Menu.php
+msgid "Package deleted"
+msgstr ""
+
+#: app/Admin/Menu.php
+msgid "Package duplicated"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Package landing pages"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Package name"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Package not found."
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Package page"
+msgstr ""
+
+#: app/Admin/Chrome.php
+#: app/Admin/Settings.php
+msgid "Package page has been recreated."
+msgstr ""
+
+#: app/Admin/Menu.php
+msgid "Package saved"
+msgstr ""
+
+#: app/Admin/Chrome.php
+#: app/Admin/Menu.php
+#: app/Admin/Screens.php
+msgid "Packages"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Packages · %d published"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Page & shortcodes"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Page missing or broken?"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Page missing or not assigned"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Paid by"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Partial payments, balance due, bKash & Nagad matching."
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Passport scans, mahram and family links, visa column per pilgrim."
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Paste on any page or block"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Payment channel"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Payment receipts"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Payment slip"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Phone"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Pick a package to get its code"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Pilgrim"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Pilgrim file"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Pilgrim name"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Pilgrim passport & visa tracking"
+msgstr ""
+
+#: app/Admin/Menu.php
+#: app/Admin/Screens.php
+msgid "Pilgrims"
+msgstr ""
+
+#: app/Admin/Analytics.php
+msgid "Pilgrims asked · %d adults · %d children · %d infants"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Please send passport copies to book your seat."
+msgstr ""
+
+#: app/Admin/Menu.php
+#: app/Admin/Screens.php
+msgid "Pothik Pro"
+msgstr ""
+
+#: app/Admin/Chrome.php
+msgid "Pothik sections"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Preview"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Prices"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Prices per person, BDT"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Print"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Public page"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Publish a package"
+msgstr ""
+
+#: app/Plugin.php
+msgid "Publish page"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Published"
+msgstr ""
+
+#: app/Admin/Menu.php
+msgid "Published — live on your site"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Quad"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Quick WhatsApp replies"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Quick actions"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Ramadan in"
+msgstr ""
+
+#: app/Admin/Chrome.php
+#: app/Admin/Menu.php
+msgid "Receipt"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Received"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Recreate page"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Remove demo"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Remove demo data"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Remove logo"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Replied"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Reply on WhatsApp"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Reply queue"
+msgstr ""
+
+#: app/Admin/Analytics.php
+msgid "Reply rate"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Rooming lists"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Run the whole Umrah season %s"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Sample packages, inquiries and a receipt for trying things out"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Save package"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Save receipt"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Save settings"
+msgstr ""
+
+#: app/Admin/Chrome.php
+#: app/Admin/Menu.php
+msgid "Saved."
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Scene"
+msgstr ""
+
+#: app/Admin/Chrome.php
+msgid "Search"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Search name, phone or city  ( / )"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Search packages or hotels…"
+msgstr ""
+
+#: app/Admin/Menu.php
+msgid "Search..."
+msgstr ""
+
+#: app/Admin/Menu.php
+msgid "Searching..."
+msgstr ""
+
+#: app/InquiryRepository.php
+msgid "Security check failed."
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Select"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Select all"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Send test"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Send to"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Separate Makkah and Madinah bed lists, auto-filled by share."
+msgstr ""
+
+#: app/Admin/Menu.php
+#: app/Admin/Screens.php
+msgid "Serve the guests of Ar-Rahman with ihsan — they remember the agency that cared."
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Set WhatsApp number"
+msgstr ""
+
+#: app/Admin/Chrome.php
+#: app/Admin/Menu.php
+msgid "Settings"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Share"
+msgstr ""
+
+#: app/Admin/Analytics.php
+msgid "Share your public package catalog so pilgrims can submit inquiries."
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Show every package"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Showing %d–%d of %d"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Single"
+msgstr ""
+
+#: app/Admin/Chrome.php
+msgid "Site"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Spam guard"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Staff move each file through statuses. Issue happens on Masar."
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Stars"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Start blank or copy an existing one"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Status"
+msgstr ""
+
+#: app/Admin/Analytics.php
+msgid "Still waiting"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Sub-agent commission reports"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Sub-agent leads and commission reports."
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Test email sent to %s"
+msgstr ""
+
+#: app/Plugin.php
+msgid "The package page is currently a draft."
+msgstr ""
+
+#: app/Plugin.php
+msgid "The package page is ready."
+msgstr ""
+
+#: app/Admin/Analytics.php
+msgid "Top cities"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Total days"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Transaction ID"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Triple"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Try another name, phone or city."
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Trying things out?"
+msgstr ""
+
+#: app/Admin/Chrome.php
+msgid "Type a command or search pilgrims..."
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Type and press Enter to add. Drag to reorder."
+msgstr ""
+
+#: app/Admin/Chrome.php
+msgid "Umrah desk"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Umrah package"
+msgstr ""
+
+#: app/Admin/Analytics.php
+msgid "Umrah vs Hajj"
+msgstr ""
+
+#: app/Admin/Menu.php
+msgid "Undo"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Unlimited Pro packages"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Unsaved changes"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Unsaved settings"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Untitled package"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Upgrade to Pothik Pro Now"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Upgrade to Pro"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Upload agency logo"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Used on packages, receipts and the WhatsApp button"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "Used when a pilgrim types 017… without +880"
+msgstr ""
+
+#: app/Plugin.php
+#: app/Admin/Chrome.php
+#: app/Admin/Screens.php
+msgid "View on site"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Visa board"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Visa board with Masar status tracking"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "Waiting"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "What pilgrims see first on the landing page."
+msgstr ""
+
+#: app/Admin/Screens.php
+#: app/Admin/Settings.php
+msgid "WhatsApp"
+msgstr ""
+
+#: app/Admin/Menu.php
+#: app/Admin/Screens.php
+msgid "Yes"
+msgstr ""
+
+#: app/InquiryRepository.php
+msgid "You do not have permission to perform this action."
+msgstr ""
+
+#: app/InquiryRepository.php
+#: app/InquiryStore.php
+#: app/PackageStore.php
+#: app/Plugin.php
+#: app/ReceiptStore.php
+#: app/Admin/Settings.php
+msgid "You do not have permission to view this screen."
+msgstr ""
+
+#: app/Admin/Menu.php
+msgid "You have unsaved changes. Are you sure you want to leave?"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "[Pothik] Test Notification (%s)"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "ago"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "complete"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "days"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "e.g. Personal shopping"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "e.g. Return air ticket"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "from"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "from one desk"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "from the bKash / Nagad SMS"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "from, quad"
+msgstr ""
+
+#: app/Admin/Analytics.php
+msgid "inquiries"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "of 40 free"
+msgstr ""
+
+#: app/Admin/Analytics.php
+msgid "of inquiries got a reply"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "oldest %s"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "per person"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "per person · shown as \"from\""
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "pilgrims"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "selected"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "small line above title"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "to the Haram"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "to the Prophet's Mosque"
+msgstr ""
+
+#: app/Admin/Screens.php
+msgid "updating"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "with country code"
+msgstr ""
+
+#: app/Admin/Settings.php
+msgid "wp_mail() returned false. Check your mail configuration."
+msgstr ""
+

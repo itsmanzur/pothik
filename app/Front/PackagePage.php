@@ -1,6 +1,6 @@
 <?php
 /**
- * Public package page.
+ * Public package page and shortcodes.
  *
  * @package Pothik
  */
@@ -42,16 +42,55 @@ final class PackagePage
     {
         $page_id = (int) get_option('pothik_page_id');
         if ($page_id > 0 && is_page($page_id)) {
+            self::enqueue();
+
             return POTHIK_DIR . 'templates/front.php';
         }
 
         return $template;
     }
 
+    /**
+     * Register frontend shortcodes.
+     */
+    public static function register_shortcodes(): void
+    {
+        add_shortcode('pothik_package', [self::class, 'package_shortcode']);
+        add_shortcode('pothik_catalog', [self::class, 'catalog_shortcode']);
+        add_shortcode('pothik', [self::class, 'shortcode']);
+    }
+
+    /**
+     * Legacy shortcode callback.
+     */
     public static function shortcode(): string
     {
+        return self::package_shortcode();
+    }
+
+    /**
+     * [pothik_package id="..."] shortcode.
+     *
+     * @param array<string, mixed>|string $atts
+     */
+    public static function package_shortcode(array|string $atts = []): string
+    {
+        $atts = shortcode_atts(['id' => ''], (array) $atts, 'pothik_package');
+        self::enqueue();
         ob_start();
-        self::render();
+        self::render(sanitize_key((string) $atts['id']));
+
+        return (string) ob_get_clean();
+    }
+
+    /**
+     * [pothik_catalog] shortcode.
+     */
+    public static function catalog_shortcode(): string
+    {
+        self::enqueue();
+        ob_start();
+        self::render_catalog();
 
         return (string) ob_get_clean();
     }
@@ -61,15 +100,9 @@ final class PackagePage
         $css = POTHIK_DIR . 'assets/css/public.css';
         $js = POTHIK_DIR . 'assets/js/public.js';
         wp_enqueue_style(
-            'pothik-fonts',
-            'https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap',
-            [],
-            null
-        );
-        wp_enqueue_style(
             'pothik-public',
             POTHIK_URL . 'assets/css/public.css',
-            ['pothik-fonts'],
+            [],
             is_readable($css) ? (string) filemtime($css) : POTHIK_VERSION
         );
         wp_enqueue_script(
@@ -81,27 +114,62 @@ final class PackagePage
         );
     }
 
-    public static function render(): void
+    public static function render(string $force_id = ''): void
     {
-        self::enqueue();
+        $all = PackageStore::all();
+        $is_admin = current_user_can('manage_options');
+        $published = array_values(array_filter($all, static fn (array $p): bool => ($p['status'] ?? 'draft') === 'published'));
 
-        $packages = PackageStore::all();
-        $requested = isset($_GET['package']) ? sanitize_key((string) wp_unslash($_GET['package'])) : '';
-        $package = $requested !== '' ? PackageStore::find($requested) : null;
-        if ($package === null && count($packages) === 1 && $requested === '') {
-            $package = $packages[0];
+        $requested = $force_id !== ''
+            ? $force_id
+            : (isset($_GET['package']) ? sanitize_key((string) wp_unslash($_GET['package'])) : '');
+
+        $package = null;
+        $is_preview = false;
+
+        if ($requested !== '') {
+            $found = PackageStore::find($requested);
+            if ($found !== null) {
+                if (($found['status'] ?? 'draft') === 'published') {
+                    $package = $found;
+                } elseif ($is_admin) {
+                    $package = $found;
+                    $is_preview = true;
+                }
+            }
+        } elseif (count($published) === 1) {
+            $package = $published[0];
+        } elseif (count($all) === 1 && $is_admin) {
+            $package = $all[0];
+            if (($package['status'] ?? 'draft') !== 'published') {
+                $is_preview = true;
+            }
         }
+
         if ($package === null) {
+            $packages = $is_admin ? $all : $published;
             include POTHIK_DIR . 'templates/catalog.php';
+
             return;
         }
 
+        $packages = $published;
         $result = isset($_GET['pothik']) ? sanitize_key((string) wp_unslash($_GET['pothik'])) : '';
         $seat_line = '';
         if (count($packages) === 1) {
             $line = apply_filters('pothik/seat_line', '');
             $seat_line = is_string($line) ? $line : '';
         }
+
         include POTHIK_DIR . 'templates/package.php';
+    }
+
+    public static function render_catalog(): void
+    {
+        $all = PackageStore::all();
+        $is_admin = current_user_can('manage_options');
+        $packages = $is_admin ? $all : array_values(array_filter($all, static fn (array $p): bool => ($p['status'] ?? 'draft') === 'published'));
+
+        include POTHIK_DIR . 'templates/catalog.php';
     }
 }

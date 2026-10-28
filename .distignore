@@ -1,0 +1,13 @@
+.git/
+.github/
+.gitignore
+.gitattributes
+.distignore
+node_modules/
+tests/
+Reference File/
+*.md
+!readme.txt
+scratch*
+phpcs.xml.dist
+*.log

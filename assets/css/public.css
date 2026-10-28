@@ -1,3 +1,46 @@
+@font-face {
+    font-family: 'Noto Sans Bengali';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../fonts/noto-sans-bengali-400.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Noto Sans Bengali';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('../fonts/noto-sans-bengali-600.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Noto Sans Bengali';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('../fonts/noto-sans-bengali-700.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Source Sans 3';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../fonts/source-sans-3-400.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Source Sans 3';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('../fonts/source-sans-3-600.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Source Sans 3';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('../fonts/source-sans-3-700.woff2') format('woff2');
+}
+
 /* Pothik package page. Flat paper, one green, one sans. */
 
 body.pothik-front {
@@ -643,4 +686,15 @@ body.pothik-front #wpadminbar {
         display: flex;
         flex-direction: column;
     }
+}
+
+.pk-btn-wa {
+    background: #128C7E;
+    color: #ffffff;
+}
+
+.pk-btn-wa:hover,
+.pk-btn-wa:focus-visible {
+    background: #075E54;
+    color: #ffffff;
 }

@@ -1,0 +1,13 @@
+# Build archives
+*.zip
+*.tar.gz
+
+# Temporary scratch scripts
+scratch/
+*.log
+
+# OS & IDE metadata
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

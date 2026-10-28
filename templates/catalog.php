@@ -17,19 +17,23 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-$office = is_array($packages[0] ?? null) ? $packages[0] : ['agency' => '', 'phone' => '', 'whatsapp' => '', 'bn' => []];
-$phone = (string) ($office['phone'] ?? '');
-$phone_href = Format::phone_href($phone);
+$contact = PackageStore::contact($packages[0] ?? []);
+$phone = $contact['phone'];
+$phone_href = $contact['phone_href'];
 $wa_href = Format::whatsapp_href(
-    (string) ($office['whatsapp'] ?? ''),
+    $contact['whatsapp'],
     sprintf(I18n::t('I want to ask about %s.'), 'Umrah')
 );
 ?>
 <article class="pk">
     <header class="pk-bar" id="top">
         <a class="pk-brand" href="#top">
-            <span>Pothik</span>
-            <small><?php echo esc_html(I18n::field($office, 'agency')); ?></small>
+            <?php if ($contact['logo_url'] !== '') : ?>
+                <img src="<?php echo esc_url($contact['logo_url']); ?>" alt="<?php echo esc_attr($contact['agency']); ?>" style="max-height:32px;width:auto;vertical-align:middle;margin-right:8px;">
+            <?php else : ?>
+                <span>Pothik</span>
+            <?php endif; ?>
+            <small><?php echo esc_html($contact['agency']); ?></small>
         </a>
         <div class="pk-bar-actions">
             <?php echo I18n::toggle(); ?>
@@ -61,6 +65,9 @@ $wa_href = Format::whatsapp_href(
                         $title = I18n::t('Untitled package');
                     }
                     $prices = is_array($package['prices'] ?? null) ? $package['prices'] : [];
+                    $quad = (int) ($prices['quad'] ?? 0);
+                    $quad_label = $quad > 0 ? Format::money($quad) : I18n::t('Contact the office');
+
                     $bits = array_filter([
                         ((int) ($package['days'] ?? 0)) > 0 ? sprintf(I18n::t('%s days'), (string) (int) $package['days']) : '',
                         ((int) ($package['nights_makkah'] ?? 0)) > 0 ? sprintf(I18n::t('%s nights in Makkah'), (string) (int) $package['nights_makkah']) : '',
@@ -70,6 +77,9 @@ $wa_href = Format::whatsapp_href(
                     $href = PackagePage::url((string) ($package['id'] ?? ''));
                     ?>
                     <a href="<?php echo esc_url($href); ?>">
+                        <?php if (($package['status'] ?? 'draft') === 'draft') : ?>
+                            <span class="pk-chip" style="font-size:11px;"><?php echo esc_html(I18n::t('Draft')); ?></span>
+                        <?php endif; ?>
                         <?php if (I18n::field($package, 'kicker') !== '') : ?>
                             <span><?php echo esc_html(I18n::field($package, 'kicker')); ?></span>
                         <?php endif; ?>
@@ -77,7 +87,7 @@ $wa_href = Format::whatsapp_href(
                         <?php if ($bits !== []) : ?>
                             <em><?php echo esc_html(implode(' · ', $bits)); ?></em>
                         <?php endif; ?>
-                        <b><?php echo esc_html(Format::money((int) ($prices['quad'] ?? 0))); ?></b>
+                        <b><?php echo esc_html($quad_label); ?></b>
                     </a>
                 <?php endforeach; ?>
             </div>

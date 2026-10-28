@@ -9,6 +9,9 @@ declare(strict_types=1);
 
 namespace Pothik;
 
+use Pothik\Admin\Screens;
+use Pothik\Admin\Settings;
+
 if (!defined('ABSPATH')) {
     exit;
 }
@@ -27,6 +30,7 @@ final class PackageStore
             'agency' => 'Pothik Umrah',
             'phone' => '01711-000000',
             'whatsapp' => '8801711000000',
+            'status' => 'draft',
             'kicker' => 'March group · from Dhaka',
             'title' => '7-day superior Umrah',
             'days' => 7,
@@ -169,26 +173,74 @@ final class PackageStore
     {
         $rows = self::all();
         if ($rows === []) {
-            $sample = self::defaults();
-            $sample['id'] = 'sample';
+            $blank = self::blank();
+            $blank['id'] = 'sample';
 
-            return $sample;
+            return $blank;
         }
 
         return $rows[0];
     }
 
     /**
-     * A new offer starts empty. Office phone and name copy from the first package.
+     * Resolve office contact info for a package with fallback to Settings.
+     *
+     * @param array<string, mixed> $package
+     * @return array<string, string>
+     */
+    public static function contact(array $package = []): array
+    {
+        $settings = Settings::get_all();
+        $is_bn = I18n::is_bn();
+
+        $pkg_phone = trim((string) ($package['phone'] ?? ''));
+        $pkg_wa = trim((string) ($package['whatsapp'] ?? ''));
+
+        $pkg_bn = is_array($package['bn'] ?? null) ? $package['bn'] : [];
+        $pkg_agency_bn = trim((string) ($pkg_bn['agency'] ?? ''));
+        $pkg_agency_en = trim((string) ($package['agency'] ?? ''));
+
+        if ($is_bn) {
+            $agency = $pkg_agency_bn !== ''
+                ? $pkg_agency_bn
+                : ($pkg_agency_en !== '' ? $pkg_agency_en : ($settings['agency_bn'] !== '' ? (string) $settings['agency_bn'] : (string) $settings['agency']));
+        } else {
+            $agency = $pkg_agency_en !== ''
+                ? $pkg_agency_en
+                : ($settings['agency'] !== '' ? (string) $settings['agency'] : (string) $settings['agency_bn']);
+        }
+
+        $phone = $pkg_phone !== '' ? $pkg_phone : (string) ($settings['phone'] ?? '');
+        $whatsapp = $pkg_wa !== '' ? $pkg_wa : (string) ($settings['whatsapp'] ?? '');
+        $license = (string) ($settings['license'] ?? '');
+
+        $logo_url = (string) ($settings['logo_url'] ?? '');
+        if ($logo_url === '' && !empty($settings['logo_id'])) {
+            $src = wp_get_attachment_image_src((int) $settings['logo_id'], 'full');
+            if (is_array($src) && !empty($src[0])) {
+                $logo_url = (string) $src[0];
+            }
+        }
+
+        return [
+            'agency' => $agency,
+            'phone' => $phone,
+            'phone_href' => Format::phone_href($phone),
+            'whatsapp' => $whatsapp,
+            'license' => $license,
+            'logo_url' => $logo_url,
+        ];
+    }
+
+    /**
+     * A new offer starts empty and as draft. Office phone and name fall back to Settings.
      *
      * @return array<string, mixed>
      */
     public static function blank(): array
     {
-        $office = self::all()[0] ?? [];
-        $bn = is_array($office['bn'] ?? null) ? $office['bn'] : [];
         $empty = [
-            'agency' => (string) ($bn['agency'] ?? ''),
+            'agency' => '',
             'kicker' => '',
             'title' => '',
             'route' => '',
@@ -209,9 +261,10 @@ final class PackageStore
 
         return [
             'id' => self::fresh_id(),
-            'agency' => (string) ($office['agency'] ?? ''),
-            'phone' => (string) ($office['phone'] ?? ''),
-            'whatsapp' => (string) ($office['whatsapp'] ?? ''),
+            'status' => 'draft',
+            'agency' => '',
+            'phone' => '',
+            'whatsapp' => '',
             'kicker' => '',
             'title' => '',
             'days' => 0,
@@ -246,6 +299,39 @@ final class PackageStore
         ];
     }
 
+    public static function has_demo(): bool
+    {
+        foreach (self::all() as $row) {
+            if (!empty($row['demo']) || ($row['id'] ?? '') === 'sample') {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static function load_demo(): void
+    {
+        $rows = self::all();
+        if (!self::has_demo()) {
+            $sample = self::defaults();
+            $sample['id'] = 'sample';
+            $sample['demo'] = true;
+            $sample['status'] = 'published';
+            array_unshift($rows, $sample);
+            self::put($rows);
+        }
+    }
+
+    public static function remove_demo(): void
+    {
+        $rows = array_values(array_filter(
+            self::all(),
+            static fn (array $row): bool => empty($row['demo']) && ($row['id'] ?? '') !== 'sample'
+        ));
+        self::put($rows);
+    }
+
     public static function handle_create(): void
     {
         if (!current_user_can('manage_options')) {
@@ -255,7 +341,7 @@ final class PackageStore
 
         $rows = self::all();
         if (count($rows) >= 40) {
-            wp_safe_redirect(admin_url('admin.php?page=pothik-package'));
+            wp_safe_redirect(admin_url('admin.php?page=pothik-package&error=limit'));
             exit;
         }
         $row = self::blank();
@@ -326,13 +412,19 @@ final class PackageStore
         $id = sanitize_key((string) ($post['package_id'] ?? ''));
         $current = self::find($id);
         $rows = self::all();
-        if ($current === null || count($rows) >= 40) {
+        if ($current === null) {
             wp_safe_redirect(self::copy_back($post, ''));
+            exit;
+        }
+        if (count($rows) >= 40) {
+            wp_safe_redirect(admin_url('admin.php?page=pothik-package&error=limit'));
             exit;
         }
 
         $copy = $current;
         $copy['id'] = self::fresh_id();
+        $copy['status'] = 'draft';
+        $copy['demo'] = false;
         $copy['title'] = self::copied_title((string) ($copy['title'] ?? ''), ' copy');
         $bn = is_array($copy['bn'] ?? null) ? $copy['bn'] : [];
         if (isset($bn['title']) && is_string($bn['title'])) {
@@ -346,8 +438,131 @@ final class PackageStore
         exit;
     }
 
+    public static function handle_toggle_status(): void
+    {
+        if (!current_user_can('manage_options')) {
+            wp_die(esc_html(I18n::t('You do not have permission to view this screen.')));
+        }
+        check_admin_referer('pothik_toggle_package_status');
+
+        $id = isset($_POST['package_id']) ? sanitize_key(wp_unslash((string) $_POST['package_id'])) : '';
+        $rows = self::all();
+        foreach ($rows as $index => $row) {
+            if (($row['id'] ?? '') === $id) {
+                $status = ($row['status'] ?? 'draft') === 'published' ? 'published' : 'draft';
+                $rows[$index]['status'] = $status === 'published' ? 'draft' : 'published';
+                break;
+            }
+        }
+        self::put($rows);
+
+        $back = isset($_POST['back']) ? sanitize_key(wp_unslash((string) $_POST['back'])) : 'pothik-package';
+        wp_safe_redirect(admin_url('admin.php?page=' . $back . '&updated=1'));
+        exit;
+    }
+
+    public static function ajax_toggle_status(): void
+    {
+        if (!check_ajax_referer('pothik_admin', 'nonce', false) && !check_ajax_referer('pothik_toggle_package_status', 'nonce', false)) {
+            wp_send_json_error(['message' => 'Invalid nonce'], 403);
+        }
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error(['message' => 'Unauthorized'], 403);
+        }
+
+        $id = isset($_POST['package_id']) ? sanitize_key(wp_unslash((string) $_POST['package_id'])) : '';
+        $rows = self::all();
+        $new_status = 'draft';
+        $found = false;
+
+        foreach ($rows as $index => $row) {
+            if (($row['id'] ?? '') === $id) {
+                $status = ($row['status'] ?? 'draft') === 'published' ? 'published' : 'draft';
+                $new_status = $status === 'published' ? 'draft' : 'published';
+                $rows[$index]['status'] = $new_status;
+                $found = true;
+                break;
+            }
+        }
+
+        if (!$found) {
+            wp_send_json_error(['message' => 'Package not found'], 404);
+        }
+
+        self::put($rows);
+
+        wp_send_json_success([
+            'id' => $id,
+            'status' => $new_status,
+            'live' => ($new_status === 'published'),
+            'label' => I18n::t($new_status === 'published' ? 'Published' : 'Draft'),
+        ]);
+    }
+
+    public static function ajax_delete(): void
+    {
+        if (!check_ajax_referer('pothik_admin', 'nonce', false) && !check_ajax_referer('pothik_delete_package', 'nonce', false)) {
+            wp_send_json_error(['message' => 'Invalid nonce'], 403);
+        }
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error(['message' => 'Unauthorized'], 403);
+        }
+
+        $id = isset($_POST['package_id']) ? sanitize_key(wp_unslash((string) $_POST['package_id'])) : '';
+        $rows = array_values(array_filter(
+            self::all(),
+            static fn (array $row): bool => ($row['id'] ?? '') !== $id
+        ));
+        self::put($rows);
+
+        wp_send_json_success(['id' => $id]);
+    }
+
+    public static function ajax_copy(): void
+    {
+        if (!check_ajax_referer('pothik_admin', 'nonce', false) && !check_ajax_referer('pothik_copy_package', 'nonce', false)) {
+            wp_send_json_error(['message' => 'Invalid nonce'], 403);
+        }
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error(['message' => 'Unauthorized'], 403);
+        }
+
+        $id = isset($_POST['package_id']) ? sanitize_key(wp_unslash((string) $_POST['package_id'])) : '';
+        $current = self::find($id);
+        $rows = self::all();
+        if ($current === null) {
+            wp_send_json_error(['message' => 'Package not found'], 404);
+        }
+        if (count($rows) >= 40) {
+            wp_send_json_error(['message' => 'limit_reached'], 400);
+        }
+
+        $copy = $current;
+        $copy['id'] = self::fresh_id();
+        $copy['status'] = 'draft';
+        $copy['demo'] = false;
+        $copy['title'] = self::copied_title((string) ($copy['title'] ?? ''), ' copy');
+        $bn = is_array($copy['bn'] ?? null) ? $copy['bn'] : [];
+        if (isset($bn['title']) && is_string($bn['title'])) {
+            $bn['title'] = self::copied_title($bn['title'], ' কপি');
+        }
+        $copy['bn'] = $bn;
+        $rows[] = $copy;
+        self::put($rows);
+
+        ob_start();
+        Screens::package_card($copy);
+        $card_html = ob_get_clean();
+
+        wp_send_json_success([
+            'id' => $copy['id'],
+            'html' => $card_html,
+        ]);
+    }
+
     /**
      * English stays on the root fields. Bangla lives under bn.
+     * In bn mode, only save keys that have non-empty values differing from English root.
      *
      * @param array<string, mixed> $current
      * @param array<string, mixed> $incoming
@@ -361,16 +576,34 @@ final class PackageStore
             'madinah_hotel', 'madinah_similar', 'madinah_stars',
             'food_note', 'docs', 'cancel', 'inclusions', 'exclusions', 'itinerary',
         ];
-        $neutral = ['phone', 'whatsapp', 'days', 'nights_makkah', 'nights_madinah', 'makkah_meters', 'madinah_meters', 'prices'];
+        $neutral = ['phone', 'whatsapp', 'days', 'nights_makkah', 'nights_madinah', 'makkah_meters', 'madinah_meters', 'prices', 'status'];
 
         if (I18n::lang() === 'bn') {
             $bn = is_array($current['bn'] ?? null) ? $current['bn'] : [];
             foreach ($prose as $key) {
-                $bn[$key] = $incoming[$key];
+                if (in_array($key, ['inclusions', 'exclusions', 'itinerary'], true)) {
+                    $submitted = (array) ($incoming[$key] ?? []);
+                    $root = (array) ($current[$key] ?? []);
+                    if (!empty($submitted) && $submitted !== $root) {
+                        $bn[$key] = $submitted;
+                    } else {
+                        unset($bn[$key]);
+                    }
+                } else {
+                    $submitted = trim((string) ($incoming[$key] ?? ''));
+                    $root = trim((string) ($current[$key] ?? ''));
+                    if ($submitted !== '' && $submitted !== $root) {
+                        $bn[$key] = $submitted;
+                    } else {
+                        unset($bn[$key]);
+                    }
+                }
             }
             $current['bn'] = $bn;
             foreach ($neutral as $key) {
-                $current[$key] = $incoming[$key];
+                if (isset($incoming[$key])) {
+                    $current[$key] = $incoming[$key];
+                }
             }
 
             return $current;
@@ -413,7 +646,12 @@ final class PackageStore
             $prices[$key] = isset($post['price_' . $key]) ? absint($post['price_' . $key]) : 0;
         }
 
+        $status = isset($post['status']) && in_array($post['status'], ['draft', 'published'], true)
+            ? (string) $post['status']
+            : 'draft';
+
         return [
+            'status' => $status,
             'agency' => $text('agency', 80),
             'phone' => $text('phone', 40),
             'whatsapp' => $text('whatsapp', 20),
@@ -447,13 +685,14 @@ final class PackageStore
      */
     private static function from_legacy(): array
     {
-        $stored = get_option('pothik_package', []);
-        if (!is_array($stored) || $stored === [] || !isset($stored['bn']) || ($stored['title'] ?? '') === '৭ দিন সুপিরিয়র উমরা') {
-            $row = self::defaults();
-        } else {
-            $row = array_replace_recursive(self::defaults(), $stored);
+        $stored = get_option('pothik_package', null);
+        if (!is_array($stored) || $stored === []) {
+            return [];
         }
+
+        $row = array_replace_recursive(self::blank(), $stored);
         $row['id'] = 'sample';
+        $row['status'] = 'draft';
 
         return [$row];
     }
@@ -466,6 +705,8 @@ final class PackageStore
     {
         $id = sanitize_key((string) ($row['id'] ?? ''));
         $row['id'] = $id !== '' ? $id : 'sample';
+        $row['status'] = in_array($row['status'] ?? '', ['draft', 'published'], true) ? $row['status'] : 'draft';
+        $row['demo'] = !empty($row['demo']);
         $row['days'] = min(365, absint($row['days'] ?? 0));
         $row['nights_makkah'] = min(365, absint($row['nights_makkah'] ?? 0));
         $row['nights_madinah'] = min(365, absint($row['nights_madinah'] ?? 0));
