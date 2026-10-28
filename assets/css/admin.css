@@ -2118,9 +2118,10 @@ kbd {
 .pk-admin .usage, .pk-admin .pk-usage{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);font-weight:600}
 .pk-admin .usage .meter, .pk-admin .pk-usage .meter{width:120px;margin:0}
 .pk-admin .pkg-grid, .pk-admin .pk-pkg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
-.pk-admin .pkg, .pk-admin .pk-pkg{position:relative;border-radius:var(--r-lg);background:var(--sheet);border:1px solid var(--line);box-shadow:var(--sh-1);overflow:hidden;display:flex;flex-direction:column;transition:transform .22s var(--ease),box-shadow .22s}
+.pk-admin .pkg, .pk-admin .pk-pkg{position:relative;border-radius:var(--r-lg);background:var(--sheet);border:1px solid var(--line);box-shadow:var(--sh-1);display:flex;flex-direction:column;transition:transform .22s var(--ease),box-shadow .22s}
+.pk-admin .pkg.has-menu-open, .pk-admin .pk-pkg.has-menu-open{z-index:60}
 .pk-admin .pkg:hover, .pk-admin .pk-pkg:hover{transform:translateY(-4px);box-shadow:var(--sh-3)}
-.pk-admin .pkg-cover, .pk-admin .pk-pkg-cover{position:relative;height:118px;padding:14px 16px;color:#fff;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(135deg,var(--c1),var(--c2))}
+.pk-admin .pkg-cover, .pk-admin .pk-pkg-cover{position:relative;height:118px;padding:14px 16px;color:#fff;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(135deg,var(--c1),var(--c2));border-top-left-radius:calc(var(--r-lg) - 1px);border-top-right-radius:calc(var(--r-lg) - 1px)}
 .pk-admin .pkg-cover::before, .pk-admin .pk-pkg-cover::before{content:"";position:absolute;inset:0;opacity:.14;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M20 2l5 13 13 5-13 5-5 13-5-13-13-5 13-5z' fill='none' stroke='%23fff'/%3E%3C/svg%3E");background-size:40px}
 .pk-admin .pkg-cover>*, .pk-admin .pk-pkg-cover>*{position:relative}
 .pk-admin .pkg-cover .row, .pk-admin .pk-pkg-cover .row{display:flex;justify-content:space-between;align-items:flex-start}
@@ -2138,7 +2139,7 @@ kbd {
 .pk-admin .stars, .pk-admin .pk-stars{color:var(--gold);letter-spacing:1px;font-size:12px}
 .pk-admin .dist, .pk-admin .pk-dist{grid-column:2/4;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
 .pk-admin .dist .meter, .pk-admin .pk-dist .meter{flex:1;margin:0;height:5px}
-.pk-admin .pkg-foot, .pk-admin .pk-pkg-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;border-top:1px solid var(--line-2);background:#fcfaf6}
+.pk-admin .pkg-foot, .pk-admin .pk-pkg-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;border-top:1px solid var(--line-2);background:#fcfaf6;border-bottom-left-radius:calc(var(--r-lg) - 1px);border-bottom-right-radius:calc(var(--r-lg) - 1px)}
 .pk-admin .price small, .pk-admin .pk-price small{display:block;font-size:11px;color:var(--muted);font-weight:700}
 .pk-admin .price b, .pk-admin .pk-price b{font-size:20px;letter-spacing:-.02em}
 .pk-admin .pkg-add, .pk-admin .pk-pkg-add{border:2px dashed #dcd2c1;background:transparent;border-radius:var(--r-lg);min-height:320px;display:grid;place-items:center;text-align:center;cursor:pointer;color:var(--muted);transition:all .2s}
@@ -2146,11 +2147,13 @@ kbd {
 .pk-admin .pkg-add .plus, .pk-admin .pk-pkg-add .plus{width:56px;height:56px;border-radius:50%;background:var(--sheet);border:1px solid var(--line);display:grid;place-items:center;margin:0 auto 10px;transition:transform .3s var(--ease)}
 .pk-admin .pkg-add:hover .plus, .pk-admin .pk-pkg-add:hover .plus{transform:rotate(90deg) scale(1.05);background:var(--g700);color:#fff;border-color:var(--g700)}
 .pk-admin .menu, .pk-admin .pk-menu{position:relative}
-.pk-admin .menu-pop, .pk-admin .pk-menu-pop{position:absolute;right:0;bottom:calc(100% + 6px);min-width:190px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:var(--sh-3);padding:6px;z-index:5;transform-origin:bottom right;animation:pop .16s var(--ease)}
-.pk-admin .menu-pop[hidden], .pk-admin .pk-menu-pop[hidden]{display:none}
+.pk-admin .menu-pop, .pk-admin .pk-menu-pop{position:absolute;right:0;bottom:calc(100% + 6px);min-width:190px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:var(--sh-3);padding:6px;z-index:100;transform-origin:bottom right;animation:pop .16s var(--ease)}
+.pk-admin .menu-pop[hidden], .pk-admin .pk-menu-pop[hidden]{display:none !important}
 @keyframes pop{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:none}}
-.pk-admin .menu-pop button, .pk-admin .pk-menu-pop button{display:flex;align-items:center;gap:10px;width:100%;border:0;background:none;padding:8px 10px;border-radius:8px;cursor:pointer;font-size:14px;text-align:left}
-.pk-admin .menu-pop button:hover, .pk-admin .pk-menu-pop button:hover{background:var(--line-2)}
+.pk-admin .menu-pop a, .pk-admin .pk-menu-pop a,
+.pk-admin .menu-pop button, .pk-admin .pk-menu-pop button{display:flex;align-items:center;gap:10px;width:100%;border:0;background:none;padding:8px 10px;border-radius:8px;cursor:pointer;font-size:14px;text-align:left;color:var(--ink);text-decoration:none;box-sizing:border-box}
+.pk-admin .menu-pop a:hover, .pk-admin .pk-menu-pop a:hover,
+.pk-admin .menu-pop button:hover, .pk-admin .pk-menu-pop button:hover{background:var(--line-2);color:var(--ink)}
 .pk-admin .menu-pop button.danger, .pk-admin .pk-menu-pop button.danger{color:var(--clay)}
 .pk-admin .menu-pop hr, .pk-admin .pk-menu-pop hr{border:0;border-top:1px solid var(--line-2);margin:4px 0}
 
@@ -2455,3 +2458,11 @@ kbd {
 .pk-admin .gap-10{gap:10px}
 .pk-admin .quick-amt{display:flex;gap:8px;flex-wrap:wrap}
 .pk-admin .channels{display:grid;grid-template-columns:repeat(auto-fit,minmax(80px,1fr));gap:8px}
+
+/* Soft navigation between screens: the current screen dims while the next one
+   loads, then the new one fades in. The app bar stays put. */
+.pk-admin > :not(.pk-appbar){transition:opacity .18s ease,transform .18s ease}
+.pk-admin.pk-is-loading > :not(.pk-appbar){opacity:.45;pointer-events:none}
+.pk-admin.pk-enter > :not(.pk-appbar){opacity:0;transform:translateY(4px)}
+.pk-admin .pk-page-head h1:focus{outline:none}
+@media (prefers-reduced-motion: reduce){.pk-admin > :not(.pk-appbar){transition:none}.pk-admin.pk-enter > :not(.pk-appbar){transform:none}}

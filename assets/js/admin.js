@@ -12,6 +12,42 @@
     var i18n = config.i18n || {};
 
     /* =========================================================
+       0. SCREEN LIFECYCLE
+       Screens are swapped without a reload (see SOFT NAVIGATION).
+       Listeners / timers a screen adds on document or window go
+       through these helpers so they end with that screen.
+       ========================================================= */
+
+    var pageCtl = new AbortController();
+    var pageTimers = [];
+    var pageGuards = [];
+
+    function pageOn(target, type, fn, opts) {
+        var o = (opts && typeof opts === 'object') ? Object.assign({}, opts) : { capture: !!opts };
+        o.signal = pageCtl.signal;
+        target.addEventListener(type, fn, o);
+    }
+
+    function pageInterval(fn, ms) {
+        var id = setInterval(fn, ms);
+        pageTimers.push(id);
+        return id;
+    }
+
+    // A screen with its own unsaved-changes flag registers it here.
+    function pageGuard(isDirty) {
+        pageGuards.push(isDirty);
+    }
+
+    function endPage() {
+        pageCtl.abort();
+        pageCtl = new AbortController();
+        pageTimers.forEach(clearInterval);
+        pageTimers = [];
+        pageGuards = [];
+    }
+
+    /* =========================================================
        1. TOAST NOTIFICATIONS
        ========================================================= */
 
@@ -318,7 +354,12 @@
         closeCmdk();
 
         if (item.url) {
-            window.location.href = item.url;
+            var target = softUrl(item.url);
+            if (target) {
+                softGo(target, true);
+            } else {
+                window.location.href = item.url;
+            }
             return;
         }
 
@@ -742,19 +783,19 @@
     }
 
     function closeMenus() {
-        document.querySelectorAll('[data-pk-more-menu], .pk-menu-pop, .menu-pop').forEach(function (menu) {
+        document.querySelectorAll('[data-pk-more-menu]').forEach(function (menu) {
             menu.hidden = true;
         });
-        document.querySelectorAll('[data-pk-more], [data-menu]').forEach(function (button) {
+        document.querySelectorAll('[data-pk-more]').forEach(function (button) {
             button.setAttribute('aria-expanded', 'false');
         });
     }
 
     function onMore(event) {
-        var button = event.target.closest ? event.target.closest('[data-pk-more], [data-menu]') : null;
+        var button = event.target.closest ? event.target.closest('[data-pk-more]') : null;
         if (button) {
             event.preventDefault();
-            var menu = button.parentElement ? (button.parentElement.querySelector('[data-pk-more-menu], .pk-menu-pop, .menu-pop') || button.nextElementSibling) : null;
+            var menu = button.parentElement ? (button.parentElement.querySelector('[data-pk-more-menu]') || button.nextElementSibling) : null;
             var willOpen = menu && menu.hidden;
             closeMenus();
             if (willOpen && menu) {
@@ -763,7 +804,7 @@
             }
             return;
         }
-        if (!event.target.closest || !event.target.closest('[data-pk-more-menu], .pk-menu-pop, .menu-pop')) {
+        if (!event.target.closest || !event.target.closest('[data-pk-more-menu]')) {
             closeMenus();
         }
     }
@@ -889,7 +930,7 @@
             });
         }
         updateMakkahTime();
-        setInterval(updateMakkahTime, 30000);
+        pageInterval(updateMakkahTime, 30000);
 
         // 4. Skyline Scene Switcher (Makkah & Madinah)
         var scMakkah = document.getElementById('scMakkah');
@@ -917,7 +958,7 @@
             showScene(savedScene);
         }
 
-        var autoScene = setInterval(function () {
+        var autoScene = pageInterval(function () {
             if (!scMakkah) return;
             var next = scMakkah.classList.contains('off') ? 'Makkah' : 'Madinah';
             showScene(next);
@@ -940,7 +981,7 @@
                 i18n.dua4 || "A pilgrim's dua at the Multazam may include your name."
             ];
             var lIdx = 0;
-            setInterval(function () {
+            pageInterval(function () {
                 duaEl.style.transition = 'opacity 0.6s';
                 duaEl.style.opacity = '0';
                 setTimeout(function () {
@@ -1103,40 +1144,70 @@
         }
 
         // Kebab menu toggle
-        document.addEventListener('click', function (e) {
+        pageOn(document, 'click', function (e) {
             var menuBtn = e.target.closest('[data-menu]');
-            document.querySelectorAll('.menu-pop').forEach(function (pop) {
-                if (!menuBtn || pop !== menuBtn.nextElementSibling) {
-                    pop.hidden = true;
-                    if (pop.previousElementSibling) {
-                        pop.previousElementSibling.setAttribute('aria-expanded', 'false');
-                    }
-                }
-            });
+            var insidePop = e.target.closest('.menu-pop, .pk-menu-pop');
+
             if (menuBtn) {
-                var pop = menuBtn.nextElementSibling;
-                if (pop) {
-                    pop.hidden = !pop.hidden;
-                    menuBtn.setAttribute('aria-expanded', !pop.hidden ? 'true' : 'false');
+                e.preventDefault();
+                var pop = menuBtn.nextElementSibling || (menuBtn.parentElement ? menuBtn.parentElement.querySelector('.menu-pop, .pk-menu-pop') : null);
+                if (!pop) return;
+
+                var isCurrentlyOpen = !pop.hidden;
+
+                // Close any open kebab menus first
+                document.querySelectorAll('.menu-pop, .pk-menu-pop').forEach(function (p) {
+                    p.hidden = true;
+                    if (p.previousElementSibling) {
+                        p.previousElementSibling.setAttribute('aria-expanded', 'false');
+                    }
+                    var card = p.closest('.pkg');
+                    if (card) card.classList.remove('has-menu-open');
+                });
+
+                if (!isCurrentlyOpen) {
+                    pop.hidden = false;
+                    menuBtn.setAttribute('aria-expanded', 'true');
+                    var card = menuBtn.closest('.pkg');
+                    if (card) card.classList.add('has-menu-open');
+
                     var rect = pop.getBoundingClientRect();
-                    if (rect.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
+                    var winHeight = window.innerHeight || document.documentElement.clientHeight;
+                    if (rect.top < 60) {
+                        pop.style.top = 'calc(100% + 6px)';
+                        pop.style.bottom = 'auto';
+                    } else if (rect.bottom > winHeight) {
                         pop.style.top = 'auto';
-                        pop.style.bottom = '100%';
-                    } else {
-                        pop.style.top = '';
-                        pop.style.bottom = '';
+                        pop.style.bottom = 'calc(100% + 6px)';
                     }
                 }
+                return;
+            }
+
+            // Click outside closes the kebab menu
+            if (!insidePop) {
+                document.querySelectorAll('.menu-pop, .pk-menu-pop').forEach(function (pop) {
+                    if (!pop.hidden) {
+                        pop.hidden = true;
+                        if (pop.previousElementSibling) {
+                            pop.previousElementSibling.setAttribute('aria-expanded', 'false');
+                        }
+                        var card = pop.closest('.pkg');
+                        if (card) card.classList.remove('has-menu-open');
+                    }
+                });
             }
         });
 
-        document.addEventListener('keydown', function (e) {
+        pageOn(document, 'keydown', function (e) {
             if (e.key === 'Escape') {
-                document.querySelectorAll('.menu-pop').forEach(function (pop) {
+                document.querySelectorAll('.menu-pop, .pk-menu-pop').forEach(function (pop) {
                     pop.hidden = true;
                     if (pop.previousElementSibling) {
                         pop.previousElementSibling.setAttribute('aria-expanded', 'false');
                     }
+                    var card = pop.closest('.pkg');
+                    if (card) card.classList.remove('has-menu-open');
                 });
             }
         });
@@ -1661,14 +1732,16 @@
             });
         }
 
-        document.addEventListener('keydown', function (e) {
+        pageOn(document, 'keydown', function (e) {
             if ((e.ctrlKey || e.metaKey) && e.key === 's') {
                 e.preventDefault();
                 doSave();
             }
         });
 
-        window.addEventListener('beforeunload', function (e) {
+        pageGuard(function () { return dirty; });
+
+        pageOn(window, 'beforeunload', function (e) {
             if (dirty) {
                 e.preventDefault();
                 e.returnValue = i18n.unsavedChanges || 'You have unsaved changes.';
@@ -1700,7 +1773,7 @@
         var activeRow = null;
 
         // "/" shortcut to focus search
-        document.addEventListener('keydown', function (e) {
+        pageOn(document, 'keydown', function (e) {
             if (e.key === '/' && document.activeElement !== searchInp && !document.activeElement.matches('input, textarea')) {
                 e.preventDefault();
                 if (searchInp) searchInp.focus();
@@ -1986,7 +2059,7 @@
         if (drClose) drClose.addEventListener('click', closeDrawer);
         if (drBg) drBg.addEventListener('click', closeDrawer);
 
-        document.addEventListener('keydown', function (e) {
+        pageOn(document, 'keydown', function (e) {
             if (e.key === 'Escape' && drawer && drawer.classList.contains('show')) {
                 closeDrawer();
             }
@@ -2316,7 +2389,9 @@
             });
         }
 
-        window.addEventListener('beforeunload', function (e) {
+        pageGuard(function () { return isDirty; });
+
+        pageOn(window, 'beforeunload', function (e) {
             if (isDirty) {
                 e.preventDefault();
                 e.returnValue = '';
@@ -2446,6 +2521,7 @@
         var mailHidden = document.getElementById('notificationEmailsInput');
         if (mailTagsContainer && mailHidden) {
             var input = mailTagsContainer.querySelector('input');
+            var populatingEmails = false;
             var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
             function syncEmails() {
@@ -2455,7 +2531,9 @@
                     if (val) list.push(val);
                 });
                 mailHidden.value = list.join(', ');
-                markDirty();
+                if (!populatingEmails) {
+                    markDirty();
+                }
             }
 
             function addEmailTag(rawVal) {
@@ -2496,11 +2574,13 @@
                 syncEmails();
             }
 
-            // Populate initial emails
+            // Populate initial emails (showing the saved list is not an edit).
             var initialEmails = (mailHidden.value || '').split(',').map(function (e) { return e.trim(); }).filter(Boolean);
+            populatingEmails = true;
             initialEmails.forEach(function (em) {
                 addEmailTag(em);
             });
+            populatingEmails = false;
 
             if (input) {
                 input.addEventListener('keydown', function (e) {
@@ -2592,21 +2672,15 @@
         }
     }
 
-    /* Boot when DOM is ready */
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function () {
-            readFlashes();
-            checkAppbar();
-            initCounts();
-            initDesk();
-            initPackages();
-            initEditor();
-            initInquiries();
-            initReceipt();
-            initAnalytics();
-            initSettings();
-        });
-    } else {
+    /* =========================================================
+       SOFT NAVIGATION
+       Moving between Pothik screens fetches the next screen and
+       swaps .pk-admin in place: no full page reload, the WordPress
+       chrome stays, the URL / history / title / menu follow along.
+       Anything unusual falls back to a normal page load.
+       ========================================================= */
+
+    function bootPage() {
         readFlashes();
         checkAppbar();
         initCounts();
@@ -2617,5 +2691,186 @@
         initReceipt();
         initAnalytics();
         initSettings();
+    }
+
+    // URL of a Pothik screen we can swap in, or null.
+    function softUrl(href) {
+        var url;
+        try {
+            url = new URL(href, window.location.href);
+        } catch (err) {
+            return null;
+        }
+        if (url.origin !== window.location.origin || !/\/wp-admin\/admin\.php$/.test(url.pathname)) {
+            return null;
+        }
+        var page = url.searchParams.get('page') || '';
+        if (page.indexOf('pothik') !== 0) {
+            return null;
+        }
+        // Language switch re-renders WordPress itself; nonce / action links do work.
+        if (url.searchParams.has('pothik_lang') || url.searchParams.has('_wpnonce') || url.searchParams.has('action')) {
+            return null;
+        }
+        // Settings uses the media library, which WordPress only loads on that screen's own load.
+        if (page === 'pothik-settings' && !(window.wp && window.wp.media)) {
+            return null;
+        }
+        return url;
+    }
+
+    function hasUnsavedChanges() {
+        if (dirtyForms.size > 0) {
+            return true;
+        }
+        return pageGuards.some(function (isDirty) {
+            try {
+                return !!isDirty();
+            } catch (err) {
+                return false;
+            }
+        });
+    }
+
+    function markActiveTab(url) {
+        var page = url.searchParams.get('page') || 'pothik';
+        document.querySelectorAll('.pk-tabs a.pk-tab-btn').forEach(function (a) {
+            var target = softUrl(a.href);
+            var tabPage = target ? (target.searchParams.get('page') || '') : '';
+            var on = tabPage === page || (tabPage === 'pothik-package' && page === 'pothik-packages');
+            a.classList.toggle('on', on);
+        });
+    }
+
+    // Keep the WordPress sidebar (current item, counts) in step with the new screen.
+    function syncAdminMenu(doc) {
+        var next = doc.getElementById('toplevel_page_pothik');
+        var current = document.getElementById('toplevel_page_pothik');
+        if (next && current) {
+            current.replaceWith(document.importNode(next, true));
+        }
+    }
+
+    var softRequest = null;
+    var softSearch = window.location.search;
+
+    function softGo(url, push) {
+        var root = document.querySelector('.pk-admin');
+        if (!root || !window.fetch || !window.DOMParser) {
+            window.location.href = url.href;
+            return;
+        }
+        if (hasUnsavedChanges() && !window.confirm(i18n.unsavedChanges || 'You have unsaved changes. Are you sure you want to leave?')) {
+            return;
+        }
+
+        if (softRequest) {
+            softRequest.abort();
+        }
+        var request = softRequest = new AbortController();
+        root.classList.add('pk-is-loading');
+        markActiveTab(url);
+
+        fetch(url.href, { credentials: 'same-origin', signal: request.signal })
+            .then(function (res) {
+                // Logged out, error page, or redirected away from Pothik: load it for real.
+                if (!res.ok || (res.redirected && !softUrl(res.url))) {
+                    throw new Error('pk-soft-fallback');
+                }
+                return res.text().then(function (html) {
+                    return { html: html, url: res.url || url.href };
+                });
+            })
+            .then(function (res) {
+                var doc = new DOMParser().parseFromString(res.html, 'text/html');
+                var next = doc.querySelector('.pk-admin');
+                if (!next) {
+                    throw new Error('pk-soft-fallback');
+                }
+
+                endPage();
+                dirtyForms.clear();
+
+                var fresh = document.importNode(next, true);
+                fresh.classList.add('pk-enter');
+                root.replaceWith(fresh);
+
+                if (doc.title) {
+                    document.title = doc.title;
+                }
+                syncAdminMenu(doc);
+
+                var finalUrl = new URL(res.url, window.location.href);
+                finalUrl.hash = url.hash;
+                if (push) {
+                    window.history.pushState({ pothik: true }, '', finalUrl.href);
+                }
+                softSearch = finalUrl.search;
+
+                window.scrollTo(0, 0);
+                bootPage();
+
+                // Two frames: the new screen paints once hidden, then fades in.
+                window.requestAnimationFrame(function () {
+                    window.requestAnimationFrame(function () {
+                        fresh.classList.remove('pk-enter');
+                    });
+                });
+                var heading = fresh.querySelector('.pk-page-head h1');
+                if (heading) {
+                    heading.setAttribute('tabindex', '-1');
+                    heading.focus({ preventScroll: true });
+                }
+                softRequest = null;
+            })
+            .catch(function (err) {
+                if (err && err.name === 'AbortError') {
+                    return;
+                }
+                window.location.href = url.href;
+            });
+    }
+
+    document.addEventListener('click', function (e) {
+        if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) {
+            return;
+        }
+        var a = e.target.closest('a[href]');
+        if (!a || (a.target && a.target !== '_self') || a.hasAttribute('download')) {
+            return;
+        }
+        // Pothik's own links, and the Pothik items in the WordPress sidebar.
+        if (!a.closest('.pk-admin') && !a.closest('#toplevel_page_pothik')) {
+            return;
+        }
+        var url = softUrl(a.href);
+        if (!url) {
+            return;
+        }
+        // Same screen, only the #hash changes (e.g. Settings tabs): leave it to the page.
+        if (url.search === window.location.search && url.hash) {
+            return;
+        }
+        e.preventDefault();
+        softGo(url, true);
+    });
+
+    window.addEventListener('popstate', function () {
+        if (window.location.search === softSearch) {
+            return; // Only the #hash changed.
+        }
+        var url = softUrl(window.location.href);
+        if (url) {
+            softGo(url, false);
+        } else {
+            window.location.reload();
+        }
+    });
+
+    /* Boot when DOM is ready */
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', bootPage);
+    } else {
+        bootPage();
     }
 }());
