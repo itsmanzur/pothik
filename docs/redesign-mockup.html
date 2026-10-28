@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pothik Admin Redesign — Mockup</title>
+<title>Pothik Dashboard v2 — Mockup</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Noto+Sans+Bengali:wght@400;600;700&family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -408,6 +408,7 @@ table.tbl{width:100%;border-collapse:separate;border-spacing:0;font-size:14px}
 .drawer-bg.show{opacity:1;pointer-events:auto}
 .drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,100vw);background:var(--paper);z-index:61;transform:translateX(100%);transition:transform .35s var(--ease);display:flex;flex-direction:column;box-shadow:-20px 0 50px -20px rgba(0,0,0,.35)}
 .drawer.show{transform:none}
+.drawer:not(.show){box-shadow:none;visibility:hidden;transition:transform .35s var(--ease),visibility 0s .35s}
 .dr-head{padding:20px 22px;background:var(--sheet);border-bottom:1px solid var(--line);display:flex;gap:14px;align-items:center}
 .dr-head .ava{width:52px;height:52px;border-radius:15px;font-size:19px}
 .dr-head h3{margin:0;font-size:19px}
@@ -552,6 +553,130 @@ table.tbl{width:100%;border-collapse:separate;border-spacing:0;font-size:14px}
 .cmdk li small{margin-left:auto;color:var(--faint);font-size:12px}
 .cmdk .grp{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);padding:10px 12px 4px;cursor:default}
 
+
+/* =========================================================
+   V2 SHELL — own sidebar + header (MasjidOS-style structure, Pothik colours)
+   ========================================================= */
+.wp{transition:grid-template-columns .3s var(--ease)}
+.wp.focus{grid-template-columns:0 1fr}
+.wp.focus .wp-side{overflow:hidden;padding:0}
+.wp-main{background:var(--paper)}
+.pk-app{--sw:248px;background:linear-gradient(90deg,#0b201a 0 var(--sw),transparent var(--sw));display:grid;grid-template-columns:248px minmax(0,1fr);min-height:calc(100vh - 32px);transition:grid-template-columns .3s var(--ease)}
+.pk-app.mini{--sw:76px;grid-template-columns:76px minmax(0,1fr)}
+.pk-side{position:sticky;top:32px;height:calc(100vh - 32px);display:flex;flex-direction:column;background:linear-gradient(180deg,#0f2a21 0%,#0b201a 100%);color:#d9e6df;border-right:1px solid rgba(255,255,255,.04);z-index:20}
+.pk-side::before{content:"";position:absolute;inset:0;opacity:.05;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cpath d='M24 3l6 15 15 6-15 6-6 15-6-15-15-6 15-6z' fill='none' stroke='%23fff'/%3E%3C/svg%3E");background-size:48px;mask-image:linear-gradient(180deg,#000,transparent 40%)}
+.side-top{display:flex;align-items:center;gap:10px;padding:18px 16px 14px;border-bottom:1px solid rgba(255,255,255,.06);position:relative}
+.side-top .brand-mark{background:linear-gradient(145deg,#e7bf68,var(--gold));color:#2b1d02;width:40px;height:40px}
+.side-top b{display:block;color:#fff;font-size:17px;line-height:1.1}
+.side-top small{font-size:12px;color:rgba(217,230,223,.6)}
+.side-collapse{margin-left:auto;width:30px;height:30px;border-radius:8px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:#cfe0d7;display:grid;place-items:center;cursor:pointer;flex:none}
+.side-collapse:hover{background:rgba(255,255,255,.1)}
+.side-nav{flex:1;overflow-y:auto;padding:10px 10px 16px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.15) transparent}
+.side-grp{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:rgba(217,230,223,.45);padding:16px 10px 6px;white-space:nowrap}
+.side-nav a{position:relative;display:flex;align-items:center;gap:12px;height:40px;padding:0 10px;border-radius:10px;text-decoration:none;color:#cfe0d7;font-weight:600;font-size:14.5px;white-space:nowrap;transition:background .15s,color .15s}
+.side-nav a:hover{background:rgba(255,255,255,.06);color:#fff}
+.side-nav a.on{background:linear-gradient(90deg,rgba(64,145,108,.32),rgba(64,145,108,.12));color:#fff}
+.side-nav a.on::before{content:"";position:absolute;left:-10px;top:8px;bottom:8px;width:3px;border-radius:0 3px 3px 0;background:var(--gold)}
+.side-nav a .cnt{margin-left:auto;min-width:22px;height:20px;padding:0 6px;border-radius:10px;font-size:11px;font-weight:800;display:grid;place-items:center;background:rgba(255,255,255,.1);color:#fff}
+.side-nav a .cnt.hot{background:var(--clay)}
+.side-nav a .lk{margin-left:auto;color:var(--gold);opacity:.8}
+.side-nav a.locked{color:rgba(207,224,215,.62)}
+.side-up{margin:10px 10px 0;padding:12px;border-radius:12px;background:linear-gradient(135deg,rgba(212,166,74,.22),rgba(212,166,74,.06));border:1px solid rgba(212,166,74,.3);font-size:13px;color:#f3e2b8}
+.side-up b{display:block;color:#fff;margin-bottom:2px}
+.side-up a{color:var(--gold);font-weight:800;text-decoration:none}
+.side-user{display:flex;align-items:center;gap:10px;margin:10px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}
+.side-user .ava{width:34px;height:34px;border-radius:50%;font-size:13px;background:var(--g600)}
+.side-user b{display:block;color:#fff;font-size:14px;line-height:1.1}
+.side-user small{font-size:12px;color:rgba(217,230,223,.6)}
+.side-user .ver{margin-left:auto;font-size:11px;color:rgba(217,230,223,.45)}
+.pk-app.mini .side-top b,.pk-app.mini .side-top small,.pk-app.mini .side-grp,.pk-app.mini .side-nav a span,.pk-app.mini .side-nav a .cnt,.pk-app.mini .side-nav a .lk,.pk-app.mini .side-up,.pk-app.mini .side-user div,.pk-app.mini .side-user .ver{display:none}
+.pk-app.mini .side-top{flex-direction:column;gap:8px}
+.pk-app.mini .side-collapse{margin:0;transform:rotate(180deg)}
+.pk-app.mini .side-nav a{justify-content:center;padding:0}
+.pk-app.mini .side-grp{display:block;height:1px;padding:0;margin:12px 8px;background:rgba(255,255,255,.08);font-size:0}
+.pk-app.mini .side-user{justify-content:center;padding:8px}
+.pk-body{min-width:0;display:flex;flex-direction:column}
+.pk-head{position:sticky;top:32px;z-index:15;display:flex;align-items:center;gap:14px;padding:14px 28px;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.pk-head h1{margin:0;font-size:21px;line-height:1.2;letter-spacing:-.01em}
+.pk-head p{margin:2px 0 0;font-size:13.5px;color:var(--muted)}
+.pk-head .tools{margin-left:auto}
+.lang-sel{height:38px;border:1px solid var(--line);border-radius:10px;padding:0 30px 0 12px;background:#fff;font-weight:600;cursor:pointer}
+.pk{max-width:none;margin:0;width:100%;padding:24px 28px 80px}
+.screen:not([data-screen=editor]) .page-head>div:first-child{display:none}
+.screen:not([data-screen=editor]) .page-head{justify-content:flex-end;margin-bottom:14px}
+.screen:not([data-screen=editor]) .page-head:empty{display:none}
+
+/* ---------- V2 DESK ---------- */
+.greet{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:16px}
+.greet h2{margin:0;font-size:24px;letter-spacing:-.015em}
+.greet .sub{margin-top:3px;font-size:14px}
+.greet .talbiyah{font-size:28px;margin:0;text-shadow:none;color:#b8892c}
+.notice{display:flex;align-items:center;gap:14px;padding:12px 16px;border-radius:14px;background:linear-gradient(90deg,var(--g800),var(--g700));color:#fff;margin-bottom:16px;box-shadow:0 8px 20px -14px rgba(15,42,33,.8)}
+.notice .badge-n{flex:none;height:24px;padding:0 10px;border-radius:999px;background:var(--gold);color:#2b1d02;font-size:12px;font-weight:800;display:grid;place-items:center}
+.notice p{margin:0;font-weight:600;font-size:14.5px;flex:1;min-width:0}
+.notice p em{font-style:normal;color:rgba(255,255,255,.72);font-weight:500}
+.notice a{color:#fff;font-weight:800;font-size:13.5px;text-decoration:none;display:flex;align-items:center;gap:6px;flex:none;padding:6px 12px;border-radius:9px;background:rgba(255,255,255,.12)}
+.notice a:hover{background:rgba(255,255,255,.2)}
+.count-card{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:24px;padding:22px 26px;border-radius:var(--r-lg);border:1px solid #dfe9e2;background:radial-gradient(500px 200px at 85% 120%,rgba(212,166,74,.18),transparent 70%),linear-gradient(120deg,#eef6f1 0%,#f6f2e7 100%);margin-bottom:16px;min-height:150px}
+.count-card .art{position:absolute;right:0;bottom:0;width:62%;height:100%;opacity:.17;pointer-events:none;mask-image:linear-gradient(90deg,transparent 0%,#000 35%)}
+.count-card .art svg{position:absolute;inset:0;width:100%;height:100%;transition:opacity 1.6s ease}
+.count-card .art svg.off{opacity:0}
+.count-card>*:not(.art){position:relative}
+.count-card h3{margin:4px 0 4px;font-size:20px}
+.count-card .sub b{color:var(--ink)}
+.count-card .seg{margin-top:12px}
+.timer{display:flex;align-items:flex-start;gap:6px;color:var(--g800);padding:14px 18px;border-radius:16px;background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.9);backdrop-filter:blur(6px);box-shadow:0 10px 24px -16px rgba(15,42,33,.45)}
+.timer div{text-align:center;min-width:64px}
+.timer b{display:block;font-size:44px;line-height:1;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.timer span{display:block;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+.timer i{font-style:normal;font-size:36px;font-weight:700;line-height:1.1;color:var(--g500);opacity:.6}
+.place-row{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.place-row button{height:28px;padding:0 10px;border-radius:999px;border:1px solid #d7e4db;background:rgba(255,255,255,.7);font-size:12px;font-weight:700;color:var(--muted);cursor:pointer}
+.place-row button.on{border-color:var(--g500);color:var(--g800);background:#fff}
+.place-row button b{color:var(--ink)}
+.qbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.qbar .btn{height:36px;font-weight:700;font-size:13.5px}
+.qbar .btn svg{color:var(--g600)}
+.pro-card{padding:16px 18px;margin-bottom:16px}
+.pro-card .ph{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.pro-inner{display:flex;align-items:center;gap:20px;padding:16px 18px;border-radius:14px;border:1px solid #ecd9ab;background:linear-gradient(110deg,#fdf8ec,#f8f4ea 60%,#f1f6f2)}
+.pro-inner h4{margin:0;display:flex;align-items:center;gap:8px;font-size:16px}
+.pro-inner p{margin:4px 0 12px;font-size:13.5px;color:var(--muted)}
+.pro-chips{margin-left:auto;display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end;max-width:52%}
+.pro-chips span{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 10px;border-radius:9px;background:#fff;border:1px solid #efe3c4;font-size:12.5px;font-weight:700;color:var(--ink-2)}
+.pro-chips svg{color:#a07a26}
+.stats6{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px;margin-bottom:16px}
+.stat{position:relative;padding:16px;border-radius:16px;background:#fff;border:1px solid var(--line);text-decoration:none;cursor:pointer;overflow:hidden;transition:transform .2s var(--ease),box-shadow .2s}
+.stat:hover{transform:translateY(-3px);box-shadow:var(--sh-2)}
+.stat .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--g50);color:var(--g700)}
+.stat.c2 .ic{background:var(--clay-100);color:var(--clay)}
+.stat.c3 .ic{background:var(--gold-100);color:#8a6414}
+.stat.c4 .ic{background:#e8f0f7;color:#3f6b8a}
+.stat.c5 .ic{background:#fdeef5;color:var(--bkash)}
+.stat.c6 .ic{background:#efeaf6;color:#6b4f8a}
+.stat strong{display:block;font-size:30px;line-height:1;margin:14px 0 6px;letter-spacing:-.02em}
+.stat .lb{font-weight:700;font-size:14px;color:var(--ink-2)}
+.stat .ln{display:block;font-size:12px;color:var(--faint);margin-top:6px}
+.stat .trend{position:absolute;top:16px;right:14px}
+.stat .spark{width:50%;height:40px;opacity:.85}
+.stat .meter{margin-top:8px}
+.desk2{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(300px,1fr);gap:16px;align-items:start}
+.queue-head{display:grid;grid-template-columns:40px 1fr auto;gap:12px;padding:10px 18px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);border-bottom:1px solid var(--line-2)}
+.queue .q-row{border-bottom:1px solid var(--line-2);border-radius:0;padding:12px 12px}
+.queue .q-row:last-child{border-bottom:0}
+.setup-light ul{list-style:none;margin:0;padding:8px 10px 12px}
+.setup-light li{display:flex;align-items:center;gap:10px;padding:8px;border-radius:10px;font-size:14px;cursor:pointer}
+.setup-light li:hover{background:var(--g50)}
+.setup-light .tick{width:22px;height:22px;border-radius:50%;border:1.5px solid #d3c9b8;display:grid;place-items:center;flex:none}
+.setup-light li.ok{color:var(--muted)}
+.setup-light li.ok span{text-decoration:line-through}
+.setup-light li.ok .tick{background:var(--g600);border-color:var(--g600);color:#fff}
+.setup-light .meter{margin:0 18px}
+@media (max-width:1400px){.stats6{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:1100px){.desk2{grid-template-columns:1fr}.pro-inner{flex-direction:column;align-items:flex-start}.pro-chips{margin:0;justify-content:flex-start;max-width:none}.count-card{grid-template-columns:1fr}}
+@media (max-width:960px){.wp,.wp.focus{grid-template-columns:1fr}.pk-app{grid-template-columns:1fr;background:none}.pk-side{display:none}.pk-head{flex-wrap:wrap}.greet{flex-direction:column;align-items:flex-start}}
+@media (max-width:600px){.stats6{grid-template-columns:1fr 1fr}.timer b{font-size:32px}.timer div{min-width:48px}.pk-head{padding:12px 16px}}
+
 /* ---------- responsive ---------- */
 @media (max-width:1180px){.ed{grid-template-columns:180px minmax(0,1fr)}.preview{display:none}.pro-strip{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:960px){
@@ -613,7 +738,7 @@ table.tbl{width:100%;border-collapse:separate;border-spacing:0;font-size:14px}
 </svg>
 
 <div class="wp-bar"><b style="color:#fff">⌂ Powerup</b><span>Live</span><span>+ New</span><span style="margin-left:auto">Howdy, admin</span></div>
-<div class="wp">
+<div class="wp" id="wp">
   <aside class="wp-side" aria-label="WordPress menu (mock)">
     <a>Dashboard</a><a>Posts</a><a>Media</a><a>Pages</a>
     <a class="cur">📍 Pothik</a>
@@ -624,37 +749,64 @@ table.tbl{width:100%;border-collapse:separate;border-spacing:0;font-size:14px}
   </aside>
 
   <main class="wp-main">
-  <div class="pk" id="app">
 
-    <!-- ===== APP BAR (Chrome::open) ===== -->
-    <header class="appbar" id="appbar">
-      <a class="brand" href="#" data-go="desk">
+
+   <div class="pk-app" id="pkApp">
+    <aside class="pk-side" aria-label="Pothik menu">
+      <div class="side-top">
         <span class="brand-mark"><svg class="i lg"><use href="#i-pin"/></svg></span>
-        <span><b>Pothik</b><small>Umrah desk</small></span>
-      </a>
-      <nav class="tabs" aria-label="Pothik sections">
-        <button data-go="desk" class="on"><svg class="i sm"><use href="#i-home"/></svg>Desk</button>
-        <button data-go="packages"><svg class="i sm"><use href="#i-box"/></svg>Packages</button>
-        <button data-go="inquiries"><svg class="i sm"><use href="#i-inbox"/></svg>Inquiries <span class="badge" data-wait-count>5</span></button>
-        <button data-go="receipt"><svg class="i sm"><use href="#i-receipt"/></svg>Receipt</button>
-        <button data-go="analytics"><svg class="i sm"><use href="#i-chart"/></svg>Analytics</button>
-        <button data-go="settings"><svg class="i sm"><use href="#i-gear"/></svg>Settings</button>
-        <button data-go="pro" class="pro"><svg class="i sm"><use href="#i-spark"/></svg>Pro</button>
-      </nav>
-      <div class="tools">
-        <button class="kbd-btn" data-cmdk aria-label="Search"><svg class="i sm"><use href="#i-search"/></svg><kbd>Ctrl K</kbd></button>
-        <div class="seg" role="group" aria-label="Language"><button class="on">EN</button><button>বাংলা</button></div>
-        <a class="btn btn-ghost btn-sm" href="#" title="View on site"><svg class="i sm"><use href="#i-ext"/></svg>Site</a>
+        <div><b>Pothik</b><small>Umrah desk</small></div>
+        <button class="side-collapse" id="sideToggle" aria-label="Collapse menu" title="Collapse menu"><svg class="i sm"><path d="M15 6l-6 6 6 6"/></svg></button>
       </div>
-    </header>
+      <nav class="side-nav">
+        <div class="side-grp">Overview</div>
+        <a href="#" data-go="desk" class="on" title="Desk"><svg class="i"><use href="#i-home"/></svg><span>Desk</span></a>
+        <a href="#" data-go="analytics" title="Analytics"><svg class="i"><use href="#i-chart"/></svg><span>Analytics</span></a>
+        <div class="side-grp">Packages</div>
+        <a href="#" data-go="packages" title="All packages"><svg class="i"><use href="#i-box"/></svg><span>All packages</span><b class="cnt">3</b></a>
+        <a href="#" data-go="editor" title="New package"><svg class="i"><use href="#i-plus"/></svg><span>New package</span></a>
+        <div class="side-grp">Pilgrims</div>
+        <a href="#" data-go="inquiries" title="Inquiries"><svg class="i"><use href="#i-inbox"/></svg><span>Inquiries</span><b class="cnt hot" data-wait-count>5</b></a>
+        <a href="#" data-go="receipt" title="Receipt"><svg class="i"><use href="#i-receipt"/></svg><span>Receipt</span></a>
+        <div class="side-grp">Pro</div>
+        <a href="#" data-go="pro" class="locked" title="Departures"><svg class="i"><use href="#i-plane"/></svg><span>Departures</span><span class="lk"><svg class="i sm"><use href="#i-lock"/></svg></span></a>
+        <a href="#" data-go="pro" class="locked" title="Pilgrim file"><svg class="i"><use href="#i-passport"/></svg><span>Pilgrim file</span><span class="lk"><svg class="i sm"><use href="#i-lock"/></svg></span></a>
+        <a href="#" data-go="pro" class="locked" title="Rooming"><svg class="i"><use href="#i-bed"/></svg><span>Rooming</span><span class="lk"><svg class="i sm"><use href="#i-lock"/></svg></span></a>
+        <a href="#" data-go="pro" class="locked" title="Installments"><svg class="i"><use href="#i-wallet"/></svg><span>Installments</span><span class="lk"><svg class="i sm"><use href="#i-lock"/></svg></span></a>
+        <a href="#" data-go="pro" class="locked" title="Visa board"><svg class="i"><use href="#i-shield"/></svg><span>Visa board</span><span class="lk"><svg class="i sm"><use href="#i-lock"/></svg></span></a>
+        <div class="side-grp">System</div>
+        <a href="#" data-go="settings" title="Settings"><svg class="i"><use href="#i-gear"/></svg><span>Settings</span></a>
+      </nav>
+      <div class="side-user"><span class="ava">A</span><div><b>admin</b><small>Administrator</small></div><span class="ver">v0.3.0</span></div>
+    </aside>
 
-    <!-- ================= DESK ================= -->
+    <div class="pk-body">
+      <header class="pk-head">
+        <div><h1 id="hTitle">Desk</h1><p id="hLead">Today's inquiries, packages and the next Umrah season at a glance.</p></div>
+        <div class="tools">
+          <button class="kbd-btn" data-cmdk aria-label="Search"><svg class="i sm"><use href="#i-search"/></svg><kbd>Ctrl K</kbd></button>
+          <select class="lang-sel" aria-label="Language"><option>English</option><option>বাংলা</option></select>
+          <button class="btn btn-ghost" id="focusBtn" title="Hide the WordPress menu"><svg class="i sm"><use href="#i-ext"/></svg><span>WP menu</span></button>
+          <button class="btn btn-primary" data-go="editor"><svg class="i sm"><use href="#i-plus"/></svg>New package</button>
+        </div>
+      </header>
+      <div class="pk" id="app">
+
+    <!-- ================= DESK v2 ================= -->
     <section class="screen" data-screen="desk">
-      <div class="hero">
-        <div class="sky" id="sky"><span class="moon"></span></div>
-        <div class="skyline" aria-hidden="true">
-          <!-- MAKKAH: mountains, Abraj clock tower, Haram minarets, Kaaba with tawaf ring -->
-          <svg id="scMakkah" viewBox="0 0 1200 190" preserveAspectRatio="xMidYMax slice">
+      <div class="greet">
+        <div><h2>Assalamu alaikum, admin</h2><div class="sub"><span id="hijri">—</span> · Wednesday, 28 October 2026</div></div>
+        <p class="talbiyah" lang="ar">لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ</p>
+      </div>
+
+      <div class="notice" role="status">
+        <span class="badge-n">Notice</span>
+        <p><b data-wait-count>5</b> guests of Allah are waiting for your reply. <em data-wait-pill>Every reply could be someone's first step towards the Haram.</em></p>
+        <a href="#" data-go="inquiries">Reply now <svg class="i sm"><use href="#i-arrow"/></svg></a>
+      </div>
+
+      <section class="count-card">
+        <div class="art" aria-hidden="true"><svg id="scMakkah" viewBox="0 0 1200 190" preserveAspectRatio="xMidYMax slice">
             <defs>
               <linearGradient id="kGlow" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#f3d48d" stop-opacity=".0"/><stop offset="1" stop-color="#f3d48d" stop-opacity=".35"/></linearGradient>
               <radialGradient id="kHalo" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#f7dc9a" stop-opacity=".55"/><stop offset="1" stop-color="#f7dc9a" stop-opacity="0"/></radialGradient>
@@ -687,9 +839,7 @@ table.tbl{width:100%;border-collapse:separate;border-spacing:0;font-size:14px}
             <path d="M444 136l26-5 26 5v6l-26-5-26 5z" fill="#d4a64a"/>
             <rect x="476" y="152" width="9" height="16" fill="#d4a64a" opacity=".9"/>
             </g>
-          </svg>
-          <!-- MADINAH: green dome, white minarets, courtyard umbrellas -->
-          <svg id="scMadinah" class="off" viewBox="0 0 1200 190" preserveAspectRatio="xMidYMax slice">
+          </svg><svg id="scMadinah" class="off" viewBox="0 0 1200 190" preserveAspectRatio="xMidYMax slice">
             <defs><linearGradient id="dome" x1="0" x2="1"><stop offset="0" stop-color="#2f9e64"/><stop offset="1" stop-color="#1e6b45"/></linearGradient>
             <radialGradient id="mHalo" cx=".5" cy=".6" r=".5"><stop offset="0" stop-color="#bff0d2" stop-opacity=".35"/><stop offset="1" stop-color="#bff0d2" stop-opacity="0"/></radialGradient></defs>
             <path d="M0 190V130c90-18 180-24 300-12s200-14 300-6 200 18 300 8 200-20 300-6V190z" fill="#0c241c" opacity=".9"/>
@@ -714,90 +864,77 @@ table.tbl{width:100%;border-collapse:separate;border-spacing:0;font-size:14px}
               <path d="M70 172l35-15 35 15M150 172l35-15 35 15M230 172l35-15 35 15M900 172l35-15 35 15M980 172l35-15 35 15M1060 172l35-15 35 15"/>
             </g>
             <g stroke="#f0e9d6" stroke-opacity=".6" stroke-width="2"><path d="M105 157v33M185 157v33M265 157v33M935 157v33M1015 157v33M1095 157v33"/></g>
-          </svg>
-        </div>
+          </svg></div>
         <div>
-          <p class="talbiyah" lang="ar">لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ</p>
-          <div class="eyebrow"><span id="hijri">— Rabi al-Akhir 1448</span><span class="dot"></span><span>Wednesday, 28 October</span></div>
-          <h1>Assalamu alaikum, admin.<br><mark data-wait-count>5</mark> guests of Allah are waiting for your reply.</h1>
-          <p class="dua" id="dua">Every reply you send could be someone's first step towards the Haram.</p>
-          <div class="hero-actions" style="margin-top:14px">
-            <button class="btn btn-gold btn-lg" data-go="inquiries"><svg class="i"><use href="#i-wa"/></svg>Open reply queue</button>
-            <button class="btn btn-ghost btn-lg" data-go="editor"><svg class="i"><use href="#i-plus"/></svg>New package</button>
+          <div class="eyebrow">Next season</div>
+          <h3 id="cName">Ramadan 1448</h3>
+          <div class="sub">Starts around <b id="cDate">—</b> · <span id="cTip">Publish your Ramadan Umrah packages early.</span></div>
+          <div class="place-row">
+            <div class="seg" id="cSeg"><button class="on" data-k="ram">🌙 Ramadan</button><button data-k="hajj">🐪 Hajj</button></div>
+            <button class="on" data-scene="Makkah">🕋 Makkah <b data-tz-time>—</b></button>
+            <button data-scene="Madinah">🕌 Madinah</button>
           </div>
         </div>
-        <div class="setup">
-          <div class="setup-top">
-            <div class="ring" id="setupRing" style="--p:60"><b>3/5</b></div>
-            <div><b>Finish setting up</b><div style="font-size:13px;opacity:.7">Two steps left before you go live</div></div>
-          </div>
-          <ul id="setupList">
-            <li class="ok"><span class="tick"><svg class="i sm"><use href="#i-check"/></svg></span><span>Add agency name & phone</span></li>
-            <li class="ok"><span class="tick"><svg class="i sm"><use href="#i-check"/></svg></span><span>Create your first package</span></li>
-            <li class="ok"><span class="tick"><svg class="i sm"><use href="#i-check"/></svg></span><span>Set WhatsApp number</span></li>
-            <li data-go="settings"><span class="tick"></span><span>Upload agency logo</span><svg class="i sm go"><use href="#i-arrow"/></svg></li>
-            <li data-go="packages"><span class="tick"></span><span>Publish a package</span><svg class="i sm go"><use href="#i-arrow"/></svg></li>
-          </ul>
+        <div class="timer" id="timer" aria-live="off">
+          <div><b data-t="d">000</b><span>days</span></div><i>:</i>
+          <div><b data-t="h">00</b><span>hours</span></div><i>:</i>
+          <div><b data-t="m">00</b><span>mins</span></div><i>:</i>
+          <div><b data-t="s">00</b><span>secs</span></div>
         </div>
-        <div class="place" role="group" aria-label="Scene">
-          <button class="on" data-scene="Makkah">🕋 Makkah al-Mukarramah <b data-tz-time>—</b></button>
-          <button data-scene="Madinah">🕌 Madinah al-Munawwarah</button>
-        </div>
-        <div class="season"><span>🌙 Ramadan in <b id="toRamadan">—</b> days</span><span>🐪 Hajj in <b id="toHajj">—</b> days</span></div>
+      </section>
+
+      <div class="qbar">
+        <button class="btn btn-ghost" data-go="editor"><svg class="i sm"><use href="#i-plus"/></svg>New package</button>
+        <button class="btn btn-ghost" data-go="inquiries"><svg class="i sm"><use href="#i-inbox"/></svg>Inquiries</button>
+        <button class="btn btn-ghost" data-go="receipt"><svg class="i sm"><use href="#i-receipt"/></svg>Payment slip</button>
+        <button class="btn btn-ghost" data-toast="CSV downloaded — 12 inquiries"><svg class="i sm"><use href="#i-down"/></svg>Export CSV</button>
+        <button class="btn btn-ghost" data-copy="[pothik_catalog]"><svg class="i sm"><use href="#i-copy"/></svg>Copy shortcode</button>
+        <button class="btn btn-ghost" data-go="settings"><svg class="i sm"><use href="#i-gear"/></svg>Settings</button>
       </div>
 
-      <div class="kpis">
-        <a class="kpi" data-go="inquiries">
-          <div class="kpi-top"><span class="kpi-ico"><svg class="i"><use href="#i-inbox"/></svg></span><span class="trend">▲ 40%</span></div>
-          <strong data-count="12">0</strong><span class="sub">Inquiries · last 7 days</span>
-          <svg class="spark" viewBox="0 0 100 40" preserveAspectRatio="none"><defs><linearGradient id="sg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#40916c" stop-opacity=".35"/><stop offset="1" stop-color="#40916c" stop-opacity="0"/></linearGradient></defs><path d="M0 34 L16 28 L33 30 L50 20 L66 24 L83 12 L100 8 L100 40 L0 40Z" fill="url(#sg)"/><path d="M0 34 L16 28 L33 30 L50 20 L66 24 L83 12 L100 8" fill="none" stroke="#40916c" stroke-width="2"/></svg>
-        </a>
-        <a class="kpi warn" data-go="inquiries">
-          <div class="kpi-top"><span class="kpi-ico"><svg class="i"><use href="#i-clock"/></svg></span><span class="pill wait">Needs reply</span></div>
-          <strong data-count="5" data-wait-count>0</strong><span class="sub">Waiting · oldest 2 days ago</span>
-        </a>
-        <a class="kpi" data-go="packages">
-          <div class="kpi-top"><span class="kpi-ico"><svg class="i"><use href="#i-box"/></svg></span><span class="sub">of 40 free</span></div>
-          <strong data-count="3">0</strong><span class="sub">Packages · 2 published</span>
-          <div class="meter"><i data-w="7.5"></i></div>
-        </a>
-        <a class="kpi gold" data-go="receipt">
-          <div class="kpi-top"><span class="kpi-ico"><svg class="i"><use href="#i-receipt"/></svg></span><span class="pill" style="background:#fdeef5;color:var(--bkash)">bKash</span></div>
-          <strong data-count="40000" data-money>৳0</strong><span class="sub">Last receipt · 24 Oct</span>
-        </a>
+      <div class="stats6">
+        <a class="stat" data-go="inquiries"><span class="ic"><svg class="i"><use href="#i-inbox"/></svg></span><span class="trend">▲ 40%</span><strong data-count="12">0</strong><span class="lb">Inquiries</span><span class="ln">Last 7 days</span>
+          <svg class="spark" viewBox="0 0 100 40" preserveAspectRatio="none" style="position:absolute;right:0;bottom:0"><path d="M0 34 L16 28 L33 30 L50 20 L66 24 L83 12 L100 8 L100 40 L0 40Z" fill="#40916c" opacity=".12"/><path d="M0 34 L16 28 L33 30 L50 20 L66 24 L83 12 L100 8" fill="none" stroke="#40916c" stroke-width="2"/></svg></a>
+        <a class="stat c2" data-go="inquiries"><span class="ic"><svg class="i"><use href="#i-clock"/></svg></span><strong data-count="5" data-wait-count>0</strong><span class="lb">Waiting reply</span><span class="ln">Oldest 2 days ago</span></a>
+        <a class="stat c3" data-go="packages"><span class="ic"><svg class="i"><use href="#i-box"/></svg></span><strong data-count="3">0</strong><span class="lb">Packages</span><span class="ln">3 of 40 free</span><div class="meter"><i data-w="7.5"></i></div></a>
+        <a class="stat c4" data-go="packages"><span class="ic"><svg class="i"><use href="#i-globe"/></svg></span><strong data-count="2">0</strong><span class="lb">Published</span><span class="ln">Live on your site</span></a>
+        <a class="stat c5" data-go="receipt"><span class="ic"><svg class="i"><use href="#i-receipt"/></svg></span><strong data-count="40000" data-money>৳0</strong><span class="lb">Last receipt</span><span class="ln">bKash · 24 Oct</span></a>
+        <a class="stat c6" data-go="analytics"><span class="ic"><svg class="i"><use href="#i-check"/></svg></span><strong data-count="80" data-suffix="%">0</strong><span class="lb">Reply rate</span><span class="ln">Last 30 days</span></a>
       </div>
 
-      <div class="desk-cols">
+      <div class="desk2">
         <div class="card">
-          <div class="card-head"><h2><svg class="i"><use href="#i-inbox"/></svg>Reply queue <span class="pill wait" data-wait-pill>5 waiting</span></h2><a class="link" href="#" data-go="inquiries">All inquiries <svg class="i sm"><use href="#i-arrow"/></svg></a></div>
+          <div class="card-head"><h3><svg class="i"><use href="#i-inbox"/></svg>Reply queue</h3><a class="link" href="#" data-go="inquiries">All inquiries <svg class="i sm"><use href="#i-arrow"/></svg></a></div>
+          <div class="queue-head"><span></span><span>Pilgrim · package · share</span><span>Received · actions</span></div>
           <ul class="queue" id="queue"></ul>
         </div>
         <div class="grid">
           <div class="card">
-            <div class="card-head"><h3>Quick actions</h3></div>
-            <div class="quick">
-              <button class="qa" data-go="editor"><span class="kpi-ico"><svg class="i"><use href="#i-plus"/></svg></span><b>New package</b><span>Hotels, days, prices</span></button>
-              <button class="qa" data-go="receipt"><span class="kpi-ico"><svg class="i"><use href="#i-receipt"/></svg></span><b>Payment slip</b><span>Print or WhatsApp</span></button>
-              <button class="qa" data-toast="CSV downloaded — 12 inquiries"><span class="kpi-ico"><svg class="i"><use href="#i-down"/></svg></span><b>Export CSV</b><span>Opens in Excel</span></button>
-              <button class="qa" data-copy="[pothik_catalog]"><span class="kpi-ico"><svg class="i"><use href="#i-copy"/></svg></span><b>Copy shortcode</b><span>[pothik_catalog]</span></button>
-            </div>
-          </div>
-          <div class="card">
             <div class="card-head"><h3>Packages</h3><a class="link" href="#" data-go="packages">Manage <svg class="i sm"><use href="#i-arrow"/></svg></a></div>
             <div id="miniPkgs"></div>
+          </div>
+          <div class="card setup-light">
+            <div class="card-head"><h3>Finish setting up</h3><span class="sub"><b>3</b> of 5</span></div>
+            <div class="meter" style="margin-top:12px"><i data-w="60"></i></div>
+            <ul>
+              <li class="ok"><span class="tick"><svg class="i sm"><use href="#i-check"/></svg></span><span>Add agency name & phone</span></li>
+              <li class="ok"><span class="tick"><svg class="i sm"><use href="#i-check"/></svg></span><span>Set WhatsApp number</span></li>
+              <li class="ok"><span class="tick"><svg class="i sm"><use href="#i-check"/></svg></span><span>Create your first package</span></li>
+              <li data-go="settings"><span class="tick"></span><span>Upload agency logo</span></li>
+              <li data-go="packages"><span class="tick"></span><span>Publish a package</span></li>
+            </ul>
           </div>
         </div>
       </div>
 
-      <div class="section-title"><h2><svg class="i" style="color:var(--gold)"><use href="#i-spark"/></svg>Grow with Pothik Pro</h2><button class="btn btn-ghost btn-sm" data-go="pro">See all features</button></div>
-      <div class="pro-strip">
-        <div class="lock-card" data-go="pro"><span class="lk"><svg class="i sm"><use href="#i-lock"/></svg></span><span class="kpi-ico"><svg class="i"><use href="#i-plane"/></svg></span><b>Departures</b><span>Flights, seats, group quotas</span></div>
-        <div class="lock-card" data-go="pro"><span class="lk"><svg class="i sm"><use href="#i-lock"/></svg></span><span class="kpi-ico"><svg class="i"><use href="#i-passport"/></svg></span><b>Pilgrim file</b><span>Passport, family, visa</span></div>
-        <div class="lock-card" data-go="pro"><span class="lk"><svg class="i sm"><use href="#i-lock"/></svg></span><span class="kpi-ico"><svg class="i"><use href="#i-bed"/></svg></span><b>Rooming</b><span>Makkah & Madinah beds</span></div>
-        <div class="lock-card" data-go="pro"><span class="lk"><svg class="i sm"><use href="#i-lock"/></svg></span><span class="kpi-ico"><svg class="i"><use href="#i-wallet"/></svg></span><b>Installments</b><span>bKash & Nagad matching</span></div>
-        <div class="lock-card" data-go="pro"><span class="lk"><svg class="i sm"><use href="#i-lock"/></svg></span><span class="kpi-ico"><svg class="i"><use href="#i-shield"/></svg></span><b>Visa board</b><span>Masar status tracking</span></div>
+      <div class="card pro-card" style="margin-top:16px">
+        <div class="ph"><span class="eyebrow">Pro</span><a class="link" href="#" style="font-size:13px;font-weight:700;color:var(--g600);text-decoration:none">Docs</a></div>
+        <div class="pro-inner">
+          <div><h4>Pothik Pro <span class="pill draft plain" style="background:var(--gold-100);color:#8a6414">PRO</span></h4><p>Run the whole season: departures, pilgrim files, rooming, installments and the visa board.</p><button class="btn btn-primary btn-sm" data-go="pro">Learn about Pro</button></div>
+          <div class="pro-chips"><span><svg class="i sm"><use href="#i-plane"/></svg>Departures</span><span><svg class="i sm"><use href="#i-passport"/></svg>Pilgrim file</span><span><svg class="i sm"><use href="#i-bed"/></svg>Rooming</span><span><svg class="i sm"><use href="#i-wallet"/></svg>Installments</span><span><svg class="i sm"><use href="#i-shield"/></svg>Visa board</span></div>
+        </div>
       </div>
-      <p class="sub" style="text-align:center;margin-top:26px">Trying things out? <a href="#" data-toast="Demo data removed">Remove demo data</a></p>
+      <p class="sub" style="text-align:center;margin-top:22px">Trying things out? <a href="#" data-toast="Demo data removed">Remove demo data</a></p>
     </section>
 
     <!-- ================= PACKAGES ================= -->
@@ -1105,7 +1242,9 @@ table.tbl{width:100%;border-collapse:separate;border-spacing:0;font-size:14px}
       </div>
     </section>
 
-  </div>
+      </div>
+    </div>
+   </div>
   </main>
 </div>
 
@@ -1168,15 +1307,15 @@ function toast(msg,undo){const t=document.createElement('div');t.className='toas
 document.addEventListener('click',e=>{const t=e.target.closest('[data-toast]');if(t){e.preventDefault();toast(t.dataset.toast)}const c=e.target.closest('[data-copy]');if(c){e.preventDefault();navigator.clipboard&&navigator.clipboard.writeText(c.dataset.copy).catch(()=>{});toast('Copied '+c.dataset.copy)}});
 
 /* ---------- routing ---------- */
-function go(name){$$('.screen').forEach(s=>s.hidden=s.dataset.screen!==name);const tab=name==='editor'?'packages':name;$$('.tabs button,#wpSub a').forEach(b=>b.classList.toggle('on',b.dataset.go===tab));window.scrollTo({top:0});countUp();if(name==='analytics')drawAnalytics();if(name!=='editor')$('#savebar').classList.remove('show')}
+const TITLES={desk:['Desk',"Today's inquiries, packages and the next Umrah season at a glance."],packages:['Packages','Each package becomes a landing page with prices, hotels and a WhatsApp button.'],editor:['Edit package','Days, hotels and prices. The site shows this package as you save it.'],inquiries:['Inquiries','Every name from the site form. Click a row to see details and reply.'],receipt:['Payment receipt','Fill the form — the slip updates as you type. Print it or paste it on WhatsApp.'],analytics:['Analytics','Where your pilgrims come from and what they ask for.'],settings:['Settings','Agency details, notifications, the public page and plugin data.'],pro:['Pothik Pro','Advanced Umrah & Hajj agency operations.']};function go(name){$$('.screen').forEach(s=>s.hidden=s.dataset.screen!==name);const tab=name;$$('.side-nav a,#wpSub a').forEach(b=>b.classList.toggle('on',b.dataset.go===tab&&!b.classList.contains('locked')||(name==='pro'&&b.dataset.go==='pro'&&false)));$('#hTitle').textContent=TITLES[name][0];$('#hLead').textContent=TITLES[name][1];window.scrollTo({top:0});countUp();if(name==='analytics')drawAnalytics();if(name!=='editor')$('#savebar').classList.remove('show')}
 document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g){e.preventDefault();go(g.dataset.go)}});
-addEventListener('scroll',()=>$('#appbar').classList.toggle('is-stuck',scrollY>10));
+
 
 /* ---------- count up + meters ---------- */
 function countUp(){$$('.screen:not([hidden]) [data-count]').forEach(el=>{const to=+el.dataset.count,m=el.hasAttribute('data-money'),s=el.dataset.suffix||'';let st=null;const f=ts=>{st=st||ts;const p=Math.min(1,(ts-st)/900),v=Math.round(to*(1-Math.pow(1-p,3)));el.textContent=(m?'৳'+money(v):v)+s;if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)});setTimeout(()=>$$('.screen:not([hidden]) .meter i[data-w]').forEach(i=>i.style.width=i.dataset.w+'%'),60)}
 
 /* ---------- wait count sync ---------- */
-function syncCounts(){const w=INQ.filter(r=>!r.done).length;$$('[data-wait-count]').forEach(e=>{e.textContent=w;if(e.dataset.count!==undefined)e.dataset.count=w});$('[data-wait-pill]').textContent=w+' waiting';$('[data-c="all"]').textContent=INQ.length;$('[data-c="wait"]').textContent=w;$('[data-c="done"]').textContent=INQ.length-w}
+function syncCounts(){const w=INQ.filter(r=>!r.done).length;$$('[data-wait-count]').forEach(e=>{e.textContent=w;if(e.dataset.count!==undefined)e.dataset.count=w});$('[data-c="all"]').textContent=INQ.length;$('[data-c="wait"]').textContent=w;$('[data-c="done"]').textContent=INQ.length-w}
 
 /* ---------- desk queue ---------- */
 function renderQueue(){const q=$('#queue');q.innerHTML='';const rows=INQ.filter(r=>!r.done).slice(0,5);if(!rows.length){q.innerHTML='<li class="empty"><div class="em-ico"><svg class="i lg"><use href="#i-check"/></svg></div><b>All caught up, alhamdulillah</b><div class="sub">New inquiries will appear here.</div></li>';return}
@@ -1295,25 +1434,28 @@ document.addEventListener('keydown',e=>{const k=e.key.toLowerCase();if((e.ctrlKe
  if(k==='escape')closeDr();if(k==='/'&&!/INPUT|TEXTAREA/.test(document.activeElement.tagName)&&!$('[data-screen=inquiries]').hidden){e.preventDefault();$('#inqSearch').focus()}});
 
 
-/* ---------- Haramain hero ---------- */
+/* ---------- V2 desk: countdown, Hijri, Makkah time, scenes, shell ---------- */
 (function(){
- const sky=$('#sky');for(let i=0;i<46;i++){const st=document.createElement('i');st.style.left=Math.random()*100+'%';st.style.top=Math.random()*55+'%';st.style.animationDelay=(Math.random()*4)+'s';if(Math.random()>.8){st.style.width=st.style.height='3px'}sky.append(st)}
- // Hijri date (Umm al-Qura) + countdowns, no hard-coded dates
- const H=(d,o)=>new Intl.DateTimeFormat('en-u-ca-islamic-umalqura',o).formatToParts(d).reduce((a,p)=>(a[p.type]=p.value,a),{});
- try{const t=new Date();$('#hijri').textContent=new Intl.DateTimeFormat('en-GB-u-ca-islamic-umalqura',{day:'numeric',month:'long',year:'numeric'}).format(t).replace(/\s?AH$/,'')+' AH';
-  const find=(m,dd)=>{for(let i=0;i<400;i++){const d=new Date(t.getTime()+i*864e5),p=H(d,{month:'numeric',day:'numeric'});if(+p.month===m&&+p.day===dd)return i}return '—'};
-  $('#toRamadan').textContent=find(9,1);$('#toHajj').textContent=find(12,8)}catch(e){}
- // local time in Makkah
- const tick=()=>$$('[data-tz-time]').forEach(el=>el.textContent=new Date().toLocaleTimeString('en-GB',{timeZone:'Asia/Riyadh',hour:'2-digit',minute:'2-digit'}));tick();setInterval(tick,30000);
- // scene switch (auto every 9s, manual click stops auto)
- let auto=setInterval(()=>show($('#scMakkah').classList.contains('off')?'Makkah':'Madinah'),9000);
+ const parts=(d,o)=>new Intl.DateTimeFormat('en-u-ca-islamic-umalqura',o).formatToParts(d).reduce((a,p)=>(a[p.type]=p.value,a),{});
+ const now=new Date();
+ try{$('#hijri').textContent=new Intl.DateTimeFormat('en-GB-u-ca-islamic-umalqura',{day:'numeric',month:'long',year:'numeric'}).format(now)}catch(e){}
+ const findDay=(m,dd)=>{for(let i=0;i<400;i++){const d=new Date(now.getFullYear(),now.getMonth(),now.getDate()+i);const p=parts(d,{month:'numeric',day:'numeric',year:'numeric'});if(+p.month===m&&+p.day===dd)return{d,y:p.year}}return null};
+ const T={ram:{f:findDay(9,1),n:'Ramadan',tip:'Publish your Ramadan Umrah packages early.'},hajj:{f:findDay(12,8),n:'Hajj',tip:'Hajj files and visas take time — start collecting passports.'}};
+ let k='ram';
+ const set=()=>{const t=T[k];if(!t.f)return;$('#cName').textContent=t.n+' '+String(t.f.y).replace(/\D/g,'');$('#cDate').textContent=t.f.d.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});$('#cTip').textContent=t.tip;tick()};
+ const pad=n=>String(n).padStart(2,'0');
+ function tick(){const t=T[k];if(!t.f)return;let ms=Math.max(0,t.f.d-new Date());const d=Math.floor(ms/864e5);ms-=d*864e5;const h=Math.floor(ms/36e5);ms-=h*36e5;const m=Math.floor(ms/6e4);const s=Math.floor((ms-m*6e4)/1e3);$('[data-t=d]').textContent=d;$('[data-t=h]').textContent=pad(h);$('[data-t=m]').textContent=pad(m);$('[data-t=s]').textContent=pad(s)}
+ set();setInterval(tick,1000);
+ $('#cSeg').onclick=e=>{const b=e.target.closest('button');if(!b)return;$$('#cSeg button').forEach(x=>x.classList.toggle('on',x===b));k=b.dataset.k;set()};
+ const tz=()=>$$('[data-tz-time]').forEach(el=>el.textContent=new Date().toLocaleTimeString('en-GB',{timeZone:'Asia/Riyadh',hour:'2-digit',minute:'2-digit'}));tz();setInterval(tz,30000);
  function show(n){$('#scMakkah').classList.toggle('off',n!=='Makkah');$('#scMadinah').classList.toggle('off',n!=='Madinah');$$('[data-scene]').forEach(b=>b.classList.toggle('on',b.dataset.scene===n))}
+ let auto=setInterval(()=>show($('#scMakkah').classList.contains('off')?'Makkah':'Madinah'),9000);
  $$('[data-scene]').forEach(b=>b.onclick=()=>{clearInterval(auto);show(b.dataset.scene)});
- // rotating gentle lines
- const lines=["Every reply you send could be someone's first step towards the Haram.","May Allah accept the Umrah of every pilgrim you serve.","Serve the guests of Ar-Rahman with ihsan — they remember the agency that cared.","A pilgrim's dua at the Multazam may include your name."];let li=0;
- setInterval(()=>{const d=$('#dua');d.style.opacity=0;setTimeout(()=>{li=(li+1)%lines.length;d.textContent=lines[li];d.style.opacity=1},600)},7000);
+ const lines=["Every reply could be someone's first step towards the Haram.","May Allah accept the Umrah of every pilgrim you serve.","Serve the guests of Ar-Rahman with ihsan."];let li=0;
+ setInterval(()=>{const e=$('[data-wait-pill]');e.style.transition='opacity .5s';e.style.opacity=0;setTimeout(()=>{li=(li+1)%lines.length;e.textContent=lines[li];e.style.opacity=1},500)},7000);
+ $('#sideToggle').onclick=()=>{$('#pkApp').classList.toggle('mini')};
+ $('#focusBtn').onclick=()=>{const f=$('#wp').classList.toggle('focus');$('#focusBtn span').textContent=f?'Show WP menu':'WP menu';toast(f?'WordPress menu hidden — full-screen desk':'WordPress menu shown')};
 })();
-
 /* ---------- boot ---------- */
 syncCounts();renderQueue();renderPkgs();renderMini();renderInq();countUp();
 })();

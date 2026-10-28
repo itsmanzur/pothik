@@ -2680,9 +2680,65 @@
        Anything unusual falls back to a normal page load.
        ========================================================= */
 
+    function initShell() {
+        // 1. Focus / Full-screen toggle
+        var focusBtn = document.getElementById('focusBtn');
+        if (focusBtn && !focusBtn.dataset.bound) {
+            focusBtn.dataset.bound = 'true';
+            focusBtn.addEventListener('click', function () {
+                var isFocus = document.body.classList.toggle('pothik-focus');
+                var span = focusBtn.querySelector('span');
+                if (span) {
+                    span.textContent = isFocus ? (i18n.showWpMenu || 'Show WP menu') : (i18n.wpMenu || 'WP menu');
+                }
+                focusBtn.setAttribute('aria-pressed', isFocus ? 'true' : 'false');
+                toast(isFocus ? (i18n.focusEnabled || 'WordPress menu hidden — full-screen desk') : (i18n.focusDisabled || 'WordPress menu shown'));
+
+                var fd = new FormData();
+                fd.append('action', 'pothik_ui_pref');
+                fd.append('key', 'focus');
+                fd.append('value', isFocus ? '1' : '0');
+                fd.append('nonce', config.nonce);
+                fetch(config.ajax, { method: 'POST', body: fd });
+            });
+        }
+
+        // Global shortcut Ctrl/Cmd+Shift+F
+        if (!window.__pothikFocusShortcutBound) {
+            window.__pothikFocusShortcutBound = true;
+            document.addEventListener('keydown', function (e) {
+                if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'F' || e.key === 'f')) {
+                    e.preventDefault();
+                    var btn = document.getElementById('focusBtn');
+                    if (btn) btn.click();
+                }
+            });
+        }
+
+        // 2. Sidebar Mini Mode toggle
+        var sideToggle = document.getElementById('sideToggle');
+        var pkApp = document.getElementById('pkApp');
+        if (sideToggle && !sideToggle.dataset.bound) {
+            sideToggle.dataset.bound = 'true';
+            sideToggle.addEventListener('click', function () {
+                if (!pkApp) return;
+                var isMini = pkApp.classList.toggle('mini');
+                document.body.classList.toggle('pothik-side-mini', isMini);
+
+                var fd = new FormData();
+                fd.append('action', 'pothik_ui_pref');
+                fd.append('key', 'side_mini');
+                fd.append('value', isMini ? '1' : '0');
+                fd.append('nonce', config.nonce);
+                fetch(config.ajax, { method: 'POST', body: fd });
+            });
+        }
+    }
+
     function bootPage() {
         readFlashes();
         checkAppbar();
+        initShell();
         initCounts();
         initDesk();
         initPackages();
@@ -2734,11 +2790,16 @@
 
     function markActiveTab(url) {
         var page = url.searchParams.get('page') || 'pothik';
-        document.querySelectorAll('.pk-tabs a.pk-tab-btn').forEach(function (a) {
+        document.querySelectorAll('.pk-tabs a.pk-tab-btn, .side-nav a').forEach(function (a) {
             var target = softUrl(a.href);
             var tabPage = target ? (target.searchParams.get('page') || '') : '';
-            var on = tabPage === page || (tabPage === 'pothik-package' && page === 'pothik-packages');
+            var on = tabPage === page || (tabPage === 'pothik-package' && (page === 'pothik-packages' || page === 'pothik-package'));
             a.classList.toggle('on', on);
+            if (on) {
+                a.setAttribute('aria-current', 'page');
+            } else {
+                a.removeAttribute('aria-current');
+            }
         });
     }
 

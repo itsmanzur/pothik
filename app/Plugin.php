@@ -51,6 +51,9 @@ final class Plugin
         add_action('wp_ajax_pothik_duplicate_package_ajax', [PackageStore::class, 'ajax_copy']);
         add_action('wp_ajax_pothik_delete_package_ajax', [PackageStore::class, 'ajax_delete']);
         add_action('admin_post_pothik_hide_setup', [self::class, 'handle_hide_setup']);
+        add_action('wp_ajax_pothik_ui_pref', [self::class, 'ajax_ui_pref']);
+        add_action('admin_post_pothik_ui_pref', [self::class, 'handle_ui_pref']);
+        add_filter('admin_body_class', [self::class, 'filter_admin_body_class']);
         add_action('admin_post_pothik_inquiry', [InquiryStore::class, 'handle_public']);
         add_action('admin_post_nopriv_pothik_inquiry', [InquiryStore::class, 'handle_public']);
 
@@ -229,6 +232,64 @@ final class Plugin
         check_admin_referer('pothik_hide_setup');
         update_user_meta(get_current_user_id(), 'pothik_hide_setup', 1);
         wp_safe_redirect(admin_url('admin.php?page=pothik'));
+        exit;
+    }
+
+    public static function filter_admin_body_class(string $classes): string
+    {
+        global $hook_suffix;
+        $page = isset($_GET['page']) ? sanitize_key((string) $_GET['page']) : '';
+        $is_pothik = (is_string($hook_suffix) && str_contains($hook_suffix, 'pothik')) || str_starts_with($page, 'pothik');
+
+        if ($is_pothik) {
+            $classes .= ' pothik-screen';
+            $user_id = get_current_user_id();
+            if ($user_id) {
+                if (get_user_meta($user_id, 'pothik_focus', true) === '1') {
+                    $classes .= ' pothik-focus';
+                }
+                if (get_user_meta($user_id, 'pothik_side_mini', true) === '1') {
+                    $classes .= ' pothik-side-mini';
+                }
+            }
+        }
+
+        return $classes;
+    }
+
+    public static function ajax_ui_pref(): void
+    {
+        check_ajax_referer('pothik_admin', 'nonce');
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error(['message' => 'Unauthorized'], 403);
+        }
+
+        $key = isset($_POST['key']) ? sanitize_key((string) $_POST['key']) : '';
+        $val = isset($_POST['value']) && $_POST['value'] === '1' ? '1' : '0';
+
+        if (!in_array($key, ['focus', 'side_mini', 'hide_setup'], true)) {
+            wp_send_json_error(['message' => 'Invalid key'], 400);
+        }
+
+        update_user_meta(get_current_user_id(), 'pothik_' . $key, $val);
+        wp_send_json_success(['key' => $key, 'value' => $val]);
+    }
+
+    public static function handle_ui_pref(): void
+    {
+        if (!current_user_can('manage_options')) {
+            wp_die(esc_html(I18n::t('You do not have permission to view this screen.')));
+        }
+        check_admin_referer('pothik_ui_pref');
+
+        $key = isset($_POST['key']) ? sanitize_key((string) $_POST['key']) : '';
+        $val = isset($_POST['value']) && $_POST['value'] === '1' ? '1' : '0';
+
+        if (in_array($key, ['focus', 'side_mini', 'hide_setup'], true)) {
+            update_user_meta(get_current_user_id(), 'pothik_' . $key, $val);
+        }
+
+        wp_safe_redirect(wp_get_referer() ?: admin_url('admin.php?page=pothik'));
         exit;
     }
 }

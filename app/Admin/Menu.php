@@ -144,6 +144,10 @@ final class Menu
                 'deletePackageConfirm' => I18n::t('Delete this package?'),
                 'yes' => I18n::t('Yes'),
                 'cancel' => I18n::t('Cancel'),
+                'showWpMenu' => I18n::t('Show WP menu'),
+                'wpMenu' => I18n::t('WP menu'),
+                'focusEnabled' => I18n::t('WordPress menu hidden — full-screen desk'),
+                'focusDisabled' => I18n::t('WordPress menu shown'),
                 'adminUrl' => admin_url('admin.php'),
             ],
         ]);

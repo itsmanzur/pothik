@@ -13,6 +13,7 @@ use Pothik\Front\PackagePage;
 use Pothik\I18n;
 use Pothik\InquiryRepository;
 use Pothik\Modules;
+use Pothik\PackageStore;
 
 if (!defined('ABSPATH')) {
     exit;
@@ -33,142 +34,244 @@ final class Chrome
             self::$sprite_printed = true;
         }
 
-        $public_url = PackagePage::url();
+        $user = wp_get_current_user();
+        $display_name = $user && $user->display_name ? $user->display_name : 'admin';
+        $role = !empty($user->roles[0]) ? ucfirst((string) $user->roles[0]) : 'Administrator';
+        $initial = Screens::avatar_initial($display_name);
+
+        $user_id = get_current_user_id();
+        $is_focus = $user_id ? (get_user_meta($user_id, 'pothik_focus', true) === '1') : false;
+        $is_mini = $user_id ? (get_user_meta($user_id, 'pothik_side_mini', true) === '1') : false;
+
         $current_page = isset($_GET['page']) ? sanitize_key((string) $_GET['page']) : 'pothik';
         $wait_count = InquiryRepository::count_waiting();
+        $packages_count = count(PackageStore::all());
 
-        // Check if any module is locked (to show Pro with sparkle)
-        $has_locked = false;
-        foreach (Modules::all() as $m) {
-            if (!Modules::is_open($m)) {
-                $has_locked = true;
-                break;
-            }
-        }
-
-        $tabs = [
-            'desk' => [
-                'slug' => 'pothik',
-                'label' => I18n::t('Desk'),
-                'icon' => 'i-home',
-                'active' => ($current_page === 'pothik' || $current_page === ''),
-            ],
-            'packages' => [
-                'slug' => 'pothik-package',
-                'label' => I18n::t('Packages'),
-                'icon' => 'i-box',
-                'active' => in_array($current_page, ['pothik-package', 'pothik-packages'], true),
-            ],
-            'inquiries' => [
-                'slug' => 'pothik-inquiries',
-                'label' => I18n::t('Inquiries'),
-                'icon' => 'i-inbox',
-                'badge' => $wait_count,
-                'active' => ($current_page === 'pothik-inquiries'),
-            ],
-            'receipt' => [
-                'slug' => 'pothik-receipt',
-                'label' => I18n::t('Receipt'),
-                'icon' => 'i-receipt',
-                'active' => ($current_page === 'pothik-receipt'),
-            ],
-            'analytics' => [
-                'slug' => 'pothik-analytics',
-                'label' => I18n::t('Analytics'),
-                'icon' => 'i-chart',
-                'active' => ($current_page === 'pothik-analytics'),
-            ],
-            'settings' => [
-                'slug' => 'pothik-settings',
-                'label' => I18n::t('Settings'),
-                'icon' => 'i-gear',
-                'active' => ($current_page === 'pothik-settings'),
-            ],
+        // Pro items
+        $icon_map = [
+            'departures' => 'i-plane',
+            'pilgrims' => 'i-passport',
+            'rooming' => 'i-bed',
+            'ledger' => 'i-wallet',
+            'visa' => 'i-shield',
         ];
-
-        if ($has_locked) {
-            $tabs['pro'] = [
-                'slug' => 'pothik-pro',
-                'label' => 'Pro',
-                'icon' => 'i-spark',
-                'is_pro' => true,
-                'active' => ($current_page === 'pothik-pro'),
+        $pro_nav_items = [];
+        foreach (Modules::all() as $m_id => $m_data) {
+            $is_open = Modules::is_open($m_data);
+            $icon = $icon_map[$m_id] ?? 'i-spark';
+            $item_title = isset($m_data['title']) ? (string) $m_data['title'] : ucfirst($m_id);
+            $pro_nav_items[] = [
+                'slug' => 'pothik-' . $m_id,
+                'label' => I18n::t($item_title),
+                'icon' => $icon,
+                'url' => $is_open ? admin_url('admin.php?page=pothik-' . $m_id) : admin_url('admin.php?page=pothik-pro'),
+                'locked' => !$is_open,
+                'active' => ($current_page === 'pothik-' . $m_id),
             ];
         }
 
-        echo '<div class="wrap pk-admin">';
+        $nav_groups = [
+            'overview' => [
+                'label' => I18n::t('Overview'),
+                'items' => [
+                    [
+                        'slug' => 'pothik',
+                        'label' => I18n::t('Desk'),
+                        'icon' => 'i-home',
+                        'url' => admin_url('admin.php?page=pothik'),
+                        'active' => in_array($current_page, ['pothik', ''], true),
+                    ],
+                    [
+                        'slug' => 'pothik-analytics',
+                        'label' => I18n::t('Analytics'),
+                        'icon' => 'i-chart',
+                        'url' => admin_url('admin.php?page=pothik-analytics'),
+                        'active' => ($current_page === 'pothik-analytics'),
+                    ],
+                ],
+            ],
+            'packages' => [
+                'label' => I18n::t('Packages'),
+                'items' => [
+                    [
+                        'slug' => 'pothik-package',
+                        'label' => I18n::t('All packages'),
+                        'icon' => 'i-box',
+                        'url' => admin_url('admin.php?page=pothik-package'),
+                        'count' => $packages_count,
+                        'active' => in_array($current_page, ['pothik-package', 'pothik-packages'], true),
+                    ],
+                    [
+                        'slug' => 'new_package',
+                        'label' => I18n::t('New package'),
+                        'icon' => 'i-plus',
+                        'is_form_action' => 'pothik_new_package',
+                    ],
+                ],
+            ],
+            'pilgrims' => [
+                'label' => I18n::t('Pilgrims'),
+                'items' => [
+                    [
+                        'slug' => 'pothik-inquiries',
+                        'label' => I18n::t('Inquiries'),
+                        'icon' => 'i-inbox',
+                        'url' => admin_url('admin.php?page=pothik-inquiries'),
+                        'count' => $wait_count,
+                        'count_hot' => ($wait_count > 0),
+                        'active' => ($current_page === 'pothik-inquiries'),
+                    ],
+                    [
+                        'slug' => 'pothik-receipt',
+                        'label' => I18n::t('Receipt'),
+                        'icon' => 'i-receipt',
+                        'url' => admin_url('admin.php?page=pothik-receipt'),
+                        'active' => ($current_page === 'pothik-receipt'),
+                    ],
+                ],
+            ],
+            'pro' => [
+                'label' => 'Pro',
+                'items' => $pro_nav_items,
+            ],
+            'system' => [
+                'label' => I18n::t('System'),
+                'items' => [
+                    [
+                        'slug' => 'pothik-settings',
+                        'label' => I18n::t('Settings'),
+                        'icon' => 'i-gear',
+                        'url' => admin_url('admin.php?page=pothik-settings'),
+                        'active' => ($current_page === 'pothik-settings'),
+                    ],
+                ],
+            ],
+        ];
 
-        // Sticky App Bar
-        echo '<header class="pk-appbar appbar" id="appbar">';
+        /** @var array<string, array<string, mixed>> $nav_groups */
+        $nav_groups = apply_filters('pothik/admin_nav', $nav_groups);
 
-        // Brand
-        echo '<a class="pk-brand brand" href="' . esc_url(admin_url('admin.php?page=pothik')) . '">';
-        echo '<span class="pk-brand-mark brand-mark"><svg class="i lg" aria-hidden="true"><use href="#i-pin"/></svg></span>';
-        echo '<span><b>Pothik</b><small>' . esc_html(I18n::t('Umrah desk')) . '</small></span>';
-        echo '</a>';
+        echo '<div class="pk-admin">';
+        echo '<div class="pk-app' . ($is_mini ? ' mini' : '') . '" id="pkApp">';
 
-        // Nav tabs
-        echo '<nav class="pk-tabs tabs" aria-label="' . esc_attr(I18n::t('Pothik sections')) . '">';
-        foreach ($tabs as $tab) {
-            $class = 'pk-tab-btn';
-            if (!empty($tab['active'])) {
-                $class .= ' on';
+        // Dedicated Pothik Sidebar
+        echo '<aside class="pk-side" aria-label="' . esc_attr(I18n::t('Pothik menu')) . '">';
+        echo '<div class="side-top">';
+        echo '<span class="brand-mark"><svg class="i lg" aria-hidden="true"><use href="#i-pin"/></svg></span>';
+        echo '<div><b>Pothik</b><small>' . esc_html(I18n::t('Umrah desk')) . '</small></div>';
+        echo '<button type="button" class="side-collapse" id="sideToggle" aria-label="' . esc_attr(I18n::t('Collapse menu')) . '" title="' . esc_attr(I18n::t('Collapse menu')) . '">';
+        echo '<svg class="i sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg>';
+        echo '</button>';
+        echo '</div>'; // .side-top
+
+        echo '<nav class="side-nav">';
+        foreach ($nav_groups as $grp_key => $grp) {
+            if (empty($grp['items']) || !is_array($grp['items'])) {
+                continue;
             }
-            if (!empty($tab['is_pro'])) {
-                $class .= ' pk-pro pro';
+            echo '<div class="side-grp">' . esc_html($grp['label']) . '</div>';
+            foreach ($grp['items'] as $item) {
+                if (!empty($item['is_form_action'])) {
+                    echo '<form method="post" action="' . esc_url(admin_url('admin-post.php')) . '" class="form-contents">';
+                    wp_nonce_field($item['is_form_action']);
+                    echo '<input type="hidden" name="action" value="' . esc_attr($item['is_form_action']) . '">';
+                    echo '<button type="submit" class="side-nav-btn" title="' . esc_attr($item['label']) . '">';
+                    echo '<svg class="i" aria-hidden="true"><use href="#' . esc_attr($item['icon']) . '"/></svg>';
+                    echo '<span>' . esc_html($item['label']) . '</span>';
+                    echo '</button>';
+                    echo '</form>';
+                } else {
+                    $class = '';
+                    if (!empty($item['active'])) {
+                        $class .= ' on';
+                    }
+                    if (!empty($item['locked'])) {
+                        $class .= ' locked';
+                    }
+                    $class = trim($class);
+                    $url = (string) ($item['url'] ?? '#');
+                    echo '<a href="' . esc_url($url) . '"' . ($class !== '' ? ' class="' . esc_attr($class) . '"' : '') . ' title="' . esc_attr($item['label']) . '"' . (!empty($item['active']) ? ' aria-current="page"' : '') . '>';
+                    echo '<svg class="i" aria-hidden="true"><use href="#' . esc_attr($item['icon']) . '"/></svg>';
+                    echo '<span>' . esc_html($item['label']) . '</span>';
+                    if (isset($item['count'])) {
+                        $cnt_class = 'cnt' . (!empty($item['count_hot']) ? ' hot' : '');
+                        $wait_attr = ($item['slug'] === 'pothik-inquiries') ? ' data-wait-count' : '';
+                        echo '<b class="' . esc_attr($cnt_class) . '"' . $wait_attr . '>' . (int) $item['count'] . '</b>';
+                    }
+                    if (!empty($item['locked'])) {
+                        echo '<span class="lk"><svg class="i sm" aria-hidden="true"><use href="#i-lock"/></svg></span>';
+                    }
+                    echo '</a>';
+                }
             }
-            $href = admin_url('admin.php?page=' . $tab['slug']);
-            echo '<a class="' . esc_attr($class) . '" href="' . esc_url($href) . '">';
-            echo '<svg class="i sm" aria-hidden="true"><use href="#' . esc_attr($tab['icon']) . '"/></svg>';
-            echo esc_html($tab['label']);
-            if (isset($tab['badge']) && $tab['badge'] > 0) {
-                echo ' <span class="badge" data-pk-wait-count>' . (int) $tab['badge'] . '</span>';
-            }
-            echo '</a>';
         }
-        echo '</nav>';
+        echo '</nav>'; // .side-nav
 
-        // Tools
-        echo '<div class="pk-tools tools">';
-        echo '<button type="button" class="pk-kbd-btn kbd-btn" data-pk-cmdk data-cmdk aria-label="' . esc_attr(I18n::t('Search')) . '">';
+        echo '<div class="side-user">';
+        echo '<span class="ava">' . esc_html($initial) . '</span>';
+        echo '<div><b>' . esc_html($display_name) . '</b><small>' . esc_html($role) . '</small></div>';
+        echo '<span class="ver">v' . esc_html(POTHIK_VERSION) . '</span>';
+        echo '</div>'; // .side-user
+
+        echo '</aside>'; // .pk-side
+
+        // Body column
+        echo '<div class="pk-body">';
+
+        // Header
+        echo '<header class="pk-head">';
+        echo '<div>';
+        echo '<h1 id="hTitle">' . esc_html(I18n::t($title)) . '</h1>';
+        if ($lead !== '') {
+            echo '<p id="hLead">' . esc_html(I18n::t($lead)) . '</p>';
+        }
+        echo '</div>';
+
+        echo '<div class="tools">';
+        echo '<button type="button" class="kbd-btn" data-pk-cmdk data-cmdk aria-label="' . esc_attr(I18n::t('Search')) . '">';
         echo '<svg class="i sm" aria-hidden="true"><use href="#i-search"/></svg><kbd>Ctrl K</kbd>';
         echo '</button>';
 
         // Language toggle
-        echo '<div class="pk-seg seg" role="group" aria-label="' . esc_attr(I18n::t('Language')) . '">';
         $current_lang = I18n::lang();
+        echo '<div class="pk-seg seg" role="group" aria-label="' . esc_attr(I18n::t('Language')) . '">';
         echo '<a class="' . ($current_lang === 'en' ? 'on' : '') . '" href="' . esc_url(add_query_arg('pothik_lang', 'en')) . '">EN</a>';
         echo '<a class="' . ($current_lang === 'bn' ? 'on' : '') . '" href="' . esc_url(add_query_arg('pothik_lang', 'bn')) . '">বাংলা</a>';
         echo '</div>';
 
-        // Public site button
-        if ($public_url !== '') {
-            echo '<a class="pk-btn pk-btn-ghost pk-btn-sm btn btn-ghost btn-sm" href="' . esc_url($public_url) . '" target="_blank" rel="noopener" title="' . esc_attr(I18n::t('View on site')) . '">';
-            echo '<svg class="i sm" aria-hidden="true"><use href="#i-ext"/></svg>' . esc_html(I18n::t('Site'));
-            echo '</a>';
-        }
-        echo '</div>'; // .tools
-        echo '</header>'; // .appbar
+        // Full Screen / Focus toggle button
+        echo '<button type="button" class="btn btn-ghost" id="focusBtn" title="' . esc_attr(I18n::t('Toggle full screen (Ctrl+Shift+F)')) . '" aria-pressed="' . ($is_focus ? 'true' : 'false') . '">';
+        echo '<svg class="i sm" aria-hidden="true"><use href="#i-ext"/></svg>';
+        echo '<span>' . esc_html($is_focus ? I18n::t('Show WP menu') : I18n::t('WP menu')) . '</span>';
+        echo '</button>';
 
-        // Page Head
-        echo '<div class="pk-page-head page-head">';
-        echo '<div>';
-        echo '<h1>' . esc_html(I18n::t($title)) . '</h1>';
-        if ($lead !== '') {
-            echo '<p class="muted">' . esc_html(I18n::t($lead)) . '</p>';
-        }
-        echo '</div>';
+        // New Package Button
+        echo '<form method="post" action="' . esc_url(admin_url('admin-post.php')) . '" class="inline-form">';
+        wp_nonce_field('pothik_new_package');
+        echo '<input type="hidden" name="action" value="pothik_new_package">';
+        echo '<button type="submit" class="btn btn-primary"><svg class="i sm" aria-hidden="true"><use href="#i-plus"/></svg>' . esc_html(I18n::t('New package')) . '</button>';
+        echo '</form>';
+
+        echo '</div>'; // .tools
+        echo '</header>'; // .pk-head
+
+        echo '<hr class="wp-header-end">';
+
+        echo '<div class="pk" id="app">';
+
         if ($actions_html !== '') {
             echo '<div class="pk-page-actions">' . $actions_html . '</div>';
         }
-        echo '</div>';
 
-        // Flash notices
         self::flash();
     }
 
     public static function close(): void
     {
+        echo '</div>'; // #app (.pk)
+        echo '</div>'; // .pk-body
+        echo '</div>'; // .pk-app
+
         // Command Palette dialog
         echo '<div class="pk-cmdk-bg cmdk-bg" id="cmdk" hidden>';
         echo '<div class="pk-cmdk cmdk" role="dialog" aria-modal="true" aria-label="' . esc_attr(I18n::t('Command palette')) . '">';
