@@ -1,1356 +1,1808 @@
-# Bengali (Bangladesh) translation for Pothik.
+# Bengali translations for Pothik.
 # Copyright (C) 2026 itsmanzur
+# This file is distributed under the same license as the Pothik package.
 msgid ""
 msgstr ""
 "Project-Id-Version: Pothik 0.3.0\n"
 "Report-Msgid-Bugs-To: https://thereadscope.com/pothik\n"
-"Last-Translator: itsmanzur <info@thereadscope.com>\n"
-"Language-Team: Bengali <info@thereadscope.com>\n"
+"POT-Creation-Date: 2026-10-29T08:30:00+00:00\n"
+"PO-Revision-Date: 2026-10-29T08:30:00+00:00\n"
+"Last-Translator: itsmanzur\n"
+"Language-Team: Bengali\n"
 "Language: bn_BD\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-28 06:48:10+0000\n"
-"PO-Revision-Date: 2026-10-28 06:48:10+0000\n"
-"X-Generator: Pothik i18n Tool\n"
-"X-Domain: pothik\n\n#: app/Admin/Screens.php
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "%1$d seats confirmed · %2$d total"
+msgstr "%1$d সিট কনফার্ম · মোট %2$d"
+
 msgid "%d Madinah"
 msgstr "%d রাত মদিনা"
 
-#: app/Admin/Screens.php
 msgid "%d nights Makkah"
 msgstr "%d রাত মক্কা"
 
-#: app/Admin/Screens.php
 msgid "%d nights do not fit inside %d days"
 msgstr "%d রাত %d দিনের মধ্যে মেলে না"
 
-#: app/Admin/Screens.php
 msgid "%d nights fit inside %d days"
 msgstr "%d রাত %d দিনের মধ্যে মিলেছে"
 
-#: app/Admin/Screens.php
+msgid "%d of 40 free"
+msgstr "৪০টির মধ্যে %dটি ফ্রি"
+
 msgid "%d of 40 packages"
 msgstr "৪০টির মধ্যে %dটি প্যাকেজ"
 
-#: app/Admin/Screens.php
+msgid "%d packages"
+msgstr "%d টি প্যাকেজ"
+
 msgid "%d steps left before you go live"
 msgstr "লাইভ হওয়ার আগে %dটি ধাপ বাকি"
 
-#: app/Admin/Menu.php
-#: app/Admin/Screens.php
+msgid "%s days"
+msgstr "%s দিন"
+
+msgid "%s nights in Madinah"
+msgstr "%s রাত মদিনা"
+
+msgid "%s nights in Makkah"
+msgstr "%s রাত মক্কা"
+
+msgid "30 days"
+msgstr "৩০ দিন"
+
+msgid "7 days"
+msgstr "৭ দিন"
+
+msgid "A group file shows this seat line when the site has one package. A private file leaves that line off the page."
+msgstr "গ্রুপ ফাইলে এই সিট লাইন তখনই প্যাকেজ পাতায় ওঠে, যখন সাইটে একটি প্যাকেজ থাকে। প্রাইভেট ফাইলে সেই লাইন পাতায় থাকে না।"
+
 msgid "A pilgrim's dua at the Multazam may include your name."
 msgstr "মুলতাজামে কোনো এক যাত্রীর দোয়ায় হয়তো আপনার নামও থাকবে।"
 
-#: app/Admin/Menu.php
+msgid "A sample of four pilgrims. Mahram is a relationship here. It does not block anyone."
+msgstr "নমুনার চারজন। মাহরাম এখানে সম্পর্ক, কাউকে আটকায় না।"
+
 msgid "Actions"
 msgstr "কার্যক্রম"
 
-#: app/Admin/Screens.php
 msgid "Add agency name & phone"
 msgstr "এজেন্সির নাম ও ফোন নম্বর দিন"
 
-#: app/Admin/Screens.php
 msgid "Add day"
 msgstr "দিন যোগ করুন"
 
-#: app/Admin/Settings.php
 msgid "Add email and press Enter"
 msgstr "ইমেইল লিখে Enter চাপুন"
 
-#: app/Plugin.php
 msgid "Admin"
 msgstr "অ্যাডমিন"
 
-#: app/Admin/Screens.php
+msgid "Adults"
+msgstr "প্রাপ্তবয়স্ক"
+
 msgid "Advance for Umrah package, quad share…"
 msgstr "উমরা প্যাকেজের অগ্রিম, কোয়াড শেয়ার…"
 
-#: app/Admin/Settings.php
+msgid "Advanced Umrah & Hajj agency operations management."
+msgstr "উন্নত উমরা ও হজ এজেন্সি পরিচালনা ব্যবস্থাপনা।"
+
 msgid "Agency"
 msgstr "এজেন্সি"
 
-#: app/Admin/Settings.php
+msgid "Agency age band"
+msgstr "এজেন্সির বয়সসীমা"
+
 msgid "Agency details"
 msgstr "এজেন্সির বিবরণ"
 
-#: app/Admin/Screens.php
 msgid "Agency name"
 msgstr "এজেন্সির নাম"
 
-#: app/Admin/Settings.php
+msgid "Agency name (Bangla)"
+msgstr "এজেন্সির নাম (বাংলা)"
+
+msgid "Agency name (English)"
+msgstr "এজেন্সির নাম (ইংরেজি)"
+
 msgid "Agency name · English"
 msgstr "এজেন্সির নাম · ইংরেজি"
 
-#: app/Admin/Settings.php
 msgid "Agency name · বাংলা"
 msgstr "এজেন্সির নাম · বাংলা"
 
-#: app/Admin/Screens.php
 msgid "Agent commissions"
 msgstr "এজেন্ট কমিশন"
 
-#: app/Admin/Screens.php
+msgid "Airline"
+msgstr "এয়ারলাইন"
+
 msgid "All"
 msgstr "সব"
 
-#: app/Admin/Menu.php
-#: app/Admin/Screens.php
+msgid "All answered"
+msgstr "সবার উত্তর দেওয়া হয়েছে"
+
 msgid "All caught up, alhamdulillah"
 msgstr "সব উত্তর সম্পন্ন, আলহামদুলিল্লাহ"
 
-#: app/Admin/Screens.php
+msgid "All guests of Allah have been answered. Alhamdulillah."
+msgstr "আল্লাহর সকল মেহমানের উত্তর দেওয়া হয়েছে। আলহামদুলিল্লাহ।"
+
 msgid "All inquiries"
 msgstr "সব এনকোয়ারি"
 
-#: app/Admin/Screens.php
 msgid "All packages"
 msgstr "সব প্যাকেজ"
 
-#: app/Admin/Screens.php
+msgid "All pilgrims"
+msgstr "সব যাত্রী"
+
 msgid "Amount received"
 msgstr "জমা হওয়া টাকা"
 
-#: app/Admin/Chrome.php
-#: app/Admin/Menu.php
+msgid "Amount, channel and transaction ID."
+msgstr "অঙ্ক, চ্যানেল ও ট্রানজেকশন আইডি।"
+
+msgid "Amount, taka"
+msgstr "অঙ্ক, টাকা"
+
 msgid "Analytics"
 msgstr "অ্যানালিটিক্স"
 
-#: app/Admin/Screens.php
 msgid "Any share"
 msgstr "যেকোনো শেয়ার"
 
-#: app/Admin/Screens.php
 msgid "Assalamu alaikum! Thank you for your Umrah inquiry. Our office will call you today."
 msgstr "আসসালামু আলাইকুম! উমরা সম্পর্কে জানার জন্য ধন্যবাদ। আজই আমাদের অফিস থেকে আপনার সাথে যোগাযোগ করা হবে।"
 
-#: app/Admin/Settings.php
 msgid "Assalamu alaikum,\n\nThis is a test notification from your Pothik Umrah plugin.\nWhen a pilgrim submits an inquiry on your site, you will receive an alert like this.\n\n— Pothik Desk"
 msgstr "আসসালামু আলাইকুম,\n\nএটি পথিক উমরা প্লাগিনের একটি টেস্ট নোটিফিকেশন।\nআপনার সাইটে কোনো যাত্রী আবেদন করলে আপনি এমন একটি বার্তা পাবেন।\n\n— পথিক ডেস্ক"
 
-#: app/Admin/Screens.php
+msgid "Assalamu alaikum, %s"
+msgstr "আসসালামু আলাইকুম, %s"
+
 msgid "Assalamu alaikum, %s.<br><mark data-pk-wait-count data-wait-count>%d</mark> guests of Allah are waiting for your reply."
 msgstr "আসসালামু আলাইকুম, %s।<br><mark data-pk-wait-count data-wait-count>%d</mark> জন আল্লাহর মেহমান আপনার উত্তরের অপেক্ষায়।"
 
-#: app/Admin/Screens.php
 msgid "Assalamu alaikum, %s.<br>All guests of Allah have been answered. Alhamdulillah."
 msgstr "আসসালামু আলাইকুম, %s।<br>আল্লাহর সকল মেহমানের উত্তর সম্পন্ন হয়েছে। আলহামদুলিল্লাহ।"
 
-#: app/Admin/Screens.php
+msgid "Balance"
+msgstr "বকেয়া"
+
+msgid "Balance due"
+msgstr "বকেয়া"
+
+msgid "Balance, who matched it, bKash and Nagad."
+msgstr "বকেয়া, কে মিলিয়েছে, bKash ও Nagad।"
+
+msgid "Bank"
+msgstr "ব্যাংক"
+
 msgid "Basics"
 msgstr "মৌলিক তথ্য"
 
-#: app/Admin/Analytics.php
+msgid "Biometric"
+msgstr "বায়োমেট্রিক"
+
+msgid "Birth"
+msgstr "জন্ম"
+
+msgid "By biometric"
+msgstr "বায়োমেট্রিক অনুযায়ী"
+
+msgid "By city"
+msgstr "শহর অনুযায়ী"
+
+msgid "By day"
+msgstr "দিন অনুযায়ী"
+
 msgid "By room share"
 msgstr "রুম শেয়ার অনুযায়ী"
 
-#: app/Admin/Screens.php
+msgid "By share"
+msgstr "শেয়ার অনুযায়ী"
+
+msgid "By type"
+msgstr "ধরন অনুযায়ী"
+
+msgid "By visa"
+msgstr "ভিসা অনুযায়ী"
+
 msgid "Call"
 msgstr "কল"
 
-#: app/Admin/Screens.php
 msgid "Call %s"
 msgstr "%s-কে কল করুন"
 
-#: app/Admin/Menu.php
-#: app/Admin/Screens.php
 msgid "Cancel"
 msgstr "বাতিল"
 
-#: app/Admin/Screens.php
 msgid "Cancellation"
 msgstr "বাতিল নীতিমালা"
 
-#: app/Admin/Menu.php
+msgid "Cancellation sentence"
+msgstr "বাতিলের বাক্য"
+
+msgid "Cash"
+msgstr "ক্যাশ"
+
 msgid "Changes discarded"
 msgstr "পরিবর্তন বাতিল করা হয়েছে"
 
-#: app/Admin/Screens.php
 msgid "Channel"
 msgstr "চ্যানেল"
 
-#: app/Admin/Screens.php
 msgid "Chat with the office on WhatsApp"
 msgstr "অফিসের সাথে হোয়াটসঅ্যাপে কথা বলুন"
 
-#: app/Admin/Screens.php
 msgid "Child + bed"
 msgstr "শিশু + বিছানা"
 
-#: app/Admin/Screens.php
+msgid "Child with bed"
+msgstr "শিশু, বিছানা সহ"
+
+msgid "Child without bed"
+msgstr "শিশু, বিছানা ছাড়া"
+
 msgid "Child, no bed"
 msgstr "শিশু, বিছানা ছাড়া"
 
-#: app/Admin/Screens.php
+msgid "Children"
+msgstr "শিশু"
+
+msgid "Children and infants are priced at the office."
+msgstr "শিশু ও ইনফ্যান্টের দাম অফিস বসায়।"
+
+msgid "Choose Logo"
+msgstr "লোগো বাছুন"
+
+msgid "Choose a package. Each one has its own days and price."
+msgstr "একটি প্যাকেজ বেছে নিন। প্রতিটির দিন ও দাম আলাদা।"
+
 msgid "City"
 msgstr "শহর"
 
-#: app/Admin/Screens.php
 msgid "Clear"
 msgstr "মুছুন"
 
-#: app/Admin/Screens.php
 msgid "Click to toggle"
 msgstr "ক্লিক করে পরিবর্তন করুন"
 
-#: app/Admin/Screens.php
 msgid "Close"
 msgstr "বন্ধ করুন"
 
-#: app/Admin/Chrome.php
+msgid "Collapse menu"
+msgstr "মেনু ছোট করুন"
+
 msgid "Command palette"
 msgstr "কমান্ড প্যালেট"
 
-#: app/Admin/Screens.php
+msgid "Confirmed seats"
+msgstr "কনফার্ম সিট"
+
 msgid "Contact"
 msgstr "যোগাযোগ"
 
-#: app/Admin/Screens.php
 msgid "Contact for this package"
 msgstr "এই প্যাকেজের যোগাযোগ"
 
-#: app/Admin/Menu.php
+msgid "Contact the office"
+msgstr "অফিসে যোগাযোগ করুন"
+
+msgid "Contract"
+msgstr "চুক্তি"
+
+msgid "Contract, taka"
+msgstr "চুক্তি, টাকা"
+
 msgid "Copied [pothik_catalog]"
 msgstr "[pothik_catalog] কপি হয়েছে"
 
-#: app/Admin/Menu.php
 msgid "Copied."
 msgstr "কপি হয়েছে।"
 
-#: app/Admin/Menu.php
 msgid "Copy"
 msgstr "কপি"
 
-#: app/Admin/Menu.php
 msgid "Copy [pothik_catalog]"
 msgstr "[pothik_catalog] কপি করুন"
 
-#: app/Admin/Analytics.php
 msgid "Copy catalog link"
 msgstr "ক্যাটালগ লিংক কপি"
 
-#: app/Admin/Screens.php
 msgid "Copy for WhatsApp"
 msgstr "হোয়াটসঅ্যাপে কপি"
 
-#: app/Admin/Screens.php
+msgid "Copy package"
+msgstr "প্যাকেজ কপি"
+
 msgid "Copy shortcode"
 msgstr "শর্টকোড কপি"
 
-#: app/Admin/Screens.php
+msgid "Counts from inquiries and the receipt."
+msgstr "এনকোয়ারি ও রসিদ থেকে গোনা।"
+
 msgid "Create fresh or draft"
 msgstr "নতুন বা ড্রাফট তৈরি"
 
-#: app/Admin/Screens.php
 msgid "Create receipt & copy"
 msgstr "রসিদ বানিয়ে কপি"
 
-#: app/Admin/Screens.php
 msgid "Create your first Umrah package"
 msgstr "আপনার প্রথম উমরা প্যাকেজ তৈরি করুন"
 
-#: app/Admin/Screens.php
 msgid "Create your first package"
 msgstr "প্রথম প্যাকেজ তৈরি করুন"
 
-#: app/Admin/Settings.php
 msgid "Creates the page again with the shortcode"
 msgstr "শর্টকোডসহ পেজটি পুনরায় তৈরি করে"
 
-#: app/Admin/Screens.php
 msgid "DAYS"
 msgstr "দিন"
 
-#: app/Admin/Settings.php
 msgid "Data"
 msgstr "ডেটা"
 
-#: app/Admin/Analytics.php
-#: app/Admin/Screens.php
 msgid "Date"
 msgstr "তারিখ"
 
-#: app/Admin/Screens.php
+msgid "Date, flight, seats, and group or private."
+msgstr "তারিখ, ফ্লাইট, সিট এবং গ্রুপ না প্রাইভেট।"
+
 msgid "Day by day"
 msgstr "দিনভিত্তিক যাত্রা"
 
-#: app/Admin/Settings.php
+msgid "Days"
+msgstr "দিন"
+
 msgid "Default country code"
 msgstr "ডিফল্ট কান্ট্রি কোড"
 
-#: app/Admin/Screens.php
 msgid "Delete"
 msgstr "মুছুন"
 
-#: app/Admin/Settings.php
+msgid "Delete %s? Yes / Cancel"
+msgstr "%s মুছবেন? হ্যাঁ / বাতিল"
+
+msgid "Delete data on uninstall"
+msgstr "প্লাগিন আনইনস্টল করলে সব ডেটা মুছে ফেলুন"
+
 msgid "Delete everything on uninstall"
 msgstr "আনইনস্টল করলে সবকিছু মুছে ফেলুন"
 
-#: app/Admin/Screens.php
 msgid "Delete selected?"
 msgstr "নির্বাচিতগুলো মুছবেন?"
 
-#: app/Admin/Menu.php
-#: app/Admin/Screens.php
+msgid "Delete this inquiry?"
+msgstr "এই এনকোয়ারি মুছবেন?"
+
 msgid "Delete this package?"
 msgstr "এই প্যাকেজটি মুছবেন?"
 
-#: app/Admin/Screens.php
+msgid "Delete this pilgrim?"
+msgstr "এই যাত্রী মুছবেন?"
+
 msgid "Demo"
 msgstr "ডেমো"
 
-#: app/Admin/Settings.php
 msgid "Demo & uninstall"
 msgstr "ডেমো ও আনইনস্টল"
 
-#: app/Admin/Settings.php
 msgid "Demo data"
 msgstr "ডেমো ডেটা"
 
-#: app/Admin/Chrome.php
 msgid "Demo data loaded."
 msgstr "ডেমো ডেটা যুক্ত করা হয়েছে।"
 
-#: app/Admin/Chrome.php
 msgid "Demo data removed."
 msgstr "ডেমো ডেটা মুছে ফেলা হয়েছে।"
 
-#: app/Admin/Screens.php
+msgid "Departure"
+msgstr "ডিপারচার"
+
+msgid "Departures"
+msgstr "ডিপারচার"
+
 msgid "Departures board"
 msgstr "ফ্লাইট ও কাফেলা বোর্ড"
 
-#: app/Admin/Screens.php
 msgid "Departures, pilgrim files, rooming lists, installments and the visa board — built for Bangladeshi agencies."
 msgstr "ফ্লাইট শিডিউল, যাত্রী ফাইল, রুম তালিকা, কিস্তির হিসাব ও ভিসা বোর্ড — দেশীয় এজেন্সির উপযোগী।"
 
-#: app/Admin/Chrome.php
-#: app/Admin/Menu.php
+msgid "Deposit"
+msgstr "ডিপোজিট"
+
 msgid "Desk"
 msgstr "ডেস্ক"
 
-#: app/Admin/Screens.php
+msgid "Dhaka"
+msgstr "ঢাকা"
+
 msgid "Direct 1-on-1 agency support"
 msgstr "সরাসরি এজেন্সি সাপোর্ট"
 
-#: app/Admin/Menu.php
-#: app/Admin/Screens.php
+msgid "Direction"
+msgstr "দিক"
+
 msgid "Discard"
 msgstr "বাতিল"
 
-#: app/Plugin.php
 msgid "Dismiss"
 msgstr "বন্ধ করুন"
 
-#: app/Admin/Screens.php
 msgid "Distance to Prophet's Mosque"
 msgstr "মসজিদে নববীর দূরত্ব"
 
-#: app/Admin/Screens.php
 msgid "Distance to the Haram"
 msgstr "হারামের দূরত্ব"
 
-#: app/Admin/Screens.php
 msgid "Distance to the Haram sells more than stars — keep it honest."
 msgstr "তারকা মানের চেয়ে হারামের দূরত্বই বেশি গুরুত্বপূর্ণ — সঠিক তথ্য দিন।"
 
-#: app/Admin/Screens.php
+msgid "Docs"
+msgstr "ডকুমেন্টেশন"
+
 msgid "Documents"
 msgstr "কাগজ"
 
-#: app/Admin/Screens.php
+msgid "Done"
+msgstr "সম্পন্ন"
+
 msgid "Double"
 msgstr "ডাবল"
 
-#: app/Admin/Screens.php
 msgid "Download all inquiries"
 msgstr "সব এনকোয়ারি ডাউনলোড"
 
-#: app/Admin/Screens.php
 msgid "Draft"
 msgstr "ড্রাফট"
 
-#: app/Admin/Settings.php
+msgid "Draft Preview — Not published to the public."
+msgstr "ড্রাফট প্রিভিউ — সাধারণ ভিজিটররা দেখতে পাবেন না।"
+
 msgid "Drop your logo here or click to choose"
 msgstr "লোগো এখানে ড্রপ করুন বা ক্লিক করে নির্বাচন করুন"
 
-#: app/Admin/Screens.php
 msgid "Duplicate"
 msgstr "ডুপ্লিকেট"
 
-#: app/Admin/Screens.php
+msgid "Each package becomes a landing page with prices, hotels and a WhatsApp button."
+msgstr "প্রতিটি প্যাকেজে মূল্য, হোটেল এবং একটি হোয়াটসঅ্যাপ বাটনসহ ল্যান্ডিং পেজ তৈরি হয়।"
+
 msgid "Each package gets a dedicated mobile-friendly landing page with pricing, hotels and instant WhatsApp inquiry."
 msgstr "প্রতিটি প্যাকেজে থাকে রেট, হোটেল ও সরাসরি হোয়াটসঅ্যাপের সুবিধা সহ মোবাইল-বান্ধব পাতা।"
 
-#: app/Admin/Screens.php
+msgid "Each package gets its own landing page with hotels, itinerary and pricing tiers."
+msgstr "প্রতিটি প্যাকেজে হোটেল, ভ্রমণসূচি এবং প্রাইসিং টায়ারসহ নিজস্ব ল্যান্ডিং পেজ থাকবে।"
+
+msgid "Each package keeps its own days, hotels and prices."
+msgstr "প্রতিটি প্যাকেজে নিজের দিন, হোটেল ও দাম।"
+
 msgid "Edit"
 msgstr "এডিট"
 
-#: app/Admin/Screens.php
+msgid "Edit package"
+msgstr "প্যাকেজ এডিট"
+
 msgid "Editing English. Switch to বাংলা above to fill the Bangla version — empty Bangla fields fall back to English."
 msgstr "ইংরেজি এডিট করছেন। বাংলায় লিখতে উপরে টগল করুন — বাংলায় খালি রাখলে ইংরেজিটি দেখাবে।"
 
-#: app/Admin/Screens.php
 msgid "Editing বাংলা. Switch to English above to fill the English version — empty Bangla fields fall back to English."
 msgstr "বাংলা এডিট করছেন। ইংরেজিতে লিখতে উপরে টগল করুন — বাংলায় খালি রাখলে ইংরেজিটি দেখাবে।"
 
-#: app/Admin/Settings.php
 msgid "Email & spam guard"
 msgstr "ইমেইল ও স্প্যাম গার্ড"
 
-#: app/Admin/Menu.php
-#: app/Admin/Screens.php
+msgid "Embassy visit"
+msgstr "এম্বাসি ভিজিট"
+
 msgid "Every reply you send could be someone's first step towards the Haram."
 msgstr "আপনার পাঠানো প্রতিটি উত্তর হতে পারে কারো হেরেমের প্রথম পদক্ষেপ।"
 
-#: app/Admin/Screens.php
+msgid "Everything your agency needs to run professional Umrah operations."
+msgstr "আপনার এজেন্সির প্রফেশনাল উমরা কার্যক্রম পরিচালনার জন্য যা কিছু প্রয়োজন।"
+
+msgid "Expiry"
+msgstr "মেয়াদ"
+
 msgid "Explore Pro features"
 msgstr "প্রো ফিচার দেখুন"
 
-#: app/Admin/Screens.php
 msgid "Export"
 msgstr "এক্সপোর্ট"
 
-#: app/Admin/Screens.php
 msgid "Export CSV"
 msgstr "CSV এক্সপোর্ট"
 
-#: app/Admin/Menu.php
 msgid "Export inquiries CSV"
 msgstr "এনকোয়ারি CSV এক্সপোর্ট"
 
-#: app/Admin/Screens.php
 msgid "Eyebrow"
 msgstr "উপরের লাইন"
 
-#: app/Admin/Screens.php
+msgid "Failed"
+msgstr "ফেইল"
+
+msgid "Family"
+msgstr "পরিবার"
+
 msgid "Feature"
 msgstr "ফিচার"
 
-#: app/Admin/Screens.php
+msgid "Female"
+msgstr "নারী"
+
 msgid "Finish setting up"
 msgstr "সেটআপ সম্পন্ন করুন"
 
-#: app/Admin/Screens.php
 msgid "Flight"
 msgstr "ফ্লাইট"
 
-#: app/Admin/Screens.php
 msgid "Flight & group departures board"
 msgstr "ফ্লাইট ও কাফেলা বোর্ড"
 
-#: app/Admin/Screens.php
 msgid "Flight dates, seats left and group or private quotas at a glance."
 msgstr "ফ্লাইটের তারিখ, অবশিষ্ট আসন এবং গ্রুপ কোটা এক নজরে।"
 
-#: app/Admin/Screens.php
 msgid "Flight direction"
 msgstr "ফ্লাইটের দিক"
 
-#: app/Admin/Screens.php
 msgid "Food note"
 msgstr "খাবারের নোট"
 
-#: app/Admin/Screens.php
+msgid "Four sharing a room"
+msgstr "চারজনে এক রুম"
+
 msgid "Free Version"
 msgstr "ফ্রি ভার্সন"
 
-#: app/Admin/Chrome.php
-#: app/Admin/Screens.php
 msgid "Free version is limited to 40 packages. Upgrade to Pothik Pro for unlimited packages."
 msgstr "ফ্রি ভার্সনে সর্বোচ্চ ৪০টি প্যাকেজ রাখা যায়। আনলিমিটেড প্যাকেজের জন্য পথিক প্রো-তে আপগ্রেড করুন।"
 
-#: app/Admin/Screens.php
 msgid "Free version keeps one receipt. Full history is in Pro."
 msgstr "ফ্রি ভার্সনে শেষ রসিদ থাকে। সম্পূর্ণ হিস্ট্রি প্রিমিয়ামে।"
 
-#: app/Admin/Menu.php
+msgid "Gender"
+msgstr "লিঙ্গ"
+
 msgid "Go to"
 msgstr "যান"
 
-#: app/Admin/Screens.php
+msgid "Ground, SAR note"
+msgstr "গ্রাউন্ড, রিয়াল নোট"
+
+msgid "Group"
+msgstr "গ্রুপ"
+
+msgid "Group file"
+msgstr "গ্রুপ ফাইল"
+
+msgid "Group leader"
+msgstr "গ্রুপ লিডার"
+
+msgid "Group linked"
+msgstr "গ্রুপ লিংকড"
+
 msgid "Group note"
 msgstr "গ্রুপের কথা"
 
-#: app/Admin/Screens.php
 msgid "Grow with Pothik Pro"
 msgstr "পথিক প্রো দিয়ে এগিয়ে যান"
 
-#: app/Admin/Settings.php
+msgid "Guide"
+msgstr "মুয়াল্লিম"
+
+msgid "Hajj"
+msgstr "হজ"
+
 msgid "Hajj / Umrah license number"
 msgstr "হজ / উমরা লাইসেন্স নম্বর"
 
-#: app/Admin/Screens.php
 msgid "Hajj in"
 msgstr "হজ বাকি"
 
-#: app/Admin/Screens.php
 msgid "Here are the full prices and hotel details for your package…"
 msgstr "প্যাকেজের হোটেল ও ভাড়ার বিস্তারিত বিবরণ…"
 
-#: app/Admin/Screens.php
 msgid "Hide"
 msgstr "লুকান"
 
-#: app/Admin/Screens.php
 msgid "Hide setup checklist"
 msgstr "সেটআপ চেকলিস্ট লুকান"
 
-#: app/Admin/Screens.php
 msgid "Hotel"
 msgstr "হোটেল"
 
-#: app/Admin/Screens.php
 msgid "Hotels"
 msgstr "হোটেল"
 
-#: app/Admin/Analytics.php
 msgid "Hover a bar"
 msgstr "বারের উপর কার্সর রাখুন"
 
-#: app/Admin/Screens.php
+msgid "I want to ask about %s."
+msgstr "%s নিয়ে জানতে চাই।"
+
 msgid "Included"
 msgstr "যা আছে"
 
-#: app/Admin/Screens.php
+msgid "Included, one item per line"
+msgstr "যা আছে, এক লাইনে একটি"
+
 msgid "Infant"
 msgstr "ইনফ্যান্ট"
 
-#: app/Admin/Analytics.php
-#: app/Admin/Chrome.php
-#: app/Admin/Menu.php
+msgid "Infants"
+msgstr "ইনফ্যান্ট"
+
 msgid "Inquiries"
 msgstr "এনকোয়ারি"
 
-#: app/Admin/Analytics.php
 msgid "Inquiries by day"
 msgstr "তারিখভিত্তিক এনকোয়ারি"
 
-#: app/Admin/Screens.php
 msgid "Inquiries · last 7 days"
 msgstr "এনকোয়ারি · গত ৭ দিন"
 
-#: app/Admin/Settings.php
 msgid "Inquiries, packages, receipt and settings are removed for good when the plugin is deleted."
 msgstr "প্লাগিনটি ডিলিট করলে সব এনকোয়ারি, প্যাকেজ, রসিদ ও সেটিংস চিরতরে মুছে যাবে।"
 
-#: app/Admin/Menu.php
+msgid "Inquiries, shares and the receipt, counted on this desk."
+msgstr "এনকোয়ারি, শেয়ার ও রসিদ এই ডেস্কে গোনা।"
+
 msgid "Inquiry"
 msgstr "এনকোয়ারি"
 
-#: app/Admin/Screens.php
 msgid "Inquiry details"
 msgstr "এনকোয়ারির বিস্তারিত"
 
-#: app/Admin/Screens.php
 msgid "Inquiry form, WhatsApp, email alerts"
 msgstr "এনকোয়ারি ফর্ম, হোয়াটসঅ্যাপ ও ইমেইল নোটিফিকেশন"
 
-#: app/Admin/Screens.php
 msgid "Installment ledger"
 msgstr "কিস্তির খাতা"
 
-#: app/Admin/Screens.php
 msgid "Installment ledger & bKash matching"
 msgstr "কিস্তির খাতা ও bKash ট্রানজেকশন মেলানো"
 
-#: app/Admin/Screens.php
+msgid "Installments"
+msgstr "কিস্তির খাতা"
+
+msgid "Insurance"
+msgstr "বিমা"
+
+msgid "Invoice"
+msgstr "ইনভয়েস"
+
+msgid "Issued"
+msgstr "ইস্যু"
+
+msgid "Jeddah first"
+msgstr "জেদ্দা আগে"
+
 msgid "Journey & terms"
 msgstr "ভ্রমণসূচি ও শর্তাবলী"
 
-#: app/Admin/Chrome.php
+msgid "Journey and terms"
+msgstr "যাত্রা ও শর্ত"
+
 msgid "Language"
 msgstr "ভাষা"
 
-#: app/Admin/Screens.php
+msgid "Last 30 days"
+msgstr "গত ৩০ দিন"
+
+msgid "Last 7 days"
+msgstr "গত ৭ দিন"
+
+msgid "Last departure"
+msgstr "শেষ ছাড়া"
+
+msgid "Last entry"
+msgstr "শেষ প্রবেশ"
+
 msgid "Last receipt"
 msgstr "শেষ রসিদ"
 
-#: app/Admin/Screens.php
+msgid "Last visa"
+msgstr "শেষ ভিসা"
+
+msgid "Learn about Pro"
+msgstr "প্রো সম্পর্কে জানুন"
+
+msgid "Leave a name and phone. The office replies on WhatsApp. This form does not hold a seat."
+msgstr "নাম ও ফোন দিলে অফিস হোয়াটসঅ্যাপে ফিরে বলে। সিট এই ফর্মে ধরা হয় না।"
+
 msgid "Leave a tier at 0 to hide it on the site. The lowest price is shown as \"from\"."
 msgstr "কোনো শেয়ার লুকাতে ০ লিখুন। সর্বনিম্ন মূল্যটি \"শুরু\" হিসেবে দেখাবে।"
 
-#: app/Admin/Screens.php
+msgid "Leave date"
+msgstr "ছাড়ার দিন"
+
 msgid "Leave empty to use the agency phone and WhatsApp from Settings."
 msgstr "খালি রাখলে সেটিংসের মূল ফোন ও হোয়াটসঅ্যাপ ব্যবহার হবে।"
 
-#: app/Admin/Screens.php
 msgid "License"
 msgstr "লাইসেন্স"
 
-#: app/Admin/Screens.php
+msgid "License number"
+msgstr "লাইসেন্স নম্বর"
+
+msgid "Live"
+msgstr "পাবলিশড"
+
+msgid "Live on your site"
+msgstr "আপনার সাইটে লাইভ আছে"
+
 msgid "Live preview"
 msgstr "লাইভ প্রিভিউ"
 
-#: app/Admin/Settings.php
 msgid "Load demo"
 msgstr "ডেমো লোড"
 
-#: app/Admin/Screens.php
 msgid "Load demo data"
 msgstr "ডেমো ডেটা লোড করুন"
 
-#: app/Admin/Settings.php
 msgid "Logo"
 msgstr "লোগো"
 
-#: app/Admin/Screens.php
 msgid "Madinah"
 msgstr "মদিনা"
 
-#: app/Admin/Screens.php
 msgid "Madinah al-Munawwarah"
 msgstr "মদিনা আল-মুনাওয়ারা"
 
-#: app/Admin/Screens.php
+msgid "Madinah beds"
+msgstr "মদিনার বিছানা"
+
+msgid "Madinah first"
+msgstr "মদিনা আগে"
+
 msgid "Madinah hotel"
 msgstr "মদিনার হোটেল"
 
-#: app/Admin/Screens.php
 msgid "Madinah nights"
 msgstr "মদিনার রাত"
 
-#: app/Admin/Screens.php
+msgid "Madinah stars"
+msgstr "মদিনার তারকা"
+
+msgid "Madinah, or similar"
+msgstr "মদিনা, সমমান"
+
 msgid "Makkah"
 msgstr "মক্কা"
 
-#: app/Admin/Screens.php
 msgid "Makkah & Madinah bed / rooming lists"
 msgstr "মক্কা ও মদিনার রুম বণ্টন তালিকা"
 
-#: app/Admin/Screens.php
 msgid "Makkah al-Mukarramah"
 msgstr "মক্কা আল-মুকাররমা"
 
-#: app/Admin/Screens.php
+msgid "Makkah beds"
+msgstr "মক্কার বিছানা"
+
 msgid "Makkah hotel"
 msgstr "মক্কার হোটেল"
 
-#: app/Admin/Screens.php
+msgid "Makkah list and Madinah list are separate. Choose pilgrims from the file."
+msgstr "মক্কার তালিকা ও মদিনার তালিকা আলাদা। যাত্রী ফাইল থেকে বেছে নিন।"
+
 msgid "Makkah nights"
 msgstr "মক্কার রাত"
 
-#: app/Admin/Screens.php
+msgid "Makkah stars"
+msgstr "মক্কার তারকা"
+
+msgid "Makkah, or similar"
+msgstr "মক্কা, সমমান"
+
+msgid "Male"
+msgstr "পুরুষ"
+
 msgid "Manage"
 msgstr "ম্যানেজ"
 
-#: app/Admin/Screens.php
 msgid "Mark replied"
 msgstr "উত্তর দিয়েছি"
 
-#: app/Admin/Menu.php
+msgid "Mark waiting"
+msgstr "আবার অপেক্ষায়"
+
 msgid "Marked replied."
 msgstr "উত্তর সম্পন্ন হিসেবে চিহ্নিত।"
 
-#: app/Admin/Menu.php
 msgid "Marked waiting."
 msgstr "অপেক্ষমাণ হিসেবে চিহ্নিত।"
 
-#: app/Admin/Settings.php
 msgid "Max inquiries from one IP per hour"
 msgstr "প্রতি ঘণ্টায় এক আইপি থেকে সর্বোচ্চ এনকোয়ারি"
 
-#: app/Admin/Menu.php
-#: app/Admin/Screens.php
 msgid "May Allah accept the Umrah of every pilgrim you serve."
 msgstr "আপনার মাধ্যমে সেবা পাওয়া প্রত্যেক যাত্রীর উমরা আল্লাহ কবুল করুন।"
 
-#: app/Admin/Screens.php
+msgid "Metres to the Haram"
+msgstr "হারাম থেকে মিটার"
+
+msgid "Metres to the Prophet's Mosque"
+msgstr "নববী থেকে মিটার"
+
 msgid "More"
 msgstr "আরও"
 
-#: app/Admin/Menu.php
 msgid "Moved to draft"
 msgstr "ড্রাফট করা হয়েছে"
 
-#: app/Admin/Settings.php
+msgid "Name"
+msgstr "নাম"
+
+msgid "Name and phone are both required."
+msgstr "নাম ও ফোন দুটোই লাগবে।"
+
+msgid "Name, phone, city and room share."
+msgstr "নাম, ফোন, শহর ও শেয়ার।"
+
 msgid "Name, phone, logo"
 msgstr "নাম, ফোন ও লোগো"
 
-#: app/Admin/Screens.php
+msgid "Names from the site form. The pilgrim file is in Pro."
+msgstr "সাইটের ফর্ম থেকে আসা নাম। যাত্রী ফাইল Pro-তে।"
+
+msgid "Names, one per line"
+msgstr "নাম, এক লাইনে একটি"
+
 msgid "Needs reply"
 msgstr "উত্তর প্রয়োজন"
 
-#: app/Admin/Menu.php
-#: app/Admin/Screens.php
 msgid "New inquiries will appear here."
 msgstr "নতুন এনকোয়ারি এখানে দেখা যাবে।"
 
-#: app/Admin/Settings.php
 msgid "New inquiry email"
 msgstr "নতুন এনকোয়ারির ইমেইল"
 
-#: app/Admin/Menu.php
-#: app/Admin/Screens.php
 msgid "New package"
 msgstr "নতুন প্যাকেজ"
 
-#: app/Admin/Analytics.php
+msgid "New pilgrim"
+msgstr "নতুন যাত্রী"
+
+msgid "New room"
+msgstr "নতুন রুম"
+
+msgid "New row"
+msgstr "নতুন সারি"
+
+msgid "Next season"
+msgstr "পরবর্তী মৌসুম"
+
+msgid "No channel"
+msgstr "চ্যানেল নেই"
+
 msgid "No city"
 msgstr "শহর নেই"
 
-#: app/Admin/Analytics.php
 msgid "No inquiries in this period"
 msgstr "এই সময়ে কোনো এনকোয়ারি আসেনি"
 
-#: app/Admin/Screens.php
+msgid "No inquiries yet."
+msgstr "এখনো কোনো এনকোয়ারি আসেনি।"
+
 msgid "No packages created yet."
 msgstr "এখনো কোনো প্যাকেজ তৈরি করা হয়নি।"
 
-#: app/Admin/Menu.php
+msgid "No packages yet."
+msgstr "এখনো কোনো প্যাকেজ নেই।"
+
+msgid "No receipts yet"
+msgstr "এখনো কোনো রসিদ নেই"
+
 msgid "No results found."
 msgstr "কোনো ফলাফল পাওয়া যায়নি।"
 
-#: app/Admin/Screens.php
 msgid "Not included"
 msgstr "যা নেই"
 
-#: app/Admin/Screens.php
+msgid "Not included, one item per line"
+msgstr "যা নেই, এক লাইনে একটি"
+
+msgid "Not started"
+msgstr "শুরু হয়নি"
+
 msgid "Note"
 msgstr "নোট"
 
-#: app/Admin/Screens.php
 msgid "Nothing matches"
 msgstr "কোনো মিল পাওয়া যায়নি"
 
-#: app/Admin/Settings.php
+msgid "Nothing matches."
+msgstr "কিছু মেলেনি।"
+
+msgid "Notice"
+msgstr "বিজ্ঞপ্তি"
+
+msgid "Notification email(s)"
+msgstr "নোটিফিকেশন ইমেইল"
+
 msgid "Notifications"
 msgstr "নোটিফিকেশন"
 
-#: app/Admin/Settings.php
+msgid "Notifications & System"
+msgstr "নোটিফিকেশন ও সিস্টেম"
+
+msgid "Off"
+msgstr "বন্ধ"
+
 msgid "Office phone"
 msgstr "অফিস ফোন"
 
-#: app/Admin/Screens.php
 msgid "Office reply about your Umrah inquiry."
 msgstr "আপনার উমরা এনকোয়ারি নিয়ে অফিস থেকে বলছি।"
 
-#: app/Admin/Settings.php
+msgid "Oldest %s ago"
+msgstr "সর্বাধিক পুরনো %s আগে"
+
+msgid "On"
+msgstr "চালু"
+
+msgid "On a lap"
+msgstr "কোলে"
+
+msgid "One group file. This screen does not submit to Masar."
+msgstr "একটি গ্রুপ ফাইল। Masar-এ জমা এই স্ক্রিন থেকে হয় না।"
+
 msgid "One package"
 msgstr "একটি প্যাকেজ"
 
-#: app/Admin/Screens.php
+msgid "One payment proof. The installment ledger is in Pro."
+msgstr "একটি জমার প্রমাণ। কিস্তির খাতা Pro-তে।"
+
+msgid "One person, one room"
+msgstr "একজনে এক রুম"
+
+msgid "One receipt"
+msgstr "একটি রসিদ"
+
+msgid "Open"
+msgstr "খোলা"
+
+msgid "Open package"
+msgstr "প্যাকেজ খুলুন"
+
 msgid "Open reply queue"
 msgstr "উত্তরের সিরিয়াল খুলুন"
 
-#: app/Admin/Screens.php
+msgid "Open seats"
+msgstr "খালি সিট"
+
 msgid "Or similar"
 msgstr "বা সমমানের"
 
-#: app/Admin/Settings.php
+msgid "Origin"
+msgstr "উৎস"
+
+msgid "Overview"
+msgstr "ওভারভিউ"
+
 msgid "PNG or SVG, square works best. Opens the Media Library."
 msgstr "PNG বা SVG, চারকোনা সাইজ মানানসই। মিডিয়া লাইব্রেরি খুলবে।"
 
-#: app/Admin/Screens.php
 msgid "Package"
 msgstr "প্যাকেজ"
 
-#: app/Admin/Menu.php
+msgid "Package actions"
+msgstr "প্যাকেজ অ্যাকশন"
+
 msgid "Package deleted"
 msgstr "প্যাকেজ মুছে ফেলা হয়েছে"
 
-#: app/Admin/Menu.php
 msgid "Package duplicated"
 msgstr "প্যাকেজ ডুপ্লিকেট হয়েছে"
 
-#: app/Admin/Screens.php
 msgid "Package landing pages"
 msgstr "প্যাকেজ ল্যান্ডিং পেজ"
 
-#: app/Admin/Screens.php
+msgid "Package limit reached (maximum 40 packages)."
+msgstr "প্যাকেজের সর্বোচ্চ সীমা (৪০টি) পূর্ণ হয়েছে।"
+
 msgid "Package name"
 msgstr "প্যাকেজের নাম"
 
-#: app/Admin/Screens.php
 msgid "Package not found."
 msgstr "প্যাকেজ পাওয়া যায়নি।"
 
-#: app/Admin/Settings.php
 msgid "Package page"
 msgstr "প্যাকেজ পেজ"
 
-#: app/Admin/Chrome.php
-#: app/Admin/Settings.php
 msgid "Package page has been recreated."
 msgstr "প্যাকেজ পেজ পুনরায় তৈরি হয়েছে।"
 
-#: app/Admin/Menu.php
+msgid "Package page, inquiries and one receipt live in this plugin."
+msgstr "প্যাকেজ পাতা, এনকোয়ারি ও একটি রসিদ এই প্লাগিনে।"
+
 msgid "Package saved"
 msgstr "প্যাকেজ সেভ হয়েছে"
 
-#: app/Admin/Chrome.php
-#: app/Admin/Menu.php
-#: app/Admin/Screens.php
 msgid "Packages"
 msgstr "প্যাকেজ"
 
-#: app/Admin/Screens.php
 msgid "Packages · %d published"
 msgstr "প্যাকেজ · %dটি পাবলিশড"
 
-#: app/Admin/Settings.php
+msgid "Packages, inquiries and one receipt live in this plugin."
+msgstr "প্যাকেজ, এনকোয়ারি ও একটি রসিদ এই প্লাগিনে।"
+
 msgid "Page & shortcodes"
 msgstr "পেজ ও শর্টকোড"
 
-#: app/Admin/Settings.php
 msgid "Page missing or broken?"
 msgstr "পেজটি নেই বা কাজ করছে না?"
 
-#: app/Admin/Settings.php
 msgid "Page missing or not assigned"
 msgstr "পেজ নেই বা সেট করা হয়নি"
 
-#: app/Admin/Screens.php
+msgid "Page status: %s"
+msgstr "পেজের অবস্থা: %s"
+
+msgid "Paid"
+msgstr "পরিশোধ"
+
 msgid "Paid by"
 msgstr "যার নামে"
 
-#: app/Admin/Screens.php
+msgid "Paid by channel"
+msgstr "চ্যানেলে জমা"
+
+msgid "Paid in full"
+msgstr "পূর্ণ"
+
+msgid "Paid, taka"
+msgstr "জমা, টাকা"
+
+msgid "Papers: %s"
+msgstr "কাগজ: %s"
+
 msgid "Partial payments, balance due, bKash & Nagad matching."
 msgstr "আংশিক পেমেন্ট, বাকি হিসাব এবং bKash ও Nagad মেলানো।"
 
-#: app/Admin/Screens.php
+msgid "Passport"
+msgstr "পাসপোর্ট"
+
+msgid "Passport number stays on this desk. The photo file comes in a later version."
+msgstr "পাসপোর্ট নম্বর শুধু এই ডেস্কে। ছবির ফাইল পরের ভার্সনে।"
+
 msgid "Passport scans, mahram and family links, visa column per pilgrim."
 msgstr "পাসপোর্ট কপি, মাহরাম ও পারিবারিক সম্পর্ক এবং ভিসা স্ট্যাটাস।"
 
-#: app/Admin/Settings.php
+msgid "Passport, family link and visa column."
+msgstr "পাসপোর্ট, পরিবারের লিংক ও ভিসার ঘর।"
+
 msgid "Paste on any page or block"
 msgstr "যেকোনো পেজ বা ব্লকে বসিয়ে দিন"
 
-#: app/Admin/Screens.php
+msgid "Payment and cancellation"
+msgstr "টাকা ও বাতিল"
+
 msgid "Payment channel"
 msgstr "পেমেন্ট মাধ্যম"
 
-#: app/Admin/Screens.php
 msgid "Payment receipts"
 msgstr "পেমেন্ট রসিদ"
 
-#: app/Admin/Screens.php
 msgid "Payment slip"
 msgstr "পেমেন্ট স্লিপ"
 
-#: app/Admin/Screens.php
 msgid "Phone"
 msgstr "ফোন"
 
-#: app/Admin/Settings.php
 msgid "Pick a package to get its code"
 msgstr "কোড পেতে প্যাকেজ নির্বাচন করুন"
 
-#: app/Admin/Screens.php
+msgid "Pick a pilgrim from the file. Dollar and riyal stay as notes."
+msgstr "যাত্রী ফাইল থেকে বেছে নিন। ডলার ও রিয়াল নোটই থাকে।"
+
 msgid "Pilgrim"
 msgstr "যাত্রী"
 
-#: app/Admin/Screens.php
 msgid "Pilgrim file"
 msgstr "যাত্রী ফাইল"
 
-#: app/Admin/Screens.php
 msgid "Pilgrim name"
 msgstr "যাত্রীর নাম"
 
-#: app/Admin/Screens.php
 msgid "Pilgrim passport & visa tracking"
 msgstr "যাত্রীর পাসপোর্ট ও ভিসা ট্র্যাকিং"
 
-#: app/Admin/Menu.php
-#: app/Admin/Screens.php
+msgid "Pilgrim · package · share"
+msgstr "যাত্রী · প্যাকেজ · শেয়ার"
+
 msgid "Pilgrims"
 msgstr "যাত্রী"
 
-#: app/Admin/Analytics.php
 msgid "Pilgrims asked · %d adults · %d children · %d infants"
 msgstr "মোট যাত্রী · %d জন বড় · %d জন শিশু · %d জন ইনফ্যান্ট"
 
-#: app/Admin/Screens.php
 msgid "Please send passport copies to book your seat."
 msgstr "আপনার বুকিং নিশ্চিত করতে পাসপোর্ট কপি পাঠান।"
 
-#: app/Admin/Menu.php
-#: app/Admin/Screens.php
+msgid "Please try again shortly."
+msgstr "একটু পরে আবার পাঠান।"
+
+msgid "Plugin Data"
+msgstr "প্লাগিনের ডেটা"
+
 msgid "Pothik Pro"
 msgstr "পথিক প্রো"
 
-#: app/Admin/Chrome.php
+msgid "Pothik Pro needs the Pothik plugin installed and active."
+msgstr "Pothik Pro চালাতে আগে Pothik ইনস্টল ও অ্যাকটিভ করুন।"
+
+msgid "Pothik menu"
+msgstr "পথিক মেনু"
+
 msgid "Pothik sections"
 msgstr "পথিক সেকশন"
 
-#: app/Admin/Screens.php
 msgid "Preview"
 msgstr "প্রিভিউ"
 
-#: app/Admin/Screens.php
 msgid "Prices"
 msgstr "মূল্য তালিকা"
 
-#: app/Admin/Screens.php
 msgid "Prices per person, BDT"
 msgstr "জনপ্রতি খরচ, BDT"
 
-#: app/Admin/Screens.php
 msgid "Print"
 msgstr "প্রিন্ট"
 
-#: app/Admin/Settings.php
+msgid "Private"
+msgstr "প্রাইভেট"
+
+msgid "Pro"
+msgstr "প্রো"
+
+msgid "Program"
+msgstr "প্রোগ্রাম"
+
+msgid "Program ID"
+msgstr "প্রোগ্রাম আইডি"
+
+msgid "Public Page Setup"
+msgstr "পাবলিক পেজ সেটআপ"
+
+msgid "Public form rate limit"
+msgstr "পাবলিক ফরম রেট লিমিট"
+
 msgid "Public page"
 msgstr "পাবলিক পেজ"
 
-#: app/Admin/Screens.php
+msgid "Publish"
+msgstr "প্রকাশ করুন"
+
 msgid "Publish a package"
 msgstr "প্যাকেজ পাবলিশ করুন"
 
-#: app/Plugin.php
 msgid "Publish page"
 msgstr "পেজ প্রকাশ করুন"
 
-#: app/Admin/Screens.php
+msgid "Publish your Ramadan Umrah packages early."
+msgstr "রমজানের উমরা প্যাকেজ আগেভাগেই প্রকাশ করুন।"
+
 msgid "Published"
 msgstr "প্রকাশিত"
 
-#: app/Admin/Menu.php
+msgid "Published share prices. This does not hold a seat."
+msgstr "ছাপানো শেয়ার দাম। এতে সিট ধরা হয় না।"
+
 msgid "Published — live on your site"
 msgstr "পাবলিশড — আপনার সাইটে লাইভ আছে"
 
-#: app/Admin/Screens.php
 msgid "Quad"
 msgstr "কোয়াড"
 
-#: app/Admin/Screens.php
 msgid "Quick WhatsApp replies"
 msgstr "দ্রুত হোয়াটসঅ্যাপ উত্তর"
 
-#: app/Admin/Screens.php
 msgid "Quick actions"
 msgstr "দ্রুত কাজ"
 
-#: app/Admin/Screens.php
+msgid "Ramadan"
+msgstr "রমজান"
+
+msgid "Ramadan 1448"
+msgstr "রমজান ১৪৪৮"
+
 msgid "Ramadan in"
 msgstr "রমজান বাকি"
 
-#: app/Admin/Chrome.php
-#: app/Admin/Menu.php
 msgid "Receipt"
 msgstr "রসিদ"
 
-#: app/Admin/Screens.php
 msgid "Received"
 msgstr "প্রাপ্তি"
 
-#: app/Admin/Settings.php
+msgid "Received · actions"
+msgstr "প্রাপ্তি · কার্যক্রম"
+
+msgid "Received."
+msgstr "পেয়েছি।"
+
+msgid "Recent inquiries"
+msgstr "সাম্প্রতিক এনকোয়ারি"
+
+msgid "Recreate package page"
+msgstr "প্যাকেজ পেজ পুনরায় তৈরি করুন"
+
 msgid "Recreate page"
 msgstr "পেজ পুনরায় তৈরি করুন"
 
-#: app/Admin/Settings.php
+msgid "Refused"
+msgstr "রিফিউজ"
+
+msgid "Relation"
+msgstr "সম্পর্ক"
+
+msgid "Remove"
+msgstr "মুছুন"
+
 msgid "Remove demo"
 msgstr "ডেমো সরান"
 
-#: app/Admin/Screens.php
 msgid "Remove demo data"
 msgstr "ডেমো ডেটা মুছুন"
 
-#: app/Admin/Settings.php
 msgid "Remove logo"
 msgstr "লোগো সরান"
 
-#: app/Admin/Screens.php
+msgid "Remove this room"
+msgstr "এই রুম সরান"
+
+msgid "Remove this row"
+msgstr "এই সারি সরান"
+
 msgid "Replied"
 msgstr "উত্তর হয়েছে"
 
-#: app/Admin/Screens.php
+msgid "Reply"
+msgstr "উত্তর"
+
+msgid "Reply now"
+msgstr "এখনই উত্তর দিন"
+
 msgid "Reply on WhatsApp"
 msgstr "হোয়াটসঅ্যাপে উত্তর দিন"
 
-#: app/Admin/Screens.php
 msgid "Reply queue"
 msgstr "উত্তরের সিরিয়াল"
 
-#: app/Admin/Analytics.php
 msgid "Reply rate"
 msgstr "উত্তরের হার"
 
-#: app/Admin/Screens.php
+msgid "Return date"
+msgstr "ফেরার দিন"
+
+msgid "Room label"
+msgstr "রুমের নাম"
+
+msgid "Room number"
+msgstr "রুম নম্বর"
+
+msgid "Room number %s"
+msgstr "রুম নম্বর %s"
+
+msgid "Room number has not arrived yet"
+msgstr "রুম নম্বর এখনো আসেনি"
+
+msgid "Rooming"
+msgstr "রুমিং"
+
 msgid "Rooming lists"
 msgstr "রুম বণ্টন তালিকা"
 
-#: app/Admin/Screens.php
 msgid "Run the whole Umrah season %s"
 msgstr "পুরো উমরা মৌসুম পরিচালনা করুন %s"
 
-#: app/Admin/Settings.php
+msgid "Run the whole season: departures, pilgrim files, rooming, installments and the visa board."
+msgstr "পুরো মৌসুম পরিচালনা করুন: ফ্লাইট শিডিউল, যাত্রী ফাইল, রুম তালিকা, কিস্তির খাতা ও ভিসা বোর্ড।"
+
+msgid "Same transaction"
+msgstr "একই ট্রানজেকশন"
+
 msgid "Sample packages, inquiries and a receipt for trying things out"
 msgstr "পরীক্ষা করার জন্য নমুনা প্যাকেজ, এনকোয়ারি ও রসিদ"
 
-#: app/Admin/Screens.php
+msgid "Saudi company"
+msgstr "সৌদি কোম্পানি"
+
+msgid "Save departure"
+msgstr "ডিপারচার সেভ"
+
+msgid "Save ledger"
+msgstr "খাতা সেভ"
+
 msgid "Save package"
 msgstr "প্যাকেজ সেভ"
 
-#: app/Admin/Screens.php
+msgid "Save pilgrim"
+msgstr "যাত্রী সেভ"
+
 msgid "Save receipt"
 msgstr "রসিদ সেভ"
 
-#: app/Admin/Settings.php
+msgid "Save rooming"
+msgstr "রুমিং সেভ"
+
 msgid "Save settings"
 msgstr "সেটিংস সংরক্ষণ করুন"
 
-#: app/Admin/Chrome.php
-#: app/Admin/Menu.php
+msgid "Save status"
+msgstr "স্ট্যাটাস সেভ"
+
 msgid "Saved."
 msgstr "সেভ হয়েছে।"
 
-#: app/Admin/Screens.php
 msgid "Scene"
 msgstr "দৃশ্য"
 
-#: app/Admin/Chrome.php
 msgid "Search"
 msgstr "অনুসন্ধান"
 
-#: app/Admin/Screens.php
+msgid "Search name, phone or city"
+msgstr "নাম, ফোন বা শহর খুঁজুন"
+
 msgid "Search name, phone or city  ( / )"
 msgstr "নাম, ফোন বা শহর খুঁজুন  ( / )"
 
-#: app/Admin/Screens.php
 msgid "Search packages or hotels…"
 msgstr "প্যাকেজ বা হোটেল খুঁজুন…"
 
-#: app/Admin/Menu.php
 msgid "Search..."
 msgstr "খুঁজুন..."
 
-#: app/Admin/Menu.php
 msgid "Searching..."
 msgstr "অনুসন্ধান চলছে..."
 
-#: app/InquiryRepository.php
+msgid "Season dates"
+msgstr "সিজনের তারিখ"
+
+msgid "Sections"
+msgstr "ঘর"
+
 msgid "Security check failed."
 msgstr "নিরাপত্তা যাচাই ব্যর্থ হয়েছে।"
 
-#: app/Admin/Screens.php
 msgid "Select"
 msgstr "নির্বাচন"
 
-#: app/Admin/Screens.php
+msgid "Select Logo"
+msgstr "লোগো নির্বাচন করুন"
+
 msgid "Select all"
 msgstr "সব নির্বাচন করুন"
 
-#: app/Admin/Settings.php
+msgid "Send an inquiry"
+msgstr "এনকোয়ারি পাঠান"
+
 msgid "Send test"
 msgstr "টেস্ট পাঠান"
 
-#: app/Admin/Settings.php
+msgid "Send this page"
+msgstr "এই পাতা পাঠান"
+
 msgid "Send to"
 msgstr "প্রাপক"
 
-#: app/Admin/Screens.php
 msgid "Separate Makkah and Madinah bed lists, auto-filled by share."
 msgstr "মক্কা ও মদিনার আলাদা বেড লিস্ট, রুম শেয়ার অনুযায়ী তৈরি।"
 
-#: app/Admin/Menu.php
-#: app/Admin/Screens.php
+msgid "Separate Makkah and Madinah bed lists."
+msgstr "মক্কা ও মদিনার আলাদা বিছানার তালিকা।"
+
+msgid "Separate multiple emails with commas. Rate limit is per IP per hour."
+msgstr "একাধিক ইমেইল কমা দিয়ে আলাদা করুন। রেট লিমিট প্রতি আইপিতে প্রতি ঘণ্টায়।"
+
 msgid "Serve the guests of Ar-Rahman with ihsan — they remember the agency that cared."
 msgstr "রহমানের মেহমানদের এহসানের সাথে সেবা করুন — তারা যত্নশীল এজেন্সিকে মনে রাখে।"
 
-#: app/Admin/Screens.php
 msgid "Set WhatsApp number"
 msgstr "হোয়াটসঅ্যাপ নম্বর সেট করুন"
 
-#: app/Admin/Chrome.php
-#: app/Admin/Menu.php
 msgid "Settings"
 msgstr "সেটিংস"
 
-#: app/Admin/Screens.php
 msgid "Share"
 msgstr "শেয়ার"
 
-#: app/Admin/Analytics.php
+msgid "Share prices"
+msgstr "শেয়ারের দাম"
+
+msgid "Share prices, BDT"
+msgstr "শেয়ারের দাম, BDT"
+
 msgid "Share your public package catalog so pilgrims can submit inquiries."
 msgstr "প্যাকেজের লিংক শেয়ার করুন যাতে যাত্রীরা যোগাযোগ করতে পারেন।"
 
-#: app/Admin/Settings.php
+msgid "Show WP menu"
+msgstr "WP মেনু দেখান"
+
 msgid "Show every package"
 msgstr "সব প্যাকেজ দেখান"
 
-#: app/Admin/Screens.php
 msgid "Showing %d–%d of %d"
 msgstr "%3$dটির মধ্যে %1$d–%2$d দেখানো হচ্ছে"
 
-#: app/Admin/Screens.php
 msgid "Single"
 msgstr "সিঙ্গেল"
 
-#: app/Admin/Chrome.php
 msgid "Site"
 msgstr "সাইট"
 
-#: app/Admin/Settings.php
 msgid "Spam guard"
 msgstr "স্প্যাম প্রতিরোধ"
 
-#: app/Admin/Screens.php
+msgid "Staff change the status here. The visa is issued on the Masar portal."
+msgstr "স্ট্যাটাস এখানে হাতে বদলায়। ইস্যু হয় Masar পোর্টালে।"
+
 msgid "Staff move each file through statuses. Issue happens on Masar."
 msgstr "কর্মী ফাইল এগিয়ে নেন। ভিসা ইস্যু হয় সরাসরি Masar-এ।"
 
-#: app/Admin/Screens.php
+msgid "Staff update the status here. Issue happens on Masar."
+msgstr "স্ট্যাটাস এখানে হাতে বদলায়। ইস্যু হয় Masar পোর্টালে।"
+
 msgid "Stars"
 msgstr "তারকা"
 
-#: app/Admin/Screens.php
 msgid "Start blank or copy an existing one"
 msgstr "নতুনভাবে শুরু করুন বা কপি করুন"
 
-#: app/Admin/Screens.php
+msgid "Starts around"
+msgstr "শুরুর আনুমানিক তারিখ"
+
 msgid "Status"
 msgstr "স্ট্যাটাস"
 
-#: app/Admin/Analytics.php
 msgid "Still waiting"
 msgstr "এখনো অপেক্ষায়"
 
-#: app/Admin/Screens.php
 msgid "Sub-agent commission reports"
 msgstr "সাব-এজেন্ট কমিশন রিপোর্ট"
 
-#: app/Admin/Screens.php
 msgid "Sub-agent leads and commission reports."
 msgstr "সাব-এজেন্ট লিড ও কমিশন হিসাব।"
 
-#: app/Admin/Settings.php
+msgid "System"
+msgstr "সিস্টেম"
+
 msgid "Test email sent to %s"
 msgstr "%s-এ টেস্ট ইমেইল পাঠানো হয়েছে"
 
-#: app/Plugin.php
+msgid "Text fields follow the language toggle. Prices stay in BDT."
+msgstr "লেখার ঘর টগলের ভাষা অনুসরণ করে। দাম BDT-তেই থাকে।"
+
+msgid "The last visa date on file is %s."
+msgstr "ফাইলে শেষ ভিসার তারিখ %s।"
+
+msgid "The office file for this departure. Mahram is a relationship here. It does not block anyone."
+msgstr "এই ডিপারচারের অফিস ফাইল। মাহরাম এখানে সম্পর্ক, কাউকে আটকায় না।"
+
+msgid "The office will contact this number."
+msgstr "অফিস এই নম্বরে যোগাযোগ করবে।"
+
 msgid "The package page is currently a draft."
 msgstr "প্যাকেজ পেজটি বর্তমানে ড্রাফট অবস্থায় আছে।"
 
-#: app/Plugin.php
 msgid "The package page is ready."
 msgstr "প্যাকেজ পাতা প্রস্তুত।"
 
-#: app/Admin/Analytics.php
+msgid "The page pilgrims see on the site."
+msgstr "সাইটে যাত্রী এই পাতা দেখে।"
+
+msgid "These contact details are used across packages, receipts and public inquiries."
+msgstr "এই যোগাযোগের তথ্য প্যাকেজ, রসিদ ও পাবলিক এনকোয়ারিতে ব্যবহৃত হয়।"
+
+msgid "These dates warn the desk. They do not stop a save."
+msgstr "এই তারিখ ডেস্ককে সতর্ক করে। সেভ আটকায় না।"
+
+msgid "This leave date is after the last entry date %s."
+msgstr "ছাড়ার দিন শেষ প্রবেশ %s-এর পরে।"
+
+msgid "This ledger is the pilgrim's BDT. The ticket dollar and the Saudi riyal stay as notes. This version does not recalculate them."
+msgstr "এই খাতা যাত্রীর BDT। টিকিটের ডলার ও সৌদি রিয়াল আলাদা নোট। এই ভার্সনে অটো হিসাব নয়।"
+
+msgid "This return date is after the last departure date %s."
+msgstr "ফেরার দিন শেষ ছাড়া %s-এর পরে।"
+
+msgid "This screen is what the site shows. Prices are typed by staff."
+msgstr "এই ঘরের লেখাই সাইটের পাতায় ওঠে। দাম হাতে বসানো।"
+
+msgid "Three sharing a room"
+msgstr "তিনজনে এক রুম"
+
+msgid "Ticket, USD note"
+msgstr "টিকিট, ডলার নোট"
+
+msgid "Time"
+msgstr "সময়"
+
+msgid "Title"
+msgstr "শিরোনাম"
+
+msgid "Toggle full screen (Ctrl+Shift+F)"
+msgstr "ফুল স্ক্রিন টগল করুন (Ctrl+Shift+F)"
+
+msgid "Toggle published"
+msgstr "পাবলিশ স্ট্যাটাস পরিবর্তন"
+
 msgid "Top cities"
 msgstr "শীর্ষ শহরসমূহ"
 
-#: app/Admin/Screens.php
 msgid "Total days"
 msgstr "মোট দিন"
 
-#: app/Admin/Screens.php
+msgid "Total seats"
+msgstr "মোট সিট"
+
+msgid "Transaction"
+msgstr "ট্রানজেকশন"
+
 msgid "Transaction ID"
 msgstr "ট্রানজেকশন আইডি"
 
-#: app/Admin/Screens.php
+msgid "Travelling alone"
+msgstr "আলাদা যাত্রী"
+
 msgid "Triple"
 msgstr "ট্রিপল"
 
-#: app/Admin/Screens.php
 msgid "Try another name, phone or city."
 msgstr "অন্য কোনো নাম, ফোন বা শহর দিয়ে চেষ্টা করুন।"
 
-#: app/Admin/Screens.php
 msgid "Trying things out?"
 msgstr "টেস্ট করছেন?"
 
-#: app/Admin/Chrome.php
+msgid "Turn on Pothik Pro and this screen opens from that plugin."
+msgstr "Pothik Pro চালু করলে এই ঘর সেই প্লাগিন থেকে খুলবে।"
+
+msgid "Two sharing a room"
+msgstr "দুজনে এক রুম"
+
+msgid "Two steps left before you go live"
+msgstr "লাইভ হওয়ার আগে ২টি ধাপ বাকি"
+
+msgid "Type"
+msgstr "ধরন"
+
 msgid "Type a command or search pilgrims..."
 msgstr "কমান্ড টাইপ করুন বা যাত্রী খুঁজুন..."
 
-#: app/Admin/Screens.php
 msgid "Type and press Enter to add. Drag to reorder."
 msgstr "টাইপ করে Enter চাপুন। টেনে সাজান।"
 
-#: app/Admin/Chrome.php
+msgid "Type the days, nights, hotels and prices. The site shows this package as you save it."
+msgstr "দিন, রাত, হোটেল ও দাম যা লিখবেন, সাইটে এই প্যাকেজ সেভাবেই উঠবে।"
+
 msgid "Umrah desk"
 msgstr "উমরা ডেস্ক"
 
-#: app/Admin/Screens.php
 msgid "Umrah package"
 msgstr "উমরা প্যাকেজ"
 
-#: app/Admin/Analytics.php
 msgid "Umrah vs Hajj"
 msgstr "উমরা বনাম হজ"
 
-#: app/Admin/Menu.php
 msgid "Undo"
 msgstr "পূর্বাবস্থায় আনুন"
 
-#: app/Admin/Screens.php
 msgid "Unlimited Pro packages"
 msgstr "আনলিমিটেড প্রো প্যাকেজ"
 
-#: app/Admin/Screens.php
+msgid "Unpublish"
+msgstr "ড্রাফট করুন"
+
 msgid "Unsaved changes"
 msgstr "অসংরক্ষিত পরিবর্তন"
 
-#: app/Admin/Settings.php
 msgid "Unsaved settings"
 msgstr "অসংরক্ষিত সেটিংস"
 
-#: app/Admin/Screens.php
 msgid "Untitled package"
 msgstr "নামহীন প্যাকেজ"
 
-#: app/Admin/Screens.php
+msgid "Upgrade to Pothik Pro"
+msgstr "পথিক প্রো-তে আপগ্রেড করুন"
+
 msgid "Upgrade to Pothik Pro Now"
 msgstr "এখনই পথিক প্রো-তে আপগ্রেড করুন"
 
-#: app/Admin/Screens.php
 msgid "Upgrade to Pro"
 msgstr "প্রো-তে আপগ্রেড"
 
-#: app/Admin/Screens.php
 msgid "Upload agency logo"
 msgstr "এজেন্সির লোগো আপলোড করুন"
 
-#: app/Admin/Settings.php
+msgid "Use this logo"
+msgstr "এই লোগো ব্যবহার করুন"
+
 msgid "Used on packages, receipts and the WhatsApp button"
 msgstr "প্যাকেজ, রসিদ ও হোয়াটসঅ্যাপ বাটনে ব্যবহৃত হয়"
 
-#: app/Admin/Settings.php
 msgid "Used when a pilgrim types 017… without +880"
 msgstr "+880 ছাড়া নম্বর লিখলে স্বয়ংক্রিয়ভাবে যুক্ত হবে"
 
-#: app/Plugin.php
-#: app/Admin/Chrome.php
-#: app/Admin/Screens.php
+msgid "Vaccine"
+msgstr "টিকা"
+
+msgid "View inquiries"
+msgstr "এনকোয়ারিগুলো দেখুন"
+
 msgid "View on site"
 msgstr "সাইটে দেখুন"
 
-#: app/Admin/Screens.php
+msgid "Visa"
+msgstr "ভিসা"
+
 msgid "Visa board"
 msgstr "ভিসা বোর্ড"
 
-#: app/Admin/Screens.php
 msgid "Visa board with Masar status tracking"
 msgstr "Masar স্ট্যাটাস সহ ভিসা বোর্ড"
 
-#: app/Admin/Screens.php
+msgid "Visa issue is dated to open on %s."
+msgstr "ভিসা ইস্যুর তারিখ ফাইলে %s।"
+
+msgid "Visa opens"
+msgstr "ভিসা খোলে"
+
+msgid "WP menu"
+msgstr "WP মেনু"
+
 msgid "Waiting"
 msgstr "অপেক্ষায়"
 
-#: app/Admin/Screens.php
+msgid "Waiting reply"
+msgstr "উত্তরের অপেক্ষায়"
+
+msgid "Walking from %s"
+msgstr "%s থেকে হাঁটা"
+
 msgid "What pilgrims see first on the landing page."
 msgstr "ল্যান্ডিং পেজে যাত্রীরা যা প্রথমেই দেখতে পাবেন।"
 
-#: app/Admin/Screens.php
-#: app/Admin/Settings.php
 msgid "WhatsApp"
 msgstr "হোয়াটসঅ্যাপ"
 
-#: app/Admin/Menu.php
-#: app/Admin/Screens.php
+msgid "WhatsApp number"
+msgstr "হোয়াটসঅ্যাপ নম্বর"
+
+msgid "When checked, deleting the plugin will permanently remove all inquiries, packages and settings."
+msgstr "চিহ্নিত থাকলে, প্লাগিনটি ডিলিট করলে সব ইনকোয়ারি, প্যাকেজ ও সেটিংস স্থায়ীভাবে মুছে যাবে।"
+
+msgid "WordPress menu hidden — full-screen desk"
+msgstr "ওয়ার্ডপ্রেস মেনু আড়াল করা হয়েছে — ফুল-স্ক্রিন ডেস্ক"
+
+msgid "WordPress menu shown"
+msgstr "ওয়ার্ডপ্রেস মেনু প্রদর্শিত হচ্ছে"
+
 msgid "Yes"
 msgstr "হ্যাঁ"
 
-#: app/InquiryRepository.php
+msgid "Yes, delete"
+msgstr "হ্যাঁ, মুছুন"
+
 msgid "You do not have permission to perform this action."
 msgstr "আপনার এই কাজটি করার অনুমতি নেই।"
 
-#: app/InquiryRepository.php
-#: app/InquiryStore.php
-#: app/PackageStore.php
-#: app/Plugin.php
-#: app/ReceiptStore.php
-#: app/Admin/Settings.php
 msgid "You do not have permission to view this screen."
 msgstr "এই স্ক্রিন দেখার অনুমতি নেই।"
 
-#: app/Admin/Menu.php
 msgid "You have unsaved changes. Are you sure you want to leave?"
 msgstr "আপনার কিছু অসংরক্ষিত পরিবর্তন আছে। আপনি কি নিশ্চিত বের হতে চান?"
 
-#: app/Admin/Settings.php
 msgid "[Pothik] Test Notification (%s)"
 msgstr "[পথিক] টেস্ট নোটিফিকেশন (%s)"
 
-#: app/Admin/Screens.php
+msgid "adults"
+msgstr "বড়"
+
 msgid "ago"
 msgstr "আগে"
 
-#: app/Admin/Screens.php
+msgid "children"
+msgstr "শিশু"
+
 msgid "complete"
 msgstr "সম্পন্ন"
 
-#: app/Admin/Screens.php
 msgid "days"
 msgstr "দিন"
 
-#: app/Admin/Screens.php
 msgid "e.g. Personal shopping"
 msgstr "যেমন: ব্যক্তিগত কেনাকাটা"
 
-#: app/Admin/Screens.php
 msgid "e.g. Return air ticket"
 msgstr "যেমন: রিটার্ন বিমান টিকিট"
 
-#: app/Admin/Screens.php
 msgid "from"
 msgstr "শুরু"
 
-#: app/Admin/Screens.php
 msgid "from one desk"
 msgstr "এক ডেস্ক থেকেই"
 
-#: app/Admin/Screens.php
 msgid "from the bKash / Nagad SMS"
 msgstr "বিকাশ / নগদ এসএমএস থেকে"
 
-#: app/Admin/Screens.php
 msgid "from, quad"
 msgstr "শুরু, কোয়াড"
 
-#: app/Admin/Analytics.php
+msgid "guests of Allah are waiting for your reply."
+msgstr "জন আল্লাহর মেহমান আপনার উত্তরের অপেক্ষায় আছেন।"
+
+msgid "guests of Allah waiting."
+msgstr "জন আল্লাহর মেহমান অপেক্ষায় আছেন।"
+
+msgid "hours"
+msgstr "ঘণ্টা"
+
+msgid "infants"
+msgstr "ইনফ্যান্ট"
+
 msgid "inquiries"
 msgstr "এনকোয়ারি"
 
-#: app/Admin/Screens.php
+msgid "mins"
+msgstr "মিনিট"
+
 msgid "of 40 free"
 msgstr "সর্বোচ্চ ৪০টি (ফ্রি)"
 
-#: app/Admin/Analytics.php
+msgid "of 5"
+msgstr "টির মধ্যে ৫টি"
+
 msgid "of inquiries got a reply"
 msgstr "এনকোয়ারির উত্তর দেওয়া হয়েছে"
 
-#: app/Admin/Screens.php
 msgid "oldest %s"
 msgstr "সবচেয়ে পুরোনো %s"
 
-#: app/Admin/Screens.php
 msgid "per person"
 msgstr "জনপ্রতি"
 
-#: app/Admin/Screens.php
 msgid "per person · shown as \"from\""
 msgstr "জনপ্রতি · \"শুরু\" হিসেবে দেখানো"
 
-#: app/Admin/Screens.php
 msgid "pilgrims"
 msgstr "যাত্রী"
 
-#: app/Admin/Screens.php
+msgid "secs"
+msgstr "সেকেন্ড"
+
 msgid "selected"
 msgstr "নির্বাচিত"
 
-#: app/Admin/Screens.php
 msgid "small line above title"
 msgstr "শিরোনামের উপরের ছোট লাইন"
 
-#: app/Admin/Screens.php
+msgid "the Haram"
+msgstr "হারাম"
+
+msgid "the Prophet's Mosque"
+msgstr "নববী"
+
 msgid "to the Haram"
 msgstr "হারামে"
 
-#: app/Admin/Screens.php
 msgid "to the Prophet's Mosque"
 msgstr "মসজিদে নববীতে"
 
-#: app/Admin/Screens.php
 msgid "updating"
 msgstr "আপডেট হচ্ছে"
 
-#: app/Admin/Settings.php
 msgid "with country code"
 msgstr "কান্ট্রি কোড সহ"
 
-#: app/Admin/Settings.php
 msgid "wp_mail() returned false. Check your mail configuration."
 msgstr "wp_mail() পাঠানো যায়নি। সার্ভারের মেইল কনফিগারেশন চেক করুন।"
 

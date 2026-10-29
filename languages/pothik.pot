@@ -4,1352 +4,1804 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pothik 0.3.0\n"
 "Report-Msgid-Bugs-To: https://thereadscope.com/pothik\n"
-"Last-Translator: itsmanzur <info@thereadscope.com>\n"
-"Language-Team: Bengali <info@thereadscope.com>\n"
+"Last-Translator: itsmanzur\n"
+"Language-Team: Bengali <itsmanzur@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-28 06:48:10+0000\n"
-"PO-Revision-Date: 2026-10-28 06:48:10+0000\n"
-"X-Generator: Pothik i18n Tool\n"
-"X-Domain: pothik\n\n#: app/Admin/Screens.php
+"POT-Creation-Date: 2026-10-29T08:30:00+00:00\n"
+"PO-Revision-Date: 2026-10-29T08:30:00+00:00\n"
+"Language: bn_BD\n"
+"X-Generator: Pothik Generator\n"
+
+msgid "%1$d seats confirmed · %2$d total"
+msgstr ""
+
 msgid "%d Madinah"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "%d nights Makkah"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "%d nights do not fit inside %d days"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "%d nights fit inside %d days"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "%d of 40 free"
+msgstr ""
+
 msgid "%d of 40 packages"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "%d packages"
+msgstr ""
+
 msgid "%d steps left before you go live"
 msgstr ""
 
-#: app/Admin/Menu.php
-#: app/Admin/Screens.php
+msgid "%s days"
+msgstr ""
+
+msgid "%s nights in Madinah"
+msgstr ""
+
+msgid "%s nights in Makkah"
+msgstr ""
+
+msgid "30 days"
+msgstr ""
+
+msgid "7 days"
+msgstr ""
+
+msgid "A group file shows this seat line when the site has one package. A private file leaves that line off the page."
+msgstr ""
+
 msgid "A pilgrim's dua at the Multazam may include your name."
 msgstr ""
 
-#: app/Admin/Menu.php
+msgid "A sample of four pilgrims. Mahram is a relationship here. It does not block anyone."
+msgstr ""
+
 msgid "Actions"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Add agency name & phone"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Add day"
 msgstr ""
 
-#: app/Admin/Settings.php
 msgid "Add email and press Enter"
 msgstr ""
 
-#: app/Plugin.php
 msgid "Admin"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Adults"
+msgstr ""
+
 msgid "Advance for Umrah package, quad share…"
 msgstr ""
 
-#: app/Admin/Settings.php
+msgid "Advanced Umrah & Hajj agency operations management."
+msgstr ""
+
 msgid "Agency"
 msgstr ""
 
-#: app/Admin/Settings.php
+msgid "Agency age band"
+msgstr ""
+
 msgid "Agency details"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Agency name"
 msgstr ""
 
-#: app/Admin/Settings.php
+msgid "Agency name (Bangla)"
+msgstr ""
+
+msgid "Agency name (English)"
+msgstr ""
+
 msgid "Agency name · English"
 msgstr ""
 
-#: app/Admin/Settings.php
 msgid "Agency name · বাংলা"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Agent commissions"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Airline"
+msgstr ""
+
 msgid "All"
 msgstr ""
 
-#: app/Admin/Menu.php
-#: app/Admin/Screens.php
+msgid "All answered"
+msgstr ""
+
 msgid "All caught up, alhamdulillah"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "All guests of Allah have been answered. Alhamdulillah."
+msgstr ""
+
 msgid "All inquiries"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "All packages"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "All pilgrims"
+msgstr ""
+
 msgid "Amount received"
 msgstr ""
 
-#: app/Admin/Chrome.php
-#: app/Admin/Menu.php
+msgid "Amount, channel and transaction ID."
+msgstr ""
+
+msgid "Amount, taka"
+msgstr ""
+
 msgid "Analytics"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Any share"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Assalamu alaikum! Thank you for your Umrah inquiry. Our office will call you today."
 msgstr ""
 
-#: app/Admin/Settings.php
 msgid "Assalamu alaikum,\n\nThis is a test notification from your Pothik Umrah plugin.\nWhen a pilgrim submits an inquiry on your site, you will receive an alert like this.\n\n— Pothik Desk"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Assalamu alaikum, %s"
+msgstr ""
+
 msgid "Assalamu alaikum, %s.<br><mark data-pk-wait-count data-wait-count>%d</mark> guests of Allah are waiting for your reply."
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Assalamu alaikum, %s.<br>All guests of Allah have been answered. Alhamdulillah."
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Balance"
+msgstr ""
+
+msgid "Balance due"
+msgstr ""
+
+msgid "Balance, who matched it, bKash and Nagad."
+msgstr ""
+
+msgid "Bank"
+msgstr ""
+
 msgid "Basics"
 msgstr ""
 
-#: app/Admin/Analytics.php
+msgid "Biometric"
+msgstr ""
+
+msgid "Birth"
+msgstr ""
+
+msgid "By biometric"
+msgstr ""
+
+msgid "By city"
+msgstr ""
+
+msgid "By day"
+msgstr ""
+
 msgid "By room share"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "By share"
+msgstr ""
+
+msgid "By type"
+msgstr ""
+
+msgid "By visa"
+msgstr ""
+
 msgid "Call"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Call %s"
 msgstr ""
 
-#: app/Admin/Menu.php
-#: app/Admin/Screens.php
 msgid "Cancel"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Cancellation"
 msgstr ""
 
-#: app/Admin/Menu.php
+msgid "Cancellation sentence"
+msgstr ""
+
+msgid "Cash"
+msgstr ""
+
 msgid "Changes discarded"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Channel"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Chat with the office on WhatsApp"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Child + bed"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Child with bed"
+msgstr ""
+
+msgid "Child without bed"
+msgstr ""
+
 msgid "Child, no bed"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Children"
+msgstr ""
+
+msgid "Children and infants are priced at the office."
+msgstr ""
+
+msgid "Choose Logo"
+msgstr ""
+
+msgid "Choose a package. Each one has its own days and price."
+msgstr ""
+
 msgid "City"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Clear"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Click to toggle"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Close"
 msgstr ""
 
-#: app/Admin/Chrome.php
+msgid "Collapse menu"
+msgstr ""
+
 msgid "Command palette"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Confirmed seats"
+msgstr ""
+
 msgid "Contact"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Contact for this package"
 msgstr ""
 
-#: app/Admin/Menu.php
+msgid "Contact the office"
+msgstr ""
+
+msgid "Contract"
+msgstr ""
+
+msgid "Contract, taka"
+msgstr ""
+
 msgid "Copied [pothik_catalog]"
 msgstr ""
 
-#: app/Admin/Menu.php
 msgid "Copied."
 msgstr ""
 
-#: app/Admin/Menu.php
 msgid "Copy"
 msgstr ""
 
-#: app/Admin/Menu.php
 msgid "Copy [pothik_catalog]"
 msgstr ""
 
-#: app/Admin/Analytics.php
 msgid "Copy catalog link"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Copy for WhatsApp"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Copy package"
+msgstr ""
+
 msgid "Copy shortcode"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Counts from inquiries and the receipt."
+msgstr ""
+
 msgid "Create fresh or draft"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Create receipt & copy"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Create your first Umrah package"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Create your first package"
 msgstr ""
 
-#: app/Admin/Settings.php
 msgid "Creates the page again with the shortcode"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "DAYS"
 msgstr ""
 
-#: app/Admin/Settings.php
 msgid "Data"
 msgstr ""
 
-#: app/Admin/Analytics.php
-#: app/Admin/Screens.php
 msgid "Date"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Date, flight, seats, and group or private."
+msgstr ""
+
 msgid "Day by day"
 msgstr ""
 
-#: app/Admin/Settings.php
+msgid "Days"
+msgstr ""
+
 msgid "Default country code"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Delete"
 msgstr ""
 
-#: app/Admin/Settings.php
+msgid "Delete %s? Yes / Cancel"
+msgstr ""
+
+msgid "Delete data on uninstall"
+msgstr ""
+
 msgid "Delete everything on uninstall"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Delete selected?"
 msgstr ""
 
-#: app/Admin/Menu.php
-#: app/Admin/Screens.php
+msgid "Delete this inquiry?"
+msgstr ""
+
 msgid "Delete this package?"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Delete this pilgrim?"
+msgstr ""
+
 msgid "Demo"
 msgstr ""
 
-#: app/Admin/Settings.php
 msgid "Demo & uninstall"
 msgstr ""
 
-#: app/Admin/Settings.php
 msgid "Demo data"
 msgstr ""
 
-#: app/Admin/Chrome.php
 msgid "Demo data loaded."
 msgstr ""
 
-#: app/Admin/Chrome.php
 msgid "Demo data removed."
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Departure"
+msgstr ""
+
+msgid "Departures"
+msgstr ""
+
 msgid "Departures board"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Departures, pilgrim files, rooming lists, installments and the visa board — built for Bangladeshi agencies."
 msgstr ""
 
-#: app/Admin/Chrome.php
-#: app/Admin/Menu.php
+msgid "Deposit"
+msgstr ""
+
 msgid "Desk"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Dhaka"
+msgstr ""
+
 msgid "Direct 1-on-1 agency support"
 msgstr ""
 
-#: app/Admin/Menu.php
-#: app/Admin/Screens.php
+msgid "Direction"
+msgstr ""
+
 msgid "Discard"
 msgstr ""
 
-#: app/Plugin.php
 msgid "Dismiss"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Distance to Prophet's Mosque"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Distance to the Haram"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Distance to the Haram sells more than stars — keep it honest."
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Docs"
+msgstr ""
+
 msgid "Documents"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Done"
+msgstr ""
+
 msgid "Double"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Download all inquiries"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Draft"
 msgstr ""
 
-#: app/Admin/Settings.php
+msgid "Draft Preview — Not published to the public."
+msgstr ""
+
 msgid "Drop your logo here or click to choose"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Duplicate"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Each package becomes a landing page with prices, hotels and a WhatsApp button."
+msgstr ""
+
 msgid "Each package gets a dedicated mobile-friendly landing page with pricing, hotels and instant WhatsApp inquiry."
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Each package gets its own landing page with hotels, itinerary and pricing tiers."
+msgstr ""
+
+msgid "Each package keeps its own days, hotels and prices."
+msgstr ""
+
 msgid "Edit"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Edit package"
+msgstr ""
+
 msgid "Editing English. Switch to বাংলা above to fill the Bangla version — empty Bangla fields fall back to English."
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Editing বাংলা. Switch to English above to fill the English version — empty Bangla fields fall back to English."
 msgstr ""
 
-#: app/Admin/Settings.php
 msgid "Email & spam guard"
 msgstr ""
 
-#: app/Admin/Menu.php
-#: app/Admin/Screens.php
+msgid "Embassy visit"
+msgstr ""
+
 msgid "Every reply you send could be someone's first step towards the Haram."
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Everything your agency needs to run professional Umrah operations."
+msgstr ""
+
+msgid "Expiry"
+msgstr ""
+
 msgid "Explore Pro features"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Export"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Export CSV"
 msgstr ""
 
-#: app/Admin/Menu.php
 msgid "Export inquiries CSV"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Eyebrow"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Failed"
+msgstr ""
+
+msgid "Family"
+msgstr ""
+
 msgid "Feature"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Female"
+msgstr ""
+
 msgid "Finish setting up"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Flight"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Flight & group departures board"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Flight dates, seats left and group or private quotas at a glance."
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Flight direction"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Food note"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Four sharing a room"
+msgstr ""
+
 msgid "Free Version"
 msgstr ""
 
-#: app/Admin/Chrome.php
-#: app/Admin/Screens.php
 msgid "Free version is limited to 40 packages. Upgrade to Pothik Pro for unlimited packages."
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Free version keeps one receipt. Full history is in Pro."
 msgstr ""
 
-#: app/Admin/Menu.php
+msgid "Gender"
+msgstr ""
+
 msgid "Go to"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Ground, SAR note"
+msgstr ""
+
+msgid "Group"
+msgstr ""
+
+msgid "Group file"
+msgstr ""
+
+msgid "Group leader"
+msgstr ""
+
+msgid "Group linked"
+msgstr ""
+
 msgid "Group note"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Grow with Pothik Pro"
 msgstr ""
 
-#: app/Admin/Settings.php
+msgid "Guide"
+msgstr ""
+
+msgid "Hajj"
+msgstr ""
+
 msgid "Hajj / Umrah license number"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Hajj in"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Here are the full prices and hotel details for your package…"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Hide"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Hide setup checklist"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Hotel"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Hotels"
 msgstr ""
 
-#: app/Admin/Analytics.php
 msgid "Hover a bar"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "I want to ask about %s."
+msgstr ""
+
 msgid "Included"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Included, one item per line"
+msgstr ""
+
 msgid "Infant"
 msgstr ""
 
-#: app/Admin/Analytics.php
-#: app/Admin/Chrome.php
-#: app/Admin/Menu.php
+msgid "Infants"
+msgstr ""
+
 msgid "Inquiries"
 msgstr ""
 
-#: app/Admin/Analytics.php
 msgid "Inquiries by day"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Inquiries · last 7 days"
 msgstr ""
 
-#: app/Admin/Settings.php
 msgid "Inquiries, packages, receipt and settings are removed for good when the plugin is deleted."
 msgstr ""
 
-#: app/Admin/Menu.php
+msgid "Inquiries, shares and the receipt, counted on this desk."
+msgstr ""
+
 msgid "Inquiry"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Inquiry details"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Inquiry form, WhatsApp, email alerts"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Installment ledger"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Installment ledger & bKash matching"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Installments"
+msgstr ""
+
+msgid "Insurance"
+msgstr ""
+
+msgid "Invoice"
+msgstr ""
+
+msgid "Issued"
+msgstr ""
+
+msgid "Jeddah first"
+msgstr ""
+
 msgid "Journey & terms"
 msgstr ""
 
-#: app/Admin/Chrome.php
+msgid "Journey and terms"
+msgstr ""
+
 msgid "Language"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Last 30 days"
+msgstr ""
+
+msgid "Last 7 days"
+msgstr ""
+
+msgid "Last departure"
+msgstr ""
+
+msgid "Last entry"
+msgstr ""
+
 msgid "Last receipt"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Last visa"
+msgstr ""
+
+msgid "Learn about Pro"
+msgstr ""
+
+msgid "Leave a name and phone. The office replies on WhatsApp. This form does not hold a seat."
+msgstr ""
+
 msgid "Leave a tier at 0 to hide it on the site. The lowest price is shown as \"from\"."
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Leave date"
+msgstr ""
+
 msgid "Leave empty to use the agency phone and WhatsApp from Settings."
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "License"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "License number"
+msgstr ""
+
+msgid "Live"
+msgstr ""
+
+msgid "Live on your site"
+msgstr ""
+
 msgid "Live preview"
 msgstr ""
 
-#: app/Admin/Settings.php
 msgid "Load demo"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Load demo data"
 msgstr ""
 
-#: app/Admin/Settings.php
 msgid "Logo"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Madinah"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Madinah al-Munawwarah"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Madinah beds"
+msgstr ""
+
+msgid "Madinah first"
+msgstr ""
+
 msgid "Madinah hotel"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Madinah nights"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Madinah stars"
+msgstr ""
+
+msgid "Madinah, or similar"
+msgstr ""
+
 msgid "Makkah"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Makkah & Madinah bed / rooming lists"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Makkah al-Mukarramah"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Makkah beds"
+msgstr ""
+
 msgid "Makkah hotel"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Makkah list and Madinah list are separate. Choose pilgrims from the file."
+msgstr ""
+
 msgid "Makkah nights"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Makkah stars"
+msgstr ""
+
+msgid "Makkah, or similar"
+msgstr ""
+
+msgid "Male"
+msgstr ""
+
 msgid "Manage"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Mark replied"
 msgstr ""
 
-#: app/Admin/Menu.php
+msgid "Mark waiting"
+msgstr ""
+
 msgid "Marked replied."
 msgstr ""
 
-#: app/Admin/Menu.php
 msgid "Marked waiting."
 msgstr ""
 
-#: app/Admin/Settings.php
 msgid "Max inquiries from one IP per hour"
 msgstr ""
 
-#: app/Admin/Menu.php
-#: app/Admin/Screens.php
 msgid "May Allah accept the Umrah of every pilgrim you serve."
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Metres to the Haram"
+msgstr ""
+
+msgid "Metres to the Prophet's Mosque"
+msgstr ""
+
 msgid "More"
 msgstr ""
 
-#: app/Admin/Menu.php
 msgid "Moved to draft"
 msgstr ""
 
-#: app/Admin/Settings.php
+msgid "Name"
+msgstr ""
+
+msgid "Name and phone are both required."
+msgstr ""
+
+msgid "Name, phone, city and room share."
+msgstr ""
+
 msgid "Name, phone, logo"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Names from the site form. The pilgrim file is in Pro."
+msgstr ""
+
+msgid "Names, one per line"
+msgstr ""
+
 msgid "Needs reply"
 msgstr ""
 
-#: app/Admin/Menu.php
-#: app/Admin/Screens.php
 msgid "New inquiries will appear here."
 msgstr ""
 
-#: app/Admin/Settings.php
 msgid "New inquiry email"
 msgstr ""
 
-#: app/Admin/Menu.php
-#: app/Admin/Screens.php
 msgid "New package"
 msgstr ""
 
-#: app/Admin/Analytics.php
+msgid "New pilgrim"
+msgstr ""
+
+msgid "New room"
+msgstr ""
+
+msgid "New row"
+msgstr ""
+
+msgid "Next season"
+msgstr ""
+
+msgid "No channel"
+msgstr ""
+
 msgid "No city"
 msgstr ""
 
-#: app/Admin/Analytics.php
 msgid "No inquiries in this period"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "No inquiries yet."
+msgstr ""
+
 msgid "No packages created yet."
 msgstr ""
 
-#: app/Admin/Menu.php
+msgid "No packages yet."
+msgstr ""
+
+msgid "No receipts yet"
+msgstr ""
+
 msgid "No results found."
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Not included"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Not included, one item per line"
+msgstr ""
+
+msgid "Not started"
+msgstr ""
+
 msgid "Note"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Nothing matches"
 msgstr ""
 
-#: app/Admin/Settings.php
+msgid "Nothing matches."
+msgstr ""
+
+msgid "Notice"
+msgstr ""
+
+msgid "Notification email(s)"
+msgstr ""
+
 msgid "Notifications"
 msgstr ""
 
-#: app/Admin/Settings.php
+msgid "Notifications & System"
+msgstr ""
+
+msgid "Off"
+msgstr ""
+
 msgid "Office phone"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Office reply about your Umrah inquiry."
 msgstr ""
 
-#: app/Admin/Settings.php
+msgid "Oldest %s ago"
+msgstr ""
+
+msgid "On"
+msgstr ""
+
+msgid "On a lap"
+msgstr ""
+
+msgid "One group file. This screen does not submit to Masar."
+msgstr ""
+
 msgid "One package"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "One payment proof. The installment ledger is in Pro."
+msgstr ""
+
+msgid "One person, one room"
+msgstr ""
+
+msgid "One receipt"
+msgstr ""
+
+msgid "Open"
+msgstr ""
+
+msgid "Open package"
+msgstr ""
+
 msgid "Open reply queue"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Open seats"
+msgstr ""
+
 msgid "Or similar"
 msgstr ""
 
-#: app/Admin/Settings.php
+msgid "Origin"
+msgstr ""
+
+msgid "Overview"
+msgstr ""
+
 msgid "PNG or SVG, square works best. Opens the Media Library."
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Package"
 msgstr ""
 
-#: app/Admin/Menu.php
+msgid "Package actions"
+msgstr ""
+
 msgid "Package deleted"
 msgstr ""
 
-#: app/Admin/Menu.php
 msgid "Package duplicated"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Package landing pages"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Package limit reached (maximum 40 packages)."
+msgstr ""
+
 msgid "Package name"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Package not found."
 msgstr ""
 
-#: app/Admin/Settings.php
 msgid "Package page"
 msgstr ""
 
-#: app/Admin/Chrome.php
-#: app/Admin/Settings.php
 msgid "Package page has been recreated."
 msgstr ""
 
-#: app/Admin/Menu.php
+msgid "Package page, inquiries and one receipt live in this plugin."
+msgstr ""
+
 msgid "Package saved"
 msgstr ""
 
-#: app/Admin/Chrome.php
-#: app/Admin/Menu.php
-#: app/Admin/Screens.php
 msgid "Packages"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Packages · %d published"
 msgstr ""
 
-#: app/Admin/Settings.php
+msgid "Packages, inquiries and one receipt live in this plugin."
+msgstr ""
+
 msgid "Page & shortcodes"
 msgstr ""
 
-#: app/Admin/Settings.php
 msgid "Page missing or broken?"
 msgstr ""
 
-#: app/Admin/Settings.php
 msgid "Page missing or not assigned"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Page status: %s"
+msgstr ""
+
+msgid "Paid"
+msgstr ""
+
 msgid "Paid by"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Paid by channel"
+msgstr ""
+
+msgid "Paid in full"
+msgstr ""
+
+msgid "Paid, taka"
+msgstr ""
+
+msgid "Papers: %s"
+msgstr ""
+
 msgid "Partial payments, balance due, bKash & Nagad matching."
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Passport"
+msgstr ""
+
+msgid "Passport number stays on this desk. The photo file comes in a later version."
+msgstr ""
+
 msgid "Passport scans, mahram and family links, visa column per pilgrim."
 msgstr ""
 
-#: app/Admin/Settings.php
+msgid "Passport, family link and visa column."
+msgstr ""
+
 msgid "Paste on any page or block"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Payment and cancellation"
+msgstr ""
+
 msgid "Payment channel"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Payment receipts"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Payment slip"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Phone"
 msgstr ""
 
-#: app/Admin/Settings.php
 msgid "Pick a package to get its code"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Pick a pilgrim from the file. Dollar and riyal stay as notes."
+msgstr ""
+
 msgid "Pilgrim"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Pilgrim file"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Pilgrim name"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Pilgrim passport & visa tracking"
 msgstr ""
 
-#: app/Admin/Menu.php
-#: app/Admin/Screens.php
+msgid "Pilgrim · package · share"
+msgstr ""
+
 msgid "Pilgrims"
 msgstr ""
 
-#: app/Admin/Analytics.php
 msgid "Pilgrims asked · %d adults · %d children · %d infants"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Please send passport copies to book your seat."
 msgstr ""
 
-#: app/Admin/Menu.php
-#: app/Admin/Screens.php
+msgid "Please try again shortly."
+msgstr ""
+
+msgid "Plugin Data"
+msgstr ""
+
 msgid "Pothik Pro"
 msgstr ""
 
-#: app/Admin/Chrome.php
+msgid "Pothik Pro needs the Pothik plugin installed and active."
+msgstr ""
+
+msgid "Pothik menu"
+msgstr ""
+
 msgid "Pothik sections"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Preview"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Prices"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Prices per person, BDT"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Print"
 msgstr ""
 
-#: app/Admin/Settings.php
+msgid "Private"
+msgstr ""
+
+msgid "Pro"
+msgstr ""
+
+msgid "Program"
+msgstr ""
+
+msgid "Program ID"
+msgstr ""
+
+msgid "Public Page Setup"
+msgstr ""
+
+msgid "Public form rate limit"
+msgstr ""
+
 msgid "Public page"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Publish"
+msgstr ""
+
 msgid "Publish a package"
 msgstr ""
 
-#: app/Plugin.php
 msgid "Publish page"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Publish your Ramadan Umrah packages early."
+msgstr ""
+
 msgid "Published"
 msgstr ""
 
-#: app/Admin/Menu.php
+msgid "Published share prices. This does not hold a seat."
+msgstr ""
+
 msgid "Published — live on your site"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Quad"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Quick WhatsApp replies"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Quick actions"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Ramadan"
+msgstr ""
+
+msgid "Ramadan 1448"
+msgstr ""
+
 msgid "Ramadan in"
 msgstr ""
 
-#: app/Admin/Chrome.php
-#: app/Admin/Menu.php
 msgid "Receipt"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Received"
 msgstr ""
 
-#: app/Admin/Settings.php
+msgid "Received · actions"
+msgstr ""
+
+msgid "Received."
+msgstr ""
+
+msgid "Recent inquiries"
+msgstr ""
+
+msgid "Recreate package page"
+msgstr ""
+
 msgid "Recreate page"
 msgstr ""
 
-#: app/Admin/Settings.php
+msgid "Refused"
+msgstr ""
+
+msgid "Relation"
+msgstr ""
+
+msgid "Remove"
+msgstr ""
+
 msgid "Remove demo"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Remove demo data"
 msgstr ""
 
-#: app/Admin/Settings.php
 msgid "Remove logo"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Remove this room"
+msgstr ""
+
+msgid "Remove this row"
+msgstr ""
+
 msgid "Replied"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Reply"
+msgstr ""
+
+msgid "Reply now"
+msgstr ""
+
 msgid "Reply on WhatsApp"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Reply queue"
 msgstr ""
 
-#: app/Admin/Analytics.php
 msgid "Reply rate"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Return date"
+msgstr ""
+
+msgid "Room label"
+msgstr ""
+
+msgid "Room number"
+msgstr ""
+
+msgid "Room number %s"
+msgstr ""
+
+msgid "Room number has not arrived yet"
+msgstr ""
+
+msgid "Rooming"
+msgstr ""
+
 msgid "Rooming lists"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Run the whole Umrah season %s"
 msgstr ""
 
-#: app/Admin/Settings.php
+msgid "Run the whole season: departures, pilgrim files, rooming, installments and the visa board."
+msgstr ""
+
+msgid "Same transaction"
+msgstr ""
+
 msgid "Sample packages, inquiries and a receipt for trying things out"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Saudi company"
+msgstr ""
+
+msgid "Save departure"
+msgstr ""
+
+msgid "Save ledger"
+msgstr ""
+
 msgid "Save package"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Save pilgrim"
+msgstr ""
+
 msgid "Save receipt"
 msgstr ""
 
-#: app/Admin/Settings.php
+msgid "Save rooming"
+msgstr ""
+
 msgid "Save settings"
 msgstr ""
 
-#: app/Admin/Chrome.php
-#: app/Admin/Menu.php
+msgid "Save status"
+msgstr ""
+
 msgid "Saved."
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Scene"
 msgstr ""
 
-#: app/Admin/Chrome.php
 msgid "Search"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Search name, phone or city"
+msgstr ""
+
 msgid "Search name, phone or city  ( / )"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Search packages or hotels…"
 msgstr ""
 
-#: app/Admin/Menu.php
 msgid "Search..."
 msgstr ""
 
-#: app/Admin/Menu.php
 msgid "Searching..."
 msgstr ""
 
-#: app/InquiryRepository.php
+msgid "Season dates"
+msgstr ""
+
+msgid "Sections"
+msgstr ""
+
 msgid "Security check failed."
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Select"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Select Logo"
+msgstr ""
+
 msgid "Select all"
 msgstr ""
 
-#: app/Admin/Settings.php
+msgid "Send an inquiry"
+msgstr ""
+
 msgid "Send test"
 msgstr ""
 
-#: app/Admin/Settings.php
+msgid "Send this page"
+msgstr ""
+
 msgid "Send to"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Separate Makkah and Madinah bed lists, auto-filled by share."
 msgstr ""
 
-#: app/Admin/Menu.php
-#: app/Admin/Screens.php
+msgid "Separate Makkah and Madinah bed lists."
+msgstr ""
+
+msgid "Separate multiple emails with commas. Rate limit is per IP per hour."
+msgstr ""
+
 msgid "Serve the guests of Ar-Rahman with ihsan — they remember the agency that cared."
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Set WhatsApp number"
 msgstr ""
 
-#: app/Admin/Chrome.php
-#: app/Admin/Menu.php
 msgid "Settings"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Share"
 msgstr ""
 
-#: app/Admin/Analytics.php
+msgid "Share prices"
+msgstr ""
+
+msgid "Share prices, BDT"
+msgstr ""
+
 msgid "Share your public package catalog so pilgrims can submit inquiries."
 msgstr ""
 
-#: app/Admin/Settings.php
+msgid "Show WP menu"
+msgstr ""
+
 msgid "Show every package"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Showing %d–%d of %d"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Single"
 msgstr ""
 
-#: app/Admin/Chrome.php
 msgid "Site"
 msgstr ""
 
-#: app/Admin/Settings.php
 msgid "Spam guard"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Staff change the status here. The visa is issued on the Masar portal."
+msgstr ""
+
 msgid "Staff move each file through statuses. Issue happens on Masar."
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Staff update the status here. Issue happens on Masar."
+msgstr ""
+
 msgid "Stars"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Start blank or copy an existing one"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Starts around"
+msgstr ""
+
 msgid "Status"
 msgstr ""
 
-#: app/Admin/Analytics.php
 msgid "Still waiting"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Sub-agent commission reports"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Sub-agent leads and commission reports."
 msgstr ""
 
-#: app/Admin/Settings.php
+msgid "System"
+msgstr ""
+
 msgid "Test email sent to %s"
 msgstr ""
 
-#: app/Plugin.php
+msgid "Text fields follow the language toggle. Prices stay in BDT."
+msgstr ""
+
+msgid "The last visa date on file is %s."
+msgstr ""
+
+msgid "The office file for this departure. Mahram is a relationship here. It does not block anyone."
+msgstr ""
+
+msgid "The office will contact this number."
+msgstr ""
+
 msgid "The package page is currently a draft."
 msgstr ""
 
-#: app/Plugin.php
 msgid "The package page is ready."
 msgstr ""
 
-#: app/Admin/Analytics.php
+msgid "The page pilgrims see on the site."
+msgstr ""
+
+msgid "These contact details are used across packages, receipts and public inquiries."
+msgstr ""
+
+msgid "These dates warn the desk. They do not stop a save."
+msgstr ""
+
+msgid "This leave date is after the last entry date %s."
+msgstr ""
+
+msgid "This ledger is the pilgrim's BDT. The ticket dollar and the Saudi riyal stay as notes. This version does not recalculate them."
+msgstr ""
+
+msgid "This return date is after the last departure date %s."
+msgstr ""
+
+msgid "This screen is what the site shows. Prices are typed by staff."
+msgstr ""
+
+msgid "Three sharing a room"
+msgstr ""
+
+msgid "Ticket, USD note"
+msgstr ""
+
+msgid "Time"
+msgstr ""
+
+msgid "Title"
+msgstr ""
+
+msgid "Toggle full screen (Ctrl+Shift+F)"
+msgstr ""
+
+msgid "Toggle published"
+msgstr ""
+
 msgid "Top cities"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Total days"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Total seats"
+msgstr ""
+
+msgid "Transaction"
+msgstr ""
+
 msgid "Transaction ID"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Travelling alone"
+msgstr ""
+
 msgid "Triple"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Try another name, phone or city."
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Trying things out?"
 msgstr ""
 
-#: app/Admin/Chrome.php
+msgid "Turn on Pothik Pro and this screen opens from that plugin."
+msgstr ""
+
+msgid "Two sharing a room"
+msgstr ""
+
+msgid "Two steps left before you go live"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
 msgid "Type a command or search pilgrims..."
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Type and press Enter to add. Drag to reorder."
 msgstr ""
 
-#: app/Admin/Chrome.php
+msgid "Type the days, nights, hotels and prices. The site shows this package as you save it."
+msgstr ""
+
 msgid "Umrah desk"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Umrah package"
 msgstr ""
 
-#: app/Admin/Analytics.php
 msgid "Umrah vs Hajj"
 msgstr ""
 
-#: app/Admin/Menu.php
 msgid "Undo"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Unlimited Pro packages"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Unpublish"
+msgstr ""
+
 msgid "Unsaved changes"
 msgstr ""
 
-#: app/Admin/Settings.php
 msgid "Unsaved settings"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Untitled package"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Upgrade to Pothik Pro"
+msgstr ""
+
 msgid "Upgrade to Pothik Pro Now"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Upgrade to Pro"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Upload agency logo"
 msgstr ""
 
-#: app/Admin/Settings.php
+msgid "Use this logo"
+msgstr ""
+
 msgid "Used on packages, receipts and the WhatsApp button"
 msgstr ""
 
-#: app/Admin/Settings.php
 msgid "Used when a pilgrim types 017… without +880"
 msgstr ""
 
-#: app/Plugin.php
-#: app/Admin/Chrome.php
-#: app/Admin/Screens.php
+msgid "Vaccine"
+msgstr ""
+
+msgid "View inquiries"
+msgstr ""
+
 msgid "View on site"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Visa"
+msgstr ""
+
 msgid "Visa board"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "Visa board with Masar status tracking"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Visa issue is dated to open on %s."
+msgstr ""
+
+msgid "Visa opens"
+msgstr ""
+
+msgid "WP menu"
+msgstr ""
+
 msgid "Waiting"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "Waiting reply"
+msgstr ""
+
+msgid "Walking from %s"
+msgstr ""
+
 msgid "What pilgrims see first on the landing page."
 msgstr ""
 
-#: app/Admin/Screens.php
-#: app/Admin/Settings.php
 msgid "WhatsApp"
 msgstr ""
 
-#: app/Admin/Menu.php
-#: app/Admin/Screens.php
+msgid "WhatsApp number"
+msgstr ""
+
+msgid "When checked, deleting the plugin will permanently remove all inquiries, packages and settings."
+msgstr ""
+
+msgid "WordPress menu hidden — full-screen desk"
+msgstr ""
+
+msgid "WordPress menu shown"
+msgstr ""
+
 msgid "Yes"
 msgstr ""
 
-#: app/InquiryRepository.php
+msgid "Yes, delete"
+msgstr ""
+
 msgid "You do not have permission to perform this action."
 msgstr ""
 
-#: app/InquiryRepository.php
-#: app/InquiryStore.php
-#: app/PackageStore.php
-#: app/Plugin.php
-#: app/ReceiptStore.php
-#: app/Admin/Settings.php
 msgid "You do not have permission to view this screen."
 msgstr ""
 
-#: app/Admin/Menu.php
 msgid "You have unsaved changes. Are you sure you want to leave?"
 msgstr ""
 
-#: app/Admin/Settings.php
 msgid "[Pothik] Test Notification (%s)"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "adults"
+msgstr ""
+
 msgid "ago"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "children"
+msgstr ""
+
 msgid "complete"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "days"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "e.g. Personal shopping"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "e.g. Return air ticket"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "from"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "from one desk"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "from the bKash / Nagad SMS"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "from, quad"
 msgstr ""
 
-#: app/Admin/Analytics.php
+msgid "guests of Allah are waiting for your reply."
+msgstr ""
+
+msgid "guests of Allah waiting."
+msgstr ""
+
+msgid "hours"
+msgstr ""
+
+msgid "infants"
+msgstr ""
+
 msgid "inquiries"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "mins"
+msgstr ""
+
 msgid "of 40 free"
 msgstr ""
 
-#: app/Admin/Analytics.php
+msgid "of 5"
+msgstr ""
+
 msgid "of inquiries got a reply"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "oldest %s"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "per person"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "per person · shown as \"from\""
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "pilgrims"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "secs"
+msgstr ""
+
 msgid "selected"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "small line above title"
 msgstr ""
 
-#: app/Admin/Screens.php
+msgid "the Haram"
+msgstr ""
+
+msgid "the Prophet's Mosque"
+msgstr ""
+
 msgid "to the Haram"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "to the Prophet's Mosque"
 msgstr ""
 
-#: app/Admin/Screens.php
 msgid "updating"
 msgstr ""
 
-#: app/Admin/Settings.php
 msgid "with country code"
 msgstr ""
 
-#: app/Admin/Settings.php
 msgid "wp_mail() returned false. Check your mail configuration."
 msgstr ""
 

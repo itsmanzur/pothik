@@ -302,11 +302,6 @@ final class Analytics
         echo '</div>'; // .gauge
         echo '</div>'; // Card 3
         echo '</div>'; // .an-grid
-        echo '</div>'; // .gauge
-
-        echo '</div>'; // Card 3
-
-        echo '</div>'; // .an-grid
 
         echo '</section>'; // .screen
 

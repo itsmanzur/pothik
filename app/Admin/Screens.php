@@ -26,20 +26,12 @@ final class Screens
 {
     public static function avatar_color(string $name): string
     {
-        $colors = ['#1b4336', '#2d6a4f', '#40916c', '#b4532a', '#d4a64a', '#2563eb', '#8c3494', '#0f2a21'];
-        $hash = crc32($name);
-
-        return $colors[abs($hash) % count($colors)];
+        return Format::avatar_color($name);
     }
 
     public static function avatar_initial(string $name): string
     {
-        $trim = trim($name);
-        if ($trim === '') {
-            return '?';
-        }
-
-        return mb_strtoupper(mb_substr($trim, 0, 1, 'UTF-8'), 'UTF-8');
+        return Format::avatar_initials($name);
     }
 
     public static function overview(): void
@@ -1435,7 +1427,9 @@ final class Screens
         echo '<button type="button" class="btn pk-btn pk-btn-ghost btn-ghost" onclick="window.print()"><svg class="i sm"><use href="#i-print"/></svg>' . esc_html(I18n::t('Print')) . '</button>';
         echo '</div>'; // .slip-actions
 
-        echo '<p class="hint pk-hint">' . esc_html(I18n::t('Free version keeps one receipt. Full history is in Pro.')) . '</p>';
+        if (!defined('POTHIK_PRO_FILE')) {
+            echo '<p class="hint pk-hint">' . esc_html(I18n::t('Free version keeps one receipt. Full history is in Pro.')) . '</p>';
+        }
 
         echo '</aside>'; // .slip-wrap
 
