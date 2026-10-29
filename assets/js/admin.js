@@ -1171,8 +1171,8 @@
         });
 
         // Update notice strip text & link dynamically
-        var noticeP = document.querySelector('.notice p');
-        var noticeA = document.querySelector('.notice a');
+        var noticeP = document.querySelector('.notice p, .pk-notice p');
+        var noticeA = document.querySelector('.notice a, .pk-notice a');
         if (noticeP && noticeA) {
             if (count === 1) {
                 noticeP.innerHTML = '<b data-wait-count data-pk-wait-count>1</b> ' + (i18n.guestWaiting || 'guest of Allah is waiting for your reply.') + ' <em data-wait-pill>' + (i18n.deskLine1 || "Every reply could be someone's first step towards the Haram.") + '</em>';

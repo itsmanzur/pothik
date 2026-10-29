@@ -155,7 +155,7 @@ final class Screens
         echo '</div>';
 
         // 2. NOTICE STRIP
-        echo '<div class="notice" role="status">';
+        echo '<div class="notice pk-notice" role="status">';
         echo '<span class="badge-n">' . esc_html(I18n::t('Notice')) . '</span>';
         if ($waiting_count === 1) {
             echo '<p><b data-wait-count data-pk-wait-count>1</b> ' . esc_html(I18n::t('guest of Allah is waiting for your reply.')) . ' <em data-wait-pill>' . esc_html($desk_lines[0] ?? '') . '</em></p>';
