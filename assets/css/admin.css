@@ -2243,7 +2243,11 @@ kbd {
 }
 
 /* 7. Pro card */
-.pk-admin .pro-card {
+.pk-admin .pro-card,
+.pro-card {
+  width: 100% !important;
+  box-sizing: border-box;
+  grid-column: 1 / -1;
   padding: 16px 18px;
   margin-top: 16px;
   margin-bottom: 16px;
@@ -2261,7 +2265,10 @@ kbd {
   text-transform: uppercase;
   color: var(--g700);
 }
-.pk-admin .pro-inner {
+.pk-admin .pro-inner,
+.pro-inner {
+  width: 100%;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   gap: 20px;
@@ -2269,6 +2276,11 @@ kbd {
   border-radius: 14px;
   border: 1px solid #ecd9ab;
   background: linear-gradient(110deg, #fdf8ec, #f8f4ea 60%, #f1f6f2);
+}
+.pk-admin .pro-inner > div:first-child,
+.pro-inner > div:first-child {
+  flex: 1;
+  min-width: 0;
 }
 .pk-admin .pro-inner h4 {
   margin: 0;

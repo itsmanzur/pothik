@@ -56,7 +56,11 @@ final class Chrome
             'visa' => 'i-shield',
         ];
         $pro_nav_items = [];
+        $free_slugs = ['package', 'inquiries', 'receipt', 'analytics'];
         foreach (Modules::all() as $m_id => $m_data) {
+            if (in_array($m_id, $free_slugs, true)) {
+                continue;
+            }
             $is_open = Modules::is_open($m_data);
             $icon = $icon_map[$m_id] ?? 'i-spark';
             $item_title = isset($m_data['title']) ? (string) $m_data['title'] : ucfirst($m_id);

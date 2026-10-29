@@ -128,8 +128,12 @@ final class Screens
         $waiting_inquiries = InquiryRepository::recent_waiting(5);
 
         $locked_modules = [];
+        $free_slugs = ['package', 'inquiries', 'receipt', 'analytics'];
         if (!$is_pro) {
             foreach (Modules::all() as $mid => $m) {
+                if (in_array($mid, $free_slugs, true)) {
+                    continue;
+                }
                 if (!Modules::is_open($m)) {
                     $locked_modules[$mid] = $m;
                 }
@@ -153,7 +157,10 @@ final class Screens
         // 2. NOTICE STRIP
         echo '<div class="notice" role="status">';
         echo '<span class="badge-n">' . esc_html(I18n::t('Notice')) . '</span>';
-        if ($waiting_count > 0) {
+        if ($waiting_count === 1) {
+            echo '<p><b data-wait-count data-pk-wait-count>1</b> ' . esc_html(I18n::t('guest of Allah is waiting for your reply.')) . ' <em data-wait-pill>' . esc_html($desk_lines[0] ?? '') . '</em></p>';
+            echo '<a href="' . esc_url(admin_url('admin.php?page=pothik-inquiries&status=waiting')) . '">' . esc_html(I18n::t('Reply now')) . ' <svg class="i sm"><use href="#i-arrow"/></svg></a>';
+        } elseif ($waiting_count > 1) {
             echo '<p><b data-wait-count data-pk-wait-count>' . (int) $waiting_count . '</b> ' . esc_html(I18n::t('guests of Allah are waiting for your reply.')) . ' <em data-wait-pill>' . esc_html($desk_lines[0] ?? '') . '</em></p>';
             echo '<a href="' . esc_url(admin_url('admin.php?page=pothik-inquiries&status=waiting')) . '">' . esc_html(I18n::t('Reply now')) . ' <svg class="i sm"><use href="#i-arrow"/></svg></a>';
         } else {
@@ -334,20 +341,36 @@ final class Screens
             ];
             foreach ($mini_sample as $idx => $p) {
                 $pair = $color_pairs[$idx % count($color_pairs)];
-                $days = (int) ($p['days'] ?? 7);
-                $title = (string) ($p['title'] ?? I18n::t('Package'));
+                $days = max(1, (int) ($p['days'] ?? 7));
+                $title = trim((string) ($p['title'] ?? ''));
+                if ($title === '') {
+                    $title = trim((string) ($p['bn']['title'] ?? ''));
+                }
+                if ($title === '') {
+                    $title = trim((string) ($p['name'] ?? ''));
+                }
+                if ($title === '') {
+                    $title = I18n::t('Untitled package');
+                }
                 $is_live = !empty($p['published']) || (!empty($p['status']) && $p['status'] === 'published');
-                $quad_price = 0;
-                if (isset($p['prices']['quad']) && is_numeric($p['prices']['quad'])) {
-                    $quad_price = (int) $p['prices']['quad'];
-                } elseif (isset($p['price_quad']) && is_numeric($p['price_quad'])) {
-                    $quad_price = (int) $p['price_quad'];
+                $lowest_price = 0;
+                foreach (['quad', 'triple', 'double', 'single'] as $k) {
+                    $v = (int) ($p['prices'][$k] ?? ($p['price_' . $k] ?? 0));
+                    if ($v > 0 && ($lowest_price === 0 || $v < $lowest_price)) {
+                        $lowest_price = $v;
+                    }
                 }
                 $edit_url = admin_url('admin.php?page=pothik-package&package=' . urlencode((string) ($p['id'] ?? '')));
 
                 echo '<div class="mini-pkg">';
                 echo '<span class="thumb" style="background:linear-gradient(135deg,' . $pair[0] . ',' . $pair[1] . ')">' . $days . '<small>' . esc_html(I18n::t('DAYS')) . '</small></span>';
-                echo '<div class="m"><b><a href="' . esc_url($edit_url) . '" style="color:inherit;text-decoration:none">' . esc_html($title) . '</a></b><span class="sub">' . esc_html(I18n::t('from')) . ' ' . Format::money($quad_price) . '</span></div>';
+                echo '<div class="m"><b><a href="' . esc_url($edit_url) . '" style="color:inherit;text-decoration:none">' . esc_html($title) . '</a></b>';
+                if ($lowest_price > 0) {
+                    echo '<span class="sub">' . esc_html(I18n::t('from')) . ' ' . Format::money($lowest_price) . '</span>';
+                } else {
+                    echo '<span class="sub">—</span>';
+                }
+                echo '</div>';
                 echo '<span class="pill pk-pill ' . ($is_live ? 'live' : 'draft') . '">' . esc_html(I18n::t($is_live ? 'Live' : 'Draft')) . '</span>';
                 echo '</div>';
             }

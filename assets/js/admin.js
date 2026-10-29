@@ -1174,7 +1174,11 @@
         var noticeP = document.querySelector('.notice p');
         var noticeA = document.querySelector('.notice a');
         if (noticeP && noticeA) {
-            if (count > 0) {
+            if (count === 1) {
+                noticeP.innerHTML = '<b data-wait-count data-pk-wait-count>1</b> ' + (i18n.guestWaiting || 'guest of Allah is waiting for your reply.') + ' <em data-wait-pill>' + (i18n.deskLine1 || "Every reply could be someone's first step towards the Haram.") + '</em>';
+                noticeA.href = 'admin.php?page=pothik-inquiries&status=waiting';
+                noticeA.innerHTML = (i18n.replyNow || 'Reply now') + ' <svg class="i sm"><use href="#i-arrow"/></svg>';
+            } else if (count > 1) {
                 noticeP.innerHTML = '<b data-wait-count data-pk-wait-count>' + count + '</b> ' + (i18n.guestsWaiting || 'guests of Allah are waiting for your reply.') + ' <em data-wait-pill>' + (i18n.deskLine1 || "Every reply could be someone's first step towards the Haram.") + '</em>';
                 noticeA.href = 'admin.php?page=pothik-inquiries&status=waiting';
                 noticeA.innerHTML = (i18n.replyNow || 'Reply now') + ' <svg class="i sm"><use href="#i-arrow"/></svg>';

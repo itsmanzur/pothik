@@ -616,6 +616,7 @@ When a pilgrim submits an inquiry on your site, you will receive an alert like t
         'No receipts yet' => 'এখনো কোনো রসিদ নেই',
         'Assalamu alaikum, %s' => 'আসসালামু আলাইকুম, %s',
         'Notice' => 'বিজ্ঞপ্তি',
+        'guest of Allah is waiting for your reply.' => 'জন আল্লাহর মেহমান আপনার উত্তরের অপেক্ষায় আছেন।',
         'guests of Allah are waiting for your reply.' => 'জন আল্লাহর মেহমান আপনার উত্তরের অপেক্ষায় আছেন।',
         'Reply now' => 'এখনই উত্তর দিন',
         'guests of Allah waiting.' => 'জন আল্লাহর মেহমান অপেক্ষায় আছেন।',
