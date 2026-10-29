@@ -715,15 +715,11 @@ When a pilgrim submits an inquiry on your site, you will receive an alert like t
 
     public static function t(string $text, string $context = ''): string
     {
-        if (self::is_bn() && isset(self::BN[$text])) {
-            return self::BN[$text];
+        if (self::is_bn()) {
+            return self::BN[$text] ?? $text;
         }
 
-        if ($context !== '') {
-            return translate_with_gettext_context($text, $context, 'pothik');
-        }
-
-        return translate($text, 'pothik');
+        return $text;
     }
 
     public static function toggle(): string

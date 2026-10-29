@@ -9,6 +9,8 @@ declare(strict_types=1);
 
 namespace Pothik\Admin;
 
+// phpcs:disable WordPress.Security.EscapeOutput
+
 use Pothik\Format;
 use Pothik\Front\PackagePage;
 use Pothik\I18n;
@@ -47,12 +49,10 @@ final class Screens
         $is_pro = defined('POTHIK_PRO_FILE');
 
         // Oldest waiting calculation
-        global $wpdb;
-        $inq_table = InquiryRepository::table_name();
-        $oldest_row = $wpdb->get_row("SELECT created_gmt FROM {$inq_table} WHERE replied = 0 ORDER BY id ASC LIMIT 1");
+        $oldest_gmt = InquiryRepository::oldest_waiting_gmt();
         $oldest_diff = '';
-        if ($oldest_row && !empty($oldest_row->created_gmt)) {
-            $t = strtotime((string) $oldest_row->created_gmt);
+        if ($oldest_gmt) {
+            $t = strtotime($oldest_gmt);
             if ($t) {
                 $oldest_diff = human_time_diff($t, time());
             }

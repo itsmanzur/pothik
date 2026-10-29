@@ -296,10 +296,6 @@ final class InquiryStore
             }
         } catch (\Throwable $e) {
             // Failure must never break the visitor flow.
-            // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
-            if (defined('WP_DEBUG') && WP_DEBUG) {
-                error_log('Pothik notify_email error: ' . $e->getMessage());
-            }
         }
     }
 

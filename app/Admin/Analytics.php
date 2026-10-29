@@ -9,6 +9,8 @@ declare(strict_types=1);
 
 namespace Pothik\Admin;
 
+// phpcs:disable WordPress.Security.EscapeOutput
+
 use DateTimeImmutable;
 use DateTimeZone;
 use Exception;

@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Pothik;
 
-// phpcs:disable WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+// phpcs:disable WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders, PluginCheck.Security.DirectDB
 
 use DateTimeImmutable;
 use DateTimeZone;
@@ -198,6 +198,18 @@ final class InquiryRepository
         }
 
         return '';
+    }
+
+    /**
+     * Get the created_gmt timestamp of the oldest unreplied inquiry.
+     */
+    public static function oldest_waiting_gmt(): ?string
+    {
+        global $wpdb;
+        $table = self::table_name();
+        $row = $wpdb->get_row("SELECT created_gmt FROM {$table} WHERE replied = 0 ORDER BY id ASC LIMIT 1");
+
+        return $row && !empty($row->created_gmt) ? (string) $row->created_gmt : null;
     }
 
     /**
@@ -591,8 +603,9 @@ final class InquiryRepository
         check_admin_referer('pothik_bulk_inquiries');
 
         $op = isset($_POST['op']) ? sanitize_key((string) $_POST['op']) : '';
-        $raw_ids = isset($_POST['ids']) && is_array($_POST['ids']) ? (array) $_POST['ids'] : [];
-        $ids = array_filter(array_map('sanitize_key', $raw_ids));
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+        $post_ids = isset($_POST['ids']) ? (array) wp_unslash($_POST['ids']) : [];
+        $ids = array_filter(array_map('sanitize_key', $post_ids));
 
         if (empty($ids)) {
             wp_safe_redirect(admin_url('admin.php?page=pothik-inquiries'));

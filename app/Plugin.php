@@ -241,6 +241,7 @@ final class Plugin
     public static function filter_admin_body_class(string $classes): string
     {
         global $hook_suffix;
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         $page = isset($_GET['page']) ? sanitize_key((string) $_GET['page']) : '';
         $is_pothik = (is_string($hook_suffix) && str_contains($hook_suffix, 'pothik')) || str_starts_with($page, 'pothik');
 

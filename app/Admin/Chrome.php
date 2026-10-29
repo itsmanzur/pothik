@@ -200,8 +200,11 @@ final class Chrome
                     echo '<span>' . esc_html($item['label']) . '</span>';
                     if (isset($item['count'])) {
                         $cnt_class = 'cnt' . (!empty($item['count_hot']) ? ' hot' : '');
-                        $wait_attr = ($item['slug'] === 'pothik-inquiries') ? ' data-wait-count' : '';
-                        echo '<b class="' . esc_attr($cnt_class) . '"' . $wait_attr . '>' . (int) $item['count'] . '</b>';
+                        if ($item['slug'] === 'pothik-inquiries') {
+                            echo '<b class="' . esc_attr($cnt_class) . '" data-wait-count>' . (int) $item['count'] . '</b>';
+                        } else {
+                            echo '<b class="' . esc_attr($cnt_class) . '">' . (int) $item['count'] . '</b>';
+                        }
                     }
                     if (!empty($item['locked'])) {
                         echo '<span class="lk"><svg class="i sm" aria-hidden="true"><use href="#i-lock"/></svg></span>';
@@ -265,6 +268,7 @@ final class Chrome
         echo '<div class="pk" id="app">';
 
         if ($actions_html !== '') {
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo '<div class="pk-page-actions">' . $actions_html . '</div>';
         }
 
