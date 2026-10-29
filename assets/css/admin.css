@@ -925,11 +925,15 @@ kbd {
 
 /* Cards */
 .pk-admin .pk-card,
-.pk-admin .card {
+.pk-admin .card,
+.pk-card,
+.card {
   background: var(--sheet);
   border: 1px solid var(--line);
   border-radius: var(--r-lg);
   box-shadow: var(--sh-1);
+  max-width: none !important;
+  box-sizing: border-box;
 }
 
 .pk-admin .pk-card-pad,
@@ -2087,15 +2091,29 @@ kbd {
 }
 
 /* 6. Desk 2-column layout */
-.pk-admin .desk2 {
+.pk-admin .desk2,
+.desk2 {
   display: grid;
-  grid-template-columns: minmax(0, 1.7fr) minmax(300px, 1fr);
+  grid-template-columns: minmax(0, 1.75fr) minmax(320px, 1fr);
   gap: 16px;
   align-items: start;
+  width: 100%;
+  box-sizing: border-box;
 }
-.pk-admin .desk2 > .grid {
+.pk-admin .desk2 > .card,
+.pk-admin .desk2 > .pk-card,
+.desk2 > .card,
+.desk2 > .pk-card {
+  width: 100% !important;
+  max-width: none !important;
+  box-sizing: border-box;
+}
+.pk-admin .desk2 > .grid,
+.desk2 > .grid {
   display: grid;
   gap: 16px;
+  width: 100%;
+  box-sizing: border-box;
 }
 .pk-admin .queue-head {
   display: grid;
@@ -2257,6 +2275,7 @@ kbd {
 .pk-admin .pro-card,
 .pro-card {
   width: 100% !important;
+  max-width: none !important;
   box-sizing: border-box;
   grid-column: 1 / -1;
   padding: 16px 18px;
@@ -2437,7 +2456,9 @@ kbd {
   }
 }
 @media (max-width: 1100px) {
-  .pk-admin .desk2 {
+  .pk-admin .desk2,
+  .desk2,
+  .pk-desk2 {
     grid-template-columns: 1fr;
   }
   .pk-admin .pro-inner {

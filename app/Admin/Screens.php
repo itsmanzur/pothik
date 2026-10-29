@@ -269,10 +269,10 @@ final class Screens
         echo '</div>'; // .stats6
 
         // 6. TWO COLUMNS (Desk2: Reply queue & Packages / Setup)
-        echo '<div class="desk2">';
+        echo '<div class="desk2 pk-desk2">';
 
         // Left card: Reply queue
-        echo '<div class="card pk-card">';
+        echo '<div class="card pk-card queue-card">';
         echo '<div class="card-head pk-card-head"><h3><svg class="i"><use href="#i-inbox"/></svg>' . esc_html(I18n::t('Reply queue')) . '</h3><a class="link" href="' . esc_url(admin_url('admin.php?page=pothik-inquiries')) . '">' . esc_html(I18n::t('All inquiries')) . ' <svg class="i sm"><use href="#i-arrow"/></svg></a></div>';
         echo '<div class="queue-head"><span></span><span>' . esc_html(I18n::t('Pilgrim · package · share')) . '</span><span>' . esc_html(I18n::t('Received · actions')) . '</span></div>';
         echo '<ul class="queue" id="queue">';
