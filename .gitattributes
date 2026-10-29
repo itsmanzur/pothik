@@ -7,3 +7,13 @@
 *.woff binary
 *.woff2 binary
 *.mo binary
+
+.gitattributes export-ignore
+.gitignore export-ignore
+.distignore export-ignore
+phpcs.xml.dist export-ignore
+"Reference File" export-ignore
+"Reference File/**" export-ignore
+docs/ export-ignore
+scratch/ export-ignore
+*.zip export-ignore
