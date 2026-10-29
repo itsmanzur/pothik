@@ -2479,10 +2479,26 @@ kbd {
     flex-direction: column;
     align-items: flex-start;
   }
+  .pk-admin .kpis,
+  .pk-admin .pk-kpis,
+  .kpis,
+  .pk-kpis {
+    grid-template-columns: 1fr 1fr;
+  }
+  .pk-admin .an-grid,
+  .pk-admin .pk-an-grid {
+    grid-template-columns: 1fr;
+  }
 }
 @media (max-width: 600px) {
   .pk-admin .stats6 {
     grid-template-columns: 1fr 1fr;
+  }
+  .pk-admin .kpis,
+  .pk-admin .pk-kpis,
+  .kpis,
+  .pk-kpis {
+    grid-template-columns: 1fr;
   }
   .pk-admin .timer b {
     font-size: 32px;
@@ -2715,6 +2731,92 @@ kbd {
 /* =========================================================
    ANALYTICS
    ========================================================= */
+.pk-admin .pk-page-actions,
+.pk-page-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 14px;
+}
+.pk-admin .kpis,
+.pk-admin .pk-kpis,
+.kpis,
+.pk-kpis {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 18px 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+.pk-admin .kpi,
+.pk-admin .pk-kpi,
+.kpi,
+.pk-kpi {
+  position: relative;
+  padding: 16px 18px 14px;
+  border-radius: var(--r-lg);
+  background: var(--sheet);
+  border: 1px solid var(--line);
+  box-shadow: var(--sh-1);
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform .2s var(--ease), box-shadow .2s;
+  box-sizing: border-box;
+}
+.pk-admin .kpi:hover,
+.pk-admin .pk-kpi:hover,
+.kpi:hover,
+.pk-kpi:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--sh-2);
+}
+.pk-admin .kpi-top,
+.kpi-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.pk-admin .kpi-ico,
+.kpi-ico {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: var(--g50);
+  color: var(--g700);
+}
+.pk-admin .kpi.warn .kpi-ico,
+.pk-admin .pk-kpi.warn .kpi-ico,
+.kpi.warn .kpi-ico {
+  background: var(--clay-100);
+  color: var(--clay);
+}
+.pk-admin .kpi.gold .kpi-ico,
+.pk-admin .pk-kpi.gold .kpi-ico,
+.kpi.gold .kpi-ico {
+  background: var(--gold-100);
+  color: #8a6414;
+}
+.pk-admin .kpi strong,
+.pk-admin .pk-kpi strong,
+.kpi strong,
+.pk-kpi strong {
+  display: block;
+  font-size: 30px;
+  line-height: 1;
+  margin: 14px 0 4px;
+  letter-spacing: -.02em;
+  color: var(--ink);
+}
+.pk-admin .kpi .sub,
+.pk-admin .pk-kpi .sub,
+.kpi .sub,
+.pk-kpi .sub {
+  font-size: 13px;
+  color: var(--muted);
+  display: block;
+}
 .pk-admin .an-grid, .pk-admin .pk-an-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .pk-admin .chart-card, .pk-admin .pk-chart-card{padding:18px 20px}
 .pk-admin .chart, .pk-admin .pk-chart{position:relative;height:240px;margin-top:10px}

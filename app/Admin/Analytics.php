@@ -189,7 +189,7 @@ final class Analytics
 
         $bar_idx = 0;
         foreach ($series as $day_str => $cnt) {
-            $h = max(4, round(($cnt / $max_val) * ($H - 14)));
+            $h = $cnt > 0 ? max(10, (int) round(($cnt / $max_val) * ($H - 14))) : 3;
             $x = $bar_idx * $bw + ($bw * 0.18);
             $w = $bw * 0.64;
             $rx = min(6, $bw * 0.2);
@@ -460,22 +460,17 @@ final class Analytics
      */
     private static function series(array $counts, int $days): array
     {
-        if ($days > 0) {
-            $filled = [];
-            $today = new DateTimeImmutable('today midnight', wp_timezone());
-            $start = $today->modify('-' . ($days - 1) . ' days');
-            for ($i = 0; $i < $days; $i++) {
-                $date = $start->modify('+' . $i . ' days');
-                $key = $date->format('Y-m-d');
-                $filled[$key] = (int) ($counts[$key] ?? 0);
-            }
-
-            return $filled;
+        $span = $days > 0 ? $days : 30;
+        $filled = [];
+        $today = new DateTimeImmutable('today midnight', wp_timezone());
+        $start = $today->modify('-' . ($span - 1) . ' days');
+        for ($i = 0; $i < $span; $i++) {
+            $date = $start->modify('+' . $i . ' days');
+            $key = $date->format('Y-m-d');
+            $filled[$key] = (int) ($counts[$key] ?? 0);
         }
 
-        ksort($counts);
-
-        return array_slice($counts, -30, 30, true);
+        return $filled;
     }
 
     /**
