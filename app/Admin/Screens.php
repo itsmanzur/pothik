@@ -523,6 +523,7 @@ final class Screens
     {
         $packages = PackageStore::all();
         $total_count = count($packages);
+        $is_pro = defined('POTHIK_PRO_FILE');
         $live_count = 0;
         $draft_count = 0;
         foreach ($packages as $pkg) {
@@ -565,7 +566,9 @@ final class Screens
         echo '<button class="chip pk-chip" type="button" data-f="draft">' . esc_html(I18n::t('Draft')) . ' <b>' . $draft_count . '</b></button>';
         echo '</div>';
         echo '<span class="spacer"></span>';
-        echo '<div class="usage pk-usage">' . sprintf(esc_html(I18n::t('%d of 40 packages')), $total_count) . '<div class="meter pk-meter"><i data-pk-w="' . esc_attr($usage_pct) . '" style="width:' . esc_attr($usage_pct) . '%"></i></div></div>';
+        if (!$is_pro) {
+            echo '<div class="usage pk-usage">' . sprintf(esc_html(I18n::t('%d of 40 packages')), $total_count) . '<div class="meter pk-meter"><i data-pk-w="' . esc_attr($usage_pct) . '" style="width:' . esc_attr($usage_pct) . '%"></i></div></div>';
+        }
         echo '</div>'; // .toolbar
 
         // Grid

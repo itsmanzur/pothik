@@ -48,8 +48,11 @@ final class Plugin
         add_action('wp_ajax_pothik_inquiries_table', [Screens::class, 'ajax_inquiries_table']);
         add_action('wp_ajax_pothik_test_email', [Settings::class, 'ajax_test_email']);
         add_action('wp_ajax_pothik_toggle_package_status_ajax', [PackageStore::class, 'ajax_toggle_status']);
+        add_action('wp_ajax_pothik_package_status', [PackageStore::class, 'ajax_toggle_status']);
         add_action('wp_ajax_pothik_duplicate_package_ajax', [PackageStore::class, 'ajax_copy']);
+        add_action('wp_ajax_pothik_duplicate_package', [PackageStore::class, 'ajax_copy']);
         add_action('wp_ajax_pothik_delete_package_ajax', [PackageStore::class, 'ajax_delete']);
+        add_action('wp_ajax_pothik_delete_package', [PackageStore::class, 'ajax_delete']);
         add_action('admin_post_pothik_hide_setup', [self::class, 'handle_hide_setup']);
         add_action('wp_ajax_pothik_ui_pref', [self::class, 'ajax_ui_pref']);
         add_action('admin_post_pothik_ui_pref', [self::class, 'handle_ui_pref']);
