@@ -1,9 +1,9 @@
-=== Pothik — Umrah Agency Packages & Inquiries ===
+=== Pothik ===
 Contributors: itsmanzur
 Donate link: https://thereadscope.com/pothik
-Tags: umrah, hajj, travel agency, package, inquiry, bangladesh
+Tags: umrah, hajj, travel agency, package, inquiry
 Requires at least: 6.5
-Tested up to: 6.7
+Tested up to: 7.1
 Requires PHP: 8.1
 Stable tag: 0.3.0
 License: GPLv2 or later

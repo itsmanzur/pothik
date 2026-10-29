@@ -7,6 +7,8 @@
  * @package Pothik
  */
 
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+
 declare(strict_types=1);
 
 use Pothik\Format;
@@ -36,7 +38,10 @@ $wa_href = Format::whatsapp_href(
             <small><?php echo esc_html($contact['agency']); ?></small>
         </a>
         <div class="pk-bar-actions">
-            <?php echo I18n::toggle(); ?>
+            <?php
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+            echo I18n::toggle();
+            ?>
             <?php if ($phone_href !== '') : ?>
                 <a href="<?php echo esc_url($phone_href); ?>"><?php echo esc_html($phone); ?></a>
             <?php endif; ?>

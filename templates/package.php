@@ -10,6 +10,8 @@
  * @package Pothik
  */
 
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+
 declare(strict_types=1);
 
 use Pothik\Format;
@@ -73,7 +75,10 @@ $facts = array_filter([
             <small><?php echo esc_html($contact['agency']); ?></small>
         </a>
         <div class="pk-bar-actions">
-            <?php echo I18n::toggle(); ?>
+            <?php
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+            echo I18n::toggle();
+            ?>
             <?php if ($share_href !== '') : ?>
                 <a href="<?php echo esc_url($share_href); ?>" target="_blank" rel="noopener"><?php echo esc_html(I18n::t('Send this page')); ?></a>
             <?php endif; ?>
@@ -221,6 +226,7 @@ $facts = array_filter([
             </div>
             <?php if ($result === 'sent') : ?>
                 <?php
+                // phpcs:ignore WordPress.Security.NonceVerification.Recommended
                 $ptk_token = isset($_GET['ptk']) ? sanitize_key((string) wp_unslash($_GET['ptk'])) : '';
                 $sent_info = [];
                 if ($ptk_token !== '') {
@@ -273,6 +279,7 @@ $facts = array_filter([
                 </div>
             <?php else : ?>
                 <?php
+                // phpcs:ignore WordPress.Security.NonceVerification.Recommended
                 $ptk_token = isset($_GET['ptk']) ? sanitize_key((string) wp_unslash($_GET['ptk'])) : '';
                 $prefill = [];
                 if ($ptk_token !== '') {

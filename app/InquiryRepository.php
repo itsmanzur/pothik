@@ -9,6 +9,8 @@ declare(strict_types=1);
 
 namespace Pothik;
 
+// phpcs:disable WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+
 use DateTimeImmutable;
 use DateTimeZone;
 use Exception;
@@ -659,6 +661,7 @@ final class InquiryRepository
         // Output UTF-8 BOM so Excel opens Bengali characters properly
         echo "\xEF\xBB\xBF";
 
+        // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fopen
         $output = fopen('php://output', 'w');
         if ($output === false) {
             exit;
@@ -709,6 +712,7 @@ final class InquiryRepository
             ]);
         }
 
+        // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose
         fclose($output);
         exit;
     }

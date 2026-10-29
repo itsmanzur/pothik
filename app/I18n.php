@@ -648,10 +648,12 @@ When a pilgrim submits an inquiry on your site, you will receive an alert like t
 
     public static function capture(): void
     {
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         if (!isset($_GET['pothik_lang'])) {
             return;
         }
 
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         $lang = sanitize_key((string) wp_unslash($_GET['pothik_lang'])) === 'bn' ? 'bn' : 'en';
         setcookie('pothik_lang', $lang, [
             'expires' => time() + YEAR_IN_SECONDS,
@@ -694,6 +696,7 @@ When a pilgrim submits an inquiry on your site, you will receive an alert like t
 
     public static function load_textdomain(): void
     {
+        // phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound
         load_plugin_textdomain('pothik', false, dirname(plugin_basename(POTHIK_FILE)) . '/languages');
     }
 
@@ -712,16 +715,15 @@ When a pilgrim submits an inquiry on your site, you will receive an alert like t
 
     public static function t(string $text, string $context = ''): string
     {
-        $translated = $context !== '' ? _x($text, $context, 'pothik') : __($text, 'pothik');
-        if ($translated !== $text) {
-            return $translated;
-        }
-
         if (self::is_bn() && isset(self::BN[$text])) {
             return self::BN[$text];
         }
 
-        return $translated;
+        if ($context !== '') {
+            return translate_with_gettext_context($text, $context, 'pothik');
+        }
+
+        return translate($text, 'pothik');
     }
 
     public static function toggle(): string

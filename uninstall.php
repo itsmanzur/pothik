@@ -5,6 +5,8 @@
  * @package Pothik
  */
 
+// phpcs:disable WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.SchemaChange, PluginCheck.Security.DirectDB.UnescapedDBParameter
+
 declare(strict_types=1);
 
 if (!defined('WP_UNINSTALL_PLUGIN')) {
@@ -13,8 +15,8 @@ if (!defined('WP_UNINSTALL_PLUGIN')) {
 
 global $wpdb;
 
-$settings = get_option('pothik_settings', []);
-if (!is_array($settings) || empty($settings['delete_on_uninstall'])) {
+$pothik_settings = get_option('pothik_settings', []);
+if (!is_array($pothik_settings) || empty($pothik_settings['delete_on_uninstall'])) {
     return;
 }
 
@@ -24,7 +26,7 @@ function pothik_clean_single_blog(): void
 
     // Drop inquiries custom table.
     $table = $wpdb->prefix . 'pothik_inquiries';
-    $wpdb->query("DROP TABLE IF EXISTS {$table}");
+    $wpdb->query("DROP TABLE IF EXISTS `{$table}`");
 
     // Delete all options starting with pothik_.
     $wpdb->query("DELETE FROM {$wpdb->options} WHERE option_name LIKE 'pothik_%'");
@@ -37,10 +39,10 @@ function pothik_clean_single_blog(): void
 }
 
 if (is_multisite()) {
-    $sites = get_sites(['fields' => 'ids']);
-    if (is_array($sites)) {
-        foreach ($sites as $site_id) {
-            switch_to_blog((int) $site_id);
+    $pothik_sites = get_sites(['fields' => 'ids']);
+    if (is_array($pothik_sites)) {
+        foreach ($pothik_sites as $pothik_site_id) {
+            switch_to_blog((int) $pothik_site_id);
             pothik_clean_single_blog();
             restore_current_blog();
         }

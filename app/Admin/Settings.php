@@ -129,6 +129,7 @@ final class Settings
         Chrome::open('Settings', 'Agency details, notifications, the public page and plugin data.');
         Chrome::saved();
 
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         if (isset($_GET['recreated'])) {
             echo '<div class="notice notice-success is-dismissible"><p>' . esc_html(I18n::t('Package page has been recreated.')) . '</p></div>';
         }

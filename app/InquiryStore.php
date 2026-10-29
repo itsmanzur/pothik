@@ -67,6 +67,7 @@ final class InquiryStore
      */
     public static function handle_public(): void
     {
+        // phpcs:ignore WordPress.Security.NonceVerification.Missing
         $post = wp_unslash($_POST);
         $post = is_array($post) ? $post : [];
         $package_id = isset($post['package_id']) ? sanitize_key((string) $post['package_id']) : '';
@@ -295,6 +296,7 @@ final class InquiryStore
             }
         } catch (\Throwable $e) {
             // Failure must never break the visitor flow.
+            // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
             if (defined('WP_DEBUG') && WP_DEBUG) {
                 error_log('Pothik notify_email error: ' . $e->getMessage());
             }

@@ -120,8 +120,11 @@ final class PackagePage
         $is_admin = current_user_can('manage_options');
         $published = array_values(array_filter($all, static fn (array $p): bool => ($p['status'] ?? 'draft') === 'published'));
 
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         $requested = $force_id !== ''
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             ? $force_id
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             : (isset($_GET['package']) ? sanitize_key((string) wp_unslash($_GET['package'])) : '');
 
         $package = null;
@@ -154,6 +157,7 @@ final class PackagePage
         }
 
         $packages = $published;
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         $result = isset($_GET['pothik']) ? sanitize_key((string) wp_unslash($_GET['pothik'])) : '';
         $seat_line = '';
         if (count($packages) === 1) {

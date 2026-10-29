@@ -266,7 +266,7 @@ final class Analytics
             $pct = round(($city_count / $max_city) * 100);
             echo '<div class="hbar pk-hbar">';
             echo '<span class="hbar-name">' . esc_html($city_name) . '</span>';
-            echo '<span class="hbar-track"><i style="width:' . $pct . '%"></i></span>';
+            echo '<span class="hbar-track"><i style="width:' . esc_attr((string) $pct) . '%"></i></span>';
             echo '<b class="hbar-val">' . $city_count . '</b>';
             echo '</div>';
         }
@@ -284,7 +284,7 @@ final class Analytics
             $tr_class = $trip_k === 'hajj' ? 'hbar-track hajj' : 'hbar-track';
             echo '<div class="hbar pk-hbar">';
             echo '<span>' . esc_html(I18n::choice('trip', $trip_k)) . '</span>';
-            echo '<span class="' . $tr_class . '"><i style="width:' . $pct . '%"></i></span>';
+            echo '<span class="' . esc_attr($tr_class) . '"><i style="width:' . esc_attr((string) $pct) . '%"></i></span>';
             echo '<b class="hbar-val">' . $t_cnt . '</b>';
             echo '</div>';
         }
@@ -327,7 +327,7 @@ final class Analytics
             $short = $stamp === false ? (string) $day : wp_date($compact ? 'j' : 'j M', $stamp);
             $class = $count === 0 ? ' is-zero' : '';
             echo '<div class="pk-col" title="' . esc_attr((string) $day . ' · ' . $count) . '">';
-            echo '<b class="' . esc_attr(trim($class)) . '" style="height:' . $height . 'px"></b>';
+            echo '<b class="' . esc_attr(trim($class)) . '" style="height:' . esc_attr((string) $height) . 'px"></b>';
             echo '<span>' . esc_html($short) . '</span></div>';
         }
         echo '</div></section>';
@@ -392,7 +392,7 @@ final class Analytics
             $width = $max > 0 ? (int) round(($count / $max) * 100) : 0;
             $figure = $money ? Format::money($count) : (string) $count;
             echo '<div class="pk-bar-row"><span>' . esc_html((string) $label) . '</span>';
-            echo '<span class="pk-bar-track"><span class="pk-bar-fill" style="width:' . $width . '%"></span></span>';
+            echo '<span class="pk-bar-track"><span class="pk-bar-fill" style="width:' . esc_attr((string) $width) . '%"></span></span>';
             echo '<strong>' . esc_html($figure) . '</strong></div>';
         }
         echo '</div></section>';
@@ -400,6 +400,7 @@ final class Analytics
 
     private static function range(): int
     {
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         $raw = isset($_GET['range']) ? sanitize_key((string) wp_unslash($_GET['range'])) : 'all';
 
         return $raw === '7' || $raw === '30' ? (int) $raw : 0;

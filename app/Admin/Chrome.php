@@ -43,6 +43,7 @@ final class Chrome
         $is_focus = $user_id ? (get_user_meta($user_id, 'pothik_focus', true) === '1') : false;
         $is_mini = $user_id ? (get_user_meta($user_id, 'pothik_side_mini', true) === '1') : false;
 
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         $current_page = isset($_GET['page']) ? sanitize_key((string) $_GET['page']) : 'pothik';
         $wait_count = InquiryRepository::count_waiting();
         $packages_count = count(PackageStore::all());
@@ -325,12 +326,14 @@ final class Chrome
         ];
 
         foreach ($items as $key => [$msg, $type]) {
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             if (isset($_GET[$key])) {
                 echo '<div data-pk-flash="' . esc_attr($msg) . '" class="notice notice-' . esc_attr($type) . ' is-dismissible pk-flash"><p>' . esc_html($msg) . '</p></div>';
                 $flashed = true;
             }
         }
 
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         if (isset($_GET['error']) && $_GET['error'] === 'limit') {
             $msg = I18n::t('Free version is limited to 40 packages. Upgrade to Pothik Pro for unlimited packages.');
             echo '<div data-pk-flash="' . esc_attr($msg) . '" class="notice notice-warning is-dismissible pk-flash"><p>' . esc_html($msg) . '</p></div>';
