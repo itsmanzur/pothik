@@ -62,57 +62,18 @@ final class Screens
         if ($oldest_row && !empty($oldest_row->created_gmt)) {
             $t = strtotime((string) $oldest_row->created_gmt);
             if ($t) {
-                $oldest_diff = human_time_diff($t, time()) . ' ' . I18n::t('ago');
+                $oldest_diff = human_time_diff($t, time());
             }
         }
 
-        // 7-day sparkline and trend
-        $all_inq = InquiryStore::all();
-        $today = new \DateTimeImmutable('today', wp_timezone());
-        $daily_counts = array_fill(0, 7, 0);
-        $curr_7_count = 0;
-        $prev_7_count = 0;
-
-        foreach ($all_inq as $inq) {
-            if (!empty($inq['demo'])) {
-                continue;
-            }
-            $dt = Analytics::row_local_datetime($inq);
-            if (!$dt) {
-                continue;
-            }
-            $diff_days = (int) $today->diff($dt->setTime(0, 0, 0))->format('%r%a');
-            if ($diff_days >= -6 && $diff_days <= 0) {
-                $slot = $diff_days + 6;
-                $daily_counts[$slot]++;
-                $curr_7_count++;
-            } elseif ($diff_days >= -13 && $diff_days <= -7) {
-                $prev_7_count++;
-            }
-        }
-
-        $trend_down = false;
-        if ($prev_7_count === 0) {
-            $trend_label = ($curr_7_count > 0 ? '▲ ' : '') . ($curr_7_count > 0 ? '100%' : '0%');
-        } else {
-            $change = (int) round((($curr_7_count - $prev_7_count) / $prev_7_count) * 100);
-            if ($change >= 0) {
-                $trend_label = '▲ ' . $change . '%';
-            } else {
-                $trend_down = true;
-                $trend_label = '▼ ' . abs($change) . '%';
-            }
-        }
-
-        $max_c = max(1, max($daily_counts));
-        $pts = [];
-        for ($i = 0; $i < 7; $i++) {
-            $x = round($i * (100 / 6), 1);
-            $y = round(34 - ($daily_counts[$i] / $max_c) * 26);
-            $pts[] = "{$x} {$y}";
-        }
-        $line_d = 'M' . implode(' L', $pts);
-        $fill_d = $line_d . ' L100 40 L0 40Z';
+        // Shared analytics metrics (7-day sparkline, trend, 30-day reply rate)
+        $desk_m = Analytics::desk_metrics();
+        $curr_7_count = $desk_m['curr_7_count'];
+        $trend_label = $desk_m['trend_label'];
+        $trend_down = $desk_m['trend_down'];
+        $line_d = $desk_m['line_d'];
+        $fill_d = $desk_m['fill_d'];
+        $reply_rate_30 = $desk_m['reply_rate_30'];
 
         // Packages published count
         $published_count = 0;
@@ -122,11 +83,13 @@ final class Screens
             }
         }
         $pkg_meter_pct = min(100, (int) round(($packages_count / 40) * 100));
+        $pkg_limit_text = $is_pro ? sprintf(I18n::t('%d packages'), $packages_count) : sprintf(I18n::t('%d of 40 free'), $packages_count);
 
         // Receipt data
         $rc_amt = (int) ($receipt['amount'] ?? 0);
         $rc_ch = (string) ($receipt['channel'] ?? 'bkash');
         $rc_date = !empty($receipt['date']) ? wp_date('j M', strtotime((string) $receipt['date'])) : '';
+        $rc_summary = $rc_amt > 0 ? (I18n::choice('channel', $rc_ch) . ($rc_date !== '' ? ' · ' . $rc_date : '')) : I18n::t('No receipts yet');
 
         // Setup checklist (5 real steps)
         $opt = Settings::get_all();
@@ -161,148 +124,158 @@ final class Screens
                 $hijri_text = '';
             }
         }
-        $gregorian_date = wp_date(I18n::is_bn() ? 'l, j F' : 'l, j F');
+        $gregorian_date = wp_date(I18n::is_bn() ? 'l, j F Y' : 'l, j F Y');
 
         $desk_lines = [
-            I18n::t("Every reply you send could be someone's first step towards the Haram."),
+            I18n::t("Every reply could be someone's first step towards the Haram."),
             I18n::t("May Allah accept the Umrah of every pilgrim you serve."),
-            I18n::t("Serve the guests of Ar-Rahman with ihsan — they remember the agency that cared."),
-            I18n::t("A pilgrim's dua at the Multazam may include your name."),
+            I18n::t("Serve the guests of Ar-Rahman with ihsan."),
         ];
         $desk_lines = apply_filters('pothik/desk_lines', $desk_lines);
 
         $waiting_inquiries = InquiryRepository::recent_waiting(5);
 
         $locked_modules = [];
-        foreach (Modules::all() as $mid => $m) {
-            if (!Modules::is_open($m)) {
-                $locked_modules[$mid] = $m;
+        if (!$is_pro) {
+            foreach (Modules::all() as $mid => $m) {
+                if (!Modules::is_open($m)) {
+                    $locked_modules[$mid] = $m;
+                }
             }
         }
 
         $has_demo = PackageStore::has_demo() || InquiryRepository::has_demo() || ReceiptStore::has_demo();
+        $makkah_initial = wp_date('g:i A', null, new \DateTimeZone('Asia/Riyadh'));
 
-        Chrome::open('Desk', 'Packages, inquiries and one receipt live in this plugin.');
+        Chrome::open('Desk', I18n::t("Today's inquiries, packages and the next Umrah season at a glance."));
 
         echo '<section class="screen" data-screen="desk">';
 
-        // 1. HERO
-        echo '<div class="pk-hero hero">';
-        echo '<div class="sky" id="sky"><span class="moon"></span></div>';
+        // 1. GREETING ROW
+        echo '<div class="greet">';
+        echo '<div><h2>' . esc_html(sprintf(I18n::t('Assalamu alaikum, %s'), $display_name)) . '</h2>';
+        echo '<div class="sub"><span id="hijri">' . esc_html($hijri_text) . '</span> · <span>' . esc_html($gregorian_date) . '</span></div></div>';
+        echo '<p class="talbiyah" lang="ar" dir="rtl">لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ</p>';
+        echo '</div>';
 
-        $skyline_file = dirname(__DIR__, 2) . '/templates/admin/hero-skyline.php';
+        // 2. NOTICE STRIP
+        echo '<div class="notice" role="status">';
+        echo '<span class="badge-n">' . esc_html(I18n::t('Notice')) . '</span>';
+        if ($waiting_count > 0) {
+            echo '<p><b data-wait-count data-pk-wait-count>' . (int) $waiting_count . '</b> ' . esc_html(I18n::t('guests of Allah are waiting for your reply.')) . ' <em data-wait-pill>' . esc_html($desk_lines[0] ?? '') . '</em></p>';
+            echo '<a href="' . esc_url(admin_url('admin.php?page=pothik-inquiries&status=waiting')) . '">' . esc_html(I18n::t('Reply now')) . ' <svg class="i sm"><use href="#i-arrow"/></svg></a>';
+        } else {
+            echo '<p><b data-wait-count data-pk-wait-count>0</b> ' . esc_html(I18n::t('guests of Allah waiting.')) . ' <em data-wait-pill>' . esc_html(I18n::t('All guests of Allah have been answered. Alhamdulillah.')) . '</em></p>';
+            echo '<a href="' . esc_url(admin_url('admin.php?page=pothik-inquiries')) . '">' . esc_html(I18n::t('View inquiries')) . ' <svg class="i sm"><use href="#i-arrow"/></svg></a>';
+        }
+        echo '</div>';
+
+        // 3. SEASON COUNTDOWN CARD
+        echo '<section class="count-card">';
+        echo '<div class="art" aria-hidden="true">';
+        $skyline_file = dirname(__DIR__, 2) . '/templates/admin/skyline.php';
         if (file_exists($skyline_file)) {
             require $skyline_file;
         }
-
+        echo '</div>';
         echo '<div>';
-        echo '<p class="talbiyah" lang="ar">لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ</p>';
-        echo '<div class="eyebrow"><span id="hijri">' . esc_html($hijri_text) . '</span><span class="dot"></span><span>' . esc_html($gregorian_date) . '</span></div>';
-        if ($waiting_count > 0) {
-            echo '<h1>' . sprintf(
-                I18n::t('Assalamu alaikum, %s.<br><mark data-pk-wait-count data-wait-count>%d</mark> guests of Allah are waiting for your reply.'),
-                esc_html($display_name),
-                $waiting_count
-            ) . '</h1>';
-        } else {
-            echo '<h1>' . sprintf(
-                I18n::t('Assalamu alaikum, %s.<br>All guests of Allah have been answered. Alhamdulillah.'),
-                esc_html($display_name)
-            ) . '</h1>';
-        }
-        echo '<p class="dua" id="dua">' . esc_html($desk_lines[0] ?? '') . '</p>';
+        echo '<div class="eyebrow">' . esc_html(I18n::t('Next season')) . '</div>';
+        echo '<h3 id="cName">' . esc_html(I18n::t('Ramadan 1448')) . '</h3>';
+        echo '<div class="sub">' . esc_html(I18n::t('Starts around')) . ' <b id="cDate">—</b> · <span id="cTip">' . esc_html(I18n::t('Publish your Ramadan Umrah packages early.')) . '</span></div>';
+        echo '<div class="place-row">';
+        echo '<div class="seg pk-seg" id="cSeg"><button type="button" class="on" data-k="ram">🌙 ' . esc_html(I18n::t('Ramadan')) . '</button><button type="button" data-k="hajj">🐪 ' . esc_html(I18n::t('Hajj')) . '</button></div>';
+        echo '<button type="button" class="on" data-scene="Makkah">🕋 ' . esc_html(I18n::t('Makkah')) . ' <b data-tz-time>' . esc_html($makkah_initial) . '</b></button>';
+        echo '<button type="button" data-scene="Madinah">🕌 ' . esc_html(I18n::t('Madinah')) . '</button>';
+        echo '</div>';
+        echo '</div>';
+        echo '<div class="timer" id="timer" aria-live="off">';
+        echo '<div><b data-t="d">000</b><span>' . esc_html(I18n::t('days')) . '</span></div><i>:</i>';
+        echo '<div><b data-t="h">00</b><span>' . esc_html(I18n::t('hours')) . '</span></div><i>:</i>';
+        echo '<div><b data-t="m">00</b><span>' . esc_html(I18n::t('mins')) . '</span></div><i>:</i>';
+        echo '<div><b data-t="s">00</b><span>' . esc_html(I18n::t('secs')) . '</span></div>';
+        echo '</div>';
+        echo '</section>';
 
-        echo '<div class="hero-actions">';
-        echo '<a class="pk-btn pk-btn-gold pk-btn-lg btn btn-gold btn-lg" href="' . esc_url(admin_url('admin.php?page=pothik-inquiries&status=waiting')) . '"><svg class="i"><use href="#i-wa"/></svg>' . esc_html(I18n::t('Open reply queue')) . '</a>';
+        // 4. QUICK ACTIONS ROW
+        echo '<div class="qbar">';
         echo '<form method="post" action="' . esc_url(admin_url('admin-post.php')) . '" class="inline-form">';
         wp_nonce_field('pothik_new_package');
         echo '<input type="hidden" name="action" value="pothik_new_package">';
-        echo '<button type="submit" class="pk-btn pk-btn-ghost pk-btn-lg btn btn-ghost btn-lg"><svg class="i"><use href="#i-plus"/></svg>' . esc_html(I18n::t('New package')) . '</button>';
+        echo '<button type="submit" class="btn pk-btn btn-ghost pk-btn-ghost"><svg class="i sm"><use href="#i-plus"/></svg>' . esc_html(I18n::t('New package')) . '</button>';
         echo '</form>';
-        echo '</div>'; // .hero-actions
-        echo '</div>'; // left col of hero
-
-        if ($show_setup) {
-            echo '<div class="setup">';
-            echo '<div class="setup-top">';
-            echo '<div class="ring" id="setupRing" style="--p:' . $progress_pct . '"><b>' . $completed_steps . '/5</b></div>';
-            echo '<div class="checklist-text"><b>' . esc_html(I18n::t('Finish setting up')) . '</b><div>' . sprintf(esc_html(I18n::t('%d steps left before you go live')), 5 - $completed_steps) . '</div></div>';
-            echo '<form method="post" action="' . esc_url(admin_url('admin-post.php')) . '">';
-            wp_nonce_field('pothik_hide_setup');
-            echo '<input type="hidden" name="action" value="pothik_hide_setup">';
-            echo '<button type="submit" class="btn-checklist-hide" title="' . esc_attr(I18n::t('Hide setup checklist')) . '">' . esc_html(I18n::t('Hide')) . '</button>';
-            echo '</form>';
-            echo '</div>'; // .setup-top
-
-            echo '<ul id="setupList">';
-            echo '<li class="' . ($s1 ? 'ok' : '') . '"><a href="' . esc_url(admin_url('admin.php?page=pothik-settings')) . '"><span class="tick">' . ($s1 ? '<svg class="i sm"><use href="#i-check"/></svg>' : '') . '</span><span>' . esc_html(I18n::t('Add agency name & phone')) . '</span>' . (!$s1 ? '<svg class="i sm go"><use href="#i-arrow"/></svg>' : '') . '</a></li>';
-            echo '<li class="' . ($s2 ? 'ok' : '') . '"><a href="' . esc_url(admin_url('admin.php?page=pothik-package')) . '"><span class="tick">' . ($s2 ? '<svg class="i sm"><use href="#i-check"/></svg>' : '') . '</span><span>' . esc_html(I18n::t('Create your first package')) . '</span>' . (!$s2 ? '<svg class="i sm go"><use href="#i-arrow"/></svg>' : '') . '</a></li>';
-            echo '<li class="' . ($s3 ? 'ok' : '') . '"><a href="' . esc_url(admin_url('admin.php?page=pothik-settings')) . '"><span class="tick">' . ($s3 ? '<svg class="i sm"><use href="#i-check"/></svg>' : '') . '</span><span>' . esc_html(I18n::t('Set WhatsApp number')) . '</span>' . (!$s3 ? '<svg class="i sm go"><use href="#i-arrow"/></svg>' : '') . '</a></li>';
-            echo '<li class="' . ($s4 ? 'ok' : '') . '"><a href="' . esc_url(admin_url('admin.php?page=pothik-settings')) . '"><span class="tick">' . ($s4 ? '<svg class="i sm"><use href="#i-check"/></svg>' : '') . '</span><span>' . esc_html(I18n::t('Upload agency logo')) . '</span>' . (!$s4 ? '<svg class="i sm go"><use href="#i-arrow"/></svg>' : '') . '</a></li>';
-            echo '<li class="' . ($s5 ? 'ok' : '') . '"><a href="' . esc_url(admin_url('admin.php?page=pothik-package')) . '"><span class="tick">' . ($s5 ? '<svg class="i sm"><use href="#i-check"/></svg>' : '') . '</span><span>' . esc_html(I18n::t('Publish a package')) . '</span>' . (!$s5 ? '<svg class="i sm go"><use href="#i-arrow"/></svg>' : '') . '</a></li>';
-            echo '</ul>';
-            echo '</div>'; // .setup
-        }
-
-        echo '<div class="place" role="group" aria-label="' . esc_attr(I18n::t('Scene')) . '">';
-        echo '<button type="button" class="on" data-scene="Makkah">🕋 ' . esc_html(I18n::t('Makkah al-Mukarramah')) . ' <b data-tz-time>—</b></button>';
-        echo '<button type="button" data-scene="Madinah">🕌 ' . esc_html(I18n::t('Madinah al-Munawwarah')) . '</button>';
+        echo '<a class="btn pk-btn btn-ghost pk-btn-ghost" href="' . esc_url(admin_url('admin.php?page=pothik-inquiries')) . '"><svg class="i sm"><use href="#i-inbox"/></svg>' . esc_html(I18n::t('Inquiries')) . '</a>';
+        echo '<a class="btn pk-btn btn-ghost pk-btn-ghost" href="' . esc_url(admin_url('admin.php?page=pothik-receipt')) . '"><svg class="i sm"><use href="#i-receipt"/></svg>' . esc_html(I18n::t('Payment slip')) . '</a>';
+        echo '<form method="post" action="' . esc_url(admin_url('admin-post.php')) . '" class="inline-form">';
+        wp_nonce_field('pothik_export_inquiries');
+        echo '<input type="hidden" name="action" value="pothik_export_inquiries">';
+        echo '<button type="submit" class="btn pk-btn btn-ghost pk-btn-ghost"><svg class="i sm"><use href="#i-down"/></svg>' . esc_html(I18n::t('Export CSV')) . '</button>';
+        echo '</form>';
+        echo '<button type="button" class="btn pk-btn btn-ghost pk-btn-ghost" data-pk-copy="[pothik_catalog]"><svg class="i sm"><use href="#i-copy"/></svg>' . esc_html(I18n::t('Copy shortcode')) . '</button>';
+        echo '<a class="btn pk-btn btn-ghost pk-btn-ghost" href="' . esc_url(admin_url('admin.php?page=pothik-settings')) . '"><svg class="i sm"><use href="#i-gear"/></svg>' . esc_html(I18n::t('Settings')) . '</a>';
         echo '</div>';
 
-        echo '<div class="season">';
-        echo '<span>🌙 ' . esc_html(I18n::t('Ramadan in')) . ' <b id="toRamadan">—</b> ' . esc_html(I18n::t('days')) . '</span>';
-        echo '<span>🐪 ' . esc_html(I18n::t('Hajj in')) . ' <b id="toHajj">—</b> ' . esc_html(I18n::t('days')) . '</span>';
-        echo '</div>';
-
-        echo '</div>'; // .pk-hero
-
-        // 2. KPIS ROW
-        echo '<div class="pk-kpis kpis">';
-
-        // KPI 1: Inquiries 7 days
-        echo '<a class="pk-kpi kpi" href="' . esc_url(admin_url('admin.php?page=pothik-inquiries')) . '">';
-        echo '<div class="kpi-top"><span class="kpi-ico"><svg class="i"><use href="#i-inbox"/></svg></span><span class="trend ' . ($trend_down ? 'down' : '') . '">' . esc_html($trend_label) . '</span></div>';
-        echo '<strong data-pk-count="' . $curr_7_count . '">' . $curr_7_count . '</strong><span class="sub">' . esc_html(I18n::t('Inquiries · last 7 days')) . '</span>';
-        echo '<svg class="spark" viewBox="0 0 100 40" preserveAspectRatio="none"><defs><linearGradient id="sg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#40916c" stop-opacity=".35"/><stop offset="1" stop-color="#40916c" stop-opacity="0"/></linearGradient></defs><path d="' . esc_attr($fill_d) . '" fill="url(#sg)"/><path d="' . esc_attr($line_d) . '" fill="none" stroke="#40916c" stroke-width="2"/></svg>';
+        // 5. SIX STAT CARDS
+        echo '<div class="stats6">';
+        // Stat 1: Inquiries
+        echo '<a class="stat" href="' . esc_url(admin_url('admin.php?page=pothik-analytics')) . '">';
+        echo '<span class="ic"><svg class="i"><use href="#i-inbox"/></svg></span>';
+        echo '<span class="trend ' . ($trend_down ? 'neg' : 'pos') . '">' . esc_html($trend_label) . '</span>';
+        echo '<strong data-pk-count="' . $curr_7_count . '" data-count="' . $curr_7_count . '">' . $curr_7_count . '</strong>';
+        echo '<span class="lb">' . esc_html(I18n::t('Inquiries')) . '</span>';
+        echo '<span class="ln">' . esc_html(I18n::t('Last 7 days')) . '</span>';
+        echo '<svg class="spark" viewBox="0 0 100 40" preserveAspectRatio="none"><path d="' . esc_attr($fill_d) . '" fill="#40916c" opacity=".12"/><path d="' . esc_attr($line_d) . '" fill="none" stroke="#40916c" stroke-width="2"/></svg>';
         echo '</a>';
 
-        // KPI 2: Waiting
-        echo '<a class="pk-kpi kpi warn" href="' . esc_url(admin_url('admin.php?page=pothik-inquiries&status=waiting')) . '">';
-        echo '<div class="kpi-top"><span class="kpi-ico"><svg class="i"><use href="#i-clock"/></svg></span><span class="pk-pill pill wait">' . esc_html(I18n::t('Needs reply')) . '</span></div>';
-        echo '<strong data-pk-count="' . $waiting_count . '" data-pk-wait-count data-wait-count>' . $waiting_count . '</strong><span class="sub">' . esc_html(I18n::t('Waiting')) . ($oldest_diff !== '' ? ' · ' . sprintf(esc_html(I18n::t('oldest %s')), $oldest_diff) : '') . '</span>';
+        // Stat 2: Waiting
+        echo '<a class="stat c2" href="' . esc_url(admin_url('admin.php?page=pothik-inquiries&status=waiting')) . '">';
+        echo '<span class="ic"><svg class="i"><use href="#i-clock"/></svg></span>';
+        echo '<strong data-pk-count="' . $waiting_count . '" data-count="' . $waiting_count . '" data-pk-wait-count data-wait-count>' . $waiting_count . '</strong>';
+        echo '<span class="lb">' . esc_html(I18n::t('Waiting reply')) . '</span>';
+        echo '<span class="ln">' . esc_html($oldest_diff !== '' ? sprintf(I18n::t('Oldest %s ago'), $oldest_diff) : I18n::t('All answered')) . '</span>';
         echo '</a>';
 
-        // KPI 3: Packages
-        $pkg_cap_sub = $is_pro ? esc_html(I18n::t('Unlimited Pro packages')) : esc_html(I18n::t('of 40 free'));
-        echo '<a class="pk-kpi kpi" href="' . esc_url(admin_url('admin.php?page=pothik-package')) . '">';
-        echo '<div class="kpi-top"><span class="kpi-ico"><svg class="i"><use href="#i-box"/></svg></span><span class="sub">' . $pkg_cap_sub . '</span></div>';
-        echo '<strong data-pk-count="' . $packages_count . '">' . $packages_count . '</strong><span class="sub">' . sprintf(esc_html(I18n::t('Packages · %d published')), $published_count) . '</span>';
-        echo '<div class="meter"><i data-pk-w="' . $pkg_meter_pct . '"></i></div>';
+        // Stat 3: Packages
+        echo '<a class="stat c3" href="' . esc_url(admin_url('admin.php?page=pothik-package')) . '">';
+        echo '<span class="ic"><svg class="i"><use href="#i-box"/></svg></span>';
+        echo '<strong data-pk-count="' . $packages_count . '" data-count="' . $packages_count . '">' . $packages_count . '</strong>';
+        echo '<span class="lb">' . esc_html(I18n::t('Packages')) . '</span>';
+        echo '<span class="ln">' . esc_html($pkg_limit_text) . '</span>';
+        echo '<div class="meter"><i data-pk-w="' . $pkg_meter_pct . '" data-w="' . $pkg_meter_pct . '" style="width:' . $pkg_meter_pct . '%"></i></div>';
         echo '</a>';
 
-        // KPI 4: Last receipt
-        $channel_colors = [
-            'bkash' => 'background:#fdeef5;color:var(--bkash)',
-            'nagad' => 'background:#fef4eb;color:var(--nagad)',
-            'rocket' => 'background:#f3eaf5;color:var(--rocket)',
-            'bank' => 'background:#ebf2fe;color:var(--bank)',
-            'cash' => 'background:#edf6f1;color:var(--cash)',
-        ];
-        $ch_style = $channel_colors[$rc_ch] ?? 'background:#edf6f1;color:var(--cash)';
-        $ch_label = I18n::choice('channel', $rc_ch);
-        echo '<a class="pk-kpi kpi gold" href="' . esc_url(admin_url('admin.php?page=pothik-receipt')) . '">';
-        echo '<div class="kpi-top"><span class="kpi-ico"><svg class="i"><use href="#i-receipt"/></svg></span><span class="pk-pill pill" style="' . esc_attr($ch_style) . '">' . esc_html($ch_label) . '</span></div>';
-        echo '<strong data-pk-count="' . $rc_amt . '" data-pk-money>' . Format::money($rc_amt) . '</strong><span class="sub">' . esc_html(I18n::t('Last receipt')) . ($rc_date !== '' ? ' · ' . esc_html($rc_date) : '') . '</span>';
+        // Stat 4: Published
+        echo '<a class="stat c4" href="' . esc_url(admin_url('admin.php?page=pothik-package')) . '">';
+        echo '<span class="ic"><svg class="i"><use href="#i-globe"/></svg></span>';
+        echo '<strong data-pk-count="' . $published_count . '" data-count="' . $published_count . '">' . $published_count . '</strong>';
+        echo '<span class="lb">' . esc_html(I18n::t('Published')) . '</span>';
+        echo '<span class="ln">' . esc_html(I18n::t('Live on your site')) . '</span>';
         echo '</a>';
 
-        echo '</div>'; // .pk-kpis
+        // Stat 5: Last receipt
+        echo '<a class="stat c5" href="' . esc_url(admin_url('admin.php?page=pothik-receipt')) . '">';
+        echo '<span class="ic"><svg class="i"><use href="#i-receipt"/></svg></span>';
+        echo '<strong data-pk-count="' . $rc_amt . '" data-count="' . $rc_amt . '" data-pk-money data-money>' . Format::money($rc_amt) . '</strong>';
+        echo '<span class="lb">' . esc_html(I18n::t('Last receipt')) . '</span>';
+        echo '<span class="ln">' . esc_html($rc_summary) . '</span>';
+        echo '</a>';
 
-        // 3. TWO COLUMNS
-        echo '<div class="desk-cols">';
+        // Stat 6: Reply rate
+        echo '<a class="stat c6" href="' . esc_url(admin_url('admin.php?page=pothik-analytics')) . '">';
+        echo '<span class="ic"><svg class="i"><use href="#i-check"/></svg></span>';
+        echo '<strong data-pk-count="' . $reply_rate_30 . '" data-count="' . $reply_rate_30 . '" data-suffix="%">' . $reply_rate_30 . '%</strong>';
+        echo '<span class="lb">' . esc_html(I18n::t('Reply rate')) . '</span>';
+        echo '<span class="ln">' . esc_html(I18n::t('Last 30 days')) . '</span>';
+        echo '</a>';
 
-        // Left column: Reply queue
-        echo '<div class="pk-card card">';
-        echo '<div class="pk-card-head card-head"><h2><svg class="i"><use href="#i-inbox"/></svg>' . esc_html(I18n::t('Reply queue')) . '</h2><a class="link" href="' . esc_url(admin_url('admin.php?page=pothik-inquiries')) . '">' . esc_html(I18n::t('All inquiries')) . ' →</a></div>';
+        echo '</div>'; // .stats6
+
+        // 6. TWO COLUMNS (Desk2: Reply queue & Packages / Setup)
+        echo '<div class="desk2">';
+
+        // Left card: Reply queue
+        echo '<div class="card pk-card">';
+        echo '<div class="card-head pk-card-head"><h3><svg class="i"><use href="#i-inbox"/></svg>' . esc_html(I18n::t('Reply queue')) . '</h3><a class="link" href="' . esc_url(admin_url('admin.php?page=pothik-inquiries')) . '">' . esc_html(I18n::t('All inquiries')) . ' <svg class="i sm"><use href="#i-arrow"/></svg></a></div>';
+        echo '<div class="queue-head"><span></span><span>' . esc_html(I18n::t('Pilgrim · package · share')) . '</span><span>' . esc_html(I18n::t('Received · actions')) . '</span></div>';
         echo '<ul class="queue" id="queue">';
         if (empty($waiting_inquiries)) {
             echo '<li class="pk-empty empty"><div class="em-ico"><svg class="i lg"><use href="#i-check"/></svg></div><b>' . esc_html(I18n::t('All caught up, alhamdulillah')) . '</b><div class="sub">' . esc_html(I18n::t('New inquiries will appear here.')) . '</div></li>';
@@ -310,8 +283,8 @@ final class Screens
             foreach ($waiting_inquiries as $r) {
                 $name = (string) $r->name;
                 $phone = (string) $r->phone;
-                $bg = self::avatar_color($name);
-                $initial = self::avatar_initial($name);
+                $bg = Format::avatar_color($name);
+                $initial = Format::avatar_initials($name);
                 $pkg_name = (string) ($r->package_title ?: I18n::t('Umrah package'));
                 $share_txt = I18n::choice('share', (string) $r->share);
                 $city_txt = (string) $r->city;
@@ -350,34 +323,13 @@ final class Screens
         echo '</ul>';
         echo '</div>'; // .card
 
-        // Right column: Quick actions + mini packages
-        echo '<div class="pk-side-col">';
-        echo '<div class="pk-card card">';
-        echo '<div class="pk-card-head card-head"><h3>' . esc_html(I18n::t('Quick actions')) . '</h3></div>';
-        echo '<div class="quick">';
-        // Action 1: New package
-        echo '<form method="post" action="' . esc_url(admin_url('admin-post.php')) . '" class="form-contents">';
-        wp_nonce_field('pothik_new_package');
-        echo '<input type="hidden" name="action" value="pothik_new_package">';
-        echo '<button type="submit" class="qa qa-btn"><span class="kpi-ico"><svg class="i"><use href="#i-plus"/></svg></span><b>' . esc_html(I18n::t('New package')) . '</b><span>' . esc_html(I18n::t('Create fresh or draft')) . '</span></button>';
-        echo '</form>';
-        // Action 2: Payment slip
-        echo '<a class="qa" href="' . esc_url(admin_url('admin.php?page=pothik-receipt')) . '"><span class="kpi-ico"><svg class="i"><use href="#i-receipt"/></svg></span><b>' . esc_html(I18n::t('Payment slip')) . '</b><span>' . esc_html(I18n::t('Create receipt & copy')) . '</span></a>';
-        // Action 3: Export CSV
-        echo '<form method="post" action="' . esc_url(admin_url('admin-post.php')) . '" class="form-contents">';
-        wp_nonce_field('pothik_export_inquiries');
-        echo '<input type="hidden" name="action" value="pothik_export_inquiries">';
-        echo '<button type="submit" class="qa qa-btn"><span class="kpi-ico"><svg class="i"><use href="#i-down"/></svg></span><b>' . esc_html(I18n::t('Export CSV')) . '</b><span>' . esc_html(I18n::t('Download all inquiries')) . '</span></button>';
-        echo '</form>';
-        // Action 4: Copy shortcode
-        echo '<button type="button" class="qa" data-pk-copy="[pothik_catalog]"><span class="kpi-ico"><svg class="i"><use href="#i-copy"/></svg></span><b>' . esc_html(I18n::t('Copy shortcode')) . '</b><span>[pothik_catalog]</span></button>';
-        echo '</div>'; // .quick
-        echo '</div>'; // .card
+        // Right column: Packages + Setup checklist
+        echo '<div class="grid">';
 
-        // Compact packages list
-        echo '<div class="pk-card card">';
-        echo '<div class="pk-card-head card-head"><h3>' . esc_html(I18n::t('Packages')) . '</h3><a class="link" href="' . esc_url(admin_url('admin.php?page=pothik-package')) . '">' . esc_html(I18n::t('Manage')) . ' →</a></div>';
-        echo '<div class="mini-pkgs">';
+        // Mini Packages card
+        echo '<div class="card pk-card">';
+        echo '<div class="card-head pk-card-head"><h3>' . esc_html(I18n::t('Packages')) . '</h3><a class="link" href="' . esc_url(admin_url('admin.php?page=pothik-package')) . '">' . esc_html(I18n::t('Manage')) . ' <svg class="i sm"><use href="#i-arrow"/></svg></a></div>';
+        echo '<div id="miniPkgs">';
         if (empty($packages)) {
             echo '<div class="pk-empty empty"><p class="sub">' . esc_html(I18n::t('No packages created yet.')) . '</p></div>';
         } else {
@@ -401,42 +353,54 @@ final class Screens
                 }
                 $edit_url = admin_url('admin.php?page=pothik-package&package=' . urlencode((string) ($p['id'] ?? '')));
 
-                echo '<a class="mini-pkg" href="' . esc_url($edit_url) . '">';
+                echo '<div class="mini-pkg">';
                 echo '<span class="thumb" style="background:linear-gradient(135deg,' . $pair[0] . ',' . $pair[1] . ')">' . $days . '<small>' . esc_html(I18n::t('DAYS')) . '</small></span>';
-                echo '<div class="m"><b>' . esc_html($title) . '</b><span class="sub">' . esc_html(I18n::t('from')) . ' ' . Format::money($quad_price) . '</span></div>';
-                echo '<span class="pk-pill pill ' . ($is_live ? 'live' : 'draft') . '">' . esc_html(I18n::t($is_live ? 'Live' : 'Draft')) . '</span>';
-                echo '</a>';
+                echo '<div class="m"><b><a href="' . esc_url($edit_url) . '" style="color:inherit;text-decoration:none">' . esc_html($title) . '</a></b><span class="sub">' . esc_html(I18n::t('from')) . ' ' . Format::money($quad_price) . '</span></div>';
+                echo '<span class="pill pk-pill ' . ($is_live ? 'live' : 'draft') . '">' . esc_html(I18n::t($is_live ? 'Live' : 'Draft')) . '</span>';
+                echo '</div>';
             }
         }
-        echo '</div>'; // .mini-pkgs
+        echo '</div>'; // #miniPkgs
         echo '</div>'; // .card
-        echo '</div>'; // .pk-side-col
-        echo '</div>'; // .desk-cols
 
-        // 4. PRO STRIP
-        if (!empty($locked_modules)) {
-            $pro_icons = [
-                'departures' => 'i-plane',
-                'pilgrims' => 'i-users',
-                'rooming' => 'i-bed',
-                'ledger' => 'i-wallet',
-                'visa' => 'i-shield',
-            ];
-            echo '<div class="section-title"><h2><svg class="i"><use href="#i-spark"/></svg>' . esc_html(I18n::t('Grow with Pothik Pro')) . '</h2><a class="link" href="' . esc_url(admin_url('admin.php?page=pothik-pro')) . '">' . esc_html(I18n::t('Explore Pro features')) . ' →</a></div>';
-            echo '<div class="pro-strip">';
-            foreach ($locked_modules as $id => $m) {
-                $ico = $pro_icons[$id] ?? 'i-spark';
-                echo '<a class="lock-card" href="' . esc_url(admin_url('admin.php?page=pothik-pro')) . '">';
-                echo '<span class="lk"><svg class="i sm"><use href="#i-lock"/></svg></span>';
-                echo '<span class="kpi-ico" style="background:var(--gold-100);color:#8a6414"><svg class="i"><use href="#' . esc_attr($ico) . '"/></svg></span>';
-                echo '<b>' . esc_html(I18n::t((string) ($m['title'] ?? $id))) . '</b>';
-                echo '<span>' . esc_html(I18n::t((string) ($m['summary'] ?? ''))) . '</span>';
-                echo '</a>';
-            }
-            echo '</div>'; // .pro-strip
+        // Setup checklist card
+        if ($show_setup) {
+            echo '<div class="card pk-card setup-light">';
+            echo '<div class="card-head pk-card-head"><h3>' . esc_html(I18n::t('Finish setting up')) . '</h3><span class="sub"><b>' . $completed_steps . '</b> ' . esc_html(I18n::t('of 5')) . '</span></div>';
+            echo '<div class="meter"><i data-pk-w="' . $progress_pct . '" style="width:' . $progress_pct . '%"></i></div>';
+            echo '<ul>';
+            echo '<li class="' . ($s1 ? 'ok' : '') . '"><a href="' . esc_url(admin_url('admin.php?page=pothik-settings')) . '"><span class="tick">' . ($s1 ? '<svg class="i sm"><use href="#i-check"/></svg>' : '') . '</span><span>' . esc_html(I18n::t('Add agency name & phone')) . '</span></a></li>';
+            echo '<li class="' . ($s3 ? 'ok' : '') . '"><a href="' . esc_url(admin_url('admin.php?page=pothik-settings')) . '"><span class="tick">' . ($s3 ? '<svg class="i sm"><use href="#i-check"/></svg>' : '') . '</span><span>' . esc_html(I18n::t('Set WhatsApp number')) . '</span></a></li>';
+            echo '<li class="' . ($s2 ? 'ok' : '') . '"><a href="' . esc_url(admin_url('admin.php?page=pothik-package')) . '"><span class="tick">' . ($s2 ? '<svg class="i sm"><use href="#i-check"/></svg>' : '') . '</span><span>' . esc_html(I18n::t('Create your first package')) . '</span></a></li>';
+            echo '<li class="' . ($s4 ? 'ok' : '') . '"><a href="' . esc_url(admin_url('admin.php?page=pothik-settings')) . '"><span class="tick">' . ($s4 ? '<svg class="i sm"><use href="#i-check"/></svg>' : '') . '</span><span>' . esc_html(I18n::t('Upload agency logo')) . '</span></a></li>';
+            echo '<li class="' . ($s5 ? 'ok' : '') . '"><a href="' . esc_url(admin_url('admin.php?page=pothik-package')) . '"><span class="tick">' . ($s5 ? '<svg class="i sm"><use href="#i-check"/></svg>' : '') . '</span><span>' . esc_html(I18n::t('Publish a package')) . '</span></a></li>';
+            echo '</ul>';
+            echo '</div>'; // .setup-light
         }
 
-        // 5. DEMO FOOTER
+        echo '</div>'; // .grid
+        echo '</div>'; // .desk2
+
+        // 7. PRO CARD
+        if (!empty($locked_modules)) {
+            echo '<div class="card pk-card pro-card">';
+            echo '<div class="ph"><span class="eyebrow">' . esc_html(I18n::t('Pro')) . '</span><a class="link" href="' . esc_url(admin_url('admin.php?page=pothik-pro')) . '">' . esc_html(I18n::t('Docs')) . '</a></div>';
+            echo '<div class="pro-inner">';
+            echo '<div><h4>' . esc_html(I18n::t('Pothik Pro')) . ' <span class="pill pk-pill draft plain" style="background:var(--gold-100);color:#8a6414">PRO</span></h4>';
+            echo '<p>' . esc_html(I18n::t('Run the whole season: departures, pilgrim files, rooming, installments and the visa board.')) . '</p>';
+            echo '<a class="btn pk-btn btn-primary pk-btn-primary btn-sm" href="' . esc_url(admin_url('admin.php?page=pothik-pro')) . '">' . esc_html(I18n::t('Learn about Pro')) . '</a></div>';
+            echo '<div class="pro-chips">';
+            echo '<span><svg class="i sm"><use href="#i-plane"/></svg>' . esc_html(I18n::t('Departures')) . '</span>';
+            echo '<span><svg class="i sm"><use href="#i-users"/></svg>' . esc_html(I18n::t('Pilgrim file')) . '</span>';
+            echo '<span><svg class="i sm"><use href="#i-bed"/></svg>' . esc_html(I18n::t('Rooming')) . '</span>';
+            echo '<span><svg class="i sm"><use href="#i-wallet"/></svg>' . esc_html(I18n::t('Installments')) . '</span>';
+            echo '<span><svg class="i sm"><use href="#i-shield"/></svg>' . esc_html(I18n::t('Visa board')) . '</span>';
+            echo '</div>'; // .pro-chips
+            echo '</div>'; // .pro-inner
+            echo '</div>'; // .pro-card
+        }
+
+        // 8. DEMO FOOTER
         echo '<div class="pk-demo-footer">';
         echo '<span>' . esc_html(I18n::t('Trying things out?')) . '</span>';
         if ($has_demo) {

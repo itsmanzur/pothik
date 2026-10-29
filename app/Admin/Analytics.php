@@ -482,4 +482,93 @@ final class Analytics
 
         return array_slice($counts, -30, 30, true);
     }
+
+    /**
+     * Compute 7-day sparkline, trends, and 30-day reply rate for the Desk overview.
+     *
+     * @return array{
+     *     curr_7_count: int,
+     *     prev_7_count: int,
+     *     trend_label: string,
+     *     trend_down: bool,
+     *     line_d: string,
+     *     fill_d: string,
+     *     reply_rate_30: int
+     * }
+     */
+    public static function desk_metrics(): array
+    {
+        $all_inq = InquiryStore::all();
+        $today = new DateTimeImmutable('today midnight', wp_timezone());
+        $daily_counts = array_fill(0, 7, 0);
+        $curr_7_count = 0;
+        $prev_7_count = 0;
+
+        $inq_30_total = 0;
+        $inq_30_replied = 0;
+        $cutoff_30 = $today->modify('-29 days');
+
+        foreach ($all_inq as $inq) {
+            if (!empty($inq['demo']) || !is_array($inq)) {
+                continue;
+            }
+            $dt = self::row_local_datetime($inq);
+            if (!$dt) {
+                continue;
+            }
+
+            // 7-day sparkline and trend
+            $diff_days = (int) $today->diff($dt->setTime(0, 0, 0))->format('%r%a');
+            if ($diff_days >= -6 && $diff_days <= 0) {
+                $slot = $diff_days + 6;
+                $daily_counts[$slot]++;
+                $curr_7_count++;
+            } elseif ($diff_days >= -13 && $diff_days <= -7) {
+                $prev_7_count++;
+            }
+
+            // 30-day reply rate
+            if ($dt >= $cutoff_30) {
+                $inq_30_total++;
+                if (!empty($inq['replied']) && ((string) $inq['replied'] === '1' || (int) $inq['replied'] === 1)) {
+                    $inq_30_replied++;
+                }
+            }
+        }
+
+        $trend_down = false;
+        if ($prev_7_count === 0) {
+            $trend_label = ($curr_7_count > 0 ? '▲ 100%' : '0%');
+        } else {
+            $change = (int) round((($curr_7_count - $prev_7_count) / $prev_7_count) * 100);
+            if ($change >= 0) {
+                $trend_label = '▲ ' . $change . '%';
+            } else {
+                $trend_down = true;
+                $trend_label = '▼ ' . abs($change) . '%';
+            }
+        }
+
+        $max_c = max(1, max($daily_counts));
+        $pts = [];
+        for ($i = 0; $i < 7; $i++) {
+            $x = round($i * (100 / 6), 1);
+            $y = round(34 - ($daily_counts[$i] / $max_c) * 26);
+            $pts[] = "{$x} {$y}";
+        }
+        $line_d = 'M' . implode(' L', $pts);
+        $fill_d = $line_d . ' L100 40 L0 40Z';
+
+        $reply_rate_30 = $inq_30_total > 0 ? (int) round(($inq_30_replied / $inq_30_total) * 100) : 0;
+
+        return [
+            'curr_7_count' => $curr_7_count,
+            'prev_7_count' => $prev_7_count,
+            'trend_label' => $trend_label,
+            'trend_down' => $trend_down,
+            'line_d' => $line_d,
+            'fill_d' => $fill_d,
+            'reply_rate_30' => $reply_rate_30,
+        ];
+    }
 }

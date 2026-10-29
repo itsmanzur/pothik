@@ -843,44 +843,19 @@
     }
 
     /* =========================================================
-       8. DESK INTERACTIONS & HARAMAIN HERO (Prompt 1 & 1B)
+       8. DESK INTERACTIONS & SEASON COUNTDOWN (Prompt 1)
        ========================================================= */
 
     function initDesk() {
-        var hero = document.querySelector('.hero, .pk-hero');
-        if (!hero) {
+        var countCard = document.querySelector('.count-card');
+        var deskScreen = document.querySelector('[data-screen="desk"]');
+        if (!countCard && !deskScreen) {
             return;
         }
 
-        // 1. Twinkling stars in sky
-        var sky = document.getElementById('sky');
-        if (sky && !sky.__starsAdded) {
-            sky.__starsAdded = true;
-            for (var i = 0; i < 46; i++) {
-                var st = document.createElement('i');
-                st.style.left = (Math.random() * 100) + '%';
-                st.style.top = (Math.random() * 55) + '%';
-                st.style.animationDelay = (Math.random() * 4) + 's';
-                if (Math.random() > 0.8) {
-                    st.style.width = '3px';
-                    st.style.height = '3px';
-                }
-                sky.appendChild(st);
-            }
-        }
+        var isReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        // 2. Hijri date fallback & Season countdowns (Umm al-Qura)
-        var H = function (d, o) {
-            try {
-                return new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', o).formatToParts(d).reduce(function (a, p) {
-                    a[p.type] = p.value;
-                    return a;
-                }, {});
-            } catch (err) {
-                return {};
-            }
-        };
-
+        // 1. Hijri date fallback (Umm al-Qura)
         try {
             var hijriSpan = document.getElementById('hijri');
             var now = new Date();
@@ -890,28 +865,144 @@
                 var hStr = new Intl.DateTimeFormat(loc, { day: 'numeric', month: 'long', year: 'numeric' }).format(now);
                 hijriSpan.textContent = hStr.replace(/\s?AH$/i, '') + (isBn ? ' হিজরি' : ' AH');
             }
+        } catch (e) {}
 
-            var toRamadan = document.getElementById('toRamadan');
-            var toHajj = document.getElementById('toHajj');
-
-            var findDays = function (targetMonth, targetDay) {
-                for (var j = 0; j < 400; j++) {
-                    var d = new Date(now.getTime() + j * 86400000);
-                    var p = H(d, { month: 'numeric', day: 'numeric' });
-                    if (parseInt(p.month, 10) === targetMonth && parseInt(p.day, 10) === targetDay) {
-                        return j;
-                    }
+        // 2. Season Countdown Card & Live Ticking Timer
+        (function () {
+            var parts = function (d, o) {
+                try {
+                    return new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', o).formatToParts(d).reduce(function (a, p) {
+                        a[p.type] = p.value;
+                        return a;
+                    }, {});
+                } catch (err) {
+                    return {};
                 }
-                return '—';
             };
 
-            if (toRamadan) {
-                toRamadan.textContent = findDays(9, 1);
+            var nowDate = new Date();
+            var currParts = parts(nowDate, { month: 'numeric', day: 'numeric', year: 'numeric' });
+            var currMonth = parseInt(currParts.month, 10);
+            var currDay = parseInt(currParts.day, 10);
+
+            var findDay = function (m, dd) {
+                for (var i = 0; i < 400; i++) {
+                    var d = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + i, 0, 0, 0);
+                    var p = parts(d, { month: 'numeric', day: 'numeric', year: 'numeric' });
+                    if (parseInt(p.month, 10) === m && parseInt(p.day, 10) === dd) {
+                        return { d: d, y: p.year };
+                    }
+                }
+                return null;
+            };
+
+            var T = {
+                ram: {
+                    f: findDay(9, 1),
+                    n: i18n.ramadan || 'Ramadan',
+                    tip: i18n.ramadanTip || 'Publish your Ramadan Umrah packages early.'
+                },
+                hajj: {
+                    f: findDay(12, 8),
+                    n: i18n.hajj || 'Hajj',
+                    tip: i18n.hajjTip || 'Hajj files and visas take time — start collecting passports.'
+                }
+            };
+
+            var k = 'ram';
+            try {
+                var savedTab = localStorage.getItem('pothik_season_tab');
+                if (savedTab === 'hajj' || savedTab === 'ram') {
+                    k = savedTab;
+                }
+            } catch (err) {}
+
+            var cSeg = document.getElementById('cSeg');
+            if (cSeg) {
+                cSeg.querySelectorAll('button').forEach(function (btn) {
+                    btn.classList.toggle('on', btn.getAttribute('data-k') === k);
+                });
             }
-            if (toHajj) {
-                toHajj.textContent = findDays(12, 8);
+
+            var pad = function (n) { return String(n).padStart(2, '0'); };
+
+            var set = function () {
+                var t = T[k];
+                if (!t || !t.f) return;
+                var cName = document.getElementById('cName');
+                var cDate = document.getElementById('cDate');
+                var cTip = document.getElementById('cTip');
+                var yearClean = String(t.f.y || '').replace(/\D/g, '');
+
+                if (cName) cName.textContent = t.n + (yearClean ? ' ' + yearClean : '');
+                if (cDate) {
+                    try {
+                        cDate.textContent = t.f.d.toLocaleDateString(document.documentElement.lang === 'bn' ? 'bn-BD' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+                    } catch (err) {
+                        cDate.textContent = t.f.d.toDateString();
+                    }
+                }
+                if (cTip) cTip.textContent = t.tip;
+                tick();
+            };
+
+            function tick() {
+                var timer = document.getElementById('timer');
+                if (!timer) return;
+
+                // Check special season windows
+                if (currMonth === 9) {
+                    timer.innerHTML = '<div style="min-width:auto;padding:6px 12px"><b>' + (i18n.ramadanMubarak || 'Ramadan Mubarak 🌙') + '</b></div>';
+                    return;
+                }
+                if (currMonth === 12 && currDay >= 8 && currDay <= 13) {
+                    timer.innerHTML = '<div style="min-width:auto;padding:6px 12px"><b>' + (i18n.hajjDays || 'Hajj days 🤍') + '</b></div>';
+                    return;
+                }
+
+                var t = T[k];
+                if (!t || !t.f) return;
+
+                var targetTime = t.f.d.getTime();
+                var nowMs = new Date().getTime();
+                var ms = Math.max(0, targetTime - nowMs);
+
+                var d = Math.floor(ms / 86400000);
+                ms -= d * 86400000;
+                var h = Math.floor(ms / 3600000);
+                ms -= h * 3600000;
+                var m = Math.floor(ms / 60000);
+                var s = Math.floor((ms - m * 60000) / 1000);
+
+                var elD = timer.querySelector('[data-t="d"]');
+                var elH = timer.querySelector('[data-t="h"]');
+                var elM = timer.querySelector('[data-t="m"]');
+                var elS = timer.querySelector('[data-t="s"]');
+
+                if (elD) elD.textContent = String(d).padStart(2, '0');
+                if (elH) elH.textContent = pad(h);
+                if (elM) elM.textContent = pad(m);
+                if (elS) elS.textContent = pad(s);
             }
-        } catch (e) {}
+
+            set();
+            pageInterval(tick, 1000);
+
+            if (cSeg) {
+                cSeg.addEventListener('click', function (e) {
+                    var btn = e.target.closest('button');
+                    if (!btn) return;
+                    cSeg.querySelectorAll('button').forEach(function (b) {
+                        b.classList.toggle('on', b === btn);
+                    });
+                    k = btn.getAttribute('data-k') || 'ram';
+                    try {
+                        localStorage.setItem('pothik_season_tab', k);
+                    } catch (err) {}
+                    set();
+                });
+            }
+        })();
 
         // 3. Local Makkah Time in [data-tz-time]
         function updateMakkahTime() {
@@ -958,37 +1049,42 @@
             showScene(savedScene);
         }
 
-        var autoScene = pageInterval(function () {
-            if (!scMakkah) return;
-            var next = scMakkah.classList.contains('off') ? 'Makkah' : 'Madinah';
-            showScene(next);
-        }, 9000);
+        var autoScene = null;
+        if (!isReducedMotion) {
+            autoScene = pageInterval(function () {
+                if (!scMakkah) return;
+                var next = scMakkah.classList.contains('off') ? 'Makkah' : 'Madinah';
+                showScene(next);
+            }, 9000);
+        }
 
         sceneButtons.forEach(function (btn) {
             btn.addEventListener('click', function () {
-                clearInterval(autoScene);
+                if (autoScene) {
+                    clearInterval(autoScene);
+                    autoScene = null;
+                }
                 showScene(btn.getAttribute('data-scene'));
             });
         });
 
-        // 5. Rotating Dua Lines
-        var duaEl = document.getElementById('dua');
-        if (duaEl) {
+        // 5. Rotating Quote in Notice Strip [data-wait-pill]
+        var waitPill = document.querySelector('[data-wait-pill]');
+        if (waitPill && !isReducedMotion) {
             var lines = [
-                i18n.dua1 || "Every reply you send could be someone's first step towards the Haram.",
-                i18n.dua2 || "May Allah accept the Umrah of every pilgrim you serve.",
-                i18n.dua3 || "Serve the guests of Ar-Rahman with ihsan — they remember the agency that cared.",
-                i18n.dua4 || "A pilgrim's dua at the Multazam may include your name."
+                i18n.deskLine1 || "Every reply could be someone's first step towards the Haram.",
+                i18n.deskLine2 || "May Allah accept the Umrah of every pilgrim you serve.",
+                i18n.deskLine3 || "Serve the guests of Ar-Rahman with ihsan."
             ];
             var lIdx = 0;
             pageInterval(function () {
-                duaEl.style.transition = 'opacity 0.6s';
-                duaEl.style.opacity = '0';
+                waitPill.style.transition = 'opacity 0.5s';
+                waitPill.style.opacity = '0';
                 setTimeout(function () {
                     lIdx = (lIdx + 1) % lines.length;
-                    duaEl.textContent = lines[lIdx];
-                    duaEl.style.opacity = '1';
-                }, 600);
+                    waitPill.textContent = lines[lIdx];
+                    waitPill.style.opacity = '1';
+                }, 500);
             }, 7000);
         }
     }
@@ -1073,6 +1169,21 @@
                 el.setAttribute('data-pk-count', count);
             }
         });
+
+        // Update notice strip text & link dynamically
+        var noticeP = document.querySelector('.notice p');
+        var noticeA = document.querySelector('.notice a');
+        if (noticeP && noticeA) {
+            if (count > 0) {
+                noticeP.innerHTML = '<b data-wait-count data-pk-wait-count>' + count + '</b> ' + (i18n.guestsWaiting || 'guests of Allah are waiting for your reply.') + ' <em data-wait-pill>' + (i18n.deskLine1 || "Every reply could be someone's first step towards the Haram.") + '</em>';
+                noticeA.href = 'admin.php?page=pothik-inquiries&status=waiting';
+                noticeA.innerHTML = (i18n.replyNow || 'Reply now') + ' <svg class="i sm"><use href="#i-arrow"/></svg>';
+            } else {
+                noticeP.innerHTML = '<b data-wait-count data-pk-wait-count>0</b> ' + (i18n.guestsWaitingShort || 'guests of Allah waiting.') + ' <em data-wait-pill>' + (i18n.allGuestsAnswered || 'All guests of Allah have been answered. Alhamdulillah.') + '</em>';
+                noticeA.href = 'admin.php?page=pothik-inquiries';
+                noticeA.innerHTML = (i18n.viewInquiries || 'View inquiries') + ' <svg class="i sm"><use href="#i-arrow"/></svg>';
+            }
+        }
     }
 
     // 7. Packages list interactions (search, filter, ajax switch, duplicate, delete)

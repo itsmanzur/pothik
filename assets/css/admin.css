@@ -1712,113 +1712,10 @@ kbd {
 
 
 /* =========================================================
-   DESK (Screens::overview)
+   DESK (Screens::overview) — V2
    ========================================================= */
 
-/* ===== Haramain hero: night sky over Makkah & Madinah ===== */
-.pk-admin .pk-hero,
-.pk-admin .hero {
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-  border-radius: var(--r-xl);
-  padding: 26px 30px 168px;
-  color: #fff;
-  background: radial-gradient(700px 260px at 78% 108%, rgba(212,166,74,.42), transparent 70%),
-              radial-gradient(900px 400px at 10% -30%, rgba(64,145,108,.35), transparent 60%),
-              linear-gradient(180deg, #071812 0%, #0f2a21 45%, #173d30 100%);
-  box-shadow: var(--sh-3);
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 28px;
-  align-items: start;
-}
-.pk-admin .pk-hero::before,
-.pk-admin .hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  opacity: .07;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%23fff' stroke-width='1.2'%3E%3Cpath d='M32 4l8 20 20 8-20 8-8 20-8-20-20-8 20-8z'/%3E%3Ccircle cx='32' cy='32' r='9'/%3E%3C/g%3E%3C/svg%3E");
-  background-size: 64px;
-  mask-image: linear-gradient(180deg, #000 0%, transparent 70%);
-  -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 70%);
-}
-.pk-admin .pk-hero::after,
-.pk-admin .hero::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 5px;
-  z-index: 2;
-  background: repeating-linear-gradient(90deg, var(--gold) 0 18px, transparent 18px 24px, #e7bf68 24px 30px, transparent 30px 36px);
-  opacity: .75;
-}
-.pk-admin .hero>*:not(.sky):not(.skyline):not(.place):not(.season),
-.pk-admin .pk-hero>*:not(.sky):not(.skyline):not(.place):not(.season) {
-  position: relative;
-  z-index: 2;
-}
-.pk-admin .sky {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-}
-.pk-admin .sky i {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  border-radius: 50%;
-  background: #fff;
-  opacity: .2;
-  animation: pk-twinkle 4s ease-in-out infinite;
-}
-@keyframes pk-twinkle {
-  50% { opacity: .95; transform: scale(1.4); }
-}
-.pk-admin .moon {
-  position: absolute;
-  right: 46%;
-  top: 22px;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  box-shadow: -11px 7px 0 0 #f3d48d;
-  transform: rotate(-24deg);
-  filter: drop-shadow(0 0 14px rgba(243,212,141,.55));
-  opacity: .95;
-}
-.pk-admin .skyline {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 190px;
-  z-index: 1;
-  pointer-events: none;
-}
-.pk-admin .skyline svg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  transition: opacity 1.6s ease, transform 1.6s ease;
-}
-.pk-admin .skyline svg.off {
-  opacity: 0;
-  transform: translateY(10px);
-}
-.pk-admin .skyline::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 0 0;
-  height: 60px;
-  background: linear-gradient(0deg, rgba(7,24,18,.55), transparent);
-}
+/* Animations */
 .pk-admin .tawaf {
   animation: pk-tawaf 3s linear infinite;
 }
@@ -1831,273 +1728,279 @@ kbd {
 @keyframes pk-glow {
   50% { opacity: .55; }
 }
-.pk-admin .talbiyah {
-  text-align: left;
+
+/* 1. Greet row */
+.pk-admin .greet {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.pk-admin .greet h2 {
+  margin: 0;
+  font-size: 24px;
+  letter-spacing: -.015em;
+  color: var(--ink);
+  line-height: 1.25;
+}
+.pk-admin .greet .sub {
+  margin-top: 3px;
+  font-size: 14px;
+  color: var(--muted);
+}
+.pk-admin .greet .talbiyah {
   font-family: "Amiri", "Noto Naskh Arabic", "Scheherazade New", "Traditional Arabic", serif;
   direction: rtl;
-  font-size: 26px;
-  line-height: 1.4;
-  color: var(--gold);
-  text-shadow: 0 2px 18px rgba(212,166,74,.45);
-  margin: 0 0 4px;
+  font-size: 28px;
+  margin: 0;
+  text-shadow: none;
+  color: #b8892c;
+  line-height: 1.3;
 }
-.pk-admin .hero .eyebrow,
-.pk-admin .pk-hero .eyebrow {
-  color: rgba(255,255,255,.7);
+
+/* 2. Notice strip */
+.pk-admin .notice {
   display: flex;
-  gap: 8px;
   align-items: center;
-  flex-wrap: wrap;
+  gap: 14px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  background: linear-gradient(90deg, var(--g800), var(--g700));
+  color: #fff;
+  margin-bottom: 16px;
+  box-shadow: 0 8px 20px -14px rgba(15,42,33,.8);
+}
+.pk-admin .notice .badge-n {
+  flex: none;
+  height: 24px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: var(--gold);
+  color: #2b1d02;
+  font-size: 12px;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+  letter-spacing: .02em;
+}
+.pk-admin .notice p {
+  margin: 0;
+  font-weight: 600;
+  font-size: 14.5px;
+  flex: 1;
+  min-width: 0;
+}
+.pk-admin .notice p em {
+  font-style: normal;
+  color: rgba(255,255,255,.72);
+  font-weight: 500;
+  display: inline;
+}
+.pk-admin .notice a {
+  color: #fff;
+  font-weight: 800;
+  font-size: 13.5px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: none;
+  padding: 6px 12px;
+  border-radius: 9px;
+  background: rgba(255,255,255,.12);
+  transition: background .15s;
+}
+.pk-admin .notice a:hover {
+  background: rgba(255,255,255,.2);
+  color: #fff;
+}
+
+/* 3. Season countdown card */
+.pk-admin .count-card {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 24px;
+  padding: 22px 26px;
+  border-radius: var(--r-lg);
+  border: 1px solid #dfe9e2;
+  background: radial-gradient(500px 200px at 85% 120%, rgba(212,166,74,.18), transparent 70%),
+              linear-gradient(120deg, #eef6f1 0%, #f6f2e7 100%);
+  margin-bottom: 16px;
+  min-height: 150px;
+}
+.pk-admin .count-card .art {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 62%;
+  height: 100%;
+  opacity: .17;
+  pointer-events: none;
+  mask-image: linear-gradient(90deg, transparent 0%, #000 35%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 35%);
+}
+.pk-admin .count-card .art svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 1.6s ease;
+}
+.pk-admin .count-card .art svg.off {
+  opacity: 0;
+}
+.pk-admin .count-card > *:not(.art) {
+  position: relative;
+}
+.pk-admin .count-card .eyebrow {
   font-size: 11px;
   font-weight: 800;
   letter-spacing: .09em;
   text-transform: uppercase;
+  color: var(--g700);
+  margin-bottom: 2px;
 }
-.pk-admin .hero .eyebrow .dot,
-.pk-admin .pk-hero .eyebrow .dot {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--gold);
+.pk-admin .count-card h3 {
+  margin: 4px 0 4px;
+  font-size: 20px;
+  color: var(--ink);
 }
-.pk-admin .hero h1,
-.pk-admin .pk-hero h1 {
-  margin: 8px 0 8px;
-  font-size: 30px;
-  line-height: 1.15;
-  letter-spacing: -.02em;
-  color: #fff;
+.pk-admin .count-card .sub {
+  font-size: 13.5px;
+  color: var(--muted);
 }
-.pk-admin .hero h1 mark,
-.pk-admin .pk-hero h1 mark {
-  background: none;
-  color: var(--gold);
+.pk-admin .count-card .sub b {
+  color: var(--ink);
 }
-.pk-admin .hero p,
-.pk-admin .pk-hero p {
-  margin: 0 0 16px;
-  color: rgba(255,255,255,.8);
-  max-width: 48ch;
+.pk-admin .count-card .seg {
+  margin-top: 12px;
 }
-.pk-admin .dua {
-  font-size: 14px;
-  font-style: italic;
-  color: rgba(255,255,255,.72);
-  min-height: 21px;
-  transition: opacity .6s;
-}
-.pk-admin .hero .btn-ghost,
-.pk-admin .pk-hero .btn-ghost,
-.pk-admin .hero .pk-btn-ghost,
-.pk-admin .pk-hero .pk-btn-ghost {
-  background: rgba(255,255,255,.1);
-  border-color: rgba(255,255,255,.22);
-  color: #fff;
-}
-.pk-admin .hero .btn-ghost:hover,
-.pk-admin .pk-hero .btn-ghost:hover,
-.pk-admin .hero .pk-btn-ghost:hover,
-.pk-admin .pk-hero .pk-btn-ghost:hover {
-  background: rgba(255,255,255,.18);
-  color: #fff;
-}
-.pk-admin .hero-actions {
+.pk-admin .timer {
   display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 14px;
-}
-.pk-admin .place {
-  position: absolute;
-  left: 30px;
-  bottom: 18px;
-  z-index: 3;
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-.pk-admin .place button {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  height: 32px;
-  padding: 0 12px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.2);
-  background: rgba(7,24,18,.55);
+  align-items: flex-start;
+  gap: 6px;
+  color: var(--g800);
+  padding: 14px 18px;
+  border-radius: 16px;
+  background: rgba(255,255,255,.72);
+  border: 1px solid rgba(255,255,255,.9);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  color: rgba(255,255,255,.75);
+  box-shadow: 0 10px 24px -16px rgba(15,42,33,.45);
+}
+.pk-admin .timer div {
+  text-align: center;
+  min-width: 64px;
+}
+.pk-admin .timer b {
+  display: block;
+  font-size: 44px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -.03em;
+  font-variant-numeric: tabular-nums;
+  color: var(--g800);
+}
+.pk-admin .timer span {
+  display: block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 6px;
+}
+.pk-admin .timer i {
+  font-style: normal;
+  font-size: 36px;
   font-weight: 700;
-  font-size: 12.5px;
+  line-height: 1.1;
+  color: var(--g500);
+  opacity: .6;
+}
+.pk-admin .place-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.pk-admin .place-row button {
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid #d7e4db;
+  background: rgba(255,255,255,.7);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
   cursor: pointer;
-  transition: all .2s;
+  transition: all .15s;
   font-family: inherit;
 }
-.pk-admin .place button b {
-  color: #fff;
+.pk-admin .place-row button.on {
+  border-color: var(--g500);
+  color: var(--g800);
+  background: #fff;
+}
+.pk-admin .place-row button b {
+  color: var(--ink);
   font-variant-numeric: tabular-nums;
 }
-.pk-admin .place button.on {
-  border-color: var(--gold);
-  color: #fff;
-  background: rgba(212,166,74,.2);
-}
-.pk-admin .season {
-  position: absolute;
-  right: 30px;
-  bottom: 18px;
-  z-index: 3;
+
+/* 4. Quick actions bar */
+.pk-admin .qbar {
   display: flex;
   gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
 }
-.pk-admin .season span {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  height: 32px;
-  padding: 0 12px;
-  border-radius: 999px;
-  background: rgba(7,24,18,.55);
-  border: 1px solid rgba(212,166,74,.35);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  font-size: 12.5px;
+.pk-admin .qbar .btn,
+.pk-admin .qbar .pk-btn {
+  height: 36px;
   font-weight: 700;
-  color: #f3e2b8;
-}
-.pk-admin .season b {
-  color: var(--gold);
-  font-size: 14px;
-}
-.pk-admin .setup {
-  background: rgba(7,24,18,.45);
-  border: 1px solid rgba(212,166,74,.25);
-  border-radius: var(--r-lg);
-  padding: 16px 18px;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
-.pk-admin .setup-top {
-  display: flex;
+  font-size: 13.5px;
+  padding: 0 12px;
+  display: inline-flex;
   align-items: center;
-  gap: 14px;
-  margin-bottom: 10px;
+  gap: 6px;
 }
-.pk-admin .ring {
-  --p: 60;
-  width: 54px;
-  height: 54px;
-  border-radius: 50%;
-  flex: none;
-  background: conic-gradient(var(--gold) calc(var(--p)*1%), rgba(255,255,255,.15) 0);
-  display: grid;
-  place-items: center;
-  transition: --p .6s;
-}
-.pk-admin .ring b {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: var(--g800);
-  display: grid;
-  place-items: center;
-  font-size: 13px;
-  color: #fff;
-}
-.pk-admin .setup ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 4px;
-}
-.pk-admin .setup li,
-.pk-admin .setup a {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 6px 8px;
-  border-radius: 9px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background .15s;
-  color: #fff;
-  text-decoration: none;
-}
-.pk-admin .setup li:hover,
-.pk-admin .setup a:hover {
-  background: rgba(255,255,255,.08);
-}
-.pk-admin .setup li .tick,
-.pk-admin .setup a .tick {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(255,255,255,.45);
-  display: grid;
-  place-items: center;
-  flex: none;
-}
-.pk-admin .setup li.ok,
-.pk-admin .setup a.ok {
-  color: rgba(255,255,255,.6);
-}
-.pk-admin .setup li.ok span,
-.pk-admin .setup a.ok span {
-  text-decoration: line-through;
-}
-.pk-admin .setup li.ok .tick,
-.pk-admin .setup a.ok .tick {
-  background: var(--gold);
-  border-color: var(--gold);
-  color: var(--g900);
-}
-.pk-admin .setup li .go,
-.pk-admin .setup a .go {
-  margin-left: auto;
-  opacity: 0;
-  transition: opacity .15s;
-}
-.pk-admin .setup li:hover .go,
-.pk-admin .setup a:hover .go {
-  opacity: 1;
+.pk-admin .qbar .btn svg,
+.pk-admin .qbar .pk-btn svg {
+  color: var(--g600);
 }
 
-/* KPIs */
-.pk-admin .pk-kpis,
-.pk-admin .kpis {
+/* 5. Six stat cards */
+.pk-admin .stats6 {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin: 20px 0;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 16px;
+  width: 100%;
 }
-.pk-admin .pk-kpi,
-.pk-admin .kpi {
+.pk-admin .stat {
   position: relative;
-  padding: 16px 18px 14px;
-  border-radius: var(--r-lg);
-  background: var(--sheet);
+  padding: 16px;
+  border-radius: 16px;
+  background: #fff;
   border: 1px solid var(--line);
-  box-shadow: var(--sh-1);
   text-decoration: none;
-  overflow: hidden;
   cursor: pointer;
+  overflow: hidden;
   transition: transform .2s var(--ease), box-shadow .2s;
-  color: inherit;
   display: block;
+  color: inherit;
 }
-.pk-admin .pk-kpi:hover,
-.pk-admin .kpi:hover {
+.pk-admin .stat:hover {
   transform: translateY(-3px);
   box-shadow: var(--sh-2);
+  color: inherit;
 }
-.pk-admin .kpi-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.pk-admin .kpi-ico {
+.pk-admin .stat .ic {
   width: 34px;
   height: 34px;
   border-radius: 10px;
@@ -2106,66 +2009,114 @@ kbd {
   background: var(--g50);
   color: var(--g700);
 }
-.pk-admin .kpi.warn .kpi-ico,
-.pk-admin .pk-kpi.warn .kpi-ico {
+.pk-admin .stat.c2 .ic {
   background: var(--clay-100);
   color: var(--clay);
 }
-.pk-admin .kpi.gold .kpi-ico,
-.pk-admin .pk-kpi.gold .kpi-ico {
+.pk-admin .stat.c3 .ic {
   background: var(--gold-100);
   color: #8a6414;
 }
-.pk-admin .kpi strong,
-.pk-admin .pk-kpi strong {
+.pk-admin .stat.c4 .ic {
+  background: #e8f0f7;
+  color: #3f6b8a;
+}
+.pk-admin .stat.c5 .ic {
+  background: #fdeef5;
+  color: var(--bkash);
+}
+.pk-admin .stat.c6 .ic {
+  background: #efeaf6;
+  color: #6b4f8a;
+}
+.pk-admin .stat strong {
   display: block;
   font-size: 30px;
   line-height: 1;
-  margin: 14px 0 4px;
+  margin: 14px 0 6px;
   letter-spacing: -.02em;
   color: var(--ink);
 }
-.pk-admin .trend {
+.pk-admin .stat .lb {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--ink-2);
+  display: block;
+}
+.pk-admin .stat .ln {
+  display: block;
   font-size: 12px;
-  font-weight: 800;
-  padding: 2px 7px;
-  border-radius: 7px;
-  background: var(--g100);
+  color: var(--faint);
+  margin-top: 6px;
+}
+.pk-admin .stat .trend {
+  position: absolute;
+  top: 16px;
+  right: 14px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.pk-admin .stat .trend.pos {
   color: var(--g700);
 }
-.pk-admin .trend.down {
-  background: var(--clay-100);
+.pk-admin .stat .trend.neg {
   color: var(--clay);
 }
-.pk-admin .spark {
+.pk-admin .stat .spark {
+  width: 50%;
+  height: 40px;
+  opacity: .85;
   position: absolute;
   right: 0;
   bottom: 0;
-  width: 55%;
-  height: 46px;
-  opacity: .9;
   pointer-events: none;
 }
+.pk-admin .stat .meter {
+  margin-top: 8px;
+}
 
-/* Desk columns & reply queue */
-.pk-admin .desk-cols {
+/* 6. Desk 2-column layout */
+.pk-admin .desk2 {
   display: grid;
-  grid-template-columns: 1.55fr 1fr;
-  gap: 18px;
+  grid-template-columns: minmax(0, 1.7fr) minmax(300px, 1fr);
+  gap: 16px;
   align-items: start;
+}
+.pk-admin .desk2 > .grid {
+  display: grid;
+  gap: 16px;
+}
+.pk-admin .queue-head {
+  display: grid;
+  grid-template-columns: 40px 1fr auto;
+  gap: 12px;
+  padding: 10px 18px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--faint);
+  border-bottom: 1px solid var(--line-2);
 }
 .pk-admin .queue {
   list-style: none;
   margin: 0;
-  padding: 6px;
+  padding: 0;
+}
+.pk-admin .queue .q-row {
+  border-bottom: 1px solid var(--line-2);
+  border-radius: 0;
+  padding: 12px 14px;
+  margin: 0;
+}
+.pk-admin .queue .q-row:last-child {
+  border-bottom: 0;
 }
 .pk-admin .q-row {
   display: grid;
   grid-template-columns: 40px 1fr auto;
   gap: 12px;
   align-items: center;
-  padding: 10px 12px;
-  border-radius: 12px;
   transition: background .15s, opacity .35s, transform .35s var(--ease);
 }
 .pk-admin .q-row:hover {
@@ -2194,6 +2145,7 @@ kbd {
   align-items: center;
   gap: 8px;
   font-size: 15px;
+  color: var(--ink);
 }
 .pk-admin .q-main .sub {
   white-space: nowrap;
@@ -2238,43 +2190,122 @@ kbd {
   color: #fff;
 }
 
-/* Quick actions */
-.pk-admin .quick {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  padding: 14px;
+/* Setup checklist card */
+.pk-admin .setup-light ul {
+  list-style: none;
+  margin: 0;
+  padding: 8px 10px 12px;
 }
-.pk-admin .qa {
+.pk-admin .setup-light li {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 14px;
-  border-radius: 14px;
-  border: 1px solid var(--line);
-  background: linear-gradient(180deg, #fff, #fcfaf6);
-  cursor: pointer;
-  text-align: left;
-  text-decoration: none;
-  color: inherit;
-  transition: transform .18s var(--ease), border-color .2s, box-shadow .2s;
-}
-.pk-admin .qa:hover {
-  transform: translateY(-2px);
-  border-color: var(--g200);
-  box-shadow: var(--sh-2);
-}
-.pk-admin .qa .kpi-ico {
-  width: 32px;
-  height: 32px;
-}
-.pk-admin .qa b {
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  border-radius: 10px;
   font-size: 14px;
+  cursor: pointer;
+  color: var(--ink-2);
+}
+.pk-admin .setup-light li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+.pk-admin .setup-light li:hover {
+  background: var(--g50);
+}
+.pk-admin .setup-light .tick {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1.5px solid #d3c9b8;
+  display: grid;
+  place-items: center;
+  flex: none;
+  font-size: 12px;
+}
+.pk-admin .setup-light li.ok {
+  color: var(--muted);
+}
+.pk-admin .setup-light li.ok span {
+  text-decoration: line-through;
+}
+.pk-admin .setup-light li.ok .tick {
+  background: var(--g600);
+  border-color: var(--g600);
+  color: #fff;
+}
+.pk-admin .setup-light .meter {
+  margin: 0 18px 12px;
+}
+
+/* 7. Pro card */
+.pk-admin .pro-card {
+  padding: 16px 18px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+.pk-admin .pro-card .ph {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.pk-admin .pro-card .ph .eyebrow {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--g700);
+}
+.pk-admin .pro-inner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  border: 1px solid #ecd9ab;
+  background: linear-gradient(110deg, #fdf8ec, #f8f4ea 60%, #f1f6f2);
+}
+.pk-admin .pro-inner h4 {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
   color: var(--ink);
 }
-.pk-admin .qa span {
-  font-size: 12px;
+.pk-admin .pro-inner p {
+  margin: 4px 0 12px;
+  font-size: 13.5px;
   color: var(--muted);
+}
+.pk-admin .pro-chips {
+  margin-left: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: flex-end;
+  max-width: 52%;
+}
+.pk-admin .pro-chips span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 10px;
+  border-radius: 9px;
+  background: #fff;
+  border: 1px solid #efe3c4;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--ink-2);
+}
+.pk-admin .pro-chips svg {
+  color: #a07a26;
 }
 
 /* Mini packages strip */
@@ -2329,74 +2360,21 @@ kbd {
   color: var(--muted);
 }
 
-/* Pro strip */
-.pk-admin .pro-strip {
-  margin-top: 22px;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 12px;
-}
-.pk-admin .lock-card {
-  position: relative;
-  padding: 16px;
-  border-radius: 16px;
-  border: 1px solid var(--line);
-  background: var(--sheet);
-  overflow: hidden;
-  cursor: pointer;
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  transition: transform .2s var(--ease), box-shadow .2s;
-}
-.pk-admin .lock-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(110deg, transparent 30%, rgba(212,166,74,.16) 50%, transparent 70%);
-  transform: translateX(-100%);
-  transition: transform .8s var(--ease);
-}
-.pk-admin .lock-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--sh-2);
-}
-.pk-admin .lock-card:hover::after {
-  transform: translateX(100%);
-}
-.pk-admin .lock-card .lk {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 24px;
-  height: 24px;
-  border-radius: 7px;
-  background: var(--gold-100);
-  color: #8a6414;
-  display: grid;
-  place-items: center;
-}
-.pk-admin .lock-card b {
-  display: block;
-  margin: 10px 0 4px;
-  font-size: 14px;
-}
-.pk-admin .lock-card span {
-  font-size: 12px;
+/* Empty queue state */
+.pk-admin .empty {
+  text-align: center;
+  padding: 36px 20px;
   color: var(--muted);
 }
-.pk-admin .section-title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 28px 0 12px;
-}
-.pk-admin .section-title h2 {
-  margin: 0;
-  font-size: 18px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.pk-admin .empty .em-ico {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  margin: 0 auto 10px;
+  display: grid;
+  place-items: center;
+  background: var(--g50);
+  color: var(--g600);
 }
 
 /* Demo footer toolbar */
@@ -2408,6 +2386,7 @@ kbd {
   color: var(--muted);
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
 }
 .pk-admin .pk-demo-footer form {
@@ -2422,54 +2401,62 @@ kbd {
   font-weight: 700;
   cursor: pointer;
   text-decoration: underline;
+  font-size: 13px;
 }
 .pk-admin .pk-demo-footer button:hover {
   color: var(--g800);
 }
 
-@media (max-width: 960px) {
-  .pk-admin .hero,
-  .pk-admin .pk-hero,
-  .pk-admin .desk-cols {
-    grid-template-columns: 1fr;
-  }
-  .pk-admin .kpis,
-  .pk-admin .pk-kpis {
-    grid-template-columns: 1fr 1fr;
-  }
-  .pk-admin .moon {
-    right: 24px;
-  }
-  .pk-admin .place,
-  .pk-admin .season {
-    position: static;
-    z-index: 3;
-    margin-top: 12px;
-  }
-  .pk-admin .hero,
-  .pk-admin .pk-hero {
-    padding-bottom: 200px;
-  }
-  .pk-admin .pro-strip {
-    grid-template-columns: repeat(3, 1fr);
+/* Desk responsive */
+@media (max-width: 1400px) {
+  .pk-admin .stats6 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
-
-@media (max-width: 600px) {
-  .pk-admin .kpis,
-  .pk-admin .pk-kpis,
-  .pk-admin .quick {
+@media (max-width: 1100px) {
+  .pk-admin .desk2 {
     grid-template-columns: 1fr;
   }
-  .pk-admin .pro-strip {
+  .pk-admin .pro-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .pk-admin .pro-chips {
+    margin: 0;
+    justify-content: flex-start;
+    max-width: none;
+  }
+  .pk-admin .count-card {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 960px) {
+  .pk-admin .greet {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+@media (max-width: 600px) {
+  .pk-admin .stats6 {
     grid-template-columns: 1fr 1fr;
   }
-  .pk-admin .hero,
-  .pk-admin .pk-hero {
-    padding: 22px;
+  .pk-admin .timer b {
+    font-size: 32px;
   }
-  .pk-admin .hide-sm {
-    display: none !important;
+  .pk-admin .timer div {
+    min-width: 48px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pk-admin .tawaf,
+  .pk-admin .lamp {
+    animation: none !important;
+  }
+  .pk-admin .count-card .art svg {
+    transition: none !important;
+  }
+  .pk-admin [data-wait-pill] {
+    transition: none !important;
   }
 }
 
