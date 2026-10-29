@@ -1044,13 +1044,7 @@ final class Screens
         $rows = (array) ($paged_data['items'] ?? []);
         $total = (int) ($paged_data['total'] ?? 0);
 
-        $actions_html = '<form method="post" action="' . esc_url(admin_url('admin-post.php')) . '" class="inline-form">'
-            . wp_nonce_field('pothik_export_inquiries', '_wpnonce', true, false)
-            . '<input type="hidden" name="action" value="pothik_export_inquiries">'
-            . '<button type="submit" class="btn pk-btn pk-btn-ghost btn-ghost"><svg class="i sm"><use href="#i-down"/></svg>' . esc_html(I18n::t('Export CSV')) . '</button>'
-            . '</form>';
-
-        Chrome::open('Inquiries', 'Every name from the site form. Click a row to see details and reply.', $actions_html);
+        Chrome::open('Inquiries', 'Every name from the site form. Click a row to see details and reply.');
         Chrome::saved();
 
         echo '<section class="screen" data-screen="inquiries">';
@@ -1126,11 +1120,12 @@ final class Screens
         echo '<div class="sub">' . esc_html(I18n::t('Try another name, phone or city.')) . '</div>';
         echo '</div>';
 
-        // Pager
+        // Pager & Bottom Actions
         $start_item = $total > 0 ? ($page - 1) * $per_page + 1 : 0;
         $end_item = min($total, $page * $per_page);
         echo '<div class="pager pk-pager" id="inqPager">';
         echo '<span id="inqShowing">' . sprintf(esc_html(I18n::t('Showing %d–%d of %d')), $start_item, $end_item, $total) . '</span>';
+        echo '<div class="pager-nav pk-pager-nav">';
         if ($total_pages > 1) {
             echo '<div class="pg pk-pg">';
             for ($i = 1; $i <= $total_pages; $i++) {
@@ -1139,6 +1134,12 @@ final class Screens
             }
             echo '</div>';
         }
+        echo '<form method="post" action="' . esc_url(admin_url('admin-post.php')) . '" class="inline-form inq-export-form">';
+        wp_nonce_field('pothik_export_inquiries');
+        echo '<input type="hidden" name="action" value="pothik_export_inquiries">';
+        echo '<button type="submit" class="btn pk-btn pk-btn-ghost btn-ghost btn-sm" id="exportCsvBtn"><svg class="i sm"><use href="#i-down"/></svg>' . esc_html(I18n::t('Export CSV')) . '</button>';
+        echo '</form>';
+        echo '</div>'; // .pager-nav
         echo '</div>'; // .pager
 
         echo '</div>'; // .card
