@@ -65,9 +65,10 @@ final class Chrome
             $is_open = Modules::is_open($m_data);
             $icon = $icon_map[$m_id] ?? 'i-spark';
             $item_title = isset($m_data['title']) ? (string) $m_data['title'] : ucfirst($m_id);
+            $item_menu = isset($m_data['menu']) ? (string) $m_data['menu'] : $item_title;
             $pro_nav_items[] = [
                 'slug' => 'pothik-' . $m_id,
-                'label' => I18n::t($item_title),
+                'label' => I18n::t($item_menu),
                 'icon' => $icon,
                 'url' => $is_open ? admin_url('admin.php?page=pothik-' . $m_id) : admin_url('admin.php?page=pothik-pro'),
                 'locked' => !$is_open,
@@ -100,7 +101,7 @@ final class Chrome
                 'items' => [
                     [
                         'slug' => 'pothik-package',
-                        'label' => I18n::t('All packages'),
+                        'label' => I18n::t('Packages'),
                         'icon' => 'i-box',
                         'url' => admin_url('admin.php?page=pothik-package'),
                         'count' => $packages_count,
@@ -228,6 +229,10 @@ final class Chrome
 
         // Header
         echo '<header class="pk-head">';
+        echo '<button type="button" class="pk-side-open" id="pkSideOpen" aria-label="' . esc_attr(I18n::t('Pothik menu')) . '">';
+        echo '<svg class="i" aria-hidden="true"><use href="#i-menu"/></svg>';
+        echo '</button>';
+        echo '<div class="pk-side-scrim" id="pkSideScrim"></div>';
         echo '<div>';
         echo '<h1 id="hTitle">' . esc_html(I18n::t($title)) . '</h1>';
         if ($lead !== '') {

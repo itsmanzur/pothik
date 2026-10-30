@@ -145,32 +145,43 @@ body.pothik-focus #wpfooter {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Shell Grid */
+/* Shell */
 .pk-app {
-  --sw: 248px;
-  background: linear-gradient(90deg, #0b201a 0 var(--sw), transparent var(--sw));
-  display: grid;
-  grid-template-columns: var(--sw) minmax(0, 1fr);
+  display: block;
   min-height: calc(100vh - 32px);
-  transition: grid-template-columns .25s var(--ease);
-}
-.pk-app.mini,
-body.pothik-side-mini .pk-app {
-  --sw: 76px;
-  grid-template-columns: 76px minmax(0, 1fr);
+  background: none;
 }
 
-/* Sidebar */
+/* Sidebar stays full height beside the content. */
 .pk-side {
-  position: sticky;
+  position: fixed;
   top: 32px;
-  height: calc(100vh - 32px);
+  bottom: 0;
+  left: 160px;
+  width: 248px;
   display: flex;
   flex-direction: column;
   background: linear-gradient(180deg, #0f2a21 0%, #0b201a 100%);
   color: #d9e6df;
   border-right: 1px solid rgba(255,255,255,.04);
   z-index: 20;
+  transition: left .3s var(--ease), width .3s var(--ease), transform .3s var(--ease);
+}
+body.folded .pk-side,
+body.auto-fold:not(.folded) .pk-side {
+  left: 36px;
+}
+@media (max-width: 782px), (min-width: 961px) {
+  body.auto-fold:not(.folded) .pk-side {
+    left: 160px;
+  }
+}
+body.pothik-focus .pk-side {
+  left: 0;
+}
+.pk-app.mini .pk-side,
+body.pothik-side-mini .pk-side {
+  width: 76px;
 }
 .pk-side::before {
   content: "";
@@ -385,11 +396,34 @@ body.pothik-side-mini .pk-app {
   margin: 8px;
 }
 
-/* Body column */
+/* Body column sits to the right of the fixed sidebar. */
 .pk-body {
   min-width: 0;
   display: flex;
   flex-direction: column;
+  margin-left: 248px;
+  min-height: calc(100vh - 32px);
+  transition: margin-left .3s var(--ease);
+}
+.pk-app.mini .pk-body,
+body.pothik-side-mini .pk-body {
+  margin-left: 76px;
+}
+.pk-side-open {
+  display: none;
+  width: 38px;
+  height: 38px;
+  margin-right: 8px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  place-items: center;
+  cursor: pointer;
+  color: var(--ink);
+  flex: none;
+}
+.pk-side-scrim {
+  display: none;
 }
 .pk-head {
   position: sticky;
@@ -454,35 +488,60 @@ body.pothik-side-mini .pk-app {
   box-sizing: border-box;
 }
 
-@media (max-width: 960px) {
-  .pk-app {
-    grid-template-columns: 1fr;
-    background: none;
-  }
+@media (max-width: 782px) {
   .pk-side {
-    display: none;
+    top: 46px;
+    left: 0;
+    width: min(280px, 86vw);
+    transform: translateX(-105%);
+    z-index: 100;
+  }
+  body.folded .pk-side,
+  body.auto-fold:not(.folded) .pk-side,
+  body.pothik-focus .pk-side,
+  .pk-app.mini .pk-side,
+  body.pothik-side-mini .pk-side {
+    left: 0;
+    width: min(280px, 86vw);
+  }
+  body.pothik-side-open .pk-side {
+    transform: none;
+  }
+  .pk-body,
+  .pk-app.mini .pk-body,
+  body.pothik-side-mini .pk-body {
+    margin-left: 0;
+  }
+  .pk-app,
+  .pk-body {
+    min-height: calc(100vh - 46px);
   }
   .pk-head {
+    top: 46px;
     flex-wrap: wrap;
     padding: 12px 16px;
   }
   .pk {
     padding: 16px;
   }
+  .pk-side-open {
+    display: grid;
+  }
+  .pk-side-scrim {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 20, 18, .35);
+    z-index: 90;
+    opacity: 0;
+    pointer-events: none;
+  }
+  body.pothik-side-open .pk-side-scrim {
+    opacity: 1;
+    pointer-events: auto;
+  }
   #focusBtn {
     display: none !important;
-  }
-}
-@media (max-width: 782px) {
-  .pk-head,
-  .pk-side {
-    top: 46px;
-  }
-  .pk-app {
-    min-height: calc(100vh - 46px);
-  }
-  .pk-side {
-    height: calc(100vh - 46px);
   }
 }
 
@@ -2998,3 +3057,34 @@ select.share-sel option,
 .pk-admin.pk-enter > :not(.pk-appbar){opacity:0;transform:translateY(4px)}
 .pk-admin .pk-page-head h1:focus{outline:none}
 @media (prefers-reduced-motion: reduce){.pk-admin > :not(.pk-appbar){transition:none}.pk-admin.pk-enter > :not(.pk-appbar){transform:none}}
+
+.pk-admin .pk-seg{display:none}
+.pk-admin.is-js .pk-seg{display:flex;width:100%}
+.pk-admin.is-js .pk-seg-native{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.pk-admin .pk-notice-row{display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:12px;font-weight:600;font-size:14px}
+.pk-admin .pk-notice-row.is-warn{background:var(--clay-50,#fdf4f0);border:1px solid #f2cfc1;color:#8a3d1d}
+.pk-admin .pk-notice-row.is-ok{background:var(--g50);border:1px solid var(--g200);color:var(--g800)}
+.pk-admin .pk-notice-row.is-info{background:var(--line-2);border:1px solid var(--line);color:var(--ink-2)}
+.pk-admin .pk-stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.pk-admin .pk-stat strong{display:block;font-size:28px;line-height:1}
+.pk-admin .pk-person{display:grid;grid-template-columns:44px 1fr auto;gap:10px;align-items:center;padding:10px;border-radius:12px;border:1px solid var(--line-2);background:#fcfaf6;margin-top:10px}
+.pk-admin .pk-person .ava{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;color:#fff;font-weight:800}
+.pk-admin .pk-person .pin{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pk-admin .pk-person .acts{display:flex;gap:4px}
+
+/* compat for add-ons — keep
+   Pothik Pro depends on this block. Do not delete it in future cleanups. */
+.pk-admin .pk-panel{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--sh-1);padding:20px;margin-bottom:16px}
+.pk-admin .pk-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.pk-admin .pk-panel label>span,.pk-admin label.pk-field>span{font-size:13px;font-weight:700;color:var(--ink-2);display:flex;justify-content:space-between;gap:8px}
+.pk-admin .pk-lead{color:var(--muted);font-size:14px;margin:0 0 14px}
+.pk-admin .pk-warn{display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:12px;background:var(--clay-50,#fdf4f0);border:1px solid #f2cfc1;color:#8a3d1d;font-weight:600;margin-bottom:8px}
+.pk-admin .pk-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:16px}
+.pk-admin .pk-stats>div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.pk-admin .pk-stats strong{display:block;font-size:26px;line-height:1}
+.pk-admin .pk-stats span{color:var(--muted);font-size:13px}
+.pk-admin .pk-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:38px;padding:0 16px;border-radius:10px;border:1px solid transparent;font-weight:700;font-size:14px;cursor:pointer;text-decoration:none;background:linear-gradient(180deg,var(--g700),var(--g800));color:#fff}
+.pk-admin .pk-form-actions{display:flex;justify-content:flex-end;margin-top:16px}
+@media (max-width:700px){
+  .pk-admin .pk-grid,.pk-admin .pk-fgrid,.pk-admin .pk-fgrid.three,.pk-admin .pk-person .pin{grid-template-columns:1fr}
+}

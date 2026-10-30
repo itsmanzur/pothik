@@ -2014,3 +2014,111 @@ msgstr ""
 
 msgid "Departs %s"
 msgstr ""
+
+msgid "Return date is before the leave date."
+msgstr ""
+
+msgid "All dates fit inside the Saudi season."
+msgstr ""
+
+msgid "Departs in"
+msgstr ""
+
+msgid "Today"
+msgstr ""
+
+msgid "Departed"
+msgstr ""
+
+msgid "%d seats left"
+msgstr ""
+
+msgid "Full"
+msgstr ""
+
+msgid "%1$d of %2$d seats confirmed"
+msgstr ""
+
+msgid "Shown on the package page: “%s” — only when the site has one package."
+msgstr ""
+
+msgid "Private file — no seat line is shown on the site."
+msgstr ""
+
+msgid "Unsaved departure"
+msgstr ""
+
+msgid "Season timeline"
+msgstr ""
+
+msgid "Gold = Saudi season dates · Green = this trip · Red = outside the season. Warnings only — saving is never blocked."
+msgstr ""
+
+msgid "Dates and flight numbers for this group."
+msgstr ""
+
+msgid "airport code"
+msgstr ""
+
+msgid "Outbound / return"
+msgstr ""
+
+msgid "Seats & type"
+msgstr ""
+
+msgid "A private file leaves the seat line off the site."
+msgstr ""
+
+msgid "max = total"
+msgstr ""
+
+msgid "Saudi partner"
+msgstr ""
+
+msgid "Program details from the Saudi company."
+msgstr ""
+
+msgid "People on this trip"
+msgstr ""
+
+msgid "Pilgrims see these names on their papers. Tap to call or WhatsApp."
+msgstr ""
+
+msgid "Group file · %s"
+msgstr ""
+
+msgid "Confirmed"
+msgstr ""
+
+msgid "Seats"
+msgstr ""
+
+msgid "Chattogram"
+msgstr ""
+
+msgid "Sylhet"
+msgstr ""
+
+msgid "Jeddah"
+msgstr ""
+
+msgid "Flight not set"
+msgstr ""
+
+msgid "+%d days"
+msgstr ""
+
+msgid "Departure saved"
+msgstr ""
+
+msgid "Leave"
+msgstr ""
+
+msgid "Return"
+msgstr ""
+
+msgid "Trip"
+msgstr ""
+
+msgid "%d days"
+msgstr ""

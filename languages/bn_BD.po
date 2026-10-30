@@ -2015,3 +2015,111 @@ msgstr "রমজানের ছাড়া"
 
 msgid "Departs %s"
 msgstr "ছাড়ে %s"
+
+msgid "Return date is before the leave date."
+msgstr "ফেরার তারিখ ছাড়ার তারিখের আগে।"
+
+msgid "All dates fit inside the Saudi season."
+msgstr "সব তারিখ সৌদি মৌসুমের ভেতরে আছে।"
+
+msgid "Departs in"
+msgstr "ছাড়তে বাকি"
+
+msgid "Today"
+msgstr "আজ"
+
+msgid "Departed"
+msgstr "ছাড়া হয়ে গেছে"
+
+msgid "%d seats left"
+msgstr "%d সিট বাকি"
+
+msgid "Full"
+msgstr "পূর্ণ"
+
+msgid "%1$d of %2$d seats confirmed"
+msgstr "%2$d সিটের মধ্যে %1$d কনফার্ম"
+
+msgid "Shown on the package page: “%s” — only when the site has one package."
+msgstr "প্যাকেজ পাতায় দেখায়: “%s” — শুধু সাইটে একটি প্যাকেজ থাকলে।"
+
+msgid "Private file — no seat line is shown on the site."
+msgstr "প্রাইভেট ফাইল — সাইটে সিট লাইন দেখায় না।"
+
+msgid "Unsaved departure"
+msgstr "ডিপারচার সেভ হয়নি"
+
+msgid "Season timeline"
+msgstr "মৌসুমের সময়রেখা"
+
+msgid "Gold = Saudi season dates · Green = this trip · Red = outside the season. Warnings only — saving is never blocked."
+msgstr "সোনালি = সৌদি মৌসুমের তারিখ · সবুজ = এই সফর · লাল = মৌসুমের বাইরে। শুধু সতর্কতা — সেভ আটকায় না।"
+
+msgid "Dates and flight numbers for this group."
+msgstr "এই গ্রুপের তারিখ ও ফ্লাইট নম্বর।"
+
+msgid "airport code"
+msgstr "এয়ারপোর্ট কোড"
+
+msgid "Outbound / return"
+msgstr "যাওয়া / ফেরা"
+
+msgid "Seats & type"
+msgstr "সিট ও ধরন"
+
+msgid "A private file leaves the seat line off the site."
+msgstr "প্রাইভেট ফাইলে সাইটে সিট লাইন থাকে না।"
+
+msgid "max = total"
+msgstr "সর্বোচ্চ = মোট"
+
+msgid "Saudi partner"
+msgstr "সৌদি পার্টনার"
+
+msgid "Program details from the Saudi company."
+msgstr "সৌদি কোম্পানির প্রোগ্রামের তথ্য।"
+
+msgid "People on this trip"
+msgstr "এই সফরের মানুষ"
+
+msgid "Pilgrims see these names on their papers. Tap to call or WhatsApp."
+msgstr "যাত্রীরা কাগজে এই নাম দেখে। কল বা হোয়াটসঅ্যাপে ট্যাপ করুন।"
+
+msgid "Group file · %s"
+msgstr "গ্রুপ ফাইল · %s"
+
+msgid "Confirmed"
+msgstr "কনফার্ম"
+
+msgid "Seats"
+msgstr "সিট"
+
+msgid "Chattogram"
+msgstr "চট্টগ্রাম"
+
+msgid "Sylhet"
+msgstr "সিলেট"
+
+msgid "Jeddah"
+msgstr "জেদ্দা"
+
+msgid "Flight not set"
+msgstr "ফ্লাইট বসানো হয়নি"
+
+msgid "+%d days"
+msgstr "+%d দিন"
+
+msgid "Departure saved"
+msgstr "ডিপারচার সেভ হয়েছে"
+
+msgid "Leave"
+msgstr "ছাড়া"
+
+msgid "Return"
+msgstr "ফেরা"
+
+msgid "Trip"
+msgstr "সফর"
+
+msgid "%d days"
+msgstr "%d দিন"

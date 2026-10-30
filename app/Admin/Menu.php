@@ -158,6 +158,8 @@ final class Menu
                 'adminUrl' => admin_url('admin.php'),
             ],
         ]);
+
+        do_action('pothik/admin_enqueue', $hook);
     }
 
     public static function overview(): void

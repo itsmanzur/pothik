@@ -26,6 +26,7 @@ define('POTHIK_VERSION', '0.3.0');
 define('POTHIK_FILE', __FILE__);
 define('POTHIK_DIR', plugin_dir_path(__FILE__));
 define('POTHIK_URL', plugin_dir_url(__FILE__));
+define('POTHIK_UI_VERSION', '1');
 
 spl_autoload_register(static function (string $class): void {
     $prefix = 'Pothik\\';

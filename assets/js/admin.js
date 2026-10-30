@@ -63,7 +63,11 @@
         return container;
     }
 
-    function toast(msg, undo) {
+        window.pothikAdmin.toast = function (msg, undo) {
+            toast(msg, undo);
+        };
+
+        function toast(msg, undo) {
         if (!msg) {
             return;
         }
@@ -2848,6 +2852,105 @@
                 fetch(config.ajax, { method: 'POST', body: fd });
             });
         }
+
+        var shell = document.querySelector('.pk-admin');
+        if (shell) {
+            shell.classList.add('is-js');
+        }
+        var sideOpen = document.getElementById('pkSideOpen');
+        var sideScrim = document.getElementById('pkSideScrim');
+        function closeSide() {
+            document.body.classList.remove('pothik-side-open');
+        }
+        if (sideOpen && !sideOpen.dataset.bound) {
+            sideOpen.dataset.bound = 'true';
+            sideOpen.addEventListener('click', function () {
+                document.body.classList.toggle('pothik-side-open');
+            });
+        }
+        if (sideScrim && !sideScrim.dataset.bound) {
+            sideScrim.dataset.bound = 'true';
+            sideScrim.addEventListener('click', closeSide);
+        }
+        document.querySelectorAll('.pk-side a').forEach(function (link) {
+            link.addEventListener('click', closeSide);
+        });
+        var current = document.querySelector('.pk-side .side-nav a.on');
+        if (current && typeof current.scrollIntoView === 'function') {
+            current.scrollIntoView({ block: 'nearest' });
+        }
+
+        document.querySelectorAll('[data-pk-seg]').forEach(function (group) {
+            var name = group.getAttribute('data-bind') || '';
+            var select = group.parentElement ? group.parentElement.querySelector('select[name="' + name + '"]') : null;
+            if (!select || select.dataset.bound) {
+                return;
+            }
+            select.dataset.bound = 'true';
+            var hidden = document.createElement('input');
+            hidden.type = 'hidden';
+            hidden.name = select.name;
+            hidden.value = select.value;
+            select.disabled = true;
+            select.after(hidden);
+            group.addEventListener('click', function (event) {
+                var button = event.target.closest('button');
+                if (!button || !group.contains(button)) {
+                    return;
+                }
+                group.querySelectorAll('button').forEach(function (item) {
+                    item.classList.toggle('on', item === button);
+                });
+                hidden.value = button.getAttribute('data-v') || '';
+                select.value = hidden.value;
+                var form = group.closest('form');
+                if (form) {
+                    form.dispatchEvent(new Event('input', { bubbles: true }));
+                }
+            });
+        });
+
+        document.querySelectorAll('.pk-stepper [data-step], .stepper [data-step]').forEach(function (button) {
+            if (button.dataset.bound) {
+                return;
+            }
+            button.dataset.bound = 'true';
+            button.addEventListener('click', function () {
+                var input = button.parentElement ? button.parentElement.querySelector('input') : null;
+                if (!input) {
+                    return;
+                }
+                var next = Math.max(0, (parseInt(input.value, 10) || 0) + (parseInt(button.getAttribute('data-step'), 10) || 0));
+                var max = input.getAttribute('max');
+                if (max !== null && max !== '' && next > parseInt(max, 10)) {
+                    next = parseInt(max, 10);
+                }
+                input.value = String(next);
+                input.dispatchEvent(new Event('input', { bubbles: true }));
+            });
+        });
+
+        document.querySelectorAll('form[data-pk-dirty]').forEach(function (form) {
+            if (form.dataset.barBound) {
+                return;
+            }
+            form.dataset.barBound = 'true';
+            var bar = form.querySelector('[data-pk-savebar]');
+            if (!bar) {
+                return;
+            }
+            var show = function () {
+                bar.classList.add('show');
+            };
+            form.addEventListener('input', show);
+            form.addEventListener('change', show);
+            var discard = form.querySelector('[data-pk-discard]');
+            if (discard) {
+                discard.addEventListener('click', function () {
+                    window.location.reload();
+                });
+            }
+        });
     }
 
     function bootPage() {
