@@ -2317,3 +2317,123 @@ msgstr ""
 
 msgid "New"
 msgstr ""
+
+msgid "Rooming saved"
+msgstr ""
+
+msgid "%1$d room"
+msgstr ""
+
+msgid "%1$d rooms"
+msgstr ""
+
+msgid "%1$d / %2$d placed"
+msgstr ""
+
+msgid "%1$d room · %2$d beds"
+msgstr ""
+
+msgid "%1$d rooms · %2$d beds"
+msgstr ""
+
+msgid "%1$d not in a room"
+msgstr ""
+
+msgid "%1$d to check"
+msgstr ""
+
+msgid "Drag a pilgrim onto a room — or click a pilgrim, then click a room. Each city has its own list."
+msgstr ""
+
+msgid "Not in a room"
+msgstr ""
+
+msgid "%s list · from the pilgrim file"
+msgstr ""
+
+msgid "Everyone has a bed in %s"
+msgstr ""
+
+msgid "Room no."
+msgstr ""
+
+msgid "Empty bed"
+msgstr ""
+
+msgid "%1$d / %2$d people"
+msgstr ""
+
+msgid "· full"
+msgstr ""
+
+msgid "%1$d people"
+msgstr ""
+
+msgid "Remove room"
+msgstr ""
+
+msgid "Add a room"
+msgstr ""
+
+msgid "Pick the room type"
+msgstr ""
+
+msgid "Over capacity"
+msgstr ""
+
+msgid "Mixed men & women, not one family"
+msgstr ""
+
+msgid "%1$s booked %2$s"
+msgstr ""
+
+msgid "A room can hold up to 8 people."
+msgstr ""
+
+msgid "%1$s moved to %2$s"
+msgstr ""
+
+msgid "no room"
+msgstr ""
+
+msgid "%s removed — pilgrims are back in the list"
+msgstr ""
+
+msgid "Unsaved rooming"
+msgstr ""
+
+msgid "Fill by family"
+msgstr ""
+
+msgid "Copy %1$s rooms to %2$s"
+msgstr ""
+
+msgid "Replace the %1$d %2$s rooms?"
+msgstr ""
+
+msgid "%1$d pilgrims placed by family — check and save"
+msgstr ""
+
+msgid "Everyone already has a bed"
+msgstr ""
+
+msgid "Copied to %s — add room numbers there"
+msgstr ""
+
+msgid "Print for hotel"
+msgstr ""
+
+msgid "Add pilgrims to the pilgrim file first"
+msgstr ""
+
+msgid "Start with Fill by family"
+msgstr ""
+
+msgid "Room %d"
+msgstr ""
+
+msgid "Remove from room"
+msgstr ""
+
+msgid "%1$s, %2$s, in %3$s"
+msgstr ""

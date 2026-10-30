@@ -2318,3 +2318,123 @@ msgstr "শেয়ার · পরিবার"
 
 msgid "New"
 msgstr "নতুন"
+
+msgid "Rooming saved"
+msgstr "রুমিং সেভ হয়েছে"
+
+msgid "%1$d room"
+msgstr "%1$d রুম"
+
+msgid "%1$d rooms"
+msgstr "%1$d রুম"
+
+msgid "%1$d / %2$d placed"
+msgstr "%2$d জনের মধ্যে %1$d জন বসানো"
+
+msgid "%1$d room · %2$d beds"
+msgstr "%1$d রুম · %2$d বিছানা"
+
+msgid "%1$d rooms · %2$d beds"
+msgstr "%1$d রুম · %2$d বিছানা"
+
+msgid "%1$d not in a room"
+msgstr "%1$d জনের রুম হয়নি"
+
+msgid "%1$d to check"
+msgstr "%1$dটি দেখতে হবে"
+
+msgid "Drag a pilgrim onto a room — or click a pilgrim, then click a room. Each city has its own list."
+msgstr "যাত্রীকে রুমে টেনে ছাড়ুন — অথবা যাত্রীতে ক্লিক করে তারপর রুমে ক্লিক করুন। প্রতিটি শহরের তালিকা আলাদা।"
+
+msgid "Not in a room"
+msgstr "রুমে নেই"
+
+msgid "%s list · from the pilgrim file"
+msgstr "%s তালিকা · যাত্রী ফাইল থেকে"
+
+msgid "Everyone has a bed in %s"
+msgstr "%s-তে সবার বিছানা আছে"
+
+msgid "Room no."
+msgstr "রুম নং"
+
+msgid "Empty bed"
+msgstr "খালি বিছানা"
+
+msgid "%1$d / %2$d people"
+msgstr "%1$d / %2$d জন"
+
+msgid "· full"
+msgstr "· পূর্ণ"
+
+msgid "%1$d people"
+msgstr "%1$d জন"
+
+msgid "Remove room"
+msgstr "রুম সরান"
+
+msgid "Add a room"
+msgstr "একটি রুম যোগ করুন"
+
+msgid "Pick the room type"
+msgstr "রুমের ধরন বেছে নিন"
+
+msgid "Over capacity"
+msgstr "ধারণক্ষমতার বেশি"
+
+msgid "Mixed men & women, not one family"
+msgstr "পুরুষ ও নারী এক পরিবার নয়"
+
+msgid "%1$s booked %2$s"
+msgstr "%1$s বুক করেছেন %2$s"
+
+msgid "A room can hold up to 8 people."
+msgstr "এক রুমে সর্বোচ্চ ৮ জন।"
+
+msgid "%1$s moved to %2$s"
+msgstr "%1$s গেছেন %2$s-এ"
+
+msgid "no room"
+msgstr "কোনো রুম নেই"
+
+msgid "%s removed — pilgrims are back in the list"
+msgstr "%s সরানো হয়েছে — যাত্রীরা তালিকায় ফিরেছেন"
+
+msgid "Unsaved rooming"
+msgstr "রুমিং সেভ হয়নি"
+
+msgid "Fill by family"
+msgstr "পরিবার ধরে ভরুন"
+
+msgid "Copy %1$s rooms to %2$s"
+msgstr "%1$s-এর রুম %2$s-তে কপি"
+
+msgid "Replace the %1$d %2$s rooms?"
+msgstr "%2$s-এর %1$dটি রুম বদলাবেন?"
+
+msgid "%1$d pilgrims placed by family — check and save"
+msgstr "%1$d জনকে পরিবার ধরে বসানো হয়েছে — দেখে সেভ করুন"
+
+msgid "Everyone already has a bed"
+msgstr "সবার বিছানা আগেই আছে"
+
+msgid "Copied to %s — add room numbers there"
+msgstr "%s-তে কপি হয়েছে — সেখানে রুম নম্বর দিন"
+
+msgid "Print for hotel"
+msgstr "হোটেলের জন্য প্রিন্ট"
+
+msgid "Add pilgrims to the pilgrim file first"
+msgstr "আগে যাত্রী ফাইলে যাত্রী যোগ করুন"
+
+msgid "Start with Fill by family"
+msgstr "পরিবার ধরে ভরা দিয়ে শুরু করুন"
+
+msgid "Room %d"
+msgstr "রুম %d"
+
+msgid "Remove from room"
+msgstr "রুম থেকে সরান"
+
+msgid "%1$s, %2$s, in %3$s"
+msgstr "%1$s, %2$s, %3$s-এ"
