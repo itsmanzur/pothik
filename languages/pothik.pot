@@ -2122,3 +2122,198 @@ msgstr ""
 
 msgid "%d days"
 msgstr ""
+
+msgid "Pilgrims on file"
+msgstr ""
+
+msgid "%1$d ♂ · %2$d ♀"
+msgstr ""
+
+msgid "of %d confirmed seats"
+msgstr ""
+
+msgid "Visa issued"
+msgstr ""
+
+msgid "%d waiting for payment"
+msgstr ""
+
+msgid "Biometric done"
+msgstr ""
+
+msgid "%d failed — book again"
+msgstr ""
+
+msgid "No failures"
+msgstr ""
+
+msgid "Passport problems"
+msgstr ""
+
+msgid "Less than %d months left on the leave date"
+msgstr ""
+
+msgid "Visa progress"
+msgstr ""
+
+msgid "Click a status to filter the list. Issue happens on Masar."
+msgstr ""
+
+msgid "By family"
+msgstr ""
+
+msgid "List"
+msgstr ""
+
+msgid "Print list"
+msgstr ""
+
+msgid "Search name, passport or family"
+msgstr ""
+
+msgid "Pilgrim"
+msgstr ""
+
+msgid "Ready"
+msgstr ""
+
+msgid "No family"
+msgstr ""
+
+msgid "%d person"
+msgstr ""
+
+msgid "%d people"
+msgstr ""
+
+msgid "%d yrs"
+msgstr ""
+
+msgid "Missing"
+msgstr ""
+
+msgid "No pilgrims yet"
+msgstr ""
+
+msgid "Add the first pilgrim"
+msgstr ""
+
+msgid "No pilgrim matches"
+msgstr ""
+
+msgid "Mahram is a relationship here. It does not block anyone. Passport numbers stay on this desk."
+msgstr ""
+
+msgid "Pilgrim deleted"
+msgstr ""
+
+msgid "Passport valid %d months"
+msgstr ""
+
+msgid "Vaccine on file"
+msgstr ""
+
+msgid "Insurance noted"
+msgstr ""
+
+msgid "as in passport"
+msgstr ""
+
+msgid "Identity"
+msgstr ""
+
+msgid "As written in the passport."
+msgstr ""
+
+msgid "%d yrs on leave date"
+msgstr ""
+
+msgid "Passport number"
+msgstr ""
+
+msgid "Saudi entry needs at least %d months left on the leave date."
+msgstr ""
+
+msgid "valid on leave date"
+msgstr ""
+
+msgid "needs %1$d months after %2$s"
+msgstr ""
+
+msgid "Room share & family"
+msgstr ""
+
+msgid "Share decides the price row and the rooming list."
+msgstr ""
+
+msgid "group people who travel together"
+msgstr ""
+
+msgid "mahram link"
+msgstr ""
+
+msgid "e.g. Farhana's husband"
+msgstr ""
+
+msgid "Travels with %s. Mahram is a relationship here — it does not block anyone."
+msgstr ""
+
+msgid "Mahram is a relationship here. It does not block anyone."
+msgstr ""
+
+msgid "Visa & health"
+msgstr ""
+
+msgid "Staff update the status here. Issue happens on Masar."
+msgstr ""
+
+msgid "Meningitis, conjugate"
+msgstr ""
+
+msgid "Meningitis, polysaccharide"
+msgstr ""
+
+msgid "Certificate has not reached the office"
+msgstr ""
+
+msgid "With the visa"
+msgstr ""
+
+msgid "Separate policy"
+msgstr ""
+
+msgid "Delete this pilgrim"
+msgstr ""
+
+msgid "Removes them from rooming lists and unlinks ledger rows."
+msgstr ""
+
+msgid "Delete %s?"
+msgstr ""
+
+msgid "Unsaved pilgrim"
+msgstr ""
+
+msgid "Name is required"
+msgstr ""
+
+msgid "Pilgrim saved"
+msgstr ""
+
+msgid "Ready to travel"
+msgstr ""
+
+msgid "Photo file comes in a later version."
+msgstr ""
+
+msgid "Sex"
+msgstr ""
+
+msgid "Born"
+msgstr ""
+
+msgid "Share · Family"
+msgstr ""
+
+msgid "New"
+msgstr ""

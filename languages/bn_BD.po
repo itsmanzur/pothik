@@ -2123,3 +2123,198 @@ msgstr "সফর"
 
 msgid "%d days"
 msgstr "%d দিন"
+
+msgid "Pilgrims on file"
+msgstr "ফাইলে যাত্রী"
+
+msgid "%1$d ♂ · %2$d ♀"
+msgstr "%1$d ♂ · %2$d ♀"
+
+msgid "of %d confirmed seats"
+msgstr "%d কনফার্ম সিটের মধ্যে"
+
+msgid "Visa issued"
+msgstr "ভিসা ইস্যু"
+
+msgid "%d waiting for payment"
+msgstr "%d জনের পেমেন্ট বাকি"
+
+msgid "Biometric done"
+msgstr "বায়োমেট্রিক সম্পন্ন"
+
+msgid "%d failed — book again"
+msgstr "%d জনের ফেইল — আবার বুক করুন"
+
+msgid "No failures"
+msgstr "কেউ ফেইল করেনি"
+
+msgid "Passport problems"
+msgstr "পাসপোর্ট সমস্যা"
+
+msgid "Less than %d months left on the leave date"
+msgstr "ছাড়ার দিনে %d মাসের কম বাকি"
+
+msgid "Visa progress"
+msgstr "ভিসার অগ্রগতি"
+
+msgid "Click a status to filter the list. Issue happens on Masar."
+msgstr "স্ট্যাটাসে ক্লিক করলে তালিকা ছাঁকা হয়। ইস্যু হয় মাসারে।"
+
+msgid "By family"
+msgstr "পরিবার অনুযায়ী"
+
+msgid "List"
+msgstr "তালিকা"
+
+msgid "Print list"
+msgstr "তালিকা প্রিন্ট"
+
+msgid "Search name, passport or family"
+msgstr "নাম, পাসপোর্ট বা পরিবার খুঁজুন"
+
+msgid "Pilgrim"
+msgstr "যাত্রী"
+
+msgid "Ready"
+msgstr "প্রস্তুত"
+
+msgid "No family"
+msgstr "কোনো পরিবার নেই"
+
+msgid "%d person"
+msgstr "%d জন"
+
+msgid "%d people"
+msgstr "%d জন"
+
+msgid "%d yrs"
+msgstr "%d বছর"
+
+msgid "Missing"
+msgstr "নেই"
+
+msgid "No pilgrims yet"
+msgstr "এখনো কোনো যাত্রী নেই"
+
+msgid "Add the first pilgrim"
+msgstr "প্রথম যাত্রী যোগ করুন"
+
+msgid "No pilgrim matches"
+msgstr "কোনো যাত্রী মেলেনি"
+
+msgid "Mahram is a relationship here. It does not block anyone. Passport numbers stay on this desk."
+msgstr "মাহরাম এখানে সম্পর্ক। কাউকে আটকায় না। পাসপোর্ট নম্বর এই ডেস্কেই থাকে।"
+
+msgid "Pilgrim deleted"
+msgstr "যাত্রী মুছে ফেলা হয়েছে"
+
+msgid "Passport valid %d months"
+msgstr "পাসপোর্ট %d মাস বৈধ"
+
+msgid "Vaccine on file"
+msgstr "টিকা ফাইলে আছে"
+
+msgid "Insurance noted"
+msgstr "বিমা লেখা আছে"
+
+msgid "as in passport"
+msgstr "পাসপোর্টে যেমন"
+
+msgid "Identity"
+msgstr "পরিচয়"
+
+msgid "As written in the passport."
+msgstr "পাসপোর্টে যেমন লেখা।"
+
+msgid "%d yrs on leave date"
+msgstr "ছাড়ার দিনে %d বছর"
+
+msgid "Passport number"
+msgstr "পাসপোর্ট নম্বর"
+
+msgid "Saudi entry needs at least %d months left on the leave date."
+msgstr "সৌদি প্রবেশে ছাড়ার দিনে অন্তত %d মাস বাকি থাকা লাগে।"
+
+msgid "valid on leave date"
+msgstr "ছাড়ার দিনে বৈধ"
+
+msgid "needs %1$d months after %2$s"
+msgstr "%2$s-এর পর %1$d মাস লাগে"
+
+msgid "Room share & family"
+msgstr "রুম শেয়ার ও পরিবার"
+
+msgid "Share decides the price row and the rooming list."
+msgstr "শেয়ার দামের সারি ও রুম তালিকা ঠিক করে।"
+
+msgid "group people who travel together"
+msgstr "যারা একসঙ্গে যাবেন"
+
+msgid "mahram link"
+msgstr "মাহরাম সম্পর্ক"
+
+msgid "e.g. Farhana's husband"
+msgstr "যেমন ফারহানার স্বামী"
+
+msgid "Travels with %s. Mahram is a relationship here — it does not block anyone."
+msgstr "%s-এর সাথে যাচ্ছেন। মাহরাম এখানে সম্পর্ক — কাউকে আটকায় না।"
+
+msgid "Mahram is a relationship here. It does not block anyone."
+msgstr "মাহরাম এখানে সম্পর্ক। কাউকে আটকায় না।"
+
+msgid "Visa & health"
+msgstr "ভিসা ও স্বাস্থ্য"
+
+msgid "Staff update the status here. Issue happens on Masar."
+msgstr "স্টাফ এখানে স্ট্যাটাস বদলায়। ইস্যু হয় মাসারে।"
+
+msgid "Meningitis, conjugate"
+msgstr "মেনিনজাইটিস, কনজুগেট"
+
+msgid "Meningitis, polysaccharide"
+msgstr "মেনিনজাইটিস, পলিস্যাকারাইড"
+
+msgid "Certificate has not reached the office"
+msgstr "অফিসে সনদ এখনো আসেনি"
+
+msgid "With the visa"
+msgstr "ভিসার সাথে"
+
+msgid "Separate policy"
+msgstr "আলাদা পলিসি"
+
+msgid "Delete this pilgrim"
+msgstr "এই যাত্রী মুছুন"
+
+msgid "Removes them from rooming lists and unlinks ledger rows."
+msgstr "রুম তালিকা থেকে সরে যায় এবং কিস্তির সারি খুলে যায়।"
+
+msgid "Delete %s?"
+msgstr "%s মুছবেন?"
+
+msgid "Unsaved pilgrim"
+msgstr "যাত্রী সেভ হয়নি"
+
+msgid "Name is required"
+msgstr "নাম লাগবে"
+
+msgid "Pilgrim saved"
+msgstr "যাত্রী সেভ হয়েছে"
+
+msgid "Ready to travel"
+msgstr "সফরের জন্য প্রস্তুত"
+
+msgid "Photo file comes in a later version."
+msgstr "ছবির ফাইল পরের ভার্সনে আসবে।"
+
+msgid "Sex"
+msgstr "লিঙ্গ"
+
+msgid "Born"
+msgstr "জন্ম"
+
+msgid "Share · Family"
+msgstr "শেয়ার · পরিবার"
+
+msgid "New"
+msgstr "নতুন"
