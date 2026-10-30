@@ -100,6 +100,24 @@ $depart = Catalog::depart_label($package);
             <?php if ($depart !== '') : ?>
                 <div class="depart"><?php echo esc_html($depart); ?></div>
             <?php endif; ?>
+            <?php
+            $card_badges = apply_filters('pothik/package_card_badges', [], $package);
+            if (is_array($card_badges) && $card_badges !== []) :
+                echo '<div class="pk-pills">';
+                foreach ($card_badges as $pill) {
+                    if (!is_array($pill)) {
+                        continue;
+                    }
+                    $pill_label = (string) ($pill['label'] ?? '');
+                    if ($pill_label === '') {
+                        continue;
+                    }
+                    $pill_class = 'pk-pill ' . sanitize_html_class((string) ($pill['class'] ?? ''));
+                    echo '<span class="' . esc_attr(trim($pill_class)) . '">' . esc_html($pill_label) . '</span>';
+                }
+                echo '</div>';
+            endif;
+            ?>
             <?php if ($nm > 0 || $nd > 0) : ?>
                 <div class="nights">
                     <?php if ($nm > 0) : ?>

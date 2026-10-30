@@ -106,6 +106,10 @@ $facts = array_filter([
                         <?php endif; ?>
                     <?php endforeach; ?>
                 </ul>
+                <?php
+                $seat_filtered = apply_filters('pothik/seat_line', isset($seat_line) && is_string($seat_line) ? $seat_line : '', $package);
+                $seat_line = is_string($seat_filtered) ? $seat_filtered : '';
+                ?>
                 <?php if ($seat_line !== '') : ?>
                     <p class="pk-seats"><?php echo esc_html($seat_line); ?></p>
                 <?php endif; ?>

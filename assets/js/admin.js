@@ -2799,7 +2799,111 @@
        Anything unusual falls back to a normal page load.
        ========================================================= */
 
+    function menuIsSlim() {
+        if (document.body.classList.contains('folded')) {
+            return true;
+        }
+        return document.body.classList.contains('auto-fold') && window.innerWidth > 782 && window.innerWidth <= 960;
+    }
+
+    function restoreFlyout(sub) {
+        if (!sub || !sub._pkHome) {
+            return;
+        }
+        sub.classList.remove('pk-wp-flyout', 'is-slim');
+        sub.style.top = '';
+        sub.style.left = '';
+        var home = sub._pkHome;
+        if (home.next && home.next.parentNode === home.parent) {
+            home.parent.insertBefore(sub, home.next);
+        } else if (home.parent) {
+            home.parent.appendChild(sub);
+        }
+        delete sub._pkHome;
+    }
+
+    function placeFlyout(li) {
+        if (window.innerWidth <= 782 || document.body.classList.contains('pothik-focus')) {
+            return;
+        }
+        var sub = li.querySelector(':scope > .wp-submenu');
+        if (!sub) {
+            return;
+        }
+        var slim = menuIsSlim();
+        if (!slim && li.classList.contains('wp-has-current-submenu')) {
+            return;
+        }
+        document.querySelectorAll('body > .pk-wp-flyout').forEach(function (open) {
+            if (open !== sub) {
+                restoreFlyout(open);
+            }
+        });
+        var wrap = document.getElementById('adminmenuwrap');
+        var left = wrap ? wrap.getBoundingClientRect().right : (slim ? 36 : 160);
+        if (!sub._pkHome) {
+            sub._pkHome = { parent: li, next: sub.nextSibling };
+        }
+        document.body.appendChild(sub);
+        sub.classList.add('pk-wp-flyout');
+        sub.classList.toggle('is-slim', slim);
+        var top = li.getBoundingClientRect().top;
+        sub.style.left = left + 'px';
+        sub.style.top = top + 'px';
+        var height = sub.offsetHeight;
+        if (top + height > window.innerHeight - 8) {
+            sub.style.top = Math.max(8, window.innerHeight - height - 8) + 'px';
+        }
+    }
+
+    function pinWpMenu() {
+        if (window.__pothikWpMenuBound) {
+            return;
+        }
+        window.__pothikWpMenuBound = true;
+        var menu = document.getElementById('adminmenu');
+        var wrap = document.getElementById('adminmenuwrap');
+        if (!menu || !wrap) {
+            return;
+        }
+        menu.querySelectorAll(':scope > li.menu-top').forEach(function (li) {
+            li.addEventListener('mouseenter', function () {
+                placeFlyout(li);
+            });
+            li.addEventListener('mouseleave', function (event) {
+                var sub = li._pkHeld || null;
+                var moved = document.querySelector('body > .pk-wp-flyout');
+                if (moved && moved._pkHome && moved._pkHome.parent === li) {
+                    sub = moved;
+                    li._pkHeld = moved;
+                }
+                var to = event.relatedTarget;
+                if (sub && to && (to === sub || sub.contains(to))) {
+                    return;
+                }
+                restoreFlyout(sub);
+                li._pkHeld = null;
+            });
+        });
+        document.addEventListener('mouseout', function (event) {
+            var sub = event.target && event.target.closest ? event.target.closest('body > .pk-wp-flyout') : null;
+            if (!sub || !sub._pkHome) {
+                return;
+            }
+            var to = event.relatedTarget;
+            var li = sub._pkHome.parent;
+            if (to && (sub.contains(to) || (li && li.contains(to)))) {
+                return;
+            }
+            restoreFlyout(sub);
+        });
+        wrap.addEventListener('scroll', function () {
+            document.querySelectorAll('body > .pk-wp-flyout').forEach(restoreFlyout);
+        }, { passive: true });
+    }
+
     function initShell() {
+        pinWpMenu();
         // 1. Focus / Full-screen toggle
         var focusBtn = document.getElementById('focusBtn');
         if (focusBtn && !focusBtn.dataset.bound) {

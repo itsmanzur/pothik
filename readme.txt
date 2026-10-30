@@ -65,6 +65,18 @@ Yes. Use `[pothik_package id="package_id"]` to embed a single package or `[pothi
 * Source Sans 3 - SIL Open Font License 1.1 (https://scripts.sil.org/OFL)
 * Amiri Bold (subset) - SIL Open Font License 1.1 (https://scripts.sil.org/OFL)
 
+== Hooks ==
+
+Add-ons extend Pothik through these hooks. The free plugin does not ship add-on behaviour.
+
+* `pothik/admin_header_tools` — actions inside the admin header, before search. Argument: the current page slug.
+* `pothik/admin_sidebar_before_pro` — markup directly under the Pro label in the sidebar. Argument: the current page slug. Give the wrapper the class `pk-side-slot` so mini mode hides its text.
+* `pothik/admin_before_content` — markup after the header, before the page body. Argument: the current page slug.
+* `pothik/seat_line` — the seat sentence on a package page. Arguments: the current line, then the package array. A callback registered with one argument still receives only the line.
+* `pothik/package_card_badges` — extra pills on a catalog card. Arguments: an array of pills, then the package. Each pill is `['label' => string, 'class' => string]`.
+* `pothik/inquiry_actions` — inside the inquiry drawer footer. Argument: the inquiry row when the drawer was built for one row. The shared drawer passes an empty array because the open row is chosen in the browser.
+* `pothik/desk_cards` — extra cards on the Desk. Argument: an array of HTML strings. Callbacks return escaped HTML.
+
 == Changelog ==
 
 = 0.3.0 =

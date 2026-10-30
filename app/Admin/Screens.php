@@ -397,6 +397,16 @@ final class Screens
         echo '</div>'; // .grid
         echo '</div>'; // .desk2
 
+        $desk_cards = apply_filters('pothik/desk_cards', []);
+        if (is_array($desk_cards)) {
+            foreach ($desk_cards as $desk_card) {
+                if (is_string($desk_card) && $desk_card !== '') {
+                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped by the callback.
+                    echo $desk_card;
+                }
+            }
+        }
+
         // 7. PRO CARD
         if (!empty($locked_modules)) {
             echo '<div class="card pk-card pro-card">';
@@ -1171,6 +1181,7 @@ final class Screens
         echo '</div></div>'; // .templates
         echo '</div>'; // .dr-body
         echo '<div class="dr-foot pk-dr-foot">';
+        do_action('pothik/inquiry_actions', []);
         echo '<a class="btn pk-btn pk-btn-ghost btn-ghost" id="drCall" href="#"><svg class="i sm"><use href="#i-phone"/></svg>' . esc_html(I18n::t('Call')) . '</a>';
         echo '<a class="btn pk-btn pk-btn-wa btn-wa" id="drWa" href="#" target="_blank" rel="noopener"><svg class="i sm"><use href="#i-wa"/></svg>' . esc_html(I18n::t('WhatsApp')) . '</a>';
         echo '<button type="button" class="btn pk-btn pk-btn-primary btn-primary" id="drMark"><svg class="i sm"><use href="#i-check"/></svg><span id="drMarkText">' . esc_html(I18n::t('Mark replied')) . '</span></button>';

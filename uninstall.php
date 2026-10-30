@@ -33,6 +33,12 @@ function pothik_clean_single_blog(): void
 
     // Delete pothik_lang from user metadata.
     $wpdb->query("DELETE FROM {$wpdb->usermeta} WHERE meta_key = 'pothik_lang'");
+    $wpdb->query("DELETE FROM {$wpdb->usermeta} WHERE meta_key = 'pothik_pro_active_departure'");
+
+    foreach (['pothik_departures', 'pothik_pilgrims', 'pothik_rooms', 'pothik_ledger'] as $pothik_table_name) {
+        $pothik_table = $wpdb->prefix . $pothik_table_name;
+        $wpdb->query("DROP TABLE IF EXISTS `{$pothik_table}`");
+    }
 
     // Delete all transients.
     $wpdb->query("DELETE FROM {$wpdb->options} WHERE option_name LIKE '_transient_pothik_%' OR option_name LIKE '_transient_timeout_pothik_%'");

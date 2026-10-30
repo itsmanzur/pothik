@@ -62,7 +62,6 @@ final class Plugin
 
         add_action('init', [I18n::class, 'capture'], 0);
         add_action('init', [I18n::class, 'load_textdomain'], 0);
-        add_filter('determine_locale', [I18n::class, 'filter_locale']);
         add_action('init', [PackagePage::class, 'register_shortcodes']);
         add_action('wp', [PackagePage::class, 'maybe_enqueue']);
         add_filter('template_include', [PackagePage::class, 'template'], 1000);

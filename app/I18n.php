@@ -940,6 +940,76 @@ When a pilgrim submits an inquiry on your site, you will receive an alert like t
         '— check passport/biometric' => '— পাসপোর্ট/বায়োমেট্রিক দেখুন',
         '%1$d visas are not issued yet and the last visa date is %2$d days away.' => '%1$dটি ভিসা এখনো ইস্যু হয়নি এবং ভিসার শেষ তারিখ %2$d দিন দূরে।',
         'The last visa date %1$s has passed. %2$d visas are not issued.' => 'ভিসার শেষ তারিখ %1$s পার হয়ে গেছে। %2$dটি ভিসা ইস্যু হয়নি।',
+        'Untitled group' => 'নামহীন গ্রুপ',
+        'No group' => 'কোনো গ্রুপ নেই',
+        'Active' => 'সক্রিয়',
+        'All groups' => 'সব গ্রুপ',
+        'New group' => 'নতুন গ্রুপ',
+        'Active group' => 'সক্রিয় গ্রুপ',
+        'Working on %1$s' => 'এখন %1$s',
+        'Switch group' => 'গ্রুপ বদলান',
+        'Groups on the desk' => 'ডেস্কের গ্রুপ',
+        '%d pilgrims' => '%d জন যাত্রী',
+        'No groups yet' => 'এখনো কোনো গ্রুপ নেই',
+        'Every group of the season. Pick one to work on its pilgrims, rooms, ledger and visas.' => 'মৌসুমের প্রতিটি গ্রুপ। যাত্রী, রুম, খাতা ও ভিসা নিয়ে কাজ করতে একটি বেছে নিন।',
+        'Search group, package or flight' => 'গ্রুপ, প্যাকেজ বা ফ্লাইট খুঁজুন',
+        'Upcoming' => 'আসন্ন',
+        'Travelling' => 'সফরে',
+        'Completed' => 'শেষ',
+        'Archived' => 'আর্কাইভ',
+        'Create your first group' => 'প্রথম গ্রুপ তৈরি করুন',
+        'Pilgrims, rooms, the ledger and visas all live inside a group.' => 'যাত্রী, রুম, খাতা ও ভিসা সব একটি গ্রুপের ভেতরে থাকে।',
+        'No group matches' => 'কোনো গ্রুপ মেলেনি',
+        'A new empty group. Copy does not bring pilgrims, payments or visas.' => 'একটি নতুন খালি গ্রুপ। কপিতে যাত্রী, পেমেন্ট বা ভিসা আসে না।',
+        'Create group' => 'গ্রুপ তৈরি করুন',
+        'Name, package and colour for this group.' => 'এই গ্রুপের নাম, প্যাকেজ ও রঙ।',
+        'Not linked' => 'লিংক নেই',
+        'Colour' => 'রঙ',
+        'The group you are working on cannot be archived. Switch to another group first.' => 'যে গ্রুপে কাজ করছেন সেটি আর্কাইভ করা যায় না। আগে অন্য গ্রুপে যান।',
+        'Archived groups stay in the list. Their pilgrims are not deleted.' => 'আর্কাইভ গ্রুপ তালিকায় থাকে। যাত্রী মুছে যায় না।',
+        'Archive this group' => 'এই গ্রুপ আর্কাইভ করুন',
+        'This group has no pilgrims, rooms or ledger rows.' => 'এই গ্রুপে কোনো যাত্রী, রুম বা খাতার সারি নেই।',
+        'Delete empty group' => 'খালি গ্রুপ মুছুন',
+        'Move to another group' => 'অন্য গ্রুপে নিন',
+        'Rooms in the old group are cleared. Undo brings the pilgrim back, not the room.' => 'পুরনো গ্রুপের রুম খালি হয়। পূর্বাবস্থায় যাত্রী ফেরে, রুম ফেরে না।',
+        'No other group' => 'আর কোনো গ্রুপ নেই',
+        'To group' => 'যে গ্রুপে',
+        'Rooms in the old group are cleared. Undo brings the pilgrims back, not the rooms.' => 'পুরনো গ্রুপের রুম খালি হয়। পূর্বাবস্থায় যাত্রীরা ফেরে, রুম ফেরে না।',
+        'Choose a group first.' => 'আগে একটি গ্রুপ বেছে নিন।',
+        'Copy of %s' => '%s-এর কপি',
+        'Only an empty group can be deleted.' => 'শুধু খালি গ্রুপ মুছা যায়।',
+        'Moved to %s. Room assignments in the old group were cleared and will not come back.' => '%s-এ নেওয়া হয়েছে। পুরনো গ্রুপের রুম খালি হয়েছে এবং আর ফিরবে না।',
+        'the other group' => 'অন্য গ্রুপ',
+        'Pilgrims are back in this group. Their old rooms were not restored.' => 'যাত্রীরা এই গ্রুপে ফিরেছে। পুরনো রুম ফেরেনি।',
+        'Group created' => 'গ্রুপ তৈরি হয়েছে',
+        'Group copied' => 'গ্রুপ কপি হয়েছে',
+        'Group archived' => 'গ্রুপ আর্কাইভ হয়েছে',
+        'Empty group deleted' => 'খালি গ্রুপ মুছে ফেলা হয়েছে',
+        'Group name' => 'গ্রুপের নাম',
+        'Copy from' => 'যে গ্রুপ থেকে কপি',
+        'None' => 'কোনোটি নয়',
+        'Next to fly' => 'পরের ফ্লাইট',
+        'No upcoming group' => 'আসন্ন কোনো গ্রুপ নেই',
+        'Active groups' => 'সক্রিয় গ্রুপ',
+        'Pilgrims in active groups' => 'সক্রিয় গ্রুপের যাত্রী',
+        'Seats filled' => 'সিট ভরা',
+        'Season at a glance' => 'মৌসুম এক নজরে',
+        'Each bar is one group, from leave to return. Click a bar to open the group.' => 'প্রতিটি দাগ একটি গ্রুপ, ছাড়া থেকে ফেরা পর্যন্ত। দাগে চাপলে গ্রুপ খোলে।',
+        '%1$d pilgrims · %2$d/%3$d visas' => '%1$d জন যাত্রী · ভিসা %2$d/%3$d',
+        '%d%% paid' => '%d%% পরিশোধ',
+        'Open group' => 'গ্রুপ খুলুন',
+        'Archive' => 'আর্কাইভ',
+        'Restore pre-1.1 data' => '১.১-এর আগের ডেটা ফিরিয়ে আনুন',
+        'This empties the group tables and loads the old single group again.' => 'এতে গ্রুপের টেবিল খালি হয় এবং আগের একটি গ্রুপ আবার লোড হয়।',
+        'Type the word restore to confirm' => 'নিশ্চিত করতে restore লিখুন',
+        'Restore' => 'ফিরিয়ে আনুন',
+        'There is no old group data to restore.' => 'ফিরিয়ে আনার মতো পুরনো গ্রুপ ডেটা নেই।',
+        'The old group could not be copied safely. Nothing was removed. The counts did not match.' => 'পুরনো গ্রুপ নিরাপদে কপি হয়নি। কিছু মুছে ফেলা হয়নি। সংখ্যা মেলেনি।',
+        'Group · %s' => 'গ্রুপ · %s',
+        'Undated' => 'তারিখ নেই',
+        'Shown on the linked package: “%s”.' => 'লিংক করা প্যাকেজে দেখায়: “%s”।',
+        'Hajj file — no seat line is shown on the site.' => 'হজ ফাইল — সাইটে সিটের লাইন দেখায় না।',
+        'Show' => 'দেখান',
 ];
 
     public static function capture(): void
@@ -994,19 +1064,6 @@ When a pilgrim submits an inquiry on your site, you will receive an alert like t
     {
         // phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound
         load_plugin_textdomain('pothik', false, dirname(plugin_basename(POTHIK_FILE)) . '/languages');
-    }
-
-    public static function filter_locale(string $locale): string
-    {
-        $lang = self::lang();
-        if ($lang === 'bn') {
-            return 'bn_BD';
-        }
-        if ($lang === 'en') {
-            return 'en_US';
-        }
-
-        return $locale;
     }
 
     public static function t(string $text, string $context = ''): string
@@ -1100,6 +1157,7 @@ When a pilgrim submits an inquiry on your site, you will receive an alert like t
         'trip' => [
             'group' => 'Group',
             'private' => 'Private',
+            'hajj' => 'Hajj',
         ],
         'channel' => [
             'bkash' => 'bKash',
@@ -1150,6 +1208,8 @@ When a pilgrim submits an inquiry on your site, you will receive an alert like t
         'trip' => [
             'গ্রুপ' => 'group',
             'প্রাইভেট' => 'private',
+            'হজ' => 'hajj',
+            'হজ্জ' => 'hajj',
         ],
         'channel' => [
             'bKash' => 'bkash',

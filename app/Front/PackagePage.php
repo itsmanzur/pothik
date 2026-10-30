@@ -345,11 +345,8 @@ final class PackagePage
         $packages = $published;
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         $result = isset($_GET['pothik']) ? sanitize_key((string) wp_unslash($_GET['pothik'])) : '';
-        $seat_line = '';
-        if (count($packages) === 1) {
-            $line = apply_filters('pothik/seat_line', '');
-            $seat_line = is_string($line) ? $line : '';
-        }
+        $line = apply_filters('pothik/seat_line', '', $package);
+        $seat_line = is_string($line) ? $line : '';
 
         include POTHIK_DIR . 'templates/package.php';
     }

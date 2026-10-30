@@ -2689,3 +2689,221 @@ msgstr ""
 
 msgid "The last visa date %1$s has passed. %2$d visas are not issued."
 msgstr ""
+
+msgid "Assalamu alaikum,
+
+This is a test notification from your Pothik Umrah plugin.
+When a pilgrim submits an inquiry on your site, you will receive an alert like this.
+
+— Pothik Desk"
+msgstr ""
+
+msgid "Untitled group"
+msgstr ""
+
+msgid "No group"
+msgstr ""
+
+msgid "Active"
+msgstr ""
+
+msgid "All groups"
+msgstr ""
+
+msgid "New group"
+msgstr ""
+
+msgid "Active group"
+msgstr ""
+
+msgid "Working on %1$s"
+msgstr ""
+
+msgid "Switch group"
+msgstr ""
+
+msgid "Groups on the desk"
+msgstr ""
+
+msgid "%d pilgrims"
+msgstr ""
+
+msgid "No groups yet"
+msgstr ""
+
+msgid "Every group of the season. Pick one to work on its pilgrims, rooms, ledger and visas."
+msgstr ""
+
+msgid "Search group, package or flight"
+msgstr ""
+
+msgid "Upcoming"
+msgstr ""
+
+msgid "Travelling"
+msgstr ""
+
+msgid "Completed"
+msgstr ""
+
+msgid "Archived"
+msgstr ""
+
+msgid "Create your first group"
+msgstr ""
+
+msgid "Pilgrims, rooms, the ledger and visas all live inside a group."
+msgstr ""
+
+msgid "No group matches"
+msgstr ""
+
+msgid "A new empty group. Copy does not bring pilgrims, payments or visas."
+msgstr ""
+
+msgid "Create group"
+msgstr ""
+
+msgid "Name, package and colour for this group."
+msgstr ""
+
+msgid "Not linked"
+msgstr ""
+
+msgid "Colour"
+msgstr ""
+
+msgid "The group you are working on cannot be archived. Switch to another group first."
+msgstr ""
+
+msgid "Archived groups stay in the list. Their pilgrims are not deleted."
+msgstr ""
+
+msgid "Archive this group"
+msgstr ""
+
+msgid "This group has no pilgrims, rooms or ledger rows."
+msgstr ""
+
+msgid "Delete empty group"
+msgstr ""
+
+msgid "Move to another group"
+msgstr ""
+
+msgid "Rooms in the old group are cleared. Undo brings the pilgrim back, not the room."
+msgstr ""
+
+msgid "No other group"
+msgstr ""
+
+msgid "To group"
+msgstr ""
+
+msgid "Rooms in the old group are cleared. Undo brings the pilgrims back, not the rooms."
+msgstr ""
+
+msgid "Choose a group first."
+msgstr ""
+
+msgid "Copy of %s"
+msgstr ""
+
+msgid "Only an empty group can be deleted."
+msgstr ""
+
+msgid "Moved to %s. Room assignments in the old group were cleared and will not come back."
+msgstr ""
+
+msgid "the other group"
+msgstr ""
+
+msgid "Pilgrims are back in this group. Their old rooms were not restored."
+msgstr ""
+
+msgid "Group created"
+msgstr ""
+
+msgid "Group copied"
+msgstr ""
+
+msgid "Group archived"
+msgstr ""
+
+msgid "Empty group deleted"
+msgstr ""
+
+msgid "Group name"
+msgstr ""
+
+msgid "Copy from"
+msgstr ""
+
+msgid "None"
+msgstr ""
+
+msgid "Next to fly"
+msgstr ""
+
+msgid "No upcoming group"
+msgstr ""
+
+msgid "Active groups"
+msgstr ""
+
+msgid "Pilgrims in active groups"
+msgstr ""
+
+msgid "Seats filled"
+msgstr ""
+
+msgid "Season at a glance"
+msgstr ""
+
+msgid "Each bar is one group, from leave to return. Click a bar to open the group."
+msgstr ""
+
+msgid "%1$d pilgrims · %2$d/%3$d visas"
+msgstr ""
+
+msgid "%d%% paid"
+msgstr ""
+
+msgid "Open group"
+msgstr ""
+
+msgid "Archive"
+msgstr ""
+
+msgid "Restore pre-1.1 data"
+msgstr ""
+
+msgid "This empties the group tables and loads the old single group again."
+msgstr ""
+
+msgid "Type the word restore to confirm"
+msgstr ""
+
+msgid "Restore"
+msgstr ""
+
+msgid "There is no old group data to restore."
+msgstr ""
+
+msgid "The old group could not be copied safely. Nothing was removed. The counts did not match."
+msgstr ""
+
+msgid "Group · %s"
+msgstr ""
+
+msgid "Undated"
+msgstr ""
+
+msgid "Shown on the linked package: “%s”."
+msgstr ""
+
+msgid "Hajj file — no seat line is shown on the site."
+msgstr ""
+
+msgid "Show"
+msgstr ""

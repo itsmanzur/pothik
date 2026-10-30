@@ -2690,3 +2690,226 @@ msgstr "%1$dটি ভিসা এখনো ইস্যু হয়নি এ
 
 msgid "The last visa date %1$s has passed. %2$d visas are not issued."
 msgstr "ভিসার শেষ তারিখ %1$s পার হয়ে গেছে। %2$dটি ভিসা ইস্যু হয়নি।"
+
+msgid "Assalamu alaikum,
+
+This is a test notification from your Pothik Umrah plugin.
+When a pilgrim submits an inquiry on your site, you will receive an alert like this.
+
+— Pothik Desk"
+msgstr "আসসালামু আলাইকুম,
+
+এটি পথিক উমরা প্লাগিনের একটি টেস্ট নোটিফিকেশন।
+আপনার সাইটে কোনো যাত্রী আবেদন করলে আপনি এমন একটি বার্তা পাবেন।
+
+— পথিক ডেস্ক"
+
+msgid "Untitled group"
+msgstr "নামহীন গ্রুপ"
+
+msgid "No group"
+msgstr "কোনো গ্রুপ নেই"
+
+msgid "Active"
+msgstr "সক্রিয়"
+
+msgid "All groups"
+msgstr "সব গ্রুপ"
+
+msgid "New group"
+msgstr "নতুন গ্রুপ"
+
+msgid "Active group"
+msgstr "সক্রিয় গ্রুপ"
+
+msgid "Working on %1$s"
+msgstr "এখন %1$s"
+
+msgid "Switch group"
+msgstr "গ্রুপ বদলান"
+
+msgid "Groups on the desk"
+msgstr "ডেস্কের গ্রুপ"
+
+msgid "%d pilgrims"
+msgstr "%d জন যাত্রী"
+
+msgid "No groups yet"
+msgstr "এখনো কোনো গ্রুপ নেই"
+
+msgid "Every group of the season. Pick one to work on its pilgrims, rooms, ledger and visas."
+msgstr "মৌসুমের প্রতিটি গ্রুপ। যাত্রী, রুম, খাতা ও ভিসা নিয়ে কাজ করতে একটি বেছে নিন।"
+
+msgid "Search group, package or flight"
+msgstr "গ্রুপ, প্যাকেজ বা ফ্লাইট খুঁজুন"
+
+msgid "Upcoming"
+msgstr "আসন্ন"
+
+msgid "Travelling"
+msgstr "সফরে"
+
+msgid "Completed"
+msgstr "শেষ"
+
+msgid "Archived"
+msgstr "আর্কাইভ"
+
+msgid "Create your first group"
+msgstr "প্রথম গ্রুপ তৈরি করুন"
+
+msgid "Pilgrims, rooms, the ledger and visas all live inside a group."
+msgstr "যাত্রী, রুম, খাতা ও ভিসা সব একটি গ্রুপের ভেতরে থাকে।"
+
+msgid "No group matches"
+msgstr "কোনো গ্রুপ মেলেনি"
+
+msgid "A new empty group. Copy does not bring pilgrims, payments or visas."
+msgstr "একটি নতুন খালি গ্রুপ। কপিতে যাত্রী, পেমেন্ট বা ভিসা আসে না।"
+
+msgid "Create group"
+msgstr "গ্রুপ তৈরি করুন"
+
+msgid "Name, package and colour for this group."
+msgstr "এই গ্রুপের নাম, প্যাকেজ ও রঙ।"
+
+msgid "Not linked"
+msgstr "লিংক নেই"
+
+msgid "Colour"
+msgstr "রঙ"
+
+msgid "The group you are working on cannot be archived. Switch to another group first."
+msgstr "যে গ্রুপে কাজ করছেন সেটি আর্কাইভ করা যায় না। আগে অন্য গ্রুপে যান।"
+
+msgid "Archived groups stay in the list. Their pilgrims are not deleted."
+msgstr "আর্কাইভ গ্রুপ তালিকায় থাকে। যাত্রী মুছে যায় না।"
+
+msgid "Archive this group"
+msgstr "এই গ্রুপ আর্কাইভ করুন"
+
+msgid "This group has no pilgrims, rooms or ledger rows."
+msgstr "এই গ্রুপে কোনো যাত্রী, রুম বা খাতার সারি নেই।"
+
+msgid "Delete empty group"
+msgstr "খালি গ্রুপ মুছুন"
+
+msgid "Move to another group"
+msgstr "অন্য গ্রুপে নিন"
+
+msgid "Rooms in the old group are cleared. Undo brings the pilgrim back, not the room."
+msgstr "পুরনো গ্রুপের রুম খালি হয়। পূর্বাবস্থায় যাত্রী ফেরে, রুম ফেরে না।"
+
+msgid "No other group"
+msgstr "আর কোনো গ্রুপ নেই"
+
+msgid "To group"
+msgstr "যে গ্রুপে"
+
+msgid "Rooms in the old group are cleared. Undo brings the pilgrims back, not the rooms."
+msgstr "পুরনো গ্রুপের রুম খালি হয়। পূর্বাবস্থায় যাত্রীরা ফেরে, রুম ফেরে না।"
+
+msgid "Choose a group first."
+msgstr "আগে একটি গ্রুপ বেছে নিন।"
+
+msgid "Copy of %s"
+msgstr "%s-এর কপি"
+
+msgid "Only an empty group can be deleted."
+msgstr "শুধু খালি গ্রুপ মুছা যায়।"
+
+msgid "Moved to %s. Room assignments in the old group were cleared and will not come back."
+msgstr "%s-এ নেওয়া হয়েছে। পুরনো গ্রুপের রুম খালি হয়েছে এবং আর ফিরবে না।"
+
+msgid "the other group"
+msgstr "অন্য গ্রুপ"
+
+msgid "Pilgrims are back in this group. Their old rooms were not restored."
+msgstr "যাত্রীরা এই গ্রুপে ফিরেছে। পুরনো রুম ফেরেনি।"
+
+msgid "Group created"
+msgstr "গ্রুপ তৈরি হয়েছে"
+
+msgid "Group copied"
+msgstr "গ্রুপ কপি হয়েছে"
+
+msgid "Group archived"
+msgstr "গ্রুপ আর্কাইভ হয়েছে"
+
+msgid "Empty group deleted"
+msgstr "খালি গ্রুপ মুছে ফেলা হয়েছে"
+
+msgid "Group name"
+msgstr "গ্রুপের নাম"
+
+msgid "Copy from"
+msgstr "যে গ্রুপ থেকে কপি"
+
+msgid "None"
+msgstr "কোনোটি নয়"
+
+msgid "Next to fly"
+msgstr "পরের ফ্লাইট"
+
+msgid "No upcoming group"
+msgstr "আসন্ন কোনো গ্রুপ নেই"
+
+msgid "Active groups"
+msgstr "সক্রিয় গ্রুপ"
+
+msgid "Pilgrims in active groups"
+msgstr "সক্রিয় গ্রুপের যাত্রী"
+
+msgid "Seats filled"
+msgstr "সিট ভরা"
+
+msgid "Season at a glance"
+msgstr "মৌসুম এক নজরে"
+
+msgid "Each bar is one group, from leave to return. Click a bar to open the group."
+msgstr "প্রতিটি দাগ একটি গ্রুপ, ছাড়া থেকে ফেরা পর্যন্ত। দাগে চাপলে গ্রুপ খোলে।"
+
+msgid "%1$d pilgrims · %2$d/%3$d visas"
+msgstr "%1$d জন যাত্রী · ভিসা %2$d/%3$d"
+
+msgid "%d%% paid"
+msgstr "%d%% পরিশোধ"
+
+msgid "Open group"
+msgstr "গ্রুপ খুলুন"
+
+msgid "Archive"
+msgstr "আর্কাইভ"
+
+msgid "Restore pre-1.1 data"
+msgstr "১.১-এর আগের ডেটা ফিরিয়ে আনুন"
+
+msgid "This empties the group tables and loads the old single group again."
+msgstr "এতে গ্রুপের টেবিল খালি হয় এবং আগের একটি গ্রুপ আবার লোড হয়।"
+
+msgid "Type the word restore to confirm"
+msgstr "নিশ্চিত করতে restore লিখুন"
+
+msgid "Restore"
+msgstr "ফিরিয়ে আনুন"
+
+msgid "There is no old group data to restore."
+msgstr "ফিরিয়ে আনার মতো পুরনো গ্রুপ ডেটা নেই।"
+
+msgid "The old group could not be copied safely. Nothing was removed. The counts did not match."
+msgstr "পুরনো গ্রুপ নিরাপদে কপি হয়নি। কিছু মুছে ফেলা হয়নি। সংখ্যা মেলেনি।"
+
+msgid "Group · %s"
+msgstr "গ্রুপ · %s"
+
+msgid "Undated"
+msgstr "তারিখ নেই"
+
+msgid "Shown on the linked package: “%s”."
+msgstr "লিংক করা প্যাকেজে দেখায়: “%s”।"
+
+msgid "Hajj file — no seat line is shown on the site."
+msgstr "হজ ফাইল — সাইটে সিটের লাইন দেখায় না।"
+
+msgid "Show"
+msgstr "দেখান"

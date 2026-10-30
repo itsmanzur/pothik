@@ -115,6 +115,55 @@ body.pothik-screen #wpbody-content > .wrap {
 body.pothik-screen #wpfooter {
   display: none !important;
 }
+
+/* Keep the WordPress menu still while the desk scrolls. */
+@media (min-width: 783px) {
+  body.pothik-screen #adminmenuwrap {
+    position: fixed !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+  }
+  body.pothik-screen.admin-bar #adminmenuwrap {
+    top: 32px !important;
+  }
+}
+body.pothik-screen .pk-wp-flyout {
+  display: block;
+  position: fixed;
+  z-index: 100000;
+  min-width: 160px;
+  width: auto;
+  margin: 0;
+  padding: 6px 0;
+  list-style: none;
+  background: #2c3338;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
+}
+body.pothik-screen .pk-wp-flyout a {
+  display: block;
+  padding: 5px 12px;
+  color: rgba(240, 246, 252, .7);
+  font-size: 13px;
+  line-height: 1.4;
+  text-decoration: none;
+}
+body.pothik-screen .pk-wp-flyout a:hover,
+body.pothik-screen .pk-wp-flyout a:focus {
+  color: #72aee6;
+}
+body.pothik-screen .pk-wp-flyout .wp-submenu-head {
+  display: none;
+  padding: 5px 12px;
+  color: #fff;
+  font-size: 14px;
+}
+body.pothik-screen .pk-wp-flyout.is-slim .wp-submenu-head {
+  display: block;
+}
 body.pothik-screen .notice.pk-flash {
   display: none !important;
 }
@@ -176,7 +225,9 @@ body.auto-fold:not(.folded) .pk-side {
     left: 160px;
   }
 }
-body.pothik-focus .pk-side {
+body.pothik-focus .pk-side,
+body.pothik-focus.folded .pk-side,
+body.pothik-focus.auto-fold:not(.folded) .pk-side {
   left: 0;
 }
 .pk-app.mini .pk-side,
@@ -394,6 +445,14 @@ body.pothik-side-mini .pk-side {
   justify-content: center;
   padding: 8px;
   margin: 8px;
+}
+.pk-app.mini .pk-side-slot .sg-t,
+.pk-app.mini .pk-side-slot small,
+.pk-app.mini .pk-side-slot b {
+  display: none !important;
+}
+.pk-app.mini .pk-side-slot .side-group {
+  justify-content: center;
 }
 
 /* Body column sits to the right of the fixed sidebar. */
@@ -3083,6 +3142,25 @@ select.share-sel option,
 .pk-admin .pk-stats>div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px}
 .pk-admin .pk-stats strong{display:block;font-size:26px;line-height:1}
 .pk-admin .pk-stats span{color:var(--muted);font-size:13px}
+.pk-admin .pk-section-label{margin:22px 0 12px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.pk-admin .pk-analytics-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.pk-admin .pk-analytics-grid>.pk-panel{margin:0}
+.pk-admin .pk-ring-wrap{display:flex;align-items:center;gap:18px}
+.pk-admin .pk-ring-plot{position:relative;width:140px;height:140px;flex:none}
+.pk-admin .pk-ring{display:block;width:140px;height:140px}
+.pk-admin .pk-ring-plot>strong{position:absolute;inset:0;display:grid;place-items:center;font-size:28px;line-height:1}
+.pk-admin .pk-ring-key{list-style:none;margin:0;padding:0;display:grid;gap:6px;flex:1;min-width:0}
+.pk-admin .pk-ring-key li{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:13px}
+.pk-admin .pk-ring-key i{width:10px;height:10px;border-radius:3px;display:inline-block;margin-right:8px}
+.pk-admin .pk-bars{display:grid;gap:10px}
+.pk-admin .pk-bar-row{display:grid;grid-template-columns:minmax(0,120px) minmax(0,1fr) auto;gap:10px;align-items:center;font-size:13px}
+.pk-admin .pk-bar-row>span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pk-admin .pk-bar-track{display:block;height:8px;border-radius:999px;background:#f2ece2;overflow:hidden}
+.pk-admin .pk-bar-fill{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--g500),var(--g700))}
+@media (max-width:900px){
+  .pk-admin .pk-analytics-grid{grid-template-columns:1fr}
+  .pk-admin .pk-ring-wrap{flex-direction:column;align-items:flex-start}
+}
 .pk-admin .pk-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:38px;padding:0 16px;border-radius:10px;border:1px solid transparent;font-weight:700;font-size:14px;cursor:pointer;text-decoration:none;background:linear-gradient(180deg,var(--g700),var(--g800));color:#fff}
 .pk-admin .pk-form-actions{display:flex;justify-content:flex-end;margin-top:16px}
 @media (max-width:700px){
