@@ -2437,3 +2437,123 @@ msgstr ""
 
 msgid "%1$s, %2$s, in %3$s"
 msgstr ""
+
+msgid "collected"
+msgstr ""
+
+msgid "Collected"
+msgstr ""
+
+msgid "Partly paid"
+msgstr ""
+
+msgid "Nothing paid"
+msgstr ""
+
+msgid "By channel"
+msgstr ""
+
+msgid "share of collected taka"
+msgstr ""
+
+msgid "No payments yet"
+msgstr ""
+
+msgid "This ledger is the pilgrim's BDT. The ticket dollar and the Saudi riyal stay as notes — open a row (▸) to see them."
+msgstr ""
+
+msgid "Search name or transaction ID"
+msgstr ""
+
+msgid "File order"
+msgstr ""
+
+msgid "Highest balance"
+msgstr ""
+
+msgid "Print statement"
+msgstr ""
+
+msgid "Progress"
+msgstr ""
+
+msgid "Channel · Transaction ID"
+msgstr ""
+
+msgid "✓ Paid"
+msgstr ""
+
+msgid "+%s extra"
+msgstr ""
+
+msgid "Shared · %1$d pilgrims"
+msgstr ""
+
+msgid "+ Payment"
+msgstr ""
+
+msgid "Remove row"
+msgstr ""
+
+msgid "Add to ledger"
+msgstr ""
+
+msgid "Everyone in the file has a row"
+msgstr ""
+
+msgid "Pick a pilgrim from the file. Each pilgrim gets one row."
+msgstr ""
+
+msgid "No row matches"
+msgstr ""
+
+msgid "No rows yet. Add a pilgrim from the file."
+msgstr ""
+
+msgid "Unsaved ledger"
+msgstr ""
+
+msgid "Ledger saved"
+msgstr ""
+
+msgid "Add a payment · %s"
+msgstr ""
+
+msgid "Full balance %s"
+msgstr ""
+
+msgid "Add to paid"
+msgstr ""
+
+msgid "Adds to the paid total. The channel and ID replace the row's last payment."
+msgstr ""
+
+msgid "%1$s added for %2$s"
+msgstr ""
+
+msgid "%1$s added for %2$s — paid in full"
+msgstr ""
+
+msgid "Amount"
+msgstr ""
+
+msgid "Total"
+msgstr ""
+
+msgid "rows"
+msgstr ""
+
+msgid "Notes"
+msgstr ""
+
+msgid "not recalculated"
+msgstr ""
+
+msgid "bKash"
+msgstr ""
+
+msgid "Nagad"
+msgstr ""
+
+msgid "Rocket"
+msgstr ""

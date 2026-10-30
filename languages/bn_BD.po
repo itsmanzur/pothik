@@ -2438,3 +2438,123 @@ msgstr "রুম থেকে সরান"
 
 msgid "%1$s, %2$s, in %3$s"
 msgstr "%1$s, %2$s, %3$s-এ"
+
+msgid "collected"
+msgstr "আদায়"
+
+msgid "Collected"
+msgstr "আদায়"
+
+msgid "Partly paid"
+msgstr "আংশিক পরিশোধ"
+
+msgid "Nothing paid"
+msgstr "কিছু পরিশোধ হয়নি"
+
+msgid "By channel"
+msgstr "মাধ্যম অনুসারে"
+
+msgid "share of collected taka"
+msgstr "আদায়ের ভাগ"
+
+msgid "No payments yet"
+msgstr "এখনো কোনো পরিশোধ নেই"
+
+msgid "This ledger is the pilgrim's BDT. The ticket dollar and the Saudi riyal stay as notes — open a row (▸) to see them."
+msgstr "এই খাতা যাত্রীর টাকা। টিকিটের ডলার ও সৌদি রিয়াল নোট — সারি খুললে (▸) দেখা যায়।"
+
+msgid "Search name or transaction ID"
+msgstr "নাম বা ট্রানজেকশন আইডি খুঁজুন"
+
+msgid "File order"
+msgstr "ফাইলের ক্রম"
+
+msgid "Highest balance"
+msgstr "সবচেয়ে বেশি বকেয়া"
+
+msgid "Print statement"
+msgstr "স্টেটমেন্ট প্রিন্ট"
+
+msgid "Progress"
+msgstr "অগ্রগতি"
+
+msgid "Channel · Transaction ID"
+msgstr "মাধ্যম · ট্রানজেকশন আইডি"
+
+msgid "✓ Paid"
+msgstr "✓ পরিশোধ"
+
+msgid "+%s extra"
+msgstr "+%s বাড়তি"
+
+msgid "Shared · %1$d pilgrims"
+msgstr "শেয়ার্ড · %1$d যাত্রী"
+
+msgid "+ Payment"
+msgstr "+ পরিশোধ"
+
+msgid "Remove row"
+msgstr "সারি সরান"
+
+msgid "Add to ledger"
+msgstr "খাতায় যোগ"
+
+msgid "Everyone in the file has a row"
+msgstr "ফাইলের সবার সারি আছে"
+
+msgid "Pick a pilgrim from the file. Each pilgrim gets one row."
+msgstr "ফাইল থেকে যাত্রী বেছে নিন। প্রতি যাত্রীর একটি সারি।"
+
+msgid "No row matches"
+msgstr "কোনো সারি মেলেনি"
+
+msgid "No rows yet. Add a pilgrim from the file."
+msgstr "এখনো সারি নেই। ফাইল থেকে যাত্রী যোগ করুন।"
+
+msgid "Unsaved ledger"
+msgstr "খাতা সেভ হয়নি"
+
+msgid "Ledger saved"
+msgstr "খাতা সেভ হয়েছে"
+
+msgid "Add a payment · %s"
+msgstr "পরিশোধ যোগ · %s"
+
+msgid "Full balance %s"
+msgstr "পুরো বকেয়া %s"
+
+msgid "Add to paid"
+msgstr "পরিশোধে যোগ"
+
+msgid "Adds to the paid total. The channel and ID replace the row's last payment."
+msgstr "মোট পরিশোধে যোগ হয়। মাধ্যম ও আইডি সারির শেষ পরিশোধ বদলে দেয়।"
+
+msgid "%1$s added for %2$s"
+msgstr "%2$s-এর জন্য %1$s যোগ হয়েছে"
+
+msgid "%1$s added for %2$s — paid in full"
+msgstr "%2$s-এর জন্য %1$s যোগ হয়েছে — পুরো পরিশোধ"
+
+msgid "Amount"
+msgstr "পরিমাণ"
+
+msgid "Total"
+msgstr "মোট"
+
+msgid "rows"
+msgstr "সারি"
+
+msgid "Notes"
+msgstr "নোট"
+
+msgid "not recalculated"
+msgstr "আবার হিসাব হয় না"
+
+msgid "bKash"
+msgstr "বিকাশ"
+
+msgid "Nagad"
+msgstr "নগদ"
+
+msgid "Rocket"
+msgstr "রকেট"
