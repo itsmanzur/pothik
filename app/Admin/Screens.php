@@ -12,6 +12,7 @@ namespace Pothik\Admin;
 // phpcs:disable WordPress.Security.EscapeOutput
 
 use Pothik\Format;
+use Pothik\Front\Catalog;
 use Pothik\Front\PackagePage;
 use Pothik\I18n;
 use Pothik\InquiryRepository;
@@ -638,16 +639,9 @@ final class Screens
     public static function package_card(array $package): void
     {
         $id = (string) ($package['id'] ?? '');
-        $color_pairs = [
-            ['#173d30', '#2d6a4f'], // green
-            ['#2b2110', '#c4a574'], // gold-brown
-            ['#14273e', '#2563eb'], // blue
-            ['#3a1d14', '#b4532a'], // clay
-            ['#2d1b36', '#7e22ce'], // plum
-        ];
-        $color_idx = abs(crc32($id)) % count($color_pairs);
-        $c1 = $color_pairs[$color_idx][0];
-        $c2 = $color_pairs[$color_idx][1];
+        $pair = Catalog::colors($id);
+        $c1 = $pair[0];
+        $c2 = $pair[1];
 
         $days = max(1, (int) ($package['days'] ?? 7));
         $is_live = !empty($package['published']) || (($package['status'] ?? 'draft') === 'published');
@@ -929,6 +923,9 @@ final class Screens
         $fit = ($nm + $nd < $days);
         echo '<p class="hint' . (!$fit ? ' clay' : '') . '" id="nightWarn">' . ($fit ? '✓ ' . sprintf(esc_html(I18n::t('%d nights fit inside %d days')), ($nm + $nd), $days) : '⚠ ' . sprintf(esc_html(I18n::t('%d nights do not fit inside %d days')), ($nm + $nd), $days)) . '</p>';
         echo '<label class="field pk-field mt-14"><span>' . esc_html(I18n::t('Group note')) . '</span><input name="group_note" value="' . esc_attr($group_note) . '" placeholder="' . esc_attr($text_ph('group_note')) . '"></label>';
+        $departure = (string) ($package['departure'] ?? '');
+        echo '<label class="field pk-field mt-14"><span>' . esc_html(I18n::t('Departure month')) . '</span><input type="month" name="departure" value="' . esc_attr($departure) . '"><em class="sub">' . esc_html(I18n::t('Shown as a filter on the All packages page')) . '</em></label>';
+        echo '<label class="field pk-field mt-14"><span>' . esc_html(I18n::t('Ramadan')) . '</span><input type="checkbox" name="is_ramadan" value="1"' . checked(!empty($package['is_ramadan']), true, false) . '> ' . esc_html(I18n::t('Ramadan departure')) . '</label>';
         echo '</div>'; // #sec-basics
 
         // Section 2: Hotels

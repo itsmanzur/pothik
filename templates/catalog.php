@@ -1,8 +1,11 @@
 <?php
 /**
- * Package list on the public page.
+ * All packages page.
  *
  * @var array<int, array<string, mixed>> $packages
+ * @var array{hero: bool, finder: bool, columns: int, limit: int} $catalog_opts
+ * @var bool $show_finder
+ * @var array{min: int, max: int} $budget
  *
  * @package Pothik
  */
@@ -12,90 +15,188 @@
 declare(strict_types=1);
 
 use Pothik\Format;
+use Pothik\Front\Catalog;
 use Pothik\Front\PackagePage;
 use Pothik\I18n;
+use Pothik\PackageStore;
 
 if (!defined('ABSPATH')) {
     exit;
 }
 
-$contact = PackageStore::contact($packages[0] ?? []);
-$phone = $contact['phone'];
-$phone_href = $contact['phone_href'];
-$wa_href = Format::whatsapp_href(
-    $contact['whatsapp'],
-    sprintf(I18n::t('I want to ask about %s.'), 'Umrah')
-);
+$contact = PackageStore::contact([]);
+if ($contact['agency'] === '' && isset($packages[0]) && is_array($packages[0])) {
+    $contact = PackageStore::contact($packages[0]);
+}
+$catalog_url = PackagePage::url();
+$wa_general = Format::whatsapp_href($contact['whatsapp'], I18n::t('I want to ask about Umrah.'));
+$hero = !empty($catalog_opts['hero']);
+$columns = (int) ($catalog_opts['columns'] ?? 3) === 2 ? 2 : 3;
+$badges = Catalog::badges($packages);
+$chips = Catalog::months($packages);
+$season = Catalog::season();
+$makkah_time = Catalog::makkah_time();
+$heading_html = Catalog::heading_html();
+$trust = Catalog::trust($contact, count(array_filter(
+    $packages,
+    static fn (array $row): bool => ($row['status'] ?? 'draft') === 'published'
+)));
+$steps = Catalog::steps();
+$count = count($packages);
+$count_label = sprintf(I18n::t($count === 1 ? '%d package' : '%d packages'), $count);
+
+$schema_items = [];
+$position = 1;
+foreach ($packages as $package) {
+    if (($package['status'] ?? 'draft') !== 'published') {
+        continue;
+    }
+    $name = I18n::field($package, 'title');
+    if ($name === '') {
+        continue;
+    }
+    $prices = is_array($package['prices'] ?? null) ? $package['prices'] : [];
+    $item = [
+        '@type' => 'TouristTrip',
+        'name' => $name,
+        'url' => PackagePage::url((string) ($package['id'] ?? '')),
+        'description' => I18n::field($package, 'route'),
+    ];
+    $quad = (int) ($prices['quad'] ?? 0);
+    if ($quad > 0) {
+        $item['offers'] = [
+            '@type' => 'Offer',
+            'price' => $quad,
+            'priceCurrency' => 'BDT',
+        ];
+    }
+    $schema_items[] = [
+        '@type' => 'ListItem',
+        'position' => $position,
+        'item' => $item,
+    ];
+    $position++;
+}
+$schema = [
+    '@context' => 'https://schema.org',
+    '@type' => 'ItemList',
+    'itemListElement' => $schema_items,
+];
 ?>
-<article class="pk">
-    <header class="pk-bar" id="top">
-        <a class="pk-brand" href="#top">
-            <?php if ($contact['logo_url'] !== '') : ?>
-                <img src="<?php echo esc_url($contact['logo_url']); ?>" alt="<?php echo esc_attr($contact['agency']); ?>" style="max-height:32px;width:auto;vertical-align:middle;margin-right:8px;">
-            <?php else : ?>
-                <span>Pothik</span>
-            <?php endif; ?>
-            <small><?php echo esc_html($contact['agency']); ?></small>
-        </a>
-        <div class="pk-bar-actions">
-            <?php
-            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-            echo I18n::toggle();
-            ?>
-            <?php if ($phone_href !== '') : ?>
-                <a href="<?php echo esc_url($phone_href); ?>"><?php echo esc_html($phone); ?></a>
-            <?php endif; ?>
-            <?php if ($wa_href !== '') : ?>
-                <a class="pk-bar-wa" href="<?php echo esc_url($wa_href); ?>" target="_blank" rel="noopener"><?php echo esc_html(I18n::t('WhatsApp')); ?></a>
+<article class="pk pk-all<?php echo $columns === 2 ? ' cols-2' : ''; ?><?php echo $hero ? '' : ' is-embed'; ?>" id="top" data-pk-catalog>
+    <?php include __DIR__ . '/parts/sprite.php'; ?>
+    <?php if ($hero) : ?>
+        <?php include __DIR__ . '/parts/topbar.php'; ?>
+        <?php include __DIR__ . '/parts/hero.php'; ?>
+    <?php endif; ?>
+
+    <main class="wrap" id="packages">
+        <?php if ($show_finder && $budget['max'] > 0) : ?>
+            <form class="finder" data-pk-finder action="" method="get" aria-label="<?php echo esc_attr(I18n::t('Find a package')); ?>">
+                <label class="f-field">
+                    <span><?php echo esc_html(I18n::t('Search')); ?></span>
+                    <input type="search" data-pk-q placeholder="<?php echo esc_attr(I18n::t('Package or hotel name')); ?>">
+                </label>
+                <div class="f-field">
+                    <span><?php echo esc_html(I18n::t('Days')); ?></span>
+                    <div class="segs" data-pk-days>
+                        <button type="button" class="on" data-v=""><?php echo esc_html(I18n::t('Any')); ?></button>
+                        <button type="button" data-v="s"><?php echo esc_html(I18n::t('≤10')); ?></button>
+                        <button type="button" data-v="m"><?php echo esc_html(I18n::t('11–15')); ?></button>
+                        <button type="button" data-v="l"><?php echo esc_html(I18n::t('16+')); ?></button>
+                    </div>
+                </div>
+                <label class="f-field">
+                    <span><?php echo esc_html(I18n::t('Budget per person')); ?> <b data-pk-bud-out><?php echo esc_html(I18n::t('Any')); ?></b></span>
+                    <input type="range" data-pk-bud min="<?php echo esc_attr((string) $budget['min']); ?>" max="<?php echo esc_attr((string) $budget['max']); ?>" step="5000" value="<?php echo esc_attr((string) $budget['max']); ?>">
+                </label>
+                <label class="f-field">
+                    <span><?php echo esc_html(I18n::t('Sort by')); ?></span>
+                    <select data-pk-sort>
+                        <option value="price"><?php echo esc_html(I18n::t('Lowest price')); ?></option>
+                        <option value="near"><?php echo esc_html(I18n::t('Closest to the Haram')); ?></option>
+                        <option value="days"><?php echo esc_html(I18n::t('Fewest days')); ?></option>
+                        <option value="stars"><?php echo esc_html(I18n::t('Best hotels')); ?></option>
+                    </select>
+                </label>
+                <button type="button" class="btn btn-primary go" data-pk-reset><?php echo esc_html(I18n::t('Reset')); ?></button>
+            </form>
+        <?php endif; ?>
+
+        <div class="results-head">
+            <div>
+                <h2 id="pk-count" data-pk-count aria-live="polite"><?php echo esc_html($count_label); ?></h2>
+                <p><?php echo esc_html(I18n::t('Prices are per person in Bangladeshi taka, quad share unless noted.')); ?></p>
+            </div>
+            <?php if ($chips !== []) : ?>
+                <div class="chips" data-pk-month>
+                    <button type="button" class="chip on" data-v=""><?php echo esc_html(I18n::t('All months')); ?></button>
+                    <?php foreach ($chips as $chip) : ?>
+                        <button type="button" class="chip" data-v="<?php echo esc_attr($chip['value']); ?>"><?php echo esc_html($chip['label']); ?></button>
+                    <?php endforeach; ?>
+                </div>
             <?php endif; ?>
         </div>
-    </header>
 
-    <div class="pk-wrap">
-        <header class="pk-hero pk-hero-plain">
-            <div class="pk-hero-copy">
-                <h1><?php echo esc_html(I18n::t('Packages')); ?></h1>
-                <p class="pk-en"><?php echo esc_html(I18n::t('Choose a package. Each one has its own days and price.')); ?></p>
-            </div>
-        </header>
-
-        <?php if ($packages === []) : ?>
-            <p class="pk-empty"><?php echo esc_html(I18n::t('No packages yet.')); ?></p>
-        <?php else : ?>
-            <div class="pk-catalog">
-                <?php foreach ($packages as $package) : ?>
+        <div class="grid" data-pk-grid>
+            <?php if ($packages === []) : ?>
+                <div class="empty">
+                    <b><?php echo esc_html(I18n::t('New packages are coming soon')); ?></b>
+                    <?php if ($wa_general !== '') : ?>
+                        <div class="empty-actions">
+                            <a class="btn btn-wa btn-sm" href="<?php echo esc_url($wa_general); ?>" target="_blank" rel="noopener"><svg class="i sm"><use href="#i-wa"/></svg><?php echo esc_html(I18n::t('Ask on WhatsApp')); ?></a>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            <?php else : ?>
+                <?php foreach ($packages as $card_index => $package) : ?>
                     <?php
-                    $title = I18n::field($package, 'title');
-                    if ($title === '') {
-                        $title = I18n::t('Untitled package');
-                    }
-                    $prices = is_array($package['prices'] ?? null) ? $package['prices'] : [];
-                    $quad = (int) ($prices['quad'] ?? 0);
-                    $quad_label = $quad > 0 ? Format::money($quad) : I18n::t('Contact the office');
-
-                    $bits = array_filter([
-                        ((int) ($package['days'] ?? 0)) > 0 ? sprintf(I18n::t('%s days'), (string) (int) $package['days']) : '',
-                        ((int) ($package['nights_makkah'] ?? 0)) > 0 ? sprintf(I18n::t('%s nights in Makkah'), (string) (int) $package['nights_makkah']) : '',
-                        ((int) ($package['nights_madinah'] ?? 0)) > 0 ? sprintf(I18n::t('%s nights in Madinah'), (string) (int) $package['nights_madinah']) : '',
-                        I18n::field($package, 'route'),
-                    ]);
-                    $href = PackagePage::url((string) ($package['id'] ?? ''));
+                    $badge = $badges[(string) ($package['id'] ?? '')] ?? '';
+                    include __DIR__ . '/parts/package-card.php';
                     ?>
-                    <a href="<?php echo esc_url($href); ?>">
-                        <?php if (($package['status'] ?? 'draft') === 'draft') : ?>
-                            <span class="pk-chip" style="font-size:11px;"><?php echo esc_html(I18n::t('Draft')); ?></span>
-                        <?php endif; ?>
-                        <?php if (I18n::field($package, 'kicker') !== '') : ?>
-                            <span><?php echo esc_html(I18n::field($package, 'kicker')); ?></span>
-                        <?php endif; ?>
-                        <strong><?php echo esc_html($title); ?></strong>
-                        <?php if ($bits !== []) : ?>
-                            <em><?php echo esc_html(implode(' · ', $bits)); ?></em>
-                        <?php endif; ?>
-                        <b><?php echo esc_html($quad_label); ?></b>
-                    </a>
                 <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+        <template data-pk-empty>
+            <div class="empty">
+                <b><?php echo esc_html(I18n::t('No package matches')); ?></b>
+                <?php echo esc_html(I18n::t('Try a higher budget or fewer filters')); ?>
+                <div class="empty-actions">
+                    <button type="button" class="btn btn-ghost btn-sm" data-pk-reset><?php echo esc_html(I18n::t('Reset')); ?></button>
+                    <?php if ($wa_general !== '') : ?>
+                        <a class="btn btn-wa btn-sm" href="<?php echo esc_url($wa_general); ?>" target="_blank" rel="noopener"><svg class="i sm"><use href="#i-wa"/></svg><?php echo esc_html(I18n::t('Ask on WhatsApp')); ?></a>
+                    <?php endif; ?>
+                </div>
             </div>
+        </template>
+
+        <?php if ($hero) : ?>
+            <?php include __DIR__ . '/parts/steps.php'; ?>
+            <?php include __DIR__ . '/parts/cta.php'; ?>
         <?php endif; ?>
+    </main>
+
+    <?php if ($hero) : ?>
+        <?php include __DIR__ . '/parts/footer.php'; ?>
+    <?php endif; ?>
+
+    <div class="tray" data-pk-tray role="region" aria-label="<?php echo esc_attr(I18n::t('Compare')); ?>">
+        <svg class="i"><use href="#i-cmp"/></svg>
+        <div class="t" data-pk-tray-list></div>
+        <button type="button" class="btn btn-gold btn-sm" data-pk-cmp-open><?php echo esc_html(I18n::t('Pick 2–3')); ?></button>
+        <button type="button" class="icon-btn tray-clear" data-pk-cmp-clear aria-label="<?php echo esc_attr(I18n::t('Clear')); ?>"><svg class="i sm"><use href="#i-x"/></svg></button>
     </div>
+    <div class="modal-bg" data-pk-modal hidden>
+        <div class="modal" role="dialog" aria-modal="true" aria-label="<?php echo esc_attr(I18n::t('Compare packages')); ?>">
+            <header>
+                <h3><?php echo esc_html(I18n::t('Compare packages')); ?></h3>
+                <button type="button" class="icon-btn" data-pk-cmp-close aria-label="<?php echo esc_attr(I18n::t('Close')); ?>"><svg class="i"><use href="#i-x"/></svg></button>
+            </header>
+            <div class="modal-scroll"><table class="ctable" data-pk-table></table></div>
+        </div>
+    </div>
+    <div class="pk-toast" data-pk-toast hidden role="status"></div>
+    <?php if ($schema_items !== []) : ?>
+        <script type="application/ld+json"><?php echo wp_json_encode($schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?></script>
+    <?php endif; ?>
 </article>

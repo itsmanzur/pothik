@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pothik — All Packages Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Noto+Sans+Bengali:wght@400;600;700&family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ===== Pothik tokens (same as admin) ===== */
+:root{
+  --g950:#0b201a;--g900:#0f2a21;--g800:#1b4336;--g700:#24563f;--g600:#2d6a4f;--g500:#40916c;--g200:#b7d9c6;--g100:#e3efe8;--g50:#f1f7f3;
+  --gold:#d4a64a;--gold-100:#f7ecd3;--clay:#b4532a;--clay-100:#fbe9e1;
+  --ink:#1c1916;--ink-2:#3b362f;--muted:#6b645a;--faint:#9a9286;--line:#ebe4d8;--line-2:#f2ece2;--paper:#f7f3ec;--sheet:#fff;
+  --wa:#25d366;--wa-ink:#075e54;
+  --r:12px;--r-lg:18px;--r-xl:26px;
+  --sh-1:0 1px 2px rgba(28,25,22,.06);--sh-2:0 6px 18px -6px rgba(28,25,22,.14);--sh-3:0 22px 44px -16px rgba(15,42,33,.32);
+  --ease:cubic-bezier(.2,.8,.2,1);
+  --sans:"Source Sans 3","Noto Sans Bengali","Nirmala UI","Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--paper);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+button,input,select{font:inherit;color:inherit}
+a{color:inherit}
+svg.i{width:18px;height:18px;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+svg.i.sm{width:15px;height:15px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:42px;padding:0 18px;border-radius:11px;border:1px solid transparent;font-weight:700;font-size:15px;cursor:pointer;text-decoration:none;white-space:nowrap;transition:transform .12s var(--ease),filter .2s,background .2s,border-color .2s}
+.btn:active{transform:translateY(1px)}
+.btn:focus-visible,.chip:focus-visible,.icon-btn:focus-visible{outline:3px solid rgba(64,145,108,.45);outline-offset:2px}
+.btn-primary{background:linear-gradient(180deg,var(--g700),var(--g800));color:#fff;box-shadow:0 8px 16px -10px rgba(27,67,54,.9)}
+.btn-primary:hover{filter:brightness(1.12)}
+.btn-wa{background:var(--wa);color:#fff;box-shadow:0 8px 16px -10px rgba(37,211,102,.9)}
+.btn-wa:hover{filter:brightness(1.05)}
+.btn-gold{background:linear-gradient(180deg,#e7bf68,var(--gold));color:#2b1d02}
+.btn-ghost{background:#fff;border-color:var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--g200);background:var(--g50)}
+.btn-sm{height:36px;padding:0 13px;font-size:14px;border-radius:10px}
+.icon-btn{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;border:1px solid var(--line);background:#fff;cursor:pointer;color:var(--muted)}
+.icon-btn.wa{background:#e7f9ee;border-color:#c9efd7;color:var(--wa-ink)}
+.icon-btn.wa:hover{background:var(--wa);color:#fff}
+.pill{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;font-size:12.5px;font-weight:700;white-space:nowrap}
+
+/* ===== Top bar ===== */
+.bar{position:sticky;top:0;z-index:40;background:rgba(15,42,33,.94);backdrop-filter:blur(10px);color:#fff;border-bottom:1px solid rgba(255,255,255,.06)}
+.bar .wrap{display:flex;align-items:center;gap:14px;height:66px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand-mark{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(145deg,#e7bf68,var(--gold));color:#2b1d02}
+.brand b{display:block;font-size:17px;line-height:1.1}
+.brand small{font-size:12px;color:rgba(255,255,255,.62)}
+.bar nav{display:flex;gap:4px;margin-left:24px}
+.bar nav a{padding:8px 12px;border-radius:9px;text-decoration:none;font-weight:600;font-size:14.5px;color:rgba(255,255,255,.78)}
+.bar nav a:hover{background:rgba(255,255,255,.08);color:#fff}
+.bar .tools{margin-left:auto;display:flex;align-items:center;gap:10px}
+.lang{display:inline-flex;padding:3px;border-radius:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12)}
+.lang button{border:0;background:none;color:rgba(255,255,255,.7);font-weight:700;font-size:13px;padding:5px 10px;border-radius:7px;cursor:pointer}
+.lang button.on{background:#fff;color:var(--g900)}
+.bar .phone{display:flex;align-items:center;gap:7px;text-decoration:none;font-weight:700;font-size:14.5px;color:#fff}
+
+/* ===== Hero (Haramain night) ===== */
+.hero{position:relative;overflow:hidden;color:#fff;padding:54px 0 250px;
+  background:radial-gradient(800px 300px at 70% 112%,rgba(212,166,74,.45),transparent 70%),radial-gradient(900px 420px at 0% -20%,rgba(64,145,108,.35),transparent 60%),linear-gradient(180deg,#071812 0%,#0f2a21 50%,#173d30 100%)}
+.hero::before{content:"";position:absolute;inset:0;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%23fff' stroke-width='1.2'%3E%3Cpath d='M32 4l8 20 20 8-20 8-8 20-8-20-20-8 20-8z'/%3E%3Ccircle cx='32' cy='32' r='9'/%3E%3C/g%3E%3C/svg%3E");background-size:64px;mask-image:linear-gradient(180deg,#000,transparent 75%)}
+.sky{position:absolute;inset:0;pointer-events:none}
+.sky i{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;opacity:.2;animation:tw 4s ease-in-out infinite}
+@keyframes tw{50%{opacity:.95;transform:scale(1.5)}}
+.moon{position:absolute;right:12%;top:46px;width:54px;height:54px;border-radius:50%;box-shadow:-13px 8px 0 0 #f3d48d;transform:rotate(-24deg);filter:drop-shadow(0 0 16px rgba(243,212,141,.55))}
+.skyline{position:absolute;left:0;right:0;bottom:56px;height:200px;pointer-events:none}
+.skyline svg{position:absolute;inset:0;width:100%;height:100%;transition:opacity 1.6s ease,transform 1.6s ease}
+.skyline svg.off{opacity:0;transform:translateY(10px)}
+.tawaf{animation:tawaf 3s linear infinite}@keyframes tawaf{to{stroke-dashoffset:-30}}
+.lamp{animation:glow 3.5s ease-in-out infinite}@keyframes glow{50%{opacity:.55}}
+.hero .wrap{position:relative;z-index:2}
+.talbiyah{font-family:"Amiri","Noto Naskh Arabic","Traditional Arabic",serif;font-size:30px;line-height:1.4;color:var(--gold);text-shadow:0 2px 18px rgba(212,166,74,.45);margin:0}
+.hero h1{margin:10px 0 12px;font-size:52px;line-height:1.05;letter-spacing:-.03em;max-width:15ch}
+.hero h1 span{color:var(--gold)}
+.hero .lead{max-width:56ch;font-size:18px;color:rgba(255,255,255,.8);margin:0 0 22px}
+.trust{display:flex;flex-wrap:wrap;gap:8px}
+.trust span{display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 13px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);font-size:14px;font-weight:600;backdrop-filter:blur(6px)}
+.trust svg{color:var(--gold)}
+.season{position:absolute;right:24px;top:0;display:grid;gap:8px;justify-items:end}
+.season .pill{height:34px;padding:0 14px;background:rgba(7,24,18,.55);border:1px solid rgba(212,166,74,.4);color:#f3e2b8;font-size:13.5px;backdrop-filter:blur(6px)}
+.season b{color:var(--gold);font-size:15px}
+.scene{display:flex;gap:8px}
+.scene button{height:30px;padding:0 11px;border-radius:999px;border:1px solid rgba(255,255,255,.2);background:rgba(7,24,18,.55);color:rgba(255,255,255,.75);font-weight:700;font-size:12.5px;cursor:pointer;backdrop-filter:blur(6px)}
+.scene button.on{border-color:var(--gold);color:#fff;background:rgba(212,166,74,.2)}
+
+/* ===== Finder (overlaps hero) ===== */
+.finder{position:relative;z-index:5;margin-top:-58px;background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh-3);padding:16px;display:grid;grid-template-columns:1.2fr 1fr 1.4fr 1fr auto;gap:12px;align-items:end}
+.f-field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.f-field>span{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between}
+.f-field>span b{color:var(--g700);letter-spacing:0;text-transform:none;font-size:13px}
+.f-field input[type=search],.f-field select{height:44px;border:1px solid var(--line);border-radius:11px;padding:0 12px;background:#fff;outline:none;width:100%}
+.f-field input:focus,.f-field select:focus{border-color:var(--g500);box-shadow:0 0 0 4px rgba(64,145,108,.14)}
+.f-field input[type=range]{width:100%;accent-color:var(--g600);height:44px}
+.segs{display:flex;padding:3px;border-radius:11px;background:var(--line-2);border:1px solid var(--line);height:44px}
+.segs button{flex:1;border:0;background:none;border-radius:8px;font-weight:700;font-size:13.5px;color:var(--muted);cursor:pointer;white-space:nowrap;padding:0 8px}
+.segs button.on{background:#fff;color:var(--ink);box-shadow:var(--sh-1)}
+
+/* ===== Results ===== */
+.results-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:34px 0 16px;flex-wrap:wrap}
+.results-head h2{margin:0;font-size:28px;letter-spacing:-.02em}
+.results-head p{margin:2px 0 0;color:var(--muted)}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{height:36px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:#fff;font-weight:700;font-size:13.5px;color:var(--muted);cursor:pointer;display:inline-flex;align-items:center;gap:7px}
+.chip:hover{color:var(--ink);border-color:var(--g200)}
+.chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.card{position:relative;display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-1);transition:transform .25s var(--ease),box-shadow .25s;animation:rise .4s var(--ease) both}
+.card:hover{transform:translateY(-5px);box-shadow:var(--sh-3)}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.cover{position:relative;height:168px;padding:16px 18px;color:#fff;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(140deg,var(--c1),var(--c2));overflow:hidden}
+.cover::before{content:"";position:absolute;inset:0;opacity:.14;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M20 2l5 13 13 5-13 5-5 13-5-13-13-5 13-5z' fill='none' stroke='%23fff'/%3E%3C/svg%3E");background-size:40px}
+.cover .mini-sky{position:absolute;right:-10px;bottom:-4px;width:70%;height:70px;opacity:.28}
+.cover>*{position:relative}
+.cover .top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.days{display:flex;align-items:baseline;gap:5px;font-weight:800}
+.days strong{font-size:46px;line-height:.85;letter-spacing:-.04em}
+.days span{font-size:14px;opacity:.85}
+.ribbon{height:26px;padding:0 10px;border-radius:999px;font-size:12px;font-weight:800;display:inline-flex;align-items:center;gap:5px;background:var(--gold);color:#2b1d02;box-shadow:0 6px 14px -6px rgba(0,0,0,.5)}
+.ribbon.near{background:#fff;color:var(--g800)}
+.kicker{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;opacity:.8}
+.nights{display:flex;gap:6px;flex-wrap:wrap}
+.nights span{font-size:12.5px;font-weight:700;padding:4px 10px;border-radius:999px;background:rgba(0,0,0,.24);backdrop-filter:blur(4px)}
+.body{padding:16px 18px 6px;display:flex;flex-direction:column;gap:12px;flex:1}
+.body h3{margin:0;font-size:20px;line-height:1.25;letter-spacing:-.01em}
+.body .route{font-size:13.5px;color:var(--muted);display:flex;align-items:center;gap:6px;margin-top:-6px}
+.hotel{display:grid;grid-template-columns:30px 1fr auto;gap:2px 10px;align-items:center;padding:10px 12px;border-radius:12px;background:#fcfaf6;border:1px solid var(--line-2)}
+.hotel .ic{grid-row:1/3;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:var(--g800);color:#fff;font-size:11px;font-weight:800}
+.hotel .nm{font-weight:700;font-size:14.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hotel .st{color:var(--gold);font-size:12px;letter-spacing:1px}
+.hotel .dist{grid-column:2/4;display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted)}
+.hotel .dist .m{flex:1;height:5px;border-radius:9px;background:var(--line);overflow:hidden}
+.hotel .dist .m i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,var(--g500),var(--g700))}
+.hotel .dist b{color:var(--ink-2)}
+.incl{display:flex;flex-wrap:wrap;gap:6px}
+.incl span{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;padding:4px 9px;border-radius:8px;background:var(--g50);color:var(--g800)}
+.incl span svg{color:var(--g600)}
+.foot{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding:14px 18px 16px;border-top:1px dashed var(--line);margin-top:8px}
+.price small{display:block;font-size:12px;font-weight:700;color:var(--muted)}
+.price b{font-size:26px;letter-spacing:-.02em;line-height:1.1}
+.price em{display:block;font-style:normal;font-size:12.5px;color:var(--faint)}
+.actions{display:flex;gap:8px}
+.cmp{position:absolute;top:128px;right:14px;z-index:2;display:flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:999px;background:rgba(255,255,255,.92);color:var(--ink-2);font-size:12px;font-weight:800;cursor:pointer;opacity:0;transition:opacity .2s}
+.card:hover .cmp,.cmp.on,.cmp:focus-within{opacity:1}
+.cmp input{accent-color:var(--g600);margin:0}
+.empty{grid-column:1/-1;text-align:center;padding:50px 20px;background:#fff;border:1px dashed var(--line);border-radius:var(--r-lg);color:var(--muted)}
+.empty b{display:block;color:var(--ink);font-size:18px;margin-bottom:4px}
+
+/* ===== Steps ===== */
+.steps{margin:60px 0 0;padding:36px;border-radius:var(--r-xl);background:#fff;border:1px solid var(--line)}
+.steps h2{margin:0 0 6px;font-size:26px;letter-spacing:-.02em;text-align:center}
+.steps>p{margin:0 0 26px;text-align:center;color:var(--muted)}
+.step-row{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;position:relative}
+.step-row::before{content:"";position:absolute;top:26px;left:12%;right:12%;height:2px;background:repeating-linear-gradient(90deg,var(--g200) 0 8px,transparent 8px 14px)}
+.step{text-align:center;position:relative}
+.step .n{width:54px;height:54px;border-radius:50%;margin:0 auto 12px;display:grid;place-items:center;background:var(--g800);color:#fff;font-weight:800;font-size:18px;border:5px solid #fff;box-shadow:0 0 0 1px var(--g200)}
+.step:nth-child(4) .n{background:var(--gold);color:#2b1d02}
+.step b{display:block;font-size:16px}
+.step span{font-size:14px;color:var(--muted)}
+
+/* ===== CTA ===== */
+.cta{margin:30px 0 60px;padding:34px 36px;border-radius:var(--r-xl);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;background:radial-gradient(500px 200px at 90% 0%,rgba(212,166,74,.35),transparent 70%),linear-gradient(135deg,var(--g700),var(--g900));position:relative;overflow:hidden}
+.cta h3{margin:0 0 4px;font-size:24px}
+.cta p{margin:0;color:rgba(255,255,255,.78)}
+footer{background:var(--g950);color:rgba(255,255,255,.7);font-size:14px;padding:26px 0}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer b{color:#fff}
+
+/* ===== Compare tray + modal ===== */
+.tray{visibility:hidden;position:fixed;left:50%;bottom:18px;transform:translate(-50%,160%);z-index:50;display:flex;align-items:center;gap:12px;padding:10px 10px 10px 16px;border-radius:16px;background:var(--ink);color:#fff;box-shadow:0 20px 40px -10px rgba(0,0,0,.45);transition:transform .35s var(--ease)}
+.tray.show{transform:translate(-50%,0);visibility:visible}
+.tray .t{display:flex;gap:6px}
+.tray .t span{height:30px;padding:0 10px;border-radius:8px;background:rgba(255,255,255,.1);font-size:13px;font-weight:700;display:flex;align-items:center;max-width:170px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.modal-bg{position:fixed;inset:0;z-index:60;background:rgba(10,18,15,.5);backdrop-filter:blur(3px);display:grid;place-items:center;padding:20px}
+.modal-bg[hidden]{display:none}
+.modal{width:min(900px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:20px;box-shadow:0 40px 80px -20px rgba(0,0,0,.5);animation:rise .25s var(--ease)}
+.modal header{display:flex;justify-content:space-between;align-items:center;padding:18px 22px;border-bottom:1px solid var(--line)}
+.modal h3{margin:0}
+.ctable{width:100%;border-collapse:collapse;font-size:15px}
+.ctable th,.ctable td{padding:12px 18px;border-bottom:1px solid var(--line-2);text-align:left;vertical-align:top}
+.ctable th{width:180px;font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.ctable td.best{background:var(--g50);font-weight:800;color:var(--g800)}
+.ctable thead td{font-weight:800;font-size:16px}
+.fab{position:fixed;right:18px;bottom:18px;z-index:45;width:58px;height:58px;border-radius:50%;background:var(--wa);color:#fff;display:none;place-items:center;box-shadow:0 12px 26px -8px rgba(37,211,102,.8)}
+.fab svg{width:28px;height:28px}
+
+/* ===== Responsive ===== */
+@media (max-width:1100px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.finder{grid-template-columns:1fr 1fr}.finder .go{grid-column:1/-1}.bar nav{display:none}.season{position:static;justify-items:start;margin-top:18px;display:flex;flex-wrap:wrap}}
+@media (max-width:700px){
+  .wrap{padding:0 16px}.hero{padding:34px 0 230px}.hero h1{font-size:36px}.talbiyah{font-size:24px}.moon{right:18px;top:24px;width:40px;height:40px}
+  .grid,.finder{grid-template-columns:1fr}.step-row{grid-template-columns:1fr 1fr}.step-row::before{display:none}
+  .bar .phone span,.bar .btn-wa span,.brand small{display:none}.bar .btn-wa{width:42px;padding:0}.fab{display:grid}
+  .cmp{opacity:1}.steps{padding:24px 18px}.cta{padding:26px 20px}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-7.6-7-12a7 7 0 1 1 14 0c0 4.4-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M3.5 20.5l1.3-4.2A8.5 8.5 0 1 1 8 19.4z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.5-2-1-1 .8a4 4 0 0 1-2.3-2.3l.8-1-1-2z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2 20a7 7 0 0 1 14 0M16 4a3.5 3.5 0 0 1 0 7M22 20a6 6 0 0 0-4-5.6"/></symbol>
+  <symbol id="i-plane" viewBox="0 0 24 24"><path d="M10 14l-7-3 1.5-1.5 7.5 1L17 5a2 2 0 0 1 3 3l-5.5 5 1 7.5L14 22l-3-7"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></symbol>
+  <symbol id="i-bed" viewBox="0 0 24 24"><path d="M3 7v13M3 14h18v6M21 14v-3a3 3 0 0 0-3-3h-7v6"/><circle cx="7" cy="11" r="2"/></symbol>
+  <symbol id="i-bus" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="15" rx="3"/><path d="M4 11h16M8 21v-3M16 21v-3"/><circle cx="8" cy="15" r=".8"/><circle cx="16" cy="15" r=".8"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-cmp" viewBox="0 0 24 24"><path d="M8 3v18M16 3v18M3 8h5M16 16h5"/></symbol>
+  <symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h8a3 3 0 0 0 0-6H8a3 3 0 0 1 0-6h8"/></symbol>
+</svg>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="#"><span class="brand-mark"><svg class="i"><use href="#i-pin"/></svg></span><span><b>Pothik Umrah</b><small>Hajj & Umrah licence 1234</small></span></a>
+    <nav aria-label="Page"><a href="#packages">Packages</a><a href="#how">How booking works</a><a href="#ask">Ask the office</a></nav>
+    <div class="tools">
+      <div class="lang" role="group" aria-label="Language"><button class="on">EN</button><button>বাংলা</button></div>
+      <a class="phone" href="#"><svg class="i"><use href="#i-phone"/></svg><span>01711-000000</span></a>
+      <a class="btn btn-wa btn-sm" href="#"><svg class="i"><use href="#i-wa"/></svg><span>WhatsApp</span></a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="sky" id="sky"><span class="moon"></span></div>
+  <div class="skyline" aria-hidden="true"><svg id="scMakkah" viewBox="0 0 1200 190" preserveAspectRatio="xMidYMax slice">
+            <defs>
+              <linearGradient id="kGlow" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#f3d48d" stop-opacity=".0"/><stop offset="1" stop-color="#f3d48d" stop-opacity=".35"/></linearGradient>
+              <radialGradient id="kHalo" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#f7dc9a" stop-opacity=".55"/><stop offset="1" stop-color="#f7dc9a" stop-opacity="0"/></radialGradient>
+            </defs>
+            <path d="M0 190V112c60-26 120-40 190-18s120 4 190-12 110 10 170 2 120-30 200-16 110 22 170 8 120-26 160-14 80 18 120 10V190z" fill="#0c241c" opacity=".9"/>
+            <g fill="#081a14">
+              <rect x="700" y="96" width="44" height="94"/><rect x="752" y="80" width="40" height="110"/><rect x="1010" y="100" width="46" height="90"/><rect x="1062" y="118" width="40" height="72"/><rect x="952" y="88" width="50" height="102"/>
+              <rect x="842" y="70" width="98" height="120"/><rect x="860" y="38" width="62" height="40"/>
+              <path d="M872 38l19-14 19 14z"/><rect x="888" y="2" width="6" height="24"/>
+            </g>
+            <circle cx="891" cy="54" r="12" fill="#f3d48d" class="lamp"/><circle cx="891" cy="54" r="12" fill="none" stroke="#081a14" stroke-width="1.5"/>
+            <path d="M891 54v-7M891 54l5 3" stroke="#081a14" stroke-width="1.6" stroke-linecap="round"/>
+            <g fill="#f3d48d" class="lamp" opacity=".8"><rect x="758" y="90" width="3" height="3"/><rect x="770" y="104" width="3" height="3"/><rect x="712" y="110" width="3" height="3"/><rect x="964" y="100" width="3" height="3"/><rect x="980" y="120" width="3" height="3"/><rect x="1020" y="114" width="3" height="3"/><rect x="854" y="92" width="3" height="3"/><rect x="920" y="104" width="3" height="3"/></g>
+            <g transform="translate(130 0)">
+            <!-- Haram arcade + minarets -->
+            <g fill="#0a2019">
+              <rect x="250" y="150" width="440" height="40"/>
+              <g><rect x="262" y="66" width="10" height="90"/><path d="M260 66l7-18 7 18z"/><rect x="259" y="92" width="16" height="4"/></g>
+              <g><rect x="330" y="76" width="10" height="80"/><path d="M328 76l7-18 7 18z"/><rect x="327" y="100" width="16" height="4"/></g>
+              <g><rect x="600" y="76" width="10" height="80"/><path d="M598 76l7-18 7 18z"/><rect x="597" y="100" width="16" height="4"/></g>
+              <g><rect x="668" y="66" width="10" height="90"/><path d="M666 66l7-18 7 18z"/><rect x="665" y="92" width="16" height="4"/></g>
+            </g>
+            <g fill="#f3d48d" opacity=".55" class="lamp"><path d="M268 166a8 8 0 0 1 16 0v14h-16zM300 166a8 8 0 0 1 16 0v14h-16zM620 166a8 8 0 0 1 16 0v14h-16zM652 166a8 8 0 0 1 16 0v14h-16z"/></g>
+            <!-- Kaaba -->
+            <ellipse cx="470" cy="176" rx="120" ry="28" fill="url(#kHalo)"/>
+            <ellipse class="tawaf" cx="470" cy="178" rx="92" ry="13" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="2.2" stroke-dasharray="1.5 6" stroke-linecap="round"/>
+            <ellipse class="tawaf" cx="470" cy="178" rx="66" ry="9" fill="none" stroke="#f3d48d" stroke-opacity=".6" stroke-width="2" stroke-dasharray="1.5 5" stroke-linecap="round" style="animation-duration:2.2s"/>
+            <path d="M444 126l26-6 26 6v52l-26 6-26-6z" fill="#0b0b0b"/>
+            <path d="M470 120v64" stroke="#1c1c1c" stroke-width="1"/>
+            <path d="M444 136l26-5 26 5v6l-26-5-26 5z" fill="#d4a64a"/>
+            <rect x="476" y="152" width="9" height="16" fill="#d4a64a" opacity=".9"/>
+            </g>
+          </svg><svg id="scMadinah" class="off" viewBox="0 0 1200 190" preserveAspectRatio="xMidYMax slice">
+            <defs><linearGradient id="dome" x1="0" x2="1"><stop offset="0" stop-color="#2f9e64"/><stop offset="1" stop-color="#1e6b45"/></linearGradient>
+            <radialGradient id="mHalo" cx=".5" cy=".6" r=".5"><stop offset="0" stop-color="#bff0d2" stop-opacity=".35"/><stop offset="1" stop-color="#bff0d2" stop-opacity="0"/></radialGradient></defs>
+            <path d="M0 190V130c90-18 180-24 300-12s200-14 300-6 200 18 300 8 200-20 300-6V190z" fill="#0c241c" opacity=".9"/>
+            <ellipse cx="600" cy="150" rx="210" ry="70" fill="url(#mHalo)"/>
+            <g fill="#e9e2d0" opacity=".9">
+              <g><rect x="380" y="58" width="12" height="122"/><path d="M378 58l8-22 8 22z"/><rect x="376" y="84" width="20" height="4"/><rect x="376" y="118" width="20" height="4"/></g>
+              <g><rect x="470" y="40" width="12" height="140"/><path d="M468 40l8-24 8 24z"/><rect x="466" y="68" width="20" height="4"/><rect x="466" y="104" width="20" height="4"/></g>
+              <g><rect x="718" y="40" width="12" height="140"/><path d="M716 40l8-24 8 24z"/><rect x="714" y="68" width="20" height="4"/><rect x="714" y="104" width="20" height="4"/></g>
+              <g><rect x="808" y="58" width="12" height="122"/><path d="M806 58l8-22 8 22z"/><rect x="804" y="84" width="20" height="4"/><rect x="804" y="118" width="20" height="4"/></g>
+              <rect x="350" y="142" width="500" height="48"/>
+            </g>
+            <g fill="#f3d48d" opacity=".75" class="lamp"><rect x="384" y="78" width="4" height="4"/><rect x="474" y="60" width="4" height="4"/><rect x="722" y="60" width="4" height="4"/><rect x="812" y="78" width="4" height="4"/></g>
+            <g fill="#c8b98f" opacity=".6"><path d="M366 162a9 9 0 0 1 18 0v20h-18zM400 162a9 9 0 0 1 18 0v20h-18zM434 162a9 9 0 0 1 18 0v20h-18zM748 162a9 9 0 0 1 18 0v20h-18zM782 162a9 9 0 0 1 18 0v20h-18zM816 162a9 9 0 0 1 18 0v20h-18z"/></g>
+            <!-- the Green Dome -->
+            <rect x="560" y="118" width="80" height="30" fill="#1b5e3f"/>
+            <path d="M560 120c0-34 18-50 40-54 22 4 40 20 40 54z" fill="url(#dome)"/>
+            <path d="M600 66v-18" stroke="#d4a64a" stroke-width="2.5"/><circle cx="600" cy="44" r="4" fill="#d4a64a"/>
+            <path d="M604 36a6 6 0 1 1-4-10 5 5 0 1 0 4 10z" fill="#d4a64a"/>
+            <rect x="500" y="132" width="40" height="16" fill="#e9e2d0"/><path d="M500 132c0-12 9-18 20-18s20 6 20 18z" fill="#e9e2d0"/>
+            <!-- umbrellas -->
+            <g fill="none" stroke="#f0e9d6" stroke-opacity=".8" stroke-width="2.5" stroke-linejoin="round">
+              <path d="M70 172l35-15 35 15M150 172l35-15 35 15M230 172l35-15 35 15M900 172l35-15 35 15M980 172l35-15 35 15M1060 172l35-15 35 15"/>
+            </g>
+            <g stroke="#f0e9d6" stroke-opacity=".6" stroke-width="2"><path d="M105 157v33M185 157v33M265 157v33M935 157v33M1015 157v33M1095 157v33"/></g>
+          </svg></div>
+  <div class="wrap">
+    <p class="talbiyah" lang="ar" dir="rtl" style="text-align:left">لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ</p>
+    <h1>Umrah packages <span>from Dhaka</span></h1>
+    <p class="lead">Compare days, hotels and walking distance to the Haram. Pick a room share and send an inquiry — the office replies on WhatsApp.</p>
+    <div class="trust">
+      <span><svg class="i sm"><use href="#i-shield"/></svg>Licence 1234</span>
+      <span><svg class="i sm"><use href="#i-users"/></svg>Bangla-speaking guide</span>
+      <span><svg class="i sm"><use href="#i-wa"/></svg>Reply on WhatsApp</span>
+    </div>
+    <div class="season" aria-label="Season">
+      <span class="pill">🌙 Ramadan in <b id="toRam">—</b> days</span>
+      <span class="pill">🐪 Hajj in <b id="toHajj">—</b> days</span><div class="scene" role="group" aria-label="Scene"><button class="on" data-scene="Makkah">🕋 Makkah <b id="mkTime">—</b></button><button data-scene="Madinah">🕌 Madinah</button></div>
+    </div>
+  </div>
+</section>
+
+<main class="wrap" id="packages">
+  <form class="finder" onsubmit="return false" aria-label="Find a package">
+    <label class="f-field"><span>Search</span><input type="search" id="q" placeholder="Package or hotel name"></label>
+    <div class="f-field"><span>Days</span><div class="segs" id="days"><button type="button" class="on" data-v="">Any</button><button type="button" data-v="s">≤10</button><button type="button" data-v="m">11–15</button><button type="button" data-v="l">16+</button></div></div>
+    <label class="f-field"><span>Budget per person <b id="budOut">Any</b></span><input type="range" id="bud" min="100000" max="300000" step="5000" value="300000"></label>
+    <label class="f-field"><span>Sort by</span><select id="sort"><option value="price">Lowest price</option><option value="near">Closest to the Haram</option><option value="days">Fewest days</option><option value="stars">Best hotels</option></select></label>
+    <button type="button" class="btn btn-primary go" id="reset">Reset</button>
+  </form>
+
+  <div class="results-head">
+    <div><h2 id="count">5 packages</h2><p>Prices are per person in Bangladeshi taka, quad share unless noted.</p></div>
+    <div class="chips" id="month"><button class="chip on" data-v="">All months</button><button class="chip" data-v="Dec">December</button><button class="chip" data-v="Jan">January</button><button class="chip" data-v="Feb">Ramadan</button></div>
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <section class="steps" id="how">
+    <h2>How booking works</h2>
+    <p>No online payment. You talk to the office before anything is fixed.</p>
+    <div class="step-row">
+      <div class="step"><span class="n">1</span><b>Choose a package</b><span>Compare days, hotels and price.</span></div>
+      <div class="step"><span class="n">2</span><b>Send an inquiry</b><span>Name, phone and room share.</span></div>
+      <div class="step"><span class="n">3</span><b>Office replies</b><span>On WhatsApp or a phone call.</span></div>
+      <div class="step"><span class="n">4</span><b>Pay the deposit</b><span>bKash, Nagad, bank or cash.</span></div>
+    </div>
+  </section>
+
+  <section class="cta" id="ask">
+    <div><h3>Not sure which package suits your family?</h3><p>Tell the office your dates and budget — they will suggest one.</p></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-wa" href="#"><svg class="i"><use href="#i-wa"/></svg>Ask on WhatsApp</a><a class="btn btn-ghost" href="#"><svg class="i"><use href="#i-phone"/></svg>01711-000000</a></div>
+  </section>
+</main>
+
+<footer><div class="wrap"><span><b>Pothik Umrah</b> · Hajj & Umrah licence 1234 · Dhaka</span><span>Prices are published share prices and do not hold a seat.</span></div></footer>
+
+<div class="tray" id="tray" role="region" aria-label="Compare"><svg class="i"><use href="#i-cmp"/></svg><div class="t" id="trayList"></div><button class="btn btn-gold btn-sm" id="cmpOpen">Compare</button><button class="icon-btn" id="cmpClear" style="width:36px;height:36px;background:transparent;border-color:rgba(255,255,255,.2);color:#fff" aria-label="Clear"><svg class="i sm"><use href="#i-x"/></svg></button></div>
+<div class="modal-bg" id="modal" hidden><div class="modal" role="dialog" aria-label="Compare packages"><header><h3>Compare packages</h3><button class="icon-btn" id="cmpClose" aria-label="Close"><svg class="i"><use href="#i-x"/></svg></button></header><div style="overflow:auto"><table class="ctable" id="ctable"></table></div></div></div>
+<a class="fab" href="#" aria-label="WhatsApp"><svg class="i"><use href="#i-wa"/></svg></a>
+
+<script>
+(function(){
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const money=n=>{let d=String(n);if(d.length>3)d=d.slice(0,-3).replace(/\B(?=(\d{2})+(?!\d))/g,',')+','+d.slice(-3);return '৳'+d};
+const P=[
+ {id:'a',k:'December group · from Dhaka',m:'Dec',t:'14-day economy Umrah',d:14,nm:8,nd:5,route:'Dhaka → Jeddah → Madinah → Dhaka',mh:'Kiswah Towers',ms:3,mm:900,dh:'Al Eiman Royal',ds:3,dm:350,q:118000,tr:128000,inc:['Air ticket','Visa','Hotels','Ziyarah'],c1:'#8c6a2a',c2:'#3b2a0c'},
+ {id:'b',k:'March group · from Dhaka',m:'Jan',t:'7-day superior Umrah',d:7,nm:4,nd:2,route:'Jeddah first · Fixed group',mh:'Dar Al Tawhid Hotel',ms:5,mm:180,dh:'Taiba Front Hotel',ds:4,dm:250,q:145000,tr:165000,inc:['Air ticket','Visa','AC coach','Bengali muallim'],c1:'#2d6a4f',c2:'#0f2a21'},
+ {id:'c',k:'Ramadan · last ten nights',m:'Feb',t:'Ramadan last-ten Umrah',d:12,nm:9,nd:2,route:'Dhaka → Jeddah · Iftar included',mh:'Hilton Suites Makkah',ms:5,mm:50,dh:'Pullman Zamzam Madinah',ds:5,dm:200,q:265000,tr:285000,inc:['Air ticket','Visa','Iftar & suhoor','Ziyarah'],c1:'#3f6b8a',c2:'#13283a'},
+ {id:'d',k:'January family group',m:'Jan',t:'10-day family Umrah',d:10,nm:6,nd:3,route:'Madinah first · Family rooms',mh:'Swissôtel Al Maqam',ms:5,mm:150,dh:'Anwar Al Madinah Mövenpick',ds:5,dm:100,q:175000,tr:190000,inc:['Air ticket','Visa','Breakfast','Wheelchair help'],c1:'#a34a32',c2:'#4a1d10'},
+ {id:'e',k:'Budget · December',m:'Dec',t:'21-day budget Umrah',d:21,nm:13,nd:7,route:'Dhaka → Jeddah → Dhaka',mh:'Al Kiswah Grand',ms:3,mm:1400,dh:'Dallah Taibah',ds:3,dm:600,q:105000,tr:112000,inc:['Air ticket','Visa','Hotels','Shuttle bus'],c1:'#6b4f8a',c2:'#251a36'}
+];
+const minQ=Math.min(...P.map(p=>p.q)),minD=Math.min(...P.map(p=>p.mm));
+const walk=m=>m<=100?'≈1 min walk':m<=1000?'≈'+Math.round(m/80)+' min walk':'shuttle bus';
+const pct=m=>Math.max(6,100-m/20);
+const icon={['Air ticket']:'plane',Visa:'doc',Hotels:'bed','AC coach':'bus','Shuttle bus':'bus'};
+const st={q:'',days:'',bud:300000,sort:'price',month:'',cmp:new Set()};
+function render(){const g=$('#grid');let list=P.filter(p=>(!st.q||(p.t+p.mh+p.dh).toLowerCase().includes(st.q))&&(!st.days||(st.days==='s'?p.d<=10:st.days==='m'?p.d>10&&p.d<=15:p.d>15))&&p.q<=st.bud&&(!st.month||p.m===st.month));
+ list.sort((a,b)=>st.sort==='price'?a.q-b.q:st.sort==='near'?a.mm-b.mm:st.sort==='days'?a.d-b.d:(b.ms+b.ds)-(a.ms+a.ds));
+ $('#count').textContent=list.length+(list.length===1?' package':' packages');
+ g.innerHTML=list.length?'':'<div class="empty"><b>No package matches</b>Try a higher budget or another month — or ask the office on WhatsApp.<div style="margin-top:14px"><a class="btn btn-wa btn-sm" href="#"><svg class="i sm"><use href="#i-wa"/></svg>Ask on WhatsApp</a></div></div>';
+ list.forEach((p,i)=>{const a=document.createElement('article');a.className='card';a.style.cssText=`--c1:${p.c1};--c2:${p.c2};animation-delay:${i*60}ms`;
+  const rib=p.q===minQ?'<span class="ribbon">★ Lowest price</span>':p.mm===minD?'<span class="ribbon near">🕋 Closest to Haram</span>':'';
+  a.innerHTML=`<label class="cmp ${st.cmp.has(p.id)?'on':''}"><input type="checkbox" ${st.cmp.has(p.id)?'checked':''}>Compare</label>
+  <div class="cover"><svg class="mini-sky" viewBox="0 0 300 70" preserveAspectRatio="xMaxYMax meet"><g fill="#fff"><rect x="150" y="38" width="22" height="26"/><rect x="146" y="44" width="30" height="4" fill="#f3d48d"/><rect x="100" y="10" width="5" height="58"/><path d="M99 10l3.5-9 3.5 9z"/><rect x="215" y="10" width="5" height="58"/><path d="M214 10l3.5-9 3.5 9z"/><rect x="60" y="56" width="200" height="14"/><path d="M250 56c0-16 9-24 20-26 11 2 20 10 20 26z"/></g></svg>
+   <div class="top"><div class="days"><strong>${p.d}</strong><span>days</span></div>${rib}</div>
+   <div><div class="kicker">${p.k}</div><div class="nights" style="margin-top:6px"><span>🕋 ${p.nm} nights Makkah</span><span>🕌 ${p.nd} nights Madinah</span></div></div></div>
+  <div class="body"><h3>${p.t}</h3><div class="route"><svg class="i sm"><use href="#i-route"/></svg>${p.route}</div>
+   <div class="hotel"><span class="ic">MK</span><span class="nm">${p.mh}</span><span class="st">${'★'.repeat(p.ms)}</span><div class="dist"><div class="m"><i style="width:${pct(p.mm)}%"></i></div><b>${p.mm} m</b> · ${walk(p.mm)}</div></div>
+   <div class="hotel"><span class="ic">MD</span><span class="nm">${p.dh}</span><span class="st">${'★'.repeat(p.ds)}</span><div class="dist"><div class="m"><i style="width:${pct(p.dm)}%"></i></div><b>${p.dm} m</b> · ${walk(p.dm)}</div></div>
+   <div class="incl">${p.inc.map(x=>`<span><svg class="i sm"><use href="#i-${icon[x]||'shield'}"/></svg>${x}</span>`).join('')}</div></div>
+  <div class="foot"><div class="price"><small>From, quad share</small><b>${money(p.q)}</b><em>Triple ${money(p.tr)}</em></div><div class="actions"><a class="icon-btn wa" href="#" title="Ask on WhatsApp"><svg class="i"><use href="#i-wa"/></svg></a><a class="btn btn-primary" href="#">Details <svg class="i sm"><use href="#i-arrow"/></svg></a></div></div>`;
+  a.querySelector('.cmp input').onchange=e=>{if(e.target.checked){if(st.cmp.size>=3){e.target.checked=false;alert('You can compare up to 3 packages.');return}st.cmp.add(p.id)}else st.cmp.delete(p.id);e.target.parentElement.classList.toggle('on',e.target.checked);tray()};
+  g.append(a)})}
+function tray(){const l=[...st.cmp].map(id=>P.find(p=>p.id===id));$('#trayList').innerHTML=l.map(p=>`<span>${p.t}</span>`).join('');$('#tray').classList.toggle('show',l.length>0);$('#cmpOpen').disabled=l.length<2;$('#cmpOpen').textContent=l.length<2?'Pick 2–3':'Compare '+l.length}
+$('#cmpClear').onclick=()=>{st.cmp.clear();tray();render()};
+$('#cmpOpen').onclick=()=>{const l=[...st.cmp].map(id=>P.find(p=>p.id===id));const best=(f,lo=true)=>{const v=l.map(f);const b=lo?Math.min(...v):Math.max(...v);return x=>f(x)===b?' class="best"':''};
+ const rows=[['Days',p=>p.d,p=>p.d+' days',true],['Makkah hotel',p=>p.ms,p=>p.mh+' · '+'★'.repeat(p.ms),false],['To the Haram',p=>p.mm,p=>p.mm+' m · '+walk(p.mm),true],['Madinah hotel',p=>p.ds,p=>p.dh+' · '+'★'.repeat(p.ds),false],["To the Prophet's Mosque",p=>p.dm,p=>p.dm+' m',true],['Quad price',p=>p.q,p=>money(p.q),true],['Triple price',p=>p.tr,p=>money(p.tr),true]];
+ $('#ctable').innerHTML='<thead><tr><th></th>'+l.map(p=>`<td>${p.t}</td>`).join('')+'</tr></thead><tbody>'+rows.map(r=>{const b=best(r[1],r[3]);return `<tr><th>${r[0]}</th>${l.map(p=>`<td${b(p)}>${r[2](p)}</td>`).join('')}</tr>`}).join('')+'<tr><th></th>'+l.map(()=>'<td><a class="btn btn-primary btn-sm" href="#">Details</a></td>').join('')+'</tr></tbody>';
+ $('#modal').hidden=false;$('#cmpClose').focus()};
+$('#cmpClose').onclick=()=>$('#modal').hidden=true;$('#modal').onclick=e=>{if(e.target.id==='modal')$('#modal').hidden=true};
+addEventListener('keydown',e=>{if(e.key==='Escape')$('#modal').hidden=true});
+$('#q').oninput=e=>{st.q=e.target.value.toLowerCase();render()};
+$('#days').onclick=e=>{const b=e.target.closest('button');if(!b)return;$$('#days button').forEach(x=>x.classList.toggle('on',x===b));st.days=b.dataset.v;render()};
+$('#bud').oninput=e=>{st.bud=+e.target.value;$('#budOut').textContent=st.bud>=300000?'Any':'up to '+money(st.bud);render()};
+$('#sort').onchange=e=>{st.sort=e.target.value;render()};
+$('#month').onclick=e=>{const b=e.target.closest('.chip');if(!b)return;$$('#month .chip').forEach(x=>x.classList.toggle('on',x===b));st.month=b.dataset.v;render()};
+$('#reset').onclick=()=>{st.q='';st.days='';st.bud=300000;st.month='';$('#q').value='';$('#bud').value=300000;$('#budOut').textContent='Any';$$('#days button').forEach((x,i)=>x.classList.toggle('on',i===0));$$('#month .chip').forEach((x,i)=>x.classList.toggle('on',i===0));render()};
+$$('.lang button').forEach(b=>b.onclick=()=>$$('.lang button').forEach(x=>x.classList.toggle('on',x===b)));
+/* hero */
+const sky=$('#sky');for(let i=0;i<50;i++){const s=document.createElement('i');s.style.left=Math.random()*100+'%';s.style.top=Math.random()*60+'%';s.style.animationDelay=Math.random()*4+'s';sky.append(s)}
+try{const now=new Date(),parts=d=>new Intl.DateTimeFormat('en-u-ca-islamic-umalqura',{month:'numeric',day:'numeric'}).formatToParts(d).reduce((a,p)=>(a[p.type]=p.value,a),{});
+ const find=(m,dd)=>{for(let i=0;i<400;i++){const p=parts(new Date(now.getTime()+i*864e5));if(+p.month===m&&+p.day===dd)return i}return'—'};$('#toRam').textContent=find(9,1);$('#toHajj').textContent=find(12,8)}catch(e){}
+const tz=()=>$('#mkTime').textContent=new Date().toLocaleTimeString('en-GB',{timeZone:'Asia/Riyadh',hour:'2-digit',minute:'2-digit'});tz();setInterval(tz,30000);
+function show(n){$('#scMakkah').classList.toggle('off',n!=='Makkah');$('#scMadinah').classList.toggle('off',n!=='Madinah');$$('[data-scene]').forEach(b=>b.classList.toggle('on',b.dataset.scene===n))}
+let auto=setInterval(()=>show($('#scMakkah').classList.contains('off')?'Makkah':'Madinah'),9000);
+$$('[data-scene]').forEach(b=>b.onclick=()=>{clearInterval(auto);show(b.dataset.scene)});
+render();tray();
+})();
+</script>
+</body>
+</html>

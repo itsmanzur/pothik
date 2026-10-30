@@ -34,6 +34,8 @@ final class PackageStore
             'kicker' => 'March group · from Dhaka',
             'title' => '7-day superior Umrah',
             'days' => 7,
+            'departure' => '2027-03',
+            'is_ramadan' => false,
             'nights_makkah' => 4,
             'nights_madinah' => 2,
             'route' => 'Jeddah first',
@@ -268,6 +270,8 @@ final class PackageStore
             'kicker' => '',
             'title' => '',
             'days' => 0,
+            'departure' => '',
+            'is_ramadan' => false,
             'nights_makkah' => 0,
             'nights_madinah' => 0,
             'route' => '',
@@ -576,7 +580,7 @@ final class PackageStore
             'madinah_hotel', 'madinah_similar', 'madinah_stars',
             'food_note', 'docs', 'cancel', 'inclusions', 'exclusions', 'itinerary',
         ];
-        $neutral = ['phone', 'whatsapp', 'days', 'nights_makkah', 'nights_madinah', 'makkah_meters', 'madinah_meters', 'prices', 'status'];
+        $neutral = ['phone', 'whatsapp', 'days', 'nights_makkah', 'nights_madinah', 'makkah_meters', 'madinah_meters', 'prices', 'status', 'departure', 'is_ramadan'];
 
         if (I18n::lang() === 'bn') {
             $bn = is_array($current['bn'] ?? null) ? $current['bn'] : [];
@@ -649,9 +653,15 @@ final class PackageStore
         $status = isset($post['status']) && in_array($post['status'], ['draft', 'published'], true)
             ? (string) $post['status']
             : 'draft';
+        $departure = isset($post['departure']) ? sanitize_text_field((string) $post['departure']) : '';
+        if (preg_match('/^\d{4}-(0[1-9]|1[0-2])$/', $departure) !== 1) {
+            $departure = '';
+        }
 
         return [
             'status' => $status,
+            'departure' => $departure,
+            'is_ramadan' => !empty($post['is_ramadan']),
             'agency' => $text('agency', 80),
             'phone' => $text('phone', 40),
             'whatsapp' => $text('whatsapp', 20),
@@ -706,6 +716,9 @@ final class PackageStore
         $id = sanitize_key((string) ($row['id'] ?? ''));
         $row['id'] = $id !== '' ? $id : 'sample';
         $row['status'] = in_array($row['status'] ?? '', ['draft', 'published'], true) ? $row['status'] : 'draft';
+        $departure = (string) ($row['departure'] ?? '');
+        $row['departure'] = preg_match('/^\d{4}-(0[1-9]|1[0-2])$/', $departure) === 1 ? $departure : '';
+        $row['is_ramadan'] = !empty($row['is_ramadan']);
         $row['demo'] = !empty($row['demo']);
         $row['days'] = min(365, absint($row['days'] ?? 0));
         $row['nights_makkah'] = min(365, absint($row['nights_makkah'] ?? 0));

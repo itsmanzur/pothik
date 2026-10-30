@@ -68,7 +68,7 @@ $facts = array_filter([
     <header class="pk-bar" id="top">
         <a class="pk-brand" href="<?php echo esc_url($many ? $catalog_url : '#top'); ?>">
             <?php if ($contact['logo_url'] !== '') : ?>
-                <img src="<?php echo esc_url($contact['logo_url']); ?>" alt="<?php echo esc_attr($contact['agency']); ?>" style="max-height:32px;width:auto;vertical-align:middle;margin-right:8px;">
+                <img src="<?php echo esc_url($contact['logo_url']); ?>" alt="<?php echo esc_attr($contact['agency']); ?>">
             <?php else : ?>
                 <span>Pothik</span>
             <?php endif; ?>

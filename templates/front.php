@@ -14,7 +14,6 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-PackagePage::enqueue();
 ?><!DOCTYPE html>
 <html lang="<?php echo esc_attr(I18n::lang() === 'bn' ? 'bn' : 'en'); ?>">
 <head>

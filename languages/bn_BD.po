@@ -1806,3 +1806,212 @@ msgstr "কান্ট্রি কোড সহ"
 msgid "wp_mail() returned false. Check your mail configuration."
 msgstr "wp_mail() পাঠানো যায়নি। সার্ভারের মেইল কনফিগারেশন চেক করুন।"
 
+msgid "guest of Allah is waiting for your reply."
+msgstr "জন আল্লাহর মেহমান আপনার উত্তরের অপেক্ষায় আছেন।"
+
+msgid "Umrah packages from Dhaka"
+msgstr "উমরা প্যাকেজ ঢাকা থেকে"
+
+msgid "Hajj & Umrah licence %s"
+msgstr "হজ ও উমরা লাইসেন্স %s"
+
+msgid "How booking works"
+msgstr "বুকিং যেভাবে হয়"
+
+msgid "Ask the office"
+msgstr "অফিসকে জিজ্ঞেস করুন"
+
+msgid "On this page"
+msgstr "এই পাতায়"
+
+msgid "I want to ask about Umrah."
+msgstr "উমরা নিয়ে জানতে চাই।"
+
+msgid "Compare days, hotels and walking distance to the Haram. Pick a room share and send an inquiry — the office replies on WhatsApp."
+msgstr "দিন, হোটেল ও হারামের হাঁটার দূরত্ব তুলনা করুন। রুম শেয়ার বেছে ইনকোয়ারি পাঠান — অফিস হোয়াটসঅ্যাপে উত্তর দেয়।"
+
+msgid "Licence %s"
+msgstr "লাইসেন্স %s"
+
+msgid "%d package"
+msgstr "%dটি প্যাকেজ"
+
+msgid "Ramadan Mubarak"
+msgstr "রমজান মুবারক"
+
+msgid "Hajj days"
+msgstr "হজের দিন"
+
+msgid "Season"
+msgstr "মৌসুম"
+
+msgid "Package or hotel name"
+msgstr "প্যাকেজ বা হোটেলের নাম"
+
+msgid "Any"
+msgstr "যেকোনো"
+
+msgid "≤10"
+msgstr "১০ বা কম"
+
+msgid "11–15"
+msgstr "১১–১৫"
+
+msgid "16+"
+msgstr "১৬+"
+
+msgid "Budget per person"
+msgstr "জনপ্রতি বাজেট"
+
+msgid "up to %s"
+msgstr "সর্বোচ্চ %s"
+
+msgid "Sort by"
+msgstr "সাজান"
+
+msgid "Lowest price"
+msgstr "সবচেয়ে কম দাম"
+
+msgid "Closest to the Haram"
+msgstr "হারামের সবচেয়ে কাছে"
+
+msgid "Fewest days"
+msgstr "সবচেয়ে কম দিন"
+
+msgid "Best hotels"
+msgstr "সেরা হোটেল"
+
+msgid "Reset"
+msgstr "রিসেট"
+
+msgid "Prices are per person in Bangladeshi taka, quad share unless noted."
+msgstr "দাম জনপ্রতি বাংলাদেশি টাকায়, উল্লেখ না থাকলে কোয়াড শেয়ার।"
+
+msgid "All months"
+msgstr "সব মাস"
+
+msgid "★ Lowest price"
+msgstr "★ সবচেয়ে কম দাম"
+
+msgid "🕋 Closest to Haram"
+msgstr "🕋 হারামের সবচেয়ে কাছে"
+
+msgid "Draft — only you can see this"
+msgstr "ড্রাফট — শুধু আপনি দেখতে পাচ্ছেন"
+
+msgid "🕋 %d nights Makkah"
+msgstr "🕋 মক্কা %d রাত"
+
+msgid "🕌 %d nights Madinah"
+msgstr "🕌 মদিনা %d রাত"
+
+msgid "From, quad share"
+msgstr "থেকে, কোয়াড শেয়ার"
+
+msgid "Triple %s"
+msgstr "ট্রিপল %s"
+
+msgid "Details"
+msgstr "বিস্তারিত"
+
+msgid "Compare"
+msgstr "তুলনা"
+
+msgid "+%d more"
+msgstr "+আরও %d"
+
+msgid "≈1 min walk"
+msgstr "≈১ মিনিট হাঁটা"
+
+msgid "≈%d min walk"
+msgstr "≈%d মিনিট হাঁটা"
+
+msgid "shuttle bus"
+msgstr "শাটল বাস"
+
+msgid "New packages are coming soon"
+msgstr "নতুন প্যাকেজ শিগগির আসছে"
+
+msgid "No package matches"
+msgstr "কোনো প্যাকেজ মেলেনি"
+
+msgid "Try a higher budget or fewer filters"
+msgstr "বাজেট বাড়ান বা ফিল্টার কমান"
+
+msgid "Find a package"
+msgstr "প্যাকেজ খুঁজুন"
+
+msgid "Choose a package"
+msgstr "প্যাকেজ বেছে নিন"
+
+msgid "Compare days, hotels and price."
+msgstr "দিন, হোটেল ও দাম তুলনা করুন।"
+
+msgid "Name, phone and room share."
+msgstr "নাম, ফোন ও রুম শেয়ার।"
+
+msgid "Office replies"
+msgstr "অফিস উত্তর দেয়"
+
+msgid "On WhatsApp or a phone call."
+msgstr "হোয়াটসঅ্যাপ বা ফোন কলে।"
+
+msgid "Pay the deposit"
+msgstr "অগ্রিম দিন"
+
+msgid "bKash, Nagad, bank or cash."
+msgstr "বিকাশ, নগদ, ব্যাংক বা নগদ।"
+
+msgid "No online payment. You talk to the office before anything is fixed."
+msgstr "অনলাইনে পেমেন্ট নেই। কিছু ঠিক হওয়ার আগে অফিসের সাথে কথা হয়।"
+
+msgid "Not sure which package suits your family?"
+msgstr "কোন প্যাকেজ পরিবারের জন্য মানায়, নিশ্চিত নন?"
+
+msgid "Tell the office your dates and budget — they will suggest one."
+msgstr "তারিখ ও বাজেট বলুন — অফিস একটি প্যাকেজ সাজেস্ট করবে।"
+
+msgid "Ask on WhatsApp"
+msgstr "হোয়াটসঅ্যাপে জিজ্ঞেস করুন"
+
+msgid "Prices are published share prices and do not hold a seat."
+msgstr "প্রকাশিত দাম শেয়ারের দাম, এতে সিট আটকে থাকে না।"
+
+msgid "Share this page"
+msgstr "এই পাতা শেয়ার করুন"
+
+msgid "Compare packages"
+msgstr "প্যাকেজ তুলনা"
+
+msgid "You can compare up to 3 packages."
+msgstr "সর্বোচ্চ ৩টি প্যাকেজ তুলনা করা যায়।"
+
+msgid "Pick 2–3"
+msgstr "২–৩টি বেছে নিন"
+
+msgid "Compare %d"
+msgstr "%dটি তুলনা"
+
+msgid "To the Haram"
+msgstr "হারাম পর্যন্ত"
+
+msgid "To the Prophet's Mosque"
+msgstr "মসজিদে নববী পর্যন্ত"
+
+msgid "Quad price"
+msgstr "কোয়াডের দাম"
+
+msgid "Triple price"
+msgstr "ট্রিপলের দাম"
+
+msgid "Departure month"
+msgstr "ছাড়ার মাস"
+
+msgid "Shown as a filter on the All packages page"
+msgstr "সব প্যাকেজ পাতায় ফিল্টার হিসেবে দেখায়"
+
+msgid "Ramadan departure"
+msgstr "রমজানের ছাড়া"
+
+msgid "Departs %s"
+msgstr "ছাড়ে %s"

@@ -6,6 +6,7 @@
 node_modules/
 tests/
 Reference File/
+docs/
 *.md
 !readme.txt
 scratch*

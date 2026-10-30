@@ -1805,3 +1805,212 @@ msgstr ""
 msgid "wp_mail() returned false. Check your mail configuration."
 msgstr ""
 
+msgid "guest of Allah is waiting for your reply."
+msgstr ""
+
+msgid "Umrah packages from Dhaka"
+msgstr ""
+
+msgid "Hajj & Umrah licence %s"
+msgstr ""
+
+msgid "How booking works"
+msgstr ""
+
+msgid "Ask the office"
+msgstr ""
+
+msgid "On this page"
+msgstr ""
+
+msgid "I want to ask about Umrah."
+msgstr ""
+
+msgid "Compare days, hotels and walking distance to the Haram. Pick a room share and send an inquiry — the office replies on WhatsApp."
+msgstr ""
+
+msgid "Licence %s"
+msgstr ""
+
+msgid "%d package"
+msgstr ""
+
+msgid "Ramadan Mubarak"
+msgstr ""
+
+msgid "Hajj days"
+msgstr ""
+
+msgid "Season"
+msgstr ""
+
+msgid "Package or hotel name"
+msgstr ""
+
+msgid "Any"
+msgstr ""
+
+msgid "≤10"
+msgstr ""
+
+msgid "11–15"
+msgstr ""
+
+msgid "16+"
+msgstr ""
+
+msgid "Budget per person"
+msgstr ""
+
+msgid "up to %s"
+msgstr ""
+
+msgid "Sort by"
+msgstr ""
+
+msgid "Lowest price"
+msgstr ""
+
+msgid "Closest to the Haram"
+msgstr ""
+
+msgid "Fewest days"
+msgstr ""
+
+msgid "Best hotels"
+msgstr ""
+
+msgid "Reset"
+msgstr ""
+
+msgid "Prices are per person in Bangladeshi taka, quad share unless noted."
+msgstr ""
+
+msgid "All months"
+msgstr ""
+
+msgid "★ Lowest price"
+msgstr ""
+
+msgid "🕋 Closest to Haram"
+msgstr ""
+
+msgid "Draft — only you can see this"
+msgstr ""
+
+msgid "🕋 %d nights Makkah"
+msgstr ""
+
+msgid "🕌 %d nights Madinah"
+msgstr ""
+
+msgid "From, quad share"
+msgstr ""
+
+msgid "Triple %s"
+msgstr ""
+
+msgid "Details"
+msgstr ""
+
+msgid "Compare"
+msgstr ""
+
+msgid "+%d more"
+msgstr ""
+
+msgid "≈1 min walk"
+msgstr ""
+
+msgid "≈%d min walk"
+msgstr ""
+
+msgid "shuttle bus"
+msgstr ""
+
+msgid "New packages are coming soon"
+msgstr ""
+
+msgid "No package matches"
+msgstr ""
+
+msgid "Try a higher budget or fewer filters"
+msgstr ""
+
+msgid "Find a package"
+msgstr ""
+
+msgid "Choose a package"
+msgstr ""
+
+msgid "Compare days, hotels and price."
+msgstr ""
+
+msgid "Name, phone and room share."
+msgstr ""
+
+msgid "Office replies"
+msgstr ""
+
+msgid "On WhatsApp or a phone call."
+msgstr ""
+
+msgid "Pay the deposit"
+msgstr ""
+
+msgid "bKash, Nagad, bank or cash."
+msgstr ""
+
+msgid "No online payment. You talk to the office before anything is fixed."
+msgstr ""
+
+msgid "Not sure which package suits your family?"
+msgstr ""
+
+msgid "Tell the office your dates and budget — they will suggest one."
+msgstr ""
+
+msgid "Ask on WhatsApp"
+msgstr ""
+
+msgid "Prices are published share prices and do not hold a seat."
+msgstr ""
+
+msgid "Share this page"
+msgstr ""
+
+msgid "Compare packages"
+msgstr ""
+
+msgid "You can compare up to 3 packages."
+msgstr ""
+
+msgid "Pick 2–3"
+msgstr ""
+
+msgid "Compare %d"
+msgstr ""
+
+msgid "To the Haram"
+msgstr ""
+
+msgid "To the Prophet's Mosque"
+msgstr ""
+
+msgid "Quad price"
+msgstr ""
+
+msgid "Triple price"
+msgstr ""
+
+msgid "Departure month"
+msgstr ""
+
+msgid "Shown as a filter on the All packages page"
+msgstr ""
+
+msgid "Ramadan departure"
+msgstr ""
+
+msgid "Departs %s"
+msgstr ""
