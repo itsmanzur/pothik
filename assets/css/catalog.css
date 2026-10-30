@@ -182,6 +182,16 @@ body.pothik-front #consentaro-banner {
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
+body.admin-bar .pk-all .bar {
+    top: 32px;
+}
+
+@media (max-width: 782px) {
+    body.admin-bar .pk-all .bar {
+        top: 46px;
+    }
+}
+
 .pk-all .bar .wrap {
     display: flex;
     align-items: center;

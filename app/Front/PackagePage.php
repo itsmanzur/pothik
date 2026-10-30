@@ -204,6 +204,11 @@ final class PackagePage
     public static function strip_foreign_assets(): void
     {
         $keep = ['pothik-public', 'pothik-catalog'];
+        if (is_admin_bar_showing()) {
+            $keep[] = 'admin-bar';
+            $keep[] = 'dashicons';
+            $keep[] = 'hoverintent-js';
+        }
         foreach (['wp_styles', 'wp_scripts'] as $global) {
             $queue = $GLOBALS[$global] ?? null;
             if (!$queue instanceof \WP_Dependencies) {
