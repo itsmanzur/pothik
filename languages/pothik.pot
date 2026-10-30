@@ -2557,3 +2557,135 @@ msgstr ""
 
 msgid "Rocket"
 msgstr ""
+
+msgid "Staff change the status here. The visa is issued on the Masar portal — this board does not submit anything."
+msgstr ""
+
+msgid "Search name, passport or family"
+msgstr ""
+
+msgid "Drag a card, use → to move it one step, or tick cards to move many."
+msgstr ""
+
+msgid "Print board"
+msgstr ""
+
+msgid "%d selected"
+msgstr ""
+
+msgid "Move to"
+msgstr ""
+
+msgid "of %d visas issued"
+msgstr ""
+
+msgid "%d need attention"
+msgstr ""
+
+msgid "All clear"
+msgstr ""
+
+msgid "Last visa date"
+msgstr ""
+
+msgid "days left · %s"
+msgstr ""
+
+msgid "Closed"
+msgstr ""
+
+msgid "Visa opens %s"
+msgstr ""
+
+msgid "Leave %s"
+msgstr ""
+
+msgid "File being prepared"
+msgstr ""
+
+msgid "Saudi invoice received"
+msgstr ""
+
+msgid "Invoice paid, waiting"
+msgstr ""
+
+msgid "Visa on Masar"
+msgstr ""
+
+msgid "Talk to the family"
+msgstr ""
+
+msgid "Sent to the embassy"
+msgstr ""
+
+msgid "Drop here"
+msgstr ""
+
+msgid "%d status change not saved"
+msgstr ""
+
+msgid "%d status changes not saved"
+msgstr ""
+
+msgid "Status saved"
+msgstr ""
+
+msgid "Select family"
+msgstr ""
+
+msgid "Select %s"
+msgstr ""
+
+msgid "Back to %s"
+msgstr ""
+
+msgid "← %s"
+msgstr ""
+
+msgid "%s →"
+msgstr ""
+
+msgid "✓ Ready"
+msgstr ""
+
+msgid "%1$s → %2$s"
+msgstr ""
+
+msgid "%1$d pilgrims → %2$s"
+msgstr ""
+
+msgid "Passport ✓"
+msgstr ""
+
+msgid "Passport < %d months"
+msgstr ""
+
+msgid "Biometric ✓"
+msgstr ""
+
+msgid "Biometric failed"
+msgstr ""
+
+msgid "Biometric –"
+msgstr ""
+
+msgid "Due %s"
+msgstr ""
+
+msgid "No ledger row"
+msgstr ""
+
+msgid "— ledger still shows %s due"
+msgstr ""
+
+msgid "— ledger still shows a balance"
+msgstr ""
+
+msgid "— check passport/biometric"
+msgstr ""
+
+msgid "%1$d visas are not issued yet and the last visa date is %2$d days away."
+msgstr ""
+
+msgid "The last visa date %1$s has passed. %2$d visas are not issued."
+msgstr ""

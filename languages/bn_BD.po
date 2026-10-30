@@ -2558,3 +2558,135 @@ msgstr "নগদ"
 
 msgid "Rocket"
 msgstr "রকেট"
+
+msgid "Staff change the status here. The visa is issued on the Masar portal — this board does not submit anything."
+msgstr "স্টাফ এখানে স্ট্যাটাস বদলান। ভিসা ইস্যু হয় মাসার পোর্টালে — এই বোর্ড কিছু জমা দেয় না।"
+
+msgid "Search name, passport or family"
+msgstr "নাম, পাসপোর্ট বা পরিবার খুঁজুন"
+
+msgid "Drag a card, use → to move it one step, or tick cards to move many."
+msgstr "কার্ড টেনে আনুন, এক ধাপ সরাতে → চাপুন, অনেকগুলো সরাতে টিক দিন।"
+
+msgid "Print board"
+msgstr "বোর্ড প্রিন্ট"
+
+msgid "%d selected"
+msgstr "%dটি বেছে নেওয়া"
+
+msgid "Move to"
+msgstr "সরান"
+
+msgid "of %d visas issued"
+msgstr "%dটি ভিসার মধ্যে ইস্যু"
+
+msgid "%d need attention"
+msgstr "%dটির খেয়াল দরকার"
+
+msgid "All clear"
+msgstr "সব ঠিক"
+
+msgid "Last visa date"
+msgstr "ভিসার শেষ তারিখ"
+
+msgid "days left · %s"
+msgstr "দিন বাকি · %s"
+
+msgid "Closed"
+msgstr "বন্ধ"
+
+msgid "Visa opens %s"
+msgstr "ভিসা খোলে %s"
+
+msgid "Leave %s"
+msgstr "ছাড়ার দিন %s"
+
+msgid "File being prepared"
+msgstr "ফাইল তৈরি হচ্ছে"
+
+msgid "Saudi invoice received"
+msgstr "সৌদি ইনভয়েস এসেছে"
+
+msgid "Invoice paid, waiting"
+msgstr "ইনভয়েস পরিশোধ, অপেক্ষা"
+
+msgid "Visa on Masar"
+msgstr "মাসারে ভিসা"
+
+msgid "Talk to the family"
+msgstr "পরিবারের সাথে কথা বলুন"
+
+msgid "Sent to the embassy"
+msgstr "এম্বাসিতে পাঠানো"
+
+msgid "Drop here"
+msgstr "এখানে ছাড়ুন"
+
+msgid "%d status change not saved"
+msgstr "%dটি স্ট্যাটাস বদল সেভ হয়নি"
+
+msgid "%d status changes not saved"
+msgstr "%dটি স্ট্যাটাস বদল সেভ হয়নি"
+
+msgid "Status saved"
+msgstr "স্ট্যাটাস সেভ হয়েছে"
+
+msgid "Select family"
+msgstr "পরিবার বেছে নিন"
+
+msgid "Select %s"
+msgstr "%s বেছে নিন"
+
+msgid "Back to %s"
+msgstr "%s-এ ফিরুন"
+
+msgid "← %s"
+msgstr "← %s"
+
+msgid "%s →"
+msgstr "%s →"
+
+msgid "✓ Ready"
+msgstr "✓ প্রস্তুত"
+
+msgid "%1$s → %2$s"
+msgstr "%1$s → %2$s"
+
+msgid "%1$d pilgrims → %2$s"
+msgstr "%1$d যাত্রী → %2$s"
+
+msgid "Passport ✓"
+msgstr "পাসপোর্ট ✓"
+
+msgid "Passport < %d months"
+msgstr "পাসপোর্ট < %d মাস"
+
+msgid "Biometric ✓"
+msgstr "বায়োমেট্রিক ✓"
+
+msgid "Biometric failed"
+msgstr "বায়োমেট্রিক হয়নি"
+
+msgid "Biometric –"
+msgstr "বায়োমেট্রিক –"
+
+msgid "Due %s"
+msgstr "বাকি %s"
+
+msgid "No ledger row"
+msgstr "খাতায় সারি নেই"
+
+msgid "— ledger still shows %s due"
+msgstr "— খাতায় এখনও %s বাকি"
+
+msgid "— ledger still shows a balance"
+msgstr "— খাতায় এখনও বাকি আছে"
+
+msgid "— check passport/biometric"
+msgstr "— পাসপোর্ট/বায়োমেট্রিক দেখুন"
+
+msgid "%1$d visas are not issued yet and the last visa date is %2$d days away."
+msgstr "%1$dটি ভিসা এখনো ইস্যু হয়নি এবং ভিসার শেষ তারিখ %2$d দিন দূরে।"
+
+msgid "The last visa date %1$s has passed. %2$d visas are not issued."
+msgstr "ভিসার শেষ তারিখ %1$s পার হয়ে গেছে। %2$dটি ভিসা ইস্যু হয়নি।"
