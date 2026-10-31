@@ -2913,3 +2913,270 @@ msgstr "হজ ফাইল — সাইটে সিটের লাইন দ
 
 msgid "Show"
 msgstr "দেখান"
+
+msgid "Work on this group"
+msgstr "এই গ্রুপে কাজ করুন"
+
+msgid "Leaves in %d days"
+msgstr "%d দিনে ছাড়বে"
+
+msgid "Travelling now"
+msgstr "এখন সফরে"
+
+msgid "Returned"
+msgstr "ফিরে এসেছে"
+
+msgid "No package linked"
+msgstr "কোনো প্যাকেজ যুক্ত নেই"
+
+msgid "Start blank or copy last season's setup"
+msgstr "খালি শুরু করুন, বা গত সিজনের সেটআপ কপি করুন"
+
+msgid "Copy as new group"
+msgstr "নতুন গ্রুপ হিসেবে কপি"
+
+msgid "%d left"
+msgstr "%d বাকি"
+
+msgid "Visas issued"
+msgstr "ভিসা ইস্যু"
+
+msgid "View only"
+msgstr "শুধু দেখা"
+
+msgid "You don't have access to this screen."
+msgstr "এই স্ক্রিনে আপনার অনুমতি নেই।"
+
+msgid "Ask your manager if you need it."
+msgstr "দরকার হলে ম্যানেজারকে বলুন।"
+
+msgid "Back to Desk"
+msgstr "ডেস্কে ফিরুন"
+
+msgid "Team & access"
+msgstr "টিম ও অনুমতি"
+
+msgid "Team"
+msgstr "টিম"
+
+msgid "No one else has opened Pothik today."
+msgstr "আজ আর কেউ পথিক খোলেনি।"
+
+msgid "Active today: %s"
+msgstr "আজ সক্রিয়: %s"
+
+msgid "Who can open Pothik, and which groups they can see."
+msgstr "কে পথিক খুলতে পারবে, আর কোন গ্রুপ দেখতে পারবে।"
+
+msgid "People"
+msgstr "মানুষ"
+
+msgid "What each role can do"
+msgstr "কোন রোল কী করতে পারে"
+
+msgid "Preview as"
+msgstr "এই রোলের চোখে"
+
+msgid "Manager"
+msgstr "ম্যানেজার"
+
+msgid "Runs the agency desk. Everything in Pothik, including settings and team."
+msgstr "এজেন্সির ডেস্ক চালায়। পথিকের সব, সেটিংস ও টিমসহ।"
+
+msgid "Staff"
+msgstr "স্টাফ"
+
+msgid "Handles pilgrims day to day: inquiries, files, rooming and visas."
+msgstr "প্রতিদিন যাত্রী সামলায়: জিজ্ঞাসা, ফাইল, রুম ও ভিসা।"
+
+msgid "Accounts"
+msgstr "হিসাব"
+
+msgid "Handles money: ledger, receipts and agent commissions."
+msgstr "টাকা সামলায়: খাতা, রসিদ ও এজেন্ট কমিশন।"
+
+msgid "Viewer"
+msgstr "দর্শক"
+
+msgid "Owner or partner who only looks. Can open screens, cannot change anything."
+msgstr "মালিক বা অংশীদার, শুধু দেখেন। স্ক্রিন খুলতে পারেন, কিছু বদলাতে পারেন না।"
+
+msgid "Search name or email"
+msgstr "নাম বা ইমেইল খুঁজুন"
+
+msgid "Add team member"
+msgstr "টিমে যোগ করুন"
+
+msgid "Person"
+msgstr "ব্যক্তি"
+
+msgid "Role"
+msgstr "রোল"
+
+msgid "Groups"
+msgstr "গ্রুপ"
+
+msgid "Last active"
+msgstr "শেষ সক্রিয়"
+
+msgid "WordPress administrators always have full access. Pothik roles only change what people see inside Pothik — not the rest of WordPress."
+msgstr "ওয়ার্ডপ্রেস অ্যাডমিনিস্ট্রেটরের সবসময় পূর্ণ অনুমতি থাকে। পথিকের রোল শুধু পথিকের ভিতরে কী দেখা যাবে তা বদলায়।"
+
+msgid "No access"
+msgstr "অনুমতি নেই"
+
+msgid "hides the screen."
+msgstr "স্ক্রিন লুকায়।"
+
+msgid "View"
+msgstr "দেখা"
+
+msgid "shows it read-only."
+msgstr "শুধু পড়তে দেয়।"
+
+msgid "allows changes. Manager is fixed; the other roles can be adjusted."
+msgstr "বদলানো যায়। ম্যানেজার স্থির; বাকি রোল বদলানো যায়।"
+
+msgid "Screen"
+msgstr "স্ক্রিন"
+
+msgid "Sales"
+msgstr "বিক্রি"
+
+msgid "Money"
+msgstr "টাকা"
+
+msgid "Reset to defaults"
+msgstr "আগের নিয়মে ফেরান"
+
+msgid "Unsaved access changes"
+msgstr "অনুমতির বদল সেভ হয়নি"
+
+msgid "Save access"
+msgstr "অনুমতি সেভ"
+
+msgid "See Pothik as"
+msgstr "পথিক দেখুন এই রোল দিয়ে"
+
+msgid "Can change"
+msgstr "বদলাতে পারে"
+
+msgid "Read-only"
+msgstr "শুধু পড়া"
+
+msgid "Hidden"
+msgstr "লুকানো"
+
+msgid "VIEW"
+msgstr "দেখা"
+
+msgid "Read-only screens show the data. Controls are disabled and the title says View only."
+msgstr "শুধু-পড়ার স্ক্রিনে তথ্য থাকে। বাটন বন্ধ, আর শিরোনামে শুধু দেখা লেখা থাকে।"
+
+msgid "Hidden screens are blocked on the server, even if someone types the address."
+msgstr "লুকানো স্ক্রিন সার্ভারে আটকে থাকে, ঠিকানা লিখলেও।"
+
+msgid "Pick an existing WordPress user or invite by email."
+msgstr "আগের ওয়ার্ডপ্রেস ব্যবহারকারী বেছে নিন, বা ইমেইলে আমন্ত্রণ পাঠান।"
+
+msgid "That email already has a WordPress account. Add them to the team instead."
+msgstr "এই ইমেইলে আগে থেকেই অ্যাকাউন্ট আছে। তাকে টিমে যোগ করুন।"
+
+msgid "Check the name, email and role."
+msgstr "নাম, ইমেইল ও রোল দেখে নিন।"
+
+msgid "Existing user"
+msgstr "আগের ব্যবহারকারী"
+
+msgid "Invite by email"
+msgstr "ইমেইলে আমন্ত্রণ"
+
+msgid "WordPress user"
+msgstr "ওয়ার্ডপ্রেস ব্যবহারকারী"
+
+msgid "e.g. Salma Khatun"
+msgstr "যেমন সালমা খাতুন"
+
+msgid "WordPress sends them a link to set their own password. We never ask for or show passwords."
+msgstr "ওয়ার্ডপ্রেস তাদের পাসওয়ার্ড বসানোর লিংক পাঠায়। আমরা পাসওয়ার্ড চাই না, দেখাইও না।"
+
+msgid "Groups they can open"
+msgstr "যে গ্রুপ খুলতে পারবে"
+
+msgid "All groups, including new ones"
+msgstr "সব গ্রুপ, নতুন গ্রুপও"
+
+msgid "Add to team"
+msgstr "টিমে যোগ"
+
+msgid "You"
+msgstr "আপনি"
+
+msgid "WordPress admin"
+msgstr "ওয়ার্ডপ্রেস অ্যাডমিন"
+
+msgid "%1$s added as %2$s"
+msgstr "%1$s যোগ হয়েছেন, রোল %2$s"
+
+msgid "Invitation sent to %s"
+msgstr "%s-কে আমন্ত্রণ পাঠানো হয়েছে"
+
+msgid "%s removed from the team — their WordPress account stays"
+msgstr "%s টিম থেকে সরানো হয়েছে — ওয়ার্ডপ্রেস অ্যাকাউন্ট আগের মতোই থাকবে"
+
+msgid "%1$s is now %2$s"
+msgstr "%1$s এখন %2$s"
+
+msgid "Groups updated for %s"
+msgstr "%s-এর গ্রুপ বদলানো হয়েছে"
+
+msgid "Access saved"
+msgstr "অনুমতি সেভ হয়েছে"
+
+msgid "Team member restored"
+msgstr "টিমের সদস্য ফিরিয়ে আনা হয়েছে"
+
+msgid "That change is not allowed."
+msgstr "এই বদল করা যাবে না।"
+
+msgid "Create, edit, publish"
+msgstr "বানানো, বদল, প্রকাশ"
+
+msgid "Reply, mark, export"
+msgstr "উত্তর, চিহ্ন, এক্সপোর্ট"
+
+msgid "Groups, flights, seats"
+msgstr "গ্রুপ, ফ্লাইট, সিট"
+
+msgid "Passport, family, health"
+msgstr "পাসপোর্ট, পরিবার, স্বাস্থ্য"
+
+msgid "Makkah & Madinah rooms"
+msgstr "মক্কা ও মদিনার রুম"
+
+msgid "Visa status"
+msgstr "ভিসার অবস্থা"
+
+msgid "Payments and balances"
+msgstr "পেমেন্ট ও বাকি"
+
+msgid "Payment slips"
+msgstr "পেমেন্ট স্লিপ"
+
+msgid "Agent commission"
+msgstr "এজেন্ট কমিশন"
+
+msgid "Coming in step 2.3"
+msgstr "ধাপ ২.৩-এ আসবে"
+
+msgid "Reports"
+msgstr "রিপোর্ট"
+
+msgid "Agency details, data tools"
+msgstr "এজেন্সির তথ্য, ডেটার সরঞ্জাম"
+
+msgid "This screen"
+msgstr "এই স্ক্রিন"
+
+msgid "Roles and which groups each person can open."
+msgstr "রোল, আর কে কোন গ্রুপ খুলতে পারবে।"

@@ -543,6 +543,16 @@
         }
     }
 
+    // A real save navigates away. Drop the dirty flag first, or the
+    // browser asks "Leave site?" on the way out.
+    document.addEventListener('submit', function (e) {
+        var form = e.target;
+        if (!form || !form.hasAttribute || !form.hasAttribute('data-pk-dirty')) {
+            return;
+        }
+        clearFormDirty(form);
+    });
+
     window.addEventListener('beforeunload', function (e) {
         if (dirtyForms.size > 0) {
             var msg = i18n.unsavedChanges || 'You have unsaved changes.';
@@ -1261,75 +1271,6 @@
                 filterCards();
             });
         }
-
-        // Kebab menu toggle
-        pageOn(document, 'click', function (e) {
-            var menuBtn = e.target.closest('[data-menu]');
-            var insidePop = e.target.closest('.menu-pop, .pk-menu-pop');
-
-            if (menuBtn) {
-                e.preventDefault();
-                var pop = menuBtn.nextElementSibling || (menuBtn.parentElement ? menuBtn.parentElement.querySelector('.menu-pop, .pk-menu-pop') : null);
-                if (!pop) return;
-
-                var isCurrentlyOpen = !pop.hidden;
-
-                // Close any open kebab menus first
-                document.querySelectorAll('.menu-pop, .pk-menu-pop').forEach(function (p) {
-                    p.hidden = true;
-                    if (p.previousElementSibling) {
-                        p.previousElementSibling.setAttribute('aria-expanded', 'false');
-                    }
-                    var card = p.closest('.pkg');
-                    if (card) card.classList.remove('has-menu-open');
-                });
-
-                if (!isCurrentlyOpen) {
-                    pop.hidden = false;
-                    menuBtn.setAttribute('aria-expanded', 'true');
-                    var card = menuBtn.closest('.pkg');
-                    if (card) card.classList.add('has-menu-open');
-
-                    var rect = pop.getBoundingClientRect();
-                    var winHeight = window.innerHeight || document.documentElement.clientHeight;
-                    if (rect.top < 60) {
-                        pop.style.top = 'calc(100% + 6px)';
-                        pop.style.bottom = 'auto';
-                    } else if (rect.bottom > winHeight) {
-                        pop.style.top = 'auto';
-                        pop.style.bottom = 'calc(100% + 6px)';
-                    }
-                }
-                return;
-            }
-
-            // Click outside closes the kebab menu
-            if (!insidePop) {
-                document.querySelectorAll('.menu-pop, .pk-menu-pop').forEach(function (pop) {
-                    if (!pop.hidden) {
-                        pop.hidden = true;
-                        if (pop.previousElementSibling) {
-                            pop.previousElementSibling.setAttribute('aria-expanded', 'false');
-                        }
-                        var card = pop.closest('.pkg');
-                        if (card) card.classList.remove('has-menu-open');
-                    }
-                });
-            }
-        });
-
-        pageOn(document, 'keydown', function (e) {
-            if (e.key === 'Escape') {
-                document.querySelectorAll('.menu-pop, .pk-menu-pop').forEach(function (pop) {
-                    pop.hidden = true;
-                    if (pop.previousElementSibling) {
-                        pop.previousElementSibling.setAttribute('aria-expanded', 'false');
-                    }
-                    var card = pop.closest('.pkg');
-                    if (card) card.classList.remove('has-menu-open');
-                });
-            }
-        });
 
         // Publish status toggle
         grid.addEventListener('change', function (e) {
@@ -3057,12 +2998,103 @@
         });
     }
 
+    function menuCard(node) {
+        return node && node.closest ? node.closest('.pkg, .dc') : null;
+    }
+
+    function closeKebab() {
+        document.querySelectorAll('.menu-pop, .pk-menu-pop').forEach(function (pop) {
+            pop.hidden = true;
+            pop.style.top = '';
+            pop.style.bottom = '';
+            if (pop.previousElementSibling) {
+                pop.previousElementSibling.setAttribute('aria-expanded', 'false');
+            }
+            var card = menuCard(pop);
+            if (card) {
+                card.classList.remove('has-menu-open');
+            }
+        });
+    }
+
+    // Kebab menus on every screen. Package list used to own this, so
+    // departure cards never received the click.
+    function initMenus() {
+        pageOn(document, 'click', function (e) {
+            var menuBtn = e.target.closest('[data-menu]');
+            var insidePop = e.target.closest('.menu-pop, .pk-menu-pop');
+
+            if (menuBtn) {
+                e.preventDefault();
+                e.stopPropagation();
+                var pop = menuBtn.nextElementSibling || (menuBtn.parentElement ? menuBtn.parentElement.querySelector('.menu-pop, .pk-menu-pop') : null);
+                if (!pop) {
+                    return;
+                }
+                var open = pop.hidden;
+                closeKebab();
+                if (open) {
+                    pop.hidden = false;
+                    menuBtn.setAttribute('aria-expanded', 'true');
+                    var card = menuCard(menuBtn);
+                    if (card) {
+                        card.classList.add('has-menu-open');
+                    }
+                    var rect = pop.getBoundingClientRect();
+                    var winHeight = window.innerHeight || document.documentElement.clientHeight;
+                    if (rect.top < 60) {
+                        pop.style.top = 'calc(100% + 6px)';
+                        pop.style.bottom = 'auto';
+                    } else if (rect.bottom > winHeight) {
+                        pop.style.top = 'auto';
+                        pop.style.bottom = 'calc(100% + 6px)';
+                    }
+                }
+                return;
+            }
+
+            if (!insidePop) {
+                closeKebab();
+            }
+        });
+
+        pageOn(document, 'keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeKebab();
+            }
+        });
+    }
+
+    function lockReadonly() {
+        if (!document.body.classList.contains('pothik-readonly')) {
+            return;
+        }
+        var root = document.querySelector('.pk-admin') || document;
+        root.querySelectorAll('form[method="post"], form:not([method])').forEach(function (form) {
+            var method = (form.getAttribute('method') || 'get').toLowerCase();
+            if (method !== 'post') {
+                return;
+            }
+            form.querySelectorAll('input, textarea, select, button').forEach(function (el) {
+                if (el.type === 'hidden') {
+                    return;
+                }
+                el.disabled = true;
+            });
+        });
+        root.querySelectorAll('.pk-savebar, .savebar').forEach(function (bar) {
+            bar.hidden = true;
+        });
+    }
+
     function bootPage() {
+        lockReadonly();
         readFlashes();
         checkAppbar();
         initShell();
         initCounts();
         initDesk();
+        initMenus();
         initPackages();
         initEditor();
         initInquiries();

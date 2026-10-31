@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace Pothik\Admin;
 
+use Pothik\Access;
 use Pothik\I18n;
 use Pothik\Modules;
 
@@ -20,17 +21,18 @@ final class Menu
 {
     public static function register(): void
     {
+        $desk_cap = Access::any() ? 'read' : 'manage_options';
         add_menu_page(
             'Pothik',
             'Pothik',
-            'manage_options',
+            $desk_cap,
             'pothik',
             [self::class, 'overview'],
             'dashicons-location',
             58
         );
 
-        add_submenu_page('pothik', 'Pothik', I18n::t('Desk'), 'manage_options', 'pothik', [self::class, 'overview']);
+        add_submenu_page('pothik', 'Pothik', I18n::t('Desk'), $desk_cap, 'pothik', [self::class, 'overview']);
 
         $has_locked = false;
         foreach (Modules::all() as $id => $module) {
@@ -41,7 +43,7 @@ final class Menu
                     'pothik',
                     $title,
                     $menu,
-                    'manage_options',
+                    Access::menu_cap(Access::area_for_module($id)),
                     'pothik-' . $id,
                     static function () use ($id): void {
                         self::dispatch($id);
@@ -67,7 +69,7 @@ final class Menu
             'pothik',
             I18n::t('Settings'),
             I18n::t('Settings'),
-            'manage_options',
+            Access::menu_cap('settings'),
             'pothik-settings',
             [Settings::class, 'render']
         );
@@ -164,16 +166,17 @@ final class Menu
 
     public static function overview(): void
     {
-        if (!current_user_can('manage_options')) {
-            return;
+        if (!Access::any()) {
+            Access::deny();
         }
         Screens::overview();
     }
 
     public static function dispatch(string $id): void
     {
-        if (!current_user_can('manage_options')) {
-            return;
+        $area = Access::area_for_module($id);
+        if (!Access::can($area, 'view')) {
+            Access::deny();
         }
 
         $modules = Modules::all();

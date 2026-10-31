@@ -2907,3 +2907,270 @@ msgstr ""
 
 msgid "Show"
 msgstr ""
+
+msgid "Work on this group"
+msgstr ""
+
+msgid "Leaves in %d days"
+msgstr ""
+
+msgid "Travelling now"
+msgstr ""
+
+msgid "Returned"
+msgstr ""
+
+msgid "No package linked"
+msgstr ""
+
+msgid "Start blank or copy last season's setup"
+msgstr ""
+
+msgid "Copy as new group"
+msgstr ""
+
+msgid "%d left"
+msgstr ""
+
+msgid "Visas issued"
+msgstr ""
+
+msgid "View only"
+msgstr ""
+
+msgid "You don't have access to this screen."
+msgstr ""
+
+msgid "Ask your manager if you need it."
+msgstr ""
+
+msgid "Back to Desk"
+msgstr ""
+
+msgid "Team & access"
+msgstr ""
+
+msgid "Team"
+msgstr ""
+
+msgid "No one else has opened Pothik today."
+msgstr ""
+
+msgid "Active today: %s"
+msgstr ""
+
+msgid "Who can open Pothik, and which groups they can see."
+msgstr ""
+
+msgid "People"
+msgstr ""
+
+msgid "What each role can do"
+msgstr ""
+
+msgid "Preview as"
+msgstr ""
+
+msgid "Manager"
+msgstr ""
+
+msgid "Runs the agency desk. Everything in Pothik, including settings and team."
+msgstr ""
+
+msgid "Staff"
+msgstr ""
+
+msgid "Handles pilgrims day to day: inquiries, files, rooming and visas."
+msgstr ""
+
+msgid "Accounts"
+msgstr ""
+
+msgid "Handles money: ledger, receipts and agent commissions."
+msgstr ""
+
+msgid "Viewer"
+msgstr ""
+
+msgid "Owner or partner who only looks. Can open screens, cannot change anything."
+msgstr ""
+
+msgid "Search name or email"
+msgstr ""
+
+msgid "Add team member"
+msgstr ""
+
+msgid "Person"
+msgstr ""
+
+msgid "Role"
+msgstr ""
+
+msgid "Groups"
+msgstr ""
+
+msgid "Last active"
+msgstr ""
+
+msgid "WordPress administrators always have full access. Pothik roles only change what people see inside Pothik — not the rest of WordPress."
+msgstr ""
+
+msgid "No access"
+msgstr ""
+
+msgid "hides the screen."
+msgstr ""
+
+msgid "View"
+msgstr ""
+
+msgid "shows it read-only."
+msgstr ""
+
+msgid "allows changes. Manager is fixed; the other roles can be adjusted."
+msgstr ""
+
+msgid "Screen"
+msgstr ""
+
+msgid "Sales"
+msgstr ""
+
+msgid "Money"
+msgstr ""
+
+msgid "Reset to defaults"
+msgstr ""
+
+msgid "Unsaved access changes"
+msgstr ""
+
+msgid "Save access"
+msgstr ""
+
+msgid "See Pothik as"
+msgstr ""
+
+msgid "Can change"
+msgstr ""
+
+msgid "Read-only"
+msgstr ""
+
+msgid "Hidden"
+msgstr ""
+
+msgid "VIEW"
+msgstr ""
+
+msgid "Read-only screens show the data. Controls are disabled and the title says View only."
+msgstr ""
+
+msgid "Hidden screens are blocked on the server, even if someone types the address."
+msgstr ""
+
+msgid "Pick an existing WordPress user or invite by email."
+msgstr ""
+
+msgid "That email already has a WordPress account. Add them to the team instead."
+msgstr ""
+
+msgid "Check the name, email and role."
+msgstr ""
+
+msgid "Existing user"
+msgstr ""
+
+msgid "Invite by email"
+msgstr ""
+
+msgid "WordPress user"
+msgstr ""
+
+msgid "e.g. Salma Khatun"
+msgstr ""
+
+msgid "WordPress sends them a link to set their own password. We never ask for or show passwords."
+msgstr ""
+
+msgid "Groups they can open"
+msgstr ""
+
+msgid "All groups, including new ones"
+msgstr ""
+
+msgid "Add to team"
+msgstr ""
+
+msgid "You"
+msgstr ""
+
+msgid "WordPress admin"
+msgstr ""
+
+msgid "%1$s added as %2$s"
+msgstr ""
+
+msgid "Invitation sent to %s"
+msgstr ""
+
+msgid "%s removed from the team — their WordPress account stays"
+msgstr ""
+
+msgid "%1$s is now %2$s"
+msgstr ""
+
+msgid "Groups updated for %s"
+msgstr ""
+
+msgid "Access saved"
+msgstr ""
+
+msgid "Team member restored"
+msgstr ""
+
+msgid "That change is not allowed."
+msgstr ""
+
+msgid "Create, edit, publish"
+msgstr ""
+
+msgid "Reply, mark, export"
+msgstr ""
+
+msgid "Groups, flights, seats"
+msgstr ""
+
+msgid "Passport, family, health"
+msgstr ""
+
+msgid "Makkah & Madinah rooms"
+msgstr ""
+
+msgid "Visa status"
+msgstr ""
+
+msgid "Payments and balances"
+msgstr ""
+
+msgid "Payment slips"
+msgstr ""
+
+msgid "Agent commission"
+msgstr ""
+
+msgid "Coming in step 2.3"
+msgstr ""
+
+msgid "Reports"
+msgstr ""
+
+msgid "Agency details, data tools"
+msgstr ""
+
+msgid "This screen"
+msgstr ""
+
+msgid "Roles and which groups each person can open."
+msgstr ""

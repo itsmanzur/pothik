@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace Pothik\Admin;
 
+use Pothik\Access;
 use Pothik\Front\PackagePage;
 use Pothik\I18n;
 use Pothik\InquiryRepository;
@@ -156,8 +157,9 @@ final class Chrome
 
         /** @var array<string, array<string, mixed>> $nav_groups */
         $nav_groups = apply_filters('pothik/admin_nav', $nav_groups);
+        $nav_groups = self::filter_nav($nav_groups);
 
-        echo '<div class="pk-admin">';
+        echo '<div class="pk-admin' . (Access::readonly() ? ' pothik-readonly' : '') . '">';
         echo '<div class="pk-app' . ($is_mini ? ' mini' : '') . '" id="pkApp">';
 
         // Dedicated Pothik Sidebar
@@ -238,6 +240,9 @@ final class Chrome
         echo '<div class="pk-side-scrim" id="pkSideScrim"></div>';
         echo '<div>';
         echo '<h1 id="hTitle">' . esc_html(I18n::t($title)) . '</h1>';
+        if (Access::readonly()) {
+            echo ' <span class="pk-viewonly">' . esc_html(I18n::t('View only')) . '</span>';
+        }
         if ($lead !== '') {
             echo '<p id="hLead">' . esc_html(I18n::t($lead)) . '</p>';
         }
@@ -262,12 +267,13 @@ final class Chrome
         echo '<span>' . esc_html($is_focus ? I18n::t('Show WP menu') : I18n::t('WP menu')) . '</span>';
         echo '</button>';
 
-        // New Package Button
-        echo '<form method="post" action="' . esc_url(admin_url('admin-post.php')) . '" class="inline-form">';
-        wp_nonce_field('pothik_new_package');
-        echo '<input type="hidden" name="action" value="pothik_new_package">';
-        echo '<button type="submit" class="btn btn-primary"><svg class="i sm" aria-hidden="true"><use href="#i-plus"/></svg>' . esc_html(I18n::t('New package')) . '</button>';
-        echo '</form>';
+        if (Access::can('packages', 'edit')) {
+            echo '<form method="post" action="' . esc_url(admin_url('admin-post.php')) . '" class="inline-form">';
+            wp_nonce_field('pothik_new_package');
+            echo '<input type="hidden" name="action" value="pothik_new_package">';
+            echo '<button type="submit" class="btn btn-primary"><svg class="i sm" aria-hidden="true"><use href="#i-plus"/></svg>' . esc_html(I18n::t('New package')) . '</button>';
+            echo '</form>';
+        }
 
         echo '</div>'; // .tools
         echo '</header>'; // .pk-head
@@ -353,5 +359,41 @@ final class Chrome
             echo '<div data-pk-flash="' . esc_attr($msg) . '" class="notice notice-warning is-dismissible pk-flash"><p>' . esc_html($msg) . '</p></div>';
             $flashed = true;
         }
+    }
+
+    /**
+     * @param array<string, array<string, mixed>> $groups
+     * @return array<string, array<string, mixed>>
+     */
+    private static function filter_nav(array $groups): array
+    {
+        foreach ($groups as $key => $grp) {
+            if (empty($grp['items']) || !is_array($grp['items'])) {
+                continue;
+            }
+            $items = [];
+            foreach ($grp['items'] as $item) {
+                if (!is_array($item)) {
+                    continue;
+                }
+                if (!empty($item['locked']) && !current_user_can('manage_options')) {
+                    continue;
+                }
+                if (!empty($item['is_form_action']) && !Access::can('packages', 'edit')) {
+                    continue;
+                }
+                $slug = (string) ($item['slug'] ?? '');
+                if ($slug !== '' && $slug !== 'pothik' && $slug !== 'new_package' && empty($item['locked'])) {
+                    $area = Access::area_for_page($slug);
+                    if ($area !== '' && !Access::can($area, 'view')) {
+                        continue;
+                    }
+                }
+                $items[] = $item;
+            }
+            $groups[$key]['items'] = $items;
+        }
+
+        return $groups;
     }
 }

@@ -3166,3 +3166,10 @@ select.share-sel option,
 @media (max-width:700px){
   .pk-admin .pk-grid,.pk-admin .pk-fgrid,.pk-admin .pk-fgrid.three,.pk-admin .pk-person .pin{grid-template-columns:1fr}
 }
+.pk-admin .pk-viewonly{display:inline-flex;align-items:center;margin-left:8px;padding:2px 8px;border-radius:999px;background:#e4eef8;color:#2f5f86;font-size:12px;font-weight:700;vertical-align:middle}
+body.pothik-readonly .pk-admin .pk-savebar,
+body.pothik-readonly .pk-admin .savebar{display:none!important}
+body.pothik-readonly .pk-admin form[method="post"] input:not([type="hidden"]),
+body.pothik-readonly .pk-admin form[method="post"] textarea,
+body.pothik-readonly .pk-admin form[method="post"] select,
+body.pothik-readonly .pk-admin form[method="post"] button{pointer-events:none;opacity:.72}

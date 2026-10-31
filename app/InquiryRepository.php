@@ -517,7 +517,7 @@ final class InquiryRepository
     public static function ajax_search(): void
     {
         check_ajax_referer('pothik_admin', 'nonce');
-        if (!current_user_can('manage_options')) {
+        if (!Access::can('inquiries', 'view')) {
             wp_send_json_error(['message' => 'Unauthorized'], 403);
         }
 
@@ -555,7 +555,7 @@ final class InquiryRepository
             wp_send_json_error(['message' => 'Invalid nonce'], 403);
         }
 
-        if (!current_user_can('manage_options')) {
+        if (!Access::can('inquiries', 'edit')) {
             wp_send_json_error(['message' => 'Unauthorized'], 403);
         }
 
@@ -597,12 +597,12 @@ final class InquiryRepository
      */
     public static function handle_bulk(): void
     {
-        if (!current_user_can('manage_options')) {
-            wp_die(esc_html(I18n::t('You do not have permission to perform this action.')));
-        }
         check_admin_referer('pothik_bulk_inquiries');
 
         $op = isset($_POST['op']) ? sanitize_key((string) $_POST['op']) : '';
+        if (!Access::can('inquiries', $op === 'export' ? 'view' : 'edit')) {
+            Access::deny();
+        }
         // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
         $post_ids = isset($_POST['ids']) ? (array) wp_unslash($_POST['ids']) : [];
         $ids = array_filter(array_map('sanitize_key', $post_ids));
@@ -646,8 +646,8 @@ final class InquiryRepository
      */
     public static function export_csv(?array $ids = null): void
     {
-        if (!current_user_can('manage_options')) {
-            wp_die(esc_html(I18n::t('You do not have permission to view this screen.')));
+        if (!Access::can('inquiries', 'view')) {
+            Access::deny();
         }
         if (!check_admin_referer('pothik_export_inquiries', '_wpnonce', false) && !check_admin_referer('pothik_bulk_inquiries', '_wpnonce', false)) {
             wp_die(esc_html(I18n::t('Security check failed.')));

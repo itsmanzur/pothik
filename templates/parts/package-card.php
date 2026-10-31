@@ -91,7 +91,7 @@ $depart = Catalog::depart_label($package);
             <?php endif; ?>
         </div>
         <div>
-            <?php if ($draft && current_user_can('manage_options')) : ?>
+            <?php if ($draft && \Pothik\Access::can('packages', 'view')) : ?>
                 <span class="draft-pill"><?php echo esc_html(I18n::t('Draft — only you can see this')); ?></span>
             <?php endif; ?>
             <?php if ($kicker !== '') : ?>

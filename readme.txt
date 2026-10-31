@@ -76,6 +76,7 @@ Add-ons extend Pothik through these hooks. The free plugin does not ship add-on 
 * `pothik/package_card_badges` — extra pills on a catalog card. Arguments: an array of pills, then the package. Each pill is `['label' => string, 'class' => string]`.
 * `pothik/inquiry_actions` — inside the inquiry drawer footer. Argument: the inquiry row when the drawer was built for one row. The shared drawer passes an empty array because the open row is chosen in the browser.
 * `pothik/desk_cards` — extra cards on the Desk. Argument: an array of HTML strings. Callbacks return escaped HTML.
+* `pothik/can` — whether a user may view or edit an area. Arguments: the default (false for anyone who is not a WordPress administrator), the area name, the level (`view` or `edit`), and the user id. WordPress administrators are always allowed before this filter runs. Return true only when that user may do that level of that area.
 
 == Changelog ==
 

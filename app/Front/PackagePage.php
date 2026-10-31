@@ -297,7 +297,7 @@ final class PackagePage
     public static function render(string $force_id = ''): void
     {
         $all = PackageStore::all();
-        $is_admin = current_user_can('manage_options');
+        $is_admin = \Pothik\Access::can('packages', 'view');
         $published = array_values(array_filter($all, static fn (array $p): bool => ($p['status'] ?? 'draft') === 'published'));
 
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -354,7 +354,7 @@ final class PackagePage
     public static function render_catalog(): void
     {
         $all = PackageStore::all();
-        $is_admin = current_user_can('manage_options');
+        $is_admin = \Pothik\Access::can('packages', 'view');
         $published = array_values(array_filter(
             $all,
             static fn (array $row): bool => ($row['status'] ?? 'draft') === 'published'
@@ -376,7 +376,7 @@ final class PackagePage
     public static function resolve(string $force_id = ''): array
     {
         $all = PackageStore::all();
-        $is_admin = current_user_can('manage_options');
+        $is_admin = \Pothik\Access::can('packages', 'view');
         $published = array_values(array_filter(
             $all,
             static fn (array $row): bool => ($row['status'] ?? 'draft') === 'published'

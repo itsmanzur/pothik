@@ -11,6 +11,7 @@ namespace Pothik\Admin;
 
 // phpcs:disable WordPress.Security.EscapeOutput
 
+use Pothik\Access;
 use Pothik\Format;
 use Pothik\Front\Catalog;
 use Pothik\Front\PackagePage;
@@ -39,6 +40,9 @@ final class Screens
 
     public static function overview(): void
     {
+        if (!Access::any()) {
+            Access::deny();
+        }
         $current_user = wp_get_current_user();
         $display_name = $current_user && $current_user->display_name ? $current_user->display_name : 'admin';
 
@@ -198,25 +202,35 @@ final class Screens
 
         // 4. QUICK ACTIONS ROW
         echo '<div class="qbar">';
-        echo '<form method="post" action="' . esc_url(admin_url('admin-post.php')) . '" class="inline-form">';
-        wp_nonce_field('pothik_new_package');
-        echo '<input type="hidden" name="action" value="pothik_new_package">';
-        echo '<button type="submit" class="btn pk-btn btn-ghost pk-btn-ghost"><svg class="i sm"><use href="#i-plus"/></svg>' . esc_html(I18n::t('New package')) . '</button>';
-        echo '</form>';
-        echo '<a class="btn pk-btn btn-ghost pk-btn-ghost" href="' . esc_url(admin_url('admin.php?page=pothik-inquiries')) . '"><svg class="i sm"><use href="#i-inbox"/></svg>' . esc_html(I18n::t('Inquiries')) . '</a>';
-        echo '<a class="btn pk-btn btn-ghost pk-btn-ghost" href="' . esc_url(admin_url('admin.php?page=pothik-receipt')) . '"><svg class="i sm"><use href="#i-receipt"/></svg>' . esc_html(I18n::t('Payment slip')) . '</a>';
-        echo '<form method="post" action="' . esc_url(admin_url('admin-post.php')) . '" class="inline-form">';
-        wp_nonce_field('pothik_export_inquiries');
-        echo '<input type="hidden" name="action" value="pothik_export_inquiries">';
-        echo '<button type="submit" class="btn pk-btn btn-ghost pk-btn-ghost"><svg class="i sm"><use href="#i-down"/></svg>' . esc_html(I18n::t('Export CSV')) . '</button>';
-        echo '</form>';
+        if (Access::can('packages', 'edit')) {
+            echo '<form method="post" action="' . esc_url(admin_url('admin-post.php')) . '" class="inline-form">';
+            wp_nonce_field('pothik_new_package');
+            echo '<input type="hidden" name="action" value="pothik_new_package">';
+            echo '<button type="submit" class="btn pk-btn btn-ghost pk-btn-ghost"><svg class="i sm"><use href="#i-plus"/></svg>' . esc_html(I18n::t('New package')) . '</button>';
+            echo '</form>';
+        }
+        if (Access::can('inquiries', 'view')) {
+            echo '<a class="btn pk-btn btn-ghost pk-btn-ghost" href="' . esc_url(admin_url('admin.php?page=pothik-inquiries')) . '"><svg class="i sm"><use href="#i-inbox"/></svg>' . esc_html(I18n::t('Inquiries')) . '</a>';
+        }
+        if (Access::can('receipt', 'view')) {
+            echo '<a class="btn pk-btn btn-ghost pk-btn-ghost" href="' . esc_url(admin_url('admin.php?page=pothik-receipt')) . '"><svg class="i sm"><use href="#i-receipt"/></svg>' . esc_html(I18n::t('Payment slip')) . '</a>';
+        }
+        if (Access::can('inquiries', 'view')) {
+            echo '<form method="post" action="' . esc_url(admin_url('admin-post.php')) . '" class="inline-form">';
+            wp_nonce_field('pothik_export_inquiries');
+            echo '<input type="hidden" name="action" value="pothik_export_inquiries">';
+            echo '<button type="submit" class="btn pk-btn btn-ghost pk-btn-ghost"><svg class="i sm"><use href="#i-down"/></svg>' . esc_html(I18n::t('Export CSV')) . '</button>';
+            echo '</form>';
+        }
         echo '<button type="button" class="btn pk-btn btn-ghost pk-btn-ghost" data-pk-copy="[pothik_catalog]"><svg class="i sm"><use href="#i-copy"/></svg>' . esc_html(I18n::t('Copy shortcode')) . '</button>';
-        echo '<a class="btn pk-btn btn-ghost pk-btn-ghost" href="' . esc_url(admin_url('admin.php?page=pothik-settings')) . '"><svg class="i sm"><use href="#i-gear"/></svg>' . esc_html(I18n::t('Settings')) . '</a>';
+        if (Access::can('settings', 'view')) {
+            echo '<a class="btn pk-btn btn-ghost pk-btn-ghost" href="' . esc_url(admin_url('admin.php?page=pothik-settings')) . '"><svg class="i sm"><use href="#i-gear"/></svg>' . esc_html(I18n::t('Settings')) . '</a>';
+        }
         echo '</div>';
 
         // 5. SIX STAT CARDS
         echo '<div class="stats6">';
-        // Stat 1: Inquiries
+        if (Access::can('analytics', 'view')) {
         echo '<a class="stat" href="' . esc_url(admin_url('admin.php?page=pothik-analytics')) . '">';
         echo '<span class="ic"><svg class="i"><use href="#i-inbox"/></svg></span>';
         echo '<span class="trend ' . ($trend_down ? 'neg' : 'pos') . '">' . esc_html($trend_label) . '</span>';
@@ -225,16 +239,16 @@ final class Screens
         echo '<span class="ln">' . esc_html(I18n::t('Last 7 days')) . '</span>';
         echo '<svg class="spark" viewBox="0 0 100 40" preserveAspectRatio="none"><path d="' . esc_attr($fill_d) . '" fill="#40916c" opacity=".12"/><path d="' . esc_attr($line_d) . '" fill="none" stroke="#40916c" stroke-width="2"/></svg>';
         echo '</a>';
-
-        // Stat 2: Waiting
+        }
+        if (Access::can('inquiries', 'view')) {
         echo '<a class="stat c2" href="' . esc_url(admin_url('admin.php?page=pothik-inquiries&status=waiting')) . '">';
         echo '<span class="ic"><svg class="i"><use href="#i-clock"/></svg></span>';
         echo '<strong data-pk-count="' . $waiting_count . '" data-count="' . $waiting_count . '" data-pk-wait-count data-wait-count>' . $waiting_count . '</strong>';
         echo '<span class="lb">' . esc_html(I18n::t('Waiting reply')) . '</span>';
         echo '<span class="ln">' . esc_html($oldest_diff !== '' ? sprintf(I18n::t('Oldest %s ago'), $oldest_diff) : I18n::t('All answered')) . '</span>';
         echo '</a>';
-
-        // Stat 3: Packages
+        }
+        if (Access::can('packages', 'view')) {
         echo '<a class="stat c3" href="' . esc_url(admin_url('admin.php?page=pothik-package')) . '">';
         echo '<span class="ic"><svg class="i"><use href="#i-box"/></svg></span>';
         echo '<strong data-pk-count="' . $packages_count . '" data-count="' . $packages_count . '">' . $packages_count . '</strong>';
@@ -250,29 +264,30 @@ final class Screens
         echo '<span class="lb">' . esc_html(I18n::t('Published')) . '</span>';
         echo '<span class="ln">' . esc_html(I18n::t('Live on your site')) . '</span>';
         echo '</a>';
-
-        // Stat 5: Last receipt
+        }
+        if (Access::can('receipt', 'view')) {
         echo '<a class="stat c5" href="' . esc_url(admin_url('admin.php?page=pothik-receipt')) . '">';
         echo '<span class="ic"><svg class="i"><use href="#i-receipt"/></svg></span>';
         echo '<strong data-pk-count="' . $rc_amt . '" data-count="' . $rc_amt . '" data-pk-money data-money>' . Format::money($rc_amt) . '</strong>';
         echo '<span class="lb">' . esc_html(I18n::t('Last receipt')) . '</span>';
         echo '<span class="ln">' . esc_html($rc_summary) . '</span>';
         echo '</a>';
-
-        // Stat 6: Reply rate
+        }
+        if (Access::can('analytics', 'view')) {
         echo '<a class="stat c6" href="' . esc_url(admin_url('admin.php?page=pothik-analytics')) . '">';
         echo '<span class="ic"><svg class="i"><use href="#i-check"/></svg></span>';
         echo '<strong data-pk-count="' . $reply_rate_30 . '" data-count="' . $reply_rate_30 . '" data-suffix="%">' . $reply_rate_30 . '%</strong>';
         echo '<span class="lb">' . esc_html(I18n::t('Reply rate')) . '</span>';
         echo '<span class="ln">' . esc_html(I18n::t('Last 30 days')) . '</span>';
         echo '</a>';
+        }
 
         echo '</div>'; // .stats6
 
         // 6. TWO COLUMNS (Desk2: Reply queue & Packages / Setup)
         echo '<div class="desk2 pk-desk2">';
 
-        // Left card: Reply queue
+        if (Access::can('inquiries', 'view')) {
         echo '<div class="card pk-card queue-card">';
         echo '<div class="card-head pk-card-head"><h3><svg class="i"><use href="#i-inbox"/></svg>' . esc_html(I18n::t('Reply queue')) . '</h3><a class="link" href="' . esc_url(admin_url('admin.php?page=pothik-inquiries')) . '">' . esc_html(I18n::t('All inquiries')) . ' <svg class="i sm"><use href="#i-arrow"/></svg></a></div>';
         echo '<div class="queue-head"><span></span><span>' . esc_html(I18n::t('Pilgrim · package · share')) . '</span><span>' . esc_html(I18n::t('Received · actions')) . '</span></div>';
@@ -322,11 +337,11 @@ final class Screens
         }
         echo '</ul>';
         echo '</div>'; // .card
+        }
 
-        // Right column: Packages + Setup checklist
         echo '<div class="grid">';
 
-        // Mini Packages card
+        if (Access::can('packages', 'view')) {
         echo '<div class="card pk-card">';
         echo '<div class="card-head pk-card-head"><h3>' . esc_html(I18n::t('Packages')) . '</h3><a class="link" href="' . esc_url(admin_url('admin.php?page=pothik-package')) . '">' . esc_html(I18n::t('Manage')) . ' <svg class="i sm"><use href="#i-arrow"/></svg></a></div>';
         echo '<div id="miniPkgs">';
@@ -378,9 +393,9 @@ final class Screens
         }
         echo '</div>'; // #miniPkgs
         echo '</div>'; // .card
+        }
 
-        // Setup checklist card
-        if ($show_setup) {
+        if ($show_setup && Access::can('settings', 'view')) {
             echo '<div class="card pk-card setup-light">';
             echo '<div class="card-head pk-card-head"><h3>' . esc_html(I18n::t('Finish setting up')) . '</h3><span class="sub"><b>' . $completed_steps . '</b> ' . esc_html(I18n::t('of 5')) . '</span></div>';
             echo '<div class="meter"><i data-pk-w="' . $progress_pct . '" style="width:' . $progress_pct . '%"></i></div>';
@@ -529,6 +544,9 @@ final class Screens
 
     public static function package(): void
     {
+        if (!Access::can('packages', 'view')) {
+            Access::deny();
+        }
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         $id = isset($_GET['package']) ? sanitize_key(wp_unslash((string) $_GET['package'])) : '';
         if ($id !== '') {
@@ -1041,6 +1059,9 @@ final class Screens
 
     public static function inquiries(): void
     {
+        if (!Access::can('inquiries', 'view')) {
+            Access::deny();
+        }
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         $page = isset($_GET['paged']) ? max(1, absint($_GET['paged'])) : 1;
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -1293,7 +1314,7 @@ final class Screens
         if (!check_ajax_referer('pothik_admin', 'nonce', false)) {
             wp_send_json_error(['message' => 'Invalid nonce'], 403);
         }
-        if (!current_user_can('manage_options')) {
+        if (!Access::can('inquiries', 'view')) {
             wp_send_json_error(['message' => 'Unauthorized'], 403);
         }
 
@@ -1329,6 +1350,9 @@ final class Screens
 
     public static function receipt(): void
     {
+        if (!Access::can('receipt', 'view')) {
+            Access::deny();
+        }
         $receipt = ReceiptStore::get();
         $settings = Settings::get_all();
         $is_bn = I18n::is_bn();

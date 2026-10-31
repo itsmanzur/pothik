@@ -175,7 +175,7 @@ final class InquiryStore
 
     public static function handle_delete(): void
     {
-        if (!current_user_can('manage_options')) {
+        if (!Access::can('inquiries', 'edit')) {
             wp_die(esc_html(I18n::t('You do not have permission to view this screen.')));
         }
         check_admin_referer('pothik_delete_inquiry');
@@ -189,7 +189,7 @@ final class InquiryStore
 
     public static function handle_reply(): void
     {
-        if (!current_user_can('manage_options')) {
+        if (!Access::can('inquiries', 'edit')) {
             wp_die(esc_html(I18n::t('You do not have permission to view this screen.')));
         }
         check_admin_referer('pothik_reply_inquiry');

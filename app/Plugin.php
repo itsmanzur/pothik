@@ -57,6 +57,7 @@ final class Plugin
         add_action('wp_ajax_pothik_ui_pref', [self::class, 'ajax_ui_pref']);
         add_action('admin_post_pothik_ui_pref', [self::class, 'handle_ui_pref']);
         add_filter('admin_body_class', [self::class, 'filter_admin_body_class']);
+        add_action('admin_page_access_denied', [Access::class, 'on_denied']);
         add_action('admin_post_pothik_inquiry', [InquiryStore::class, 'handle_public']);
         add_action('admin_post_nopriv_pothik_inquiry', [InquiryStore::class, 'handle_public']);
 
@@ -103,7 +104,7 @@ final class Plugin
 
     public static function welcome(): void
     {
-        if (!current_user_can('manage_options')) {
+        if (!Access::can('settings', 'edit')) {
             return;
         }
 
@@ -151,7 +152,7 @@ final class Plugin
 
     public static function handle_publish_page(): void
     {
-        if (!current_user_can('manage_options')) {
+        if (!Access::can('settings', 'edit')) {
             wp_die(esc_html(I18n::t('You do not have permission to view this screen.')));
         }
         check_admin_referer('pothik_publish_page');
@@ -170,7 +171,7 @@ final class Plugin
 
     public static function handle_recreate_page(): void
     {
-        if (!current_user_can('manage_options')) {
+        if (!Access::can('settings', 'edit')) {
             wp_die(esc_html(I18n::t('You do not have permission to view this screen.')));
         }
         check_admin_referer('pothik_recreate_page');
@@ -183,7 +184,7 @@ final class Plugin
 
     public static function handle_load_demo(): void
     {
-        if (!current_user_can('manage_options')) {
+        if (!Access::can('settings', 'edit')) {
             wp_die(esc_html(I18n::t('You do not have permission to view this screen.')));
         }
         check_admin_referer('pothik_demo_data');
@@ -203,7 +204,7 @@ final class Plugin
 
     public static function handle_remove_demo(): void
     {
-        if (!current_user_can('manage_options')) {
+        if (!Access::can('settings', 'edit')) {
             wp_die(esc_html(I18n::t('You do not have permission to view this screen.')));
         }
         check_admin_referer('pothik_demo_data');
@@ -218,7 +219,7 @@ final class Plugin
 
     public static function dismiss_welcome(): void
     {
-        if (!current_user_can('manage_options')) {
+        if (!Access::any()) {
             wp_die(esc_html(I18n::t('You do not have permission to view this screen.')));
         }
         check_admin_referer('pothik_dismiss_welcome');
@@ -229,7 +230,7 @@ final class Plugin
 
     public static function handle_hide_setup(): void
     {
-        if (!current_user_can('manage_options')) {
+        if (!Access::any()) {
             wp_die(esc_html(I18n::t('You do not have permission to view this screen.')));
         }
         check_admin_referer('pothik_hide_setup');
@@ -247,6 +248,9 @@ final class Plugin
 
         if ($is_pothik) {
             $classes .= ' pothik-screen';
+            if (Access::readonly()) {
+                $classes .= ' pothik-readonly';
+            }
             $user_id = get_current_user_id();
             if ($user_id) {
                 if (get_user_meta($user_id, 'pothik_focus', true) === '1') {
@@ -264,7 +268,7 @@ final class Plugin
     public static function ajax_ui_pref(): void
     {
         check_ajax_referer('pothik_admin', 'nonce');
-        if (!current_user_can('manage_options')) {
+        if (!Access::any()) {
             wp_send_json_error(['message' => 'Unauthorized'], 403);
         }
 
@@ -281,7 +285,7 @@ final class Plugin
 
     public static function handle_ui_pref(): void
     {
-        if (!current_user_can('manage_options')) {
+        if (!Access::any()) {
             wp_die(esc_html(I18n::t('You do not have permission to view this screen.')));
         }
         check_admin_referer('pothik_ui_pref');

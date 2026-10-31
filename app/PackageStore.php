@@ -338,7 +338,7 @@ final class PackageStore
 
     public static function handle_create(): void
     {
-        if (!current_user_can('manage_options')) {
+        if (!Access::can('packages', 'edit')) {
             wp_die(esc_html(I18n::t('You do not have permission to view this screen.')));
         }
         check_admin_referer('pothik_new_package');
@@ -358,7 +358,7 @@ final class PackageStore
 
     public static function handle_save(): void
     {
-        if (!current_user_can('manage_options')) {
+        if (!Access::can('packages', 'edit')) {
             wp_die(esc_html(I18n::t('You do not have permission to view this screen.')));
         }
         check_admin_referer('pothik_save_package');
@@ -388,7 +388,7 @@ final class PackageStore
 
     public static function handle_delete(): void
     {
-        if (!current_user_can('manage_options')) {
+        if (!Access::can('packages', 'edit')) {
             wp_die(esc_html(I18n::t('You do not have permission to view this screen.')));
         }
         check_admin_referer('pothik_delete_package');
@@ -406,7 +406,7 @@ final class PackageStore
 
     public static function handle_copy(): void
     {
-        if (!current_user_can('manage_options')) {
+        if (!Access::can('packages', 'edit')) {
             wp_die(esc_html(I18n::t('You do not have permission to view this screen.')));
         }
         check_admin_referer('pothik_copy_package');
@@ -444,7 +444,7 @@ final class PackageStore
 
     public static function handle_toggle_status(): void
     {
-        if (!current_user_can('manage_options')) {
+        if (!Access::can('packages', 'edit')) {
             wp_die(esc_html(I18n::t('You do not have permission to view this screen.')));
         }
         check_admin_referer('pothik_toggle_package_status');
@@ -470,7 +470,7 @@ final class PackageStore
         if (!check_ajax_referer('pothik_admin', 'nonce', false) && !check_ajax_referer('pothik_toggle_package_status', 'nonce', false)) {
             wp_send_json_error(['message' => 'Invalid nonce'], 403);
         }
-        if (!current_user_can('manage_options')) {
+        if (!Access::can('packages', 'edit')) {
             wp_send_json_error(['message' => 'Unauthorized'], 403);
         }
 
@@ -508,7 +508,7 @@ final class PackageStore
         if (!check_ajax_referer('pothik_admin', 'nonce', false) && !check_ajax_referer('pothik_delete_package', 'nonce', false)) {
             wp_send_json_error(['message' => 'Invalid nonce'], 403);
         }
-        if (!current_user_can('manage_options')) {
+        if (!Access::can('packages', 'edit')) {
             wp_send_json_error(['message' => 'Unauthorized'], 403);
         }
 
@@ -527,7 +527,7 @@ final class PackageStore
         if (!check_ajax_referer('pothik_admin', 'nonce', false) && !check_ajax_referer('pothik_copy_package', 'nonce', false)) {
             wp_send_json_error(['message' => 'Invalid nonce'], 403);
         }
-        if (!current_user_can('manage_options')) {
+        if (!Access::can('packages', 'edit')) {
             wp_send_json_error(['message' => 'Unauthorized'], 403);
         }
 

@@ -14,6 +14,7 @@ namespace Pothik\Admin;
 use DateTimeImmutable;
 use DateTimeZone;
 use Exception;
+use Pothik\Access;
 use Pothik\Format;
 use Pothik\I18n;
 use Pothik\InquiryStore;
@@ -38,6 +39,9 @@ final class Analytics
      */
     public static function render(): void
     {
+        if (!Access::can('analytics', 'view')) {
+            Access::deny();
+        }
         $days = self::range();
         $all_rows = InquiryStore::all();
 

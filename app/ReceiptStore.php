@@ -96,7 +96,7 @@ final class ReceiptStore
 
     public static function handle_save(): void
     {
-        if (!current_user_can('manage_options')) {
+        if (!Access::can('receipt', 'edit')) {
             wp_die(esc_html(I18n::t('You do not have permission to view this screen.')));
         }
         check_admin_referer('pothik_save_receipt');

@@ -118,6 +118,9 @@ final class Settings
 
     public static function render(): void
     {
+        if (!\Pothik\Access::can('settings', 'view')) {
+            \Pothik\Access::deny();
+        }
         $settings = self::get_all();
 
         $page_id = (int) get_option('pothik_page_id');
@@ -321,7 +324,7 @@ final class Settings
         if (!check_ajax_referer('pothik_admin', 'nonce', false)) {
             wp_send_json_error(['message' => 'Invalid nonce'], 403);
         }
-        if (!current_user_can('manage_options')) {
+        if (!\Pothik\Access::can('settings', 'edit')) {
             wp_send_json_error(['message' => 'Unauthorized'], 403);
         }
 
@@ -341,7 +344,7 @@ final class Settings
 
     public static function handle_save(): void
     {
-        if (!current_user_can('manage_options')) {
+        if (!\Pothik\Access::can('settings', 'edit')) {
             wp_die(esc_html(I18n::t('You do not have permission to view this screen.')));
         }
         check_admin_referer('pothik_save_settings');
