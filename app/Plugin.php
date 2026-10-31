@@ -197,6 +197,7 @@ final class Plugin
             InquiryRepository::insert($sample);
         }
         ReceiptStore::load_demo();
+        do_action('pothik/demo_data', 'loaded');
 
         wp_safe_redirect(admin_url('admin.php?page=pothik&demo_loaded=1'));
         exit;
@@ -212,6 +213,7 @@ final class Plugin
         PackageStore::remove_demo();
         InquiryRepository::remove_demo();
         ReceiptStore::remove_demo();
+        do_action('pothik/demo_data', 'removed');
 
         wp_safe_redirect(admin_url('admin.php?page=pothik&demo_removed=1'));
         exit;

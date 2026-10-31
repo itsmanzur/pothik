@@ -37,6 +37,7 @@ final class Access
         'pothik-ledger' => 'ledger',
         'pothik-visa' => 'visa',
         'pothik-team' => 'team',
+        'pothik-activity' => 'activity',
     ];
 
     public static function can(string $area, string $level = 'view'): bool
@@ -60,7 +61,7 @@ final class Access
         if (current_user_can('manage_options')) {
             return true;
         }
-        foreach (array_merge(self::AREAS, ['groups', 'pilgrims', 'rooming', 'visa', 'ledger', 'receipt', 'team']) as $area) {
+        foreach (array_merge(self::AREAS, ['groups', 'pilgrims', 'rooming', 'visa', 'ledger', 'receipt', 'team', 'activity']) as $area) {
             if (self::can($area, 'view')) {
                 return true;
             }

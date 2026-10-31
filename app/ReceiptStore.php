@@ -103,12 +103,16 @@ final class ReceiptStore
 
         $post = wp_unslash($_POST);
         $post = is_array($post) ? $post : [];
+        $before = get_option('pothik_receipt', []);
+        if (!is_array($before)) {
+            $before = [];
+        }
         $channel = I18n::canonical('channel', isset($post['channel']) ? sanitize_text_field((string) $post['channel']) : '');
         if (!in_array($channel, ['bkash', 'nagad', 'rocket', 'bank', 'cash'], true)) {
             $channel = 'cash';
         }
 
-        update_option('pothik_receipt', [
+        $after = [
             'name' => mb_substr(isset($post['name']) ? sanitize_text_field((string) $post['name']) : '', 0, 80),
             'amount' => (string) absint($post['amount'] ?? 0),
             'channel' => $channel,
@@ -116,7 +120,9 @@ final class ReceiptStore
             'date' => mb_substr(isset($post['date']) ? sanitize_text_field((string) $post['date']) : '', 0, 20),
             'note' => mb_substr(isset($post['note']) ? sanitize_textarea_field((string) $post['note']) : '', 0, 240),
             'demo' => false,
-        ], false);
+        ];
+        update_option('pothik_receipt', $after, false);
+        do_action('pothik/receipt_saved', $before, $after);
 
         wp_safe_redirect(admin_url('admin.php?page=pothik-receipt&updated=1'));
         exit;

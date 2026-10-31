@@ -413,7 +413,7 @@ final class InquiryRepository
     /**
      * Toggle the replied status of an inquiry by UUID or ID.
      */
-    public static function toggle_reply(string $id): bool
+    public static function toggle_reply(string $id, bool $announce = true): bool
     {
         global $wpdb;
         $table = self::table_name();
@@ -442,6 +442,9 @@ final class InquiryRepository
 
         if ($updated !== false) {
             self::clear_waiting_cache();
+            if ($announce) {
+                do_action('pothik/inquiry_reply_toggled', $id, $new_replied === 1);
+            }
             return true;
         }
 
@@ -451,18 +454,26 @@ final class InquiryRepository
     /**
      * Delete an inquiry by UUID or ID.
      */
-    public static function delete_by_id(string $id): bool
+    public static function delete_by_id(string $id, bool $announce = true): bool
     {
         global $wpdb;
         $table = self::table_name();
+        $before = $wpdb->get_row($wpdb->prepare(
+            "SELECT * FROM {$table} WHERE uuid = %s OR id = %s LIMIT 1",
+            $id,
+            $id
+        ), ARRAY_A);
         $result = $wpdb->query($wpdb->prepare(
             "DELETE FROM {$table} WHERE uuid = %s OR id = %s",
             $id,
             $id
         ));
 
-        if ($result !== false) {
+        if ($result !== false && (int) $result > 0) {
             self::clear_waiting_cache();
+            if ($announce) {
+                do_action('pothik/inquiry_deleted', $id, is_array($before) ? $before : []);
+            }
             return true;
         }
 
@@ -618,19 +629,31 @@ final class InquiryRepository
         }
 
         if ($op === 'reply') {
+            $changed = 0;
             foreach ($ids as $id) {
-                self::toggle_reply($id);
+                if (self::toggle_reply($id, false)) {
+                    $changed++;
+                }
             }
             self::clear_waiting_cache();
+            if ($changed > 0) {
+                do_action('pothik/inquiries_bulk', 'reply', $changed);
+            }
             wp_safe_redirect(admin_url('admin.php?page=pothik-inquiries&updated=replied'));
             exit;
         }
 
         if ($op === 'delete') {
+            $changed = 0;
             foreach ($ids as $id) {
-                self::delete($id);
+                if (self::delete_by_id($id, false)) {
+                    $changed++;
+                }
             }
             self::clear_waiting_cache();
+            if ($changed > 0) {
+                do_action('pothik/inquiries_bulk', 'delete', $changed);
+            }
             wp_safe_redirect(admin_url('admin.php?page=pothik-inquiries&updated=deleted'));
             exit;
         }
@@ -663,6 +686,7 @@ final class InquiryRepository
             $results = $wpdb->get_results("SELECT * FROM {$table} ORDER BY created_gmt DESC");
         }
         $rows = is_array($results) ? $results : [];
+        do_action('pothik/inquiries_exported', count($rows));
 
         $filename = 'pothik-inquiries-' . gmdate('Y-m-d') . '.csv';
 

@@ -11,6 +11,317 @@
     var config = window.pothikAdmin;
     var i18n = config.i18n || {};
 
+    function teamData() {
+        var node = document.getElementById('pkTeamData');
+        if (!node) {
+            return {};
+        }
+        if (node._pkTeam) {
+            return node._pkTeam;
+        }
+        try {
+            node._pkTeam = JSON.parse(node.textContent || '{}');
+        } catch (err) {
+            node._pkTeam = {};
+        }
+        if (!node._pkLive) {
+            node._pkLive = node._pkTeam.matrix || {};
+        }
+        return node._pkTeam;
+    }
+
+    function teamLive() {
+        teamData();
+        var node = document.getElementById('pkTeamData');
+        return node && node._pkLive ? node._pkLive : {};
+    }
+
+    window.pothikTeamTab = function (name) {
+        var tabs = document.getElementById('tmTabs');
+        if (tabs) {
+            tabs.querySelectorAll('[data-t]').forEach(function (button) {
+                button.classList.toggle('on', button.getAttribute('data-t') === name);
+            });
+        }
+        document.querySelectorAll('[data-tp]').forEach(function (pane) {
+            var on = pane.getAttribute('data-tp') === name;
+            pane.hidden = !on;
+            if (on) {
+                pane.style.removeProperty('display');
+            }
+        });
+        if (name === 'preview') {
+            window.pothikTeamPaint();
+        }
+    };
+
+    window.pothikTeamAdd = function () {
+        var drawer = document.getElementById('inv');
+        var bg = document.getElementById('invBg');
+        var action = document.getElementById('invAction');
+        var userId = document.getElementById('invUserId');
+        var mode = document.getElementById('invMode');
+        if (action) {
+            action.value = 'pothik_pro_add_member';
+        }
+        if (userId) {
+            userId.value = '';
+        }
+        if (mode) {
+            mode.hidden = false;
+        }
+        window.pothikTeamMode('existing');
+        var title = document.getElementById('invTitle');
+        var add = document.getElementById('tmAdd');
+        if (title && add) {
+            title.textContent = add.textContent.replace(/\s+/g, ' ').trim();
+        }
+        if (drawer) {
+            drawer.hidden = false;
+            drawer.classList.add('show');
+        }
+        if (bg) {
+            bg.hidden = false;
+            bg.classList.add('show');
+        }
+    };
+
+    window.pothikTeamClose = function () {
+        var drawer = document.getElementById('inv');
+        var bg = document.getElementById('invBg');
+        if (drawer) {
+            drawer.classList.remove('show');
+        }
+        if (bg) {
+            bg.classList.remove('show');
+        }
+    };
+
+    window.pothikTeamMode = function (next) {
+        var action = document.getElementById('invAction');
+        document.querySelectorAll('#invMode [data-m]').forEach(function (button) {
+            button.classList.toggle('on', button.getAttribute('data-m') === next);
+        });
+        document.querySelectorAll('[data-im]').forEach(function (block) {
+            block.hidden = block.getAttribute('data-im') !== next;
+        });
+        if (action && action.value !== 'pothik_pro_set_groups') {
+            action.value = next === 'new' ? 'pothik_pro_invite' : 'pothik_pro_add_member';
+        }
+    };
+
+    window.pothikTeamLevel = function (button) {
+        var wrap = button.closest('.lvl');
+        if (!wrap || wrap.classList.contains('lock')) {
+            return;
+        }
+        wrap.querySelectorAll('button').forEach(function (one) {
+            one.classList.toggle('on', one === button);
+        });
+        var input = wrap.querySelector('input');
+        if (input) {
+            input.value = button.getAttribute('data-v') || 'none';
+            input.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+        var parts = (wrap.getAttribute('data-lvl') || '').split(':');
+        var live = teamLive();
+        if (parts[0] && parts[1]) {
+            live[parts[0]] = live[parts[0]] || {};
+            live[parts[0]][parts[1]] = button.getAttribute('data-v') || 'none';
+            window.pothikTeamPaint();
+        }
+    };
+
+    window.pothikTeamPreview = function (button) {
+        var seg = document.getElementById('pvSeg');
+        if (seg) {
+            seg.querySelectorAll('[data-pv]').forEach(function (one) {
+                one.classList.toggle('on', one === button);
+            });
+        }
+        window.pothikTeamPaint();
+    };
+
+    window.pothikTeamPaint = function () {
+        var data = teamData();
+        var live = teamLive();
+        var current = document.querySelector('#pvSeg [data-pv].on');
+        var role = current ? current.getAttribute('data-pv') : 'staff';
+        var side = document.getElementById('pvSide');
+        var note = document.getElementById('pvNote');
+        if (!side || !note) {
+            return;
+        }
+        function level(area) {
+            if (role === 'manager') {
+                return 'edit';
+            }
+            if (area === 'team') {
+                return 'none';
+            }
+            return (live[role] && live[role][area]) || 'none';
+        }
+        var phrases = data.phrases || {};
+        var html = '<div class="h"><span class="mark"><svg class="i sm" aria-hidden="true"><use href="#i-pin"/></svg></span><div><b>Pothik</b><small>' + (phrases.desk || 'Umrah desk') + '</small></div></div>';
+        var group = '';
+        var buckets = { edit: [], view: [], none: [] };
+        (data.nav || []).forEach(function (item) {
+            var lv = item.area ? level(item.area) : 'edit';
+            if (item.editOnly && lv !== 'edit') {
+                lv = 'none';
+            }
+            if (item.group !== group) {
+                group = item.group;
+                html += '<div class="g">' + group + '</div>';
+            }
+            html += '<span class="pv-row' + (lv === 'none' ? ' hid' : '') + '"><svg class="i sm" aria-hidden="true"><use href="#' + (item.icon || 'i-spark') + '"/></svg><span>' + item.label + '</span>';
+            if (lv === 'view') {
+                html += '<em>' + (phrases.view || 'VIEW') + '</em>';
+            }
+            html += '</span>';
+            if (item.area && buckets[lv] && buckets[lv].indexOf(item.label) === -1 && !item.editOnly) {
+                buckets[lv].push(item.label);
+            }
+        });
+        side.innerHTML = html;
+        function list(items) {
+            return items.length ? items.map(function (item) {
+                return '<li>' + item + '</li>';
+            }).join('') : '<li>—</li>';
+        }
+        note.innerHTML = '<b>' + (phrases.change || 'Can change') + '</b><ul>' + list(buckets.edit) + '</ul>'
+            + '<b>' + (phrases.read || 'Read-only') + '</b><ul>' + list(buckets.view) + '</ul>'
+            + '<b>' + (phrases.hidden || 'Hidden') + '</b><ul>' + list(buckets.none) + '</ul>'
+            + '<ul><li>' + (phrases.rule1 || '') + '</li><li>' + (phrases.rule2 || '') + '</li></ul>';
+    };
+
+    window.pothikTeamSearch = function (value) {
+        var q = String(value || '').toLowerCase();
+        document.querySelectorAll('#tmBody tr').forEach(function (row) {
+            var hay = (row.getAttribute('data-name') || '') + ' ' + (row.getAttribute('data-email') || '');
+            row.hidden = q !== '' && hay.indexOf(q) === -1;
+        });
+    };
+
+    window.pothikTeamGroups = function (box) {
+        var groups = document.getElementById('invGroups');
+        if (groups) {
+            groups.hidden = box.checked;
+        }
+    };
+
+    window.pothikTeamEdit = function (button) {
+        var drawer = document.getElementById('inv');
+        var bg = document.getElementById('invBg');
+        var action = document.getElementById('invAction');
+        var userId = document.getElementById('invUserId');
+        var form = document.getElementById('invForm');
+        var allBox = document.getElementById('invAll');
+        var groups = document.getElementById('invGroups');
+        if (action) {
+            action.value = 'pothik_pro_set_groups';
+        }
+        if (userId) {
+            userId.value = button.getAttribute('data-edit') || '';
+        }
+        var role = button.getAttribute('data-role') || 'staff';
+        var radio = form ? form.querySelector('input[name="role"][value="' + role + '"]') : null;
+        if (radio) {
+            radio.checked = true;
+        }
+        var all = button.getAttribute('data-all') === '1';
+        if (allBox) {
+            allBox.checked = all;
+        }
+        if (groups) {
+            groups.hidden = all;
+            var ids = (button.getAttribute('data-ids') || '').split(',');
+            groups.querySelectorAll('input').forEach(function (box) {
+                box.checked = ids.indexOf(box.value) !== -1;
+            });
+        }
+        var title = document.getElementById('invTitle');
+        if (title) {
+            title.textContent = button.getAttribute('data-name') || '';
+        }
+        var mode = document.getElementById('invMode');
+        if (mode) {
+            mode.hidden = true;
+        }
+        document.querySelectorAll('[data-im]').forEach(function (block) {
+            block.hidden = true;
+        });
+        var ok = document.querySelector('#invOk span');
+        var data = teamData();
+        if (ok && data.phrases) {
+            ok.textContent = data.phrases.save || 'Save';
+        }
+        if (drawer) {
+            drawer.hidden = false;
+            drawer.classList.add('show');
+        }
+        if (bg) {
+            bg.hidden = false;
+            bg.classList.add('show');
+        }
+    };
+
+    function teamClickNode(event) {
+        var path = event.composedPath ? event.composedPath() : [];
+        var node = path.length ? path[0] : event.target;
+        if (node && node.nodeType !== 1) {
+            node = node.parentElement;
+        }
+        return node && node.closest ? node : null;
+    }
+
+    function teamApplyUrl(href) {
+        var url = new URL(href, window.location.href);
+        var tab = url.searchParams.get('tab') || 'people';
+        if (tab !== 'roles' && tab !== 'preview') {
+            tab = 'people';
+        }
+        var seg = document.getElementById('pvSeg');
+        var as = url.searchParams.get('as') || 'staff';
+        if (seg) {
+            seg.querySelectorAll('[data-pv]').forEach(function (one) {
+                one.classList.toggle('on', one.getAttribute('data-pv') === as);
+            });
+        }
+        window.pothikTeamTab(tab);
+        var drawer = document.getElementById('inv');
+        if (url.searchParams.get('open') === '1') {
+            if (!drawer || !drawer.classList.contains('show')) {
+                window.pothikTeamAdd();
+            }
+            window.pothikTeamMode(url.searchParams.get('mode') === 'new' ? 'new' : 'existing');
+        } else {
+            window.pothikTeamClose();
+        }
+    }
+
+    document.addEventListener('click', function (event) {
+        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+            return;
+        }
+        var node = teamClickNode(event);
+        if (!node) {
+            return;
+        }
+        var link = node.closest('#tmTabs a[data-t], a[data-role-card], #tmAdd, #invClose, #invCancel, #invBg, #invMode a[data-m], #pvSeg a[data-pv]');
+        if (!link || !link.getAttribute('href')) {
+            return;
+        }
+        event.preventDefault();
+        event.stopPropagation();
+        teamApplyUrl(link.href);
+        var next = new URL(link.href, window.location.href);
+        if (next.search !== window.location.search) {
+            window.history.pushState({ pothik: true }, '', next.href);
+            softSearch = next.search;
+        }
+    }, true);
+
     /* =========================================================
        0. SCREEN LIFECYCLE
        Screens are swapped without a reload (see SOFT NAVIGATION).
@@ -3101,6 +3412,12 @@
         initReceipt();
         initAnalytics();
         initSettings();
+        if (typeof window.pothikProTeam === 'function') {
+            window.pothikProTeam();
+        }
+        if (typeof window.pothikProActivity === 'function') {
+            window.pothikProActivity();
+        }
     }
 
     // URL of a Pothik screen we can swap in, or null.
@@ -3250,7 +3567,8 @@
         if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) {
             return;
         }
-        var a = e.target.closest('a[href]');
+        var origin = e.target && e.target.nodeType === 1 ? e.target : (e.target && e.target.parentElement);
+        var a = origin && origin.closest ? origin.closest('a[href]') : null;
         if (!a || (a.target && a.target !== '_self') || a.hasAttribute('download')) {
             return;
         }
@@ -3273,6 +3591,12 @@
     window.addEventListener('popstate', function () {
         if (window.location.search === softSearch) {
             return; // Only the #hash changed.
+        }
+        var here = new URL(window.location.href);
+        if ((here.searchParams.get('page') || '') === 'pothik-team' && document.getElementById('pkTeamData')) {
+            teamApplyUrl(window.location.href);
+            softSearch = window.location.search;
+            return;
         }
         var url = softUrl(window.location.href);
         if (url) {

@@ -3174,3 +3174,249 @@ msgstr ""
 
 msgid "Roles and which groups each person can open."
 msgstr ""
+
+msgid "Activity log"
+msgstr ""
+
+msgid "Who changed what, and when. Entries cannot be edited."
+msgstr ""
+
+msgid "Who changed what"
+msgstr ""
+
+msgid "Changes today"
+msgstr ""
+
+msgid "Money recorded this week"
+msgstr ""
+
+msgid "entries"
+msgstr ""
+
+msgid "Visa status changes this week"
+msgstr ""
+
+msgid "Deletions this week — check them"
+msgstr ""
+
+msgid "Search pilgrim, transaction ID or note"
+msgstr ""
+
+msgid "Everyone"
+msgstr ""
+
+msgid "Area"
+msgstr ""
+
+msgid "All areas"
+msgstr ""
+
+msgid "Pilgrims & rooms"
+msgstr ""
+
+msgid "Groups, team & settings"
+msgstr ""
+
+msgid "Deletions only"
+msgstr ""
+
+msgid "Period"
+msgstr ""
+
+msgid "All time"
+msgstr ""
+
+msgid "Apply"
+msgstr ""
+
+msgid "Who changed most · 7 days"
+msgstr ""
+
+msgid "Keep the log for"
+msgstr ""
+
+msgid "Older entries are deleted automatically. Money entries are kept at least 2 years."
+msgstr ""
+
+msgid "90 days"
+msgstr ""
+
+msgid "1 year"
+msgstr ""
+
+msgid "2 years"
+msgstr ""
+
+msgid "Forever"
+msgstr ""
+
+msgid "What is logged"
+msgstr ""
+
+msgid "Payments, receipts, ledger edits"
+msgstr ""
+
+msgid "Visa and biometric status"
+msgstr ""
+
+msgid "Pilgrims added, edited, moved, deleted"
+msgstr ""
+
+msgid "Rooms, groups, team & access"
+msgstr ""
+
+msgid "Settings and data tools"
+msgstr ""
+
+msgid "Passport numbers are never written in full here. The log cannot be edited."
+msgstr ""
+
+msgid "Today at the desk"
+msgstr ""
+
+msgid "Open activity log"
+msgstr ""
+
+msgid "No activity matches"
+msgstr ""
+
+msgid "Last changed by %1$s · %2$s ago"
+msgstr ""
+
+msgid "History"
+msgstr ""
+
+msgid "Open pilgrim file"
+msgstr ""
+
+msgid "The activity log could not be written. Saves still went through."
+msgstr ""
+
+msgid "%d inquiries"
+msgstr ""
+
+msgid "%1$s recorded a payment of %2$s for %3$s"
+msgstr ""
+
+msgid "%1$s updated the ledger of %2$s"
+msgstr ""
+
+msgid "%1$s removed a payment for %2$s"
+msgstr ""
+
+msgid "%1$s moved the visa of %2$s from %3$s to %4$s"
+msgstr ""
+
+msgid "%1$s moved %2$d visas in %3$s"
+msgstr ""
+
+msgid "from %1$s to %2$s"
+msgstr ""
+
+msgid "%1$s put %2$s in %3$s (%4$s)"
+msgstr ""
+
+msgid "%1$s took %2$s out of %3$s (%4$s)"
+msgstr ""
+
+msgid "%1$s placed %2$d pilgrims in rooms in %3$s"
+msgstr ""
+
+msgid "%1$s cleared %2$d pilgrims from rooms in %3$s"
+msgstr ""
+
+msgid "%1$s added %2$s (%3$s)"
+msgstr ""
+
+msgid "%1$s removed %2$s from %3$s"
+msgstr ""
+
+msgid "%1$s added %2$s"
+msgstr ""
+
+msgid "%1$s updated the file of %2$s"
+msgstr ""
+
+msgid "%1$s deleted the pilgrim %2$s from %3$s"
+msgstr ""
+
+msgid "%1$s moved %2$d pilgrims to %3$s"
+msgstr ""
+
+msgid "%1$s changed %2$s"
+msgstr ""
+
+msgid "%1$s created the group %2$s"
+msgstr ""
+
+msgid "%1$s archived %2$s"
+msgstr ""
+
+msgid "%1$s deleted the group %2$s"
+msgstr ""
+
+msgid "%1$s saved a receipt for %2$s"
+msgstr ""
+
+msgid "%1$s created the package %2$s"
+msgstr ""
+
+msgid "%1$s updated the package %2$s"
+msgstr ""
+
+msgid "%1$s deleted the package %2$s"
+msgstr ""
+
+msgid "%1$s changed the status of %2$s"
+msgstr ""
+
+msgid "%1$s deleted %2$s"
+msgstr ""
+
+msgid "%1$s updated %2$s"
+msgstr ""
+
+msgid "%1$s exported %2$s"
+msgstr ""
+
+msgid "%1$s saved settings"
+msgstr ""
+
+msgid "%1$s loaded demo data"
+msgstr ""
+
+msgid "%1$s removed demo data"
+msgstr ""
+
+msgid "Try another person, area or date range."
+msgstr ""
+
+msgid "Load more"
+msgstr ""
+
+msgid "Show what changed"
+msgstr ""
+
+msgid "Field"
+msgstr ""
+
+msgid "Before"
+msgstr ""
+
+msgid "After"
+msgstr ""
+
+msgid "The log is read-only. To reverse this, edit the record itself."
+msgstr ""
+
+msgid "Deleted"
+msgstr ""
+
+msgid "Groups & team"
+msgstr ""
+
+msgid "Yesterday"
+msgstr ""
+
+msgid "Save"
+msgstr ""

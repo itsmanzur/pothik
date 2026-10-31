@@ -77,6 +77,17 @@ Add-ons extend Pothik through these hooks. The free plugin does not ship add-on 
 * `pothik/inquiry_actions` — inside the inquiry drawer footer. Argument: the inquiry row when the drawer was built for one row. The shared drawer passes an empty array because the open row is chosen in the browser.
 * `pothik/desk_cards` — extra cards on the Desk. Argument: an array of HTML strings. Callbacks return escaped HTML.
 * `pothik/can` — whether a user may view or edit an area. Arguments: the default (false for anyone who is not a WordPress administrator), the area name, the level (`view` or `edit`), and the user id. WordPress administrators are always allowed before this filter runs. Return true only when that user may do that level of that area.
+* `pothik/package_saved` — after a package is saved. Arguments: package id, the row before the save, the row after the save.
+* `pothik/package_created` — after a package is created or copied. Arguments: package id, the new row.
+* `pothik/package_deleted` — after a package is deleted. Arguments: package id, the row before it was deleted.
+* `pothik/package_status_changed` — after a package is published or unpublished. Arguments: package id, the old status, the new status.
+* `pothik/inquiry_reply_toggled` — after one inquiry is marked replied or waiting. Arguments: inquiry id, true when it is now replied.
+* `pothik/inquiry_deleted` — after one inquiry is deleted. Arguments: inquiry id, the row before it was deleted.
+* `pothik/inquiries_bulk` — after a bulk reply or delete. Arguments: `reply` or `delete`, then the number of rows. One action for the whole bulk, not one per row.
+* `pothik/inquiries_exported` — after an inquiry CSV is built. Argument: the number of rows.
+* `pothik/receipt_saved` — after the receipt is saved. Arguments: the option before, the option after.
+* `pothik/settings_saved` — after settings are saved. Arguments: the option before, the option after.
+* `pothik/demo_data` — after demo data is loaded or removed. Argument: `loaded` or `removed`.
 
 == Changelog ==
 

@@ -352,8 +352,13 @@ final class Settings
         $post = wp_unslash($_POST);
         $post = is_array($post) ? $post : [];
 
+        $before = get_option('pothik_settings', []);
+        if (!is_array($before)) {
+            $before = [];
+        }
         $sanitized = self::sanitize($post);
         update_option('pothik_settings', $sanitized, false);
+        do_action('pothik/settings_saved', $before, $sanitized);
 
         wp_safe_redirect(admin_url('admin.php?page=pothik-settings&updated=1'));
         exit;

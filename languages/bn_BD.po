@@ -3180,3 +3180,249 @@ msgstr "এই স্ক্রিন"
 
 msgid "Roles and which groups each person can open."
 msgstr "রোল, আর কে কোন গ্রুপ খুলতে পারবে।"
+
+msgid "Activity log"
+msgstr "কার্যবিবরণী"
+
+msgid "Who changed what, and when. Entries cannot be edited."
+msgstr "কে কী বদলেছে, কখন। এন্ট্রি বদলানো যায় না।"
+
+msgid "Who changed what"
+msgstr "কে কী বদলেছে"
+
+msgid "Changes today"
+msgstr "আজকের বদল"
+
+msgid "Money recorded this week"
+msgstr "এই সপ্তাহে লেখা টাকা"
+
+msgid "entries"
+msgstr "এন্ট্রি"
+
+msgid "Visa status changes this week"
+msgstr "এই সপ্তাহে ভিসার বদল"
+
+msgid "Deletions this week — check them"
+msgstr "এই সপ্তাহের মুছে ফেলা — দেখে নিন"
+
+msgid "Search pilgrim, transaction ID or note"
+msgstr "হাজি, ট্রানজেকশন আইডি বা নোট খুঁজুন"
+
+msgid "Everyone"
+msgstr "সবাই"
+
+msgid "Area"
+msgstr "এলাকা"
+
+msgid "All areas"
+msgstr "সব এলাকা"
+
+msgid "Pilgrims & rooms"
+msgstr "হাজি ও রুম"
+
+msgid "Groups, team & settings"
+msgstr "গ্রুপ, টিম ও সেটিংস"
+
+msgid "Deletions only"
+msgstr "শুধু মুছে ফেলা"
+
+msgid "Period"
+msgstr "সময়"
+
+msgid "All time"
+msgstr "সব সময়"
+
+msgid "Apply"
+msgstr "লাগান"
+
+msgid "Who changed most · 7 days"
+msgstr "কে সবচেয়ে বেশি বদলেছে · ৭ দিন"
+
+msgid "Keep the log for"
+msgstr "লগ রাখা হবে"
+
+msgid "Older entries are deleted automatically. Money entries are kept at least 2 years."
+msgstr "পুরনো এন্ট্রি নিজে থেকে মুছে যায়। টাকার এন্ট্রি অন্তত ২ বছর থাকে।"
+
+msgid "90 days"
+msgstr "৯০ দিন"
+
+msgid "1 year"
+msgstr "১ বছর"
+
+msgid "2 years"
+msgstr "২ বছর"
+
+msgid "Forever"
+msgstr "চিরকাল"
+
+msgid "What is logged"
+msgstr "কী লেখা হয়"
+
+msgid "Payments, receipts, ledger edits"
+msgstr "পেমেন্ট, রসিদ, খাতার বদল"
+
+msgid "Visa and biometric status"
+msgstr "ভিসা ও বায়োমেট্রিকের অবস্থা"
+
+msgid "Pilgrims added, edited, moved, deleted"
+msgstr "হাজি যোগ, বদল, সরানো, মুছে ফেলা"
+
+msgid "Rooms, groups, team & access"
+msgstr "রুম, গ্রুপ, টিম ও অ্যাক্সেস"
+
+msgid "Settings and data tools"
+msgstr "সেটিংস ও ডেটার সরঞ্জাম"
+
+msgid "Passport numbers are never written in full here. The log cannot be edited."
+msgstr "পাসপোর্ট নম্বর এখানে পুরো লেখা হয় না। লগ বদলানো যায় না।"
+
+msgid "Today at the desk"
+msgstr "আজ ডেস্কে"
+
+msgid "Open activity log"
+msgstr "কার্যবিবরণী খুলুন"
+
+msgid "No activity matches"
+msgstr "কোনো কার্য মেলছে না"
+
+msgid "Last changed by %1$s · %2$s ago"
+msgstr "শেষ বদলেছেন %1$s · %2$s আগে"
+
+msgid "History"
+msgstr "ইতিহাস"
+
+msgid "Open pilgrim file"
+msgstr "হাজির ফাইল খুলুন"
+
+msgid "The activity log could not be written. Saves still went through."
+msgstr "কার্যবিবরণী লেখা যায়নি। সেভ তবু হয়ে গেছে।"
+
+msgid "%d inquiries"
+msgstr "%dটি জিজ্ঞাসা"
+
+msgid "%1$s recorded a payment of %2$s for %3$s"
+msgstr "%1$s %3$s-এর জন্য %2$s পেমেন্ট লিখেছেন"
+
+msgid "%1$s updated the ledger of %2$s"
+msgstr "%1$s %2$s-এর খাতা বদলেছেন"
+
+msgid "%1$s removed a payment for %2$s"
+msgstr "%1$s %2$s-এর একটি পেমেন্ট সরিয়েছেন"
+
+msgid "%1$s moved the visa of %2$s from %3$s to %4$s"
+msgstr "%1$s %2$s-এর ভিসা %3$s থেকে %4$s করেছেন"
+
+msgid "%1$s moved %2$d visas in %3$s"
+msgstr "%1$s %3$s-এ %2$dটি ভিসা সরিয়েছেন"
+
+msgid "from %1$s to %2$s"
+msgstr "%1$s থেকে %2$s"
+
+msgid "%1$s put %2$s in %3$s (%4$s)"
+msgstr "%1$s %2$s-কে %3$s-এ রেখেছেন (%4$s)"
+
+msgid "%1$s took %2$s out of %3$s (%4$s)"
+msgstr "%1$s %2$s-কে %3$s থেকে সরিয়েছেন (%4$s)"
+
+msgid "%1$s placed %2$d pilgrims in rooms in %3$s"
+msgstr "%1$s %3$s-এ %2$d জন হাজিকে রুমে বসিয়েছেন"
+
+msgid "%1$s cleared %2$d pilgrims from rooms in %3$s"
+msgstr "%1$s %3$s-এর রুম থেকে %2$d জন হাজিকে সরিয়েছেন"
+
+msgid "%1$s added %2$s (%3$s)"
+msgstr "%1$s %2$s যোগ করেছেন (%3$s)"
+
+msgid "%1$s removed %2$s from %3$s"
+msgstr "%1$s %2$s %3$s থেকে সরিয়েছেন"
+
+msgid "%1$s added %2$s"
+msgstr "%1$s %2$s যোগ করেছেন"
+
+msgid "%1$s updated the file of %2$s"
+msgstr "%1$s %2$s-এর ফাইল বদলেছেন"
+
+msgid "%1$s deleted the pilgrim %2$s from %3$s"
+msgstr "%1$s %3$s থেকে হাজি %2$s মুছেছেন"
+
+msgid "%1$s moved %2$d pilgrims to %3$s"
+msgstr "%1$s %2$d জন হাজিকে %3$s-এ সরিয়েছেন"
+
+msgid "%1$s changed %2$s"
+msgstr "%1$s %2$s বদলেছেন"
+
+msgid "%1$s created the group %2$s"
+msgstr "%1$s গ্রুপ %2$s বানিয়েছেন"
+
+msgid "%1$s archived %2$s"
+msgstr "%1$s %2$s আর্কাইভ করেছেন"
+
+msgid "%1$s deleted the group %2$s"
+msgstr "%1$s গ্রুপ %2$s মুছেছেন"
+
+msgid "%1$s saved a receipt for %2$s"
+msgstr "%1$s %2$s-এর রসিদ সেভ করেছেন"
+
+msgid "%1$s created the package %2$s"
+msgstr "%1$s প্যাকেজ %2$s বানিয়েছেন"
+
+msgid "%1$s updated the package %2$s"
+msgstr "%1$s প্যাকেজ %2$s বদলেছেন"
+
+msgid "%1$s deleted the package %2$s"
+msgstr "%1$s প্যাকেজ %2$s মুছেছেন"
+
+msgid "%1$s changed the status of %2$s"
+msgstr "%1$s %2$s-এর অবস্থা বদলেছেন"
+
+msgid "%1$s deleted %2$s"
+msgstr "%1$s %2$s মুছেছেন"
+
+msgid "%1$s updated %2$s"
+msgstr "%1$s %2$s বদলেছেন"
+
+msgid "%1$s exported %2$s"
+msgstr "%1$s %2$s এক্সপোর্ট করেছেন"
+
+msgid "%1$s saved settings"
+msgstr "%1$s সেটিংস সেভ করেছেন"
+
+msgid "%1$s loaded demo data"
+msgstr "%1$s ডেমো ডেটা লোড করেছেন"
+
+msgid "%1$s removed demo data"
+msgstr "%1$s ডেমো ডেটা সরিয়েছেন"
+
+msgid "Try another person, area or date range."
+msgstr "অন্য ব্যক্তি, এলাকা বা তারিখ ধরে দেখুন।"
+
+msgid "Load more"
+msgstr "আরও দেখুন"
+
+msgid "Show what changed"
+msgstr "কী বদলেছে দেখুন"
+
+msgid "Field"
+msgstr "ঘর"
+
+msgid "Before"
+msgstr "আগে"
+
+msgid "After"
+msgstr "পরে"
+
+msgid "The log is read-only. To reverse this, edit the record itself."
+msgstr "লগ শুধু পড়ার। ফেরাতে হলে রেকর্ডটাই বদলান।"
+
+msgid "Deleted"
+msgstr "মুছে ফেলা"
+
+msgid "Groups & team"
+msgstr "গ্রুপ ও টিম"
+
+msgid "Yesterday"
+msgstr "গতকাল"
+
+msgid "Save"
+msgstr "সেভ"
