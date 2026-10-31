@@ -2166,6 +2166,10 @@
             fd.append('s', q);
             fd.append('share', sh);
             fd.append('paged', p);
+            try {
+                var stage = new URL(window.location.href).searchParams.get('stage') || '';
+                if (stage) fd.append('stage', stage);
+            } catch (err) {}
 
             fetch(config.ajax, { method: 'POST', body: fd })
                 .then(function (res) { return res.json(); })
@@ -2419,6 +2423,9 @@
 
             drawer.classList.add('show');
             if (drBg) drBg.classList.add('show');
+            if (typeof window.pothikProLead === 'function') {
+                window.pothikProLead(id, 'info');
+            }
         }
 
         function closeDrawer() {
@@ -3417,6 +3424,9 @@
         }
         if (typeof window.pothikProActivity === 'function') {
             window.pothikProActivity();
+        }
+        if (typeof window.pothikProLead === 'function') {
+            window.pothikProLead();
         }
     }
 

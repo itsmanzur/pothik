@@ -349,12 +349,30 @@ final class InquiryRepository
      */
     public static function paginate(int $page = 1, int $per_page = 20, string $status = '', string $search = '', string $share = ''): array
     {
+        return self::query([
+            'page' => $page,
+            'per_page' => $per_page,
+            'status' => $status,
+            'search' => $search,
+            'share' => $share,
+        ]);
+    }
+
+    /**
+     * @param array<string, mixed> $args page, per_page, status, search, share, include_ids, exclude_ids
+     * @return array{items: array<int, array<string, mixed>>, total: int, pages: int, page: int}
+     */
+    public static function query(array $args): array
+    {
         global $wpdb;
         $table = self::table_name();
 
-        $page = max(1, $page);
-        $per_page = max(1, $per_page);
+        $page = max(1, (int) ($args['page'] ?? 1));
+        $per_page = max(1, (int) ($args['per_page'] ?? 20));
         $offset = ($page - 1) * $per_page;
+        $status = (string) ($args['status'] ?? '');
+        $search = (string) ($args['search'] ?? '');
+        $share = (string) ($args['share'] ?? '');
 
         $where = ['1=1'];
         $params = [];
@@ -377,6 +395,20 @@ final class InquiryRepository
             $params[] = $like;
             $params[] = $like;
             $params[] = $like;
+        }
+
+        foreach (['include_ids' => true, 'exclude_ids' => false] as $key => $include) {
+            if (!array_key_exists($key, $args) || !is_array($args[$key])) {
+                continue;
+            }
+            $ids = array_values(array_filter(array_map(static fn ($id): string => sanitize_text_field((string) $id), $args[$key])));
+            if ($ids === []) {
+                $where[] = $include ? '1=0' : '1=1';
+                continue;
+            }
+            $marks = implode(',', array_fill(0, count($ids), '%s'));
+            $where[] = ($include ? '' : 'NOT ') . "(uuid IN ({$marks}) OR CAST(id AS CHAR) IN ({$marks}))";
+            $params = array_merge($params, $ids, $ids);
         }
 
         $where_sql = implode(' AND ', $where);
@@ -449,6 +481,59 @@ final class InquiryRepository
         }
 
         return false;
+    }
+
+    /**
+     * One inquiry by UUID or numeric id.
+     *
+     * @return array<string, mixed>|null
+     */
+    public static function find(string $id): ?array
+    {
+        if ($id === '') {
+            return null;
+        }
+        global $wpdb;
+        $table = self::table_name();
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+        $row = $wpdb->get_row($wpdb->prepare("SELECT * FROM {$table} WHERE uuid = %s OR id = %s LIMIT 1", $id, $id), ARRAY_A);
+
+        return is_array($row) ? self::format_row($row) : null;
+    }
+
+    /**
+     * Set the replied flag. Fires pothik/inquiry_reply_toggled.
+     */
+    public static function set_replied(string $id, bool $replied): bool
+    {
+        global $wpdb;
+        $table = self::table_name();
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+        $row = $wpdb->get_row($wpdb->prepare("SELECT id, replied FROM {$table} WHERE uuid = %s OR id = %s LIMIT 1", $id, $id));
+        if (!$row) {
+            return false;
+        }
+        $flag = $replied ? 1 : 0;
+        if ((int) $row->replied === $flag) {
+            return true;
+        }
+        $updated = $wpdb->update(
+            $table,
+            [
+                'replied' => $flag,
+                'status' => $replied ? 'replied' : 'waiting',
+            ],
+            ['id' => (int) $row->id],
+            ['%d', '%s'],
+            ['%d']
+        );
+        if ($updated === false) {
+            return false;
+        }
+        self::clear_waiting_cache();
+        do_action('pothik/inquiry_reply_toggled', $id, $replied);
+
+        return true;
     }
 
     /**

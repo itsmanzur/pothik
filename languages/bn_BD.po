@@ -3426,3 +3426,294 @@ msgstr "গতকাল"
 
 msgid "Save"
 msgstr "সেভ"
+
+msgid "Package · share"
+msgstr "প্যাকেজ · শেয়ার"
+
+msgid "Follow up"
+msgstr "ফলো আপ"
+
+msgid "Follow up due"
+msgstr "ফলো আপ বাকি"
+
+msgid "Follow up today"
+msgstr "আজকের ফলো আপ"
+
+msgid "Not answered yet"
+msgstr "এখনো উত্তর হয়নি"
+
+msgid "Today or overdue"
+msgstr "আজ বা তার আগে"
+
+msgid "Waiting on them"
+msgstr "ওদের উত্তরের অপেক্ষায়"
+
+msgid "In a group"
+msgstr "একটা গ্রুপে"
+
+msgid "Booked"
+msgstr "বুক হয়েছে"
+
+msgid "Lost"
+msgstr "হয়নি"
+
+msgid "%d%% booked"
+msgstr "%d%% বুক হয়েছে"
+
+msgid "Book"
+msgstr "বুক করুন"
+
+msgid "Book into a group"
+msgstr "একটা গ্রুপে বুক করুন"
+
+msgid "Creates %d pilgrim files and their ledger rows in one step"
+msgstr "এক ধাপে %d জন হাজির ফাইল ও তাদের খাতা তৈরি হবে"
+
+msgid "Shows on the Desk and in “Follow up due” on that day."
+msgstr "সেই দিন ডেস্কে ও “ফলো আপ বাকি”-তে দেখাবে।"
+
+msgid "Office notes"
+msgstr "অফিসের নোট"
+
+msgid "Office"
+msgstr "অফিস"
+
+msgid "Add a note"
+msgstr "একটা নোট লিখুন"
+
+msgid "Add"
+msgstr "যোগ করুন"
+
+msgid "Reason"
+msgstr "কারণ"
+
+msgid "Choose why"
+msgstr "কেন, বেছে নিন"
+
+msgid "Note, if Other"
+msgstr "অন্য হলে এক লাইন"
+
+msgid "Choose a follow-up date."
+msgstr "ফলো আপের তারিখ দিন।"
+
+msgid "Choose why this inquiry was lost."
+msgstr "এই এনকোয়ারি কেন হয়নি, সেটা দিন।"
+
+msgid "Choose a status."
+msgstr "একটা অবস্থা বেছে নিন।"
+
+msgid "This inquiry is already booked."
+msgstr "এই এনকোয়ারি আগেই বুক হয়েছে।"
+
+msgid "Write a note first."
+msgstr "আগে একটা নোট লিখুন।"
+
+msgid "You cannot edit this."
+msgstr "এটা বদলানোর অনুমতি নেই।"
+
+msgid "You cannot open this."
+msgstr "এটা খোলার অনুমতি নেই।"
+
+msgid "You cannot book this inquiry."
+msgstr "এই এনকোয়ারি বুক করার অনুমতি নেই।"
+
+msgid "Set follow-up…"
+msgstr "ফলো আপ দিন…"
+
+msgid "Mark lost…"
+msgstr "হয়নি ধরুন…"
+
+msgid "set a follow-up"
+msgstr "ফলো আপ দিয়েছেন"
+
+msgid "marked inquiries lost"
+msgstr "এনকোয়ারি হয়নি ধরেছেন"
+
+msgid "Price too high"
+msgstr "দাম বেশি"
+
+msgid "Chose another agency"
+msgstr "অন্য এজেন্সিতে গেছেন"
+
+msgid "Dates did not suit"
+msgstr "তারিখ মানা হয়নি"
+
+msgid "No reply"
+msgstr "উত্তর আসেনি"
+
+msgid "Postponed to next year"
+msgstr "আগামী বছরের জন্য পিছিয়েছেন"
+
+msgid "Other"
+msgstr "অন্য"
+
+msgid "Tomorrow"
+msgstr "আগামীকাল"
+
+msgid "In 3 days"
+msgstr "৩ দিন পর"
+
+msgid "Next week"
+msgstr "আগামী সপ্তাহ"
+
+msgid "Overdue %dd"
+msgstr "%d দিন বাকি পড়ে আছে"
+
+msgid "In %d days"
+msgstr "%d দিন পর"
+
+msgid "Booked into %s."
+msgstr "%s-এ বুক হয়েছে।"
+
+msgid "Open pilgrims"
+msgstr "হাজিদের খুলুন"
+
+msgid "Assalamu alaikum, following up on your Umrah inquiry."
+msgstr "আসসালামু আলাইকুম, আপনার উমরাহ এনকোয়ারির খোঁজ নিচ্ছি।"
+
+msgid "Choose a group"
+msgstr "একটা গ্রুপ বেছে নিন"
+
+msgid "Who is travelling"
+msgstr "কে কে যাচ্ছেন"
+
+msgid "Check and confirm"
+msgstr "দেখে নিশ্চিত করুন"
+
+msgid "Step %1$d of 3 · %2$s"
+msgstr "ধাপ %1$d / ৩ · %2$s"
+
+msgid "Booked, alhamdulillah"
+msgstr "বুক হয়েছে, আলহামদুলিল্লাহ"
+
+msgid "%1$s and family are now in %2$s."
+msgstr "%1$s ও পরিবার এখন %2$s-এ।"
+
+msgid "%d pilgrim files created"
+msgstr "%d জন হাজির ফাইল হয়েছে"
+
+msgid "Ledger rows · contract %s"
+msgstr "খাতার সারি · চুক্তি %s"
+
+msgid "Deposit %s recorded"
+msgstr "জমা %s লেখা হয়েছে"
+
+msgid "Inquiry marked booked · logged"
+msgstr "এনকোয়ারি বুক ধরা হয়েছে · লগে আছে"
+
+msgid "WhatsApp confirmation"
+msgstr "হোয়াটসঅ্যাপ নিশ্চিতকরণ"
+
+msgid "Back to inquiries"
+msgstr "এনকোয়ারিতে ফিরুন"
+
+msgid "Open pilgrim files"
+msgstr "হাজির ফাইল খুলুন"
+
+msgid "From inquiry · %s"
+msgstr "এনকোয়ারি থেকে · %s"
+
+msgid "Choose a group with enough seats."
+msgstr "যেখানে সিট আছে, সেই গ্রুপ বেছে নিন।"
+
+msgid "Already booked into %s."
+msgstr "আগেই %s-এ বুক হয়েছে।"
+
+msgid "Someone just took seats — only %d left."
+msgstr "এইমাত্র সিট চলে গেছে — আর %dটা আছে।"
+
+msgid "The booking could not be saved."
+msgstr "বুকিং সেভ হয়নি।"
+
+msgid "deposit %s"
+msgstr "জমা %s"
+
+msgid "Assalamu alaikum %1$s. Alhamdulillah, your Umrah booking is confirmed in %2$s (%3$s). %4$d pilgrims · contract %5$s%6$s. We will send the paper list soon. — %7$s"
+msgstr "আসসালামু আলাইকুম %1$s। আলহামদুলিল্লাহ, আপনার উমরাহ বুকিং %2$s-এ নিশ্চিত (%3$s)। %4$d জন হাজি · চুক্তি %5$s%6$s। কাগজের তালিকা শিগগির পাঠাব। — %7$s"
+
+msgid "Needs %d seats."
+msgstr "%dটা সিট লাগবে।"
+
+msgid "No upcoming group has room for this party."
+msgstr "আসন্ন কোনো গ্রুপে এই দলের জায়গা নেই।"
+
+msgid "Same package"
+msgstr "একই প্যাকেজ"
+
+msgid "Only %d left"
+msgstr "আর %dটা আছে"
+
+msgid "Family name"
+msgstr "পরিবারের নাম"
+
+msgid "groups them on the pilgrim file and rooming"
+msgstr "হাজির ফাইলে ও রুমিংয়ে একসাথে রাখে"
+
+msgid "Name as in passport"
+msgstr "পাসপোর্টের নাম"
+
+msgid "Name (can add later)"
+msgstr "নাম (পরেও দেওয়া যায়)"
+
+msgid "Empty names become the family name plus a number."
+msgstr "খালি নাম হলে পরিবারের নামের সঙ্গে নম্বর বসবে।"
+
+msgid "+ Add person"
+msgstr "+ একজন যোগ করুন"
+
+msgid "Files"
+msgstr "ফাইল"
+
+msgid "%1$d · %2$s"
+msgstr "%1$d · %2$s"
+
+msgid "%s may already be in this group"
+msgstr "%s হয়তো আগেই এই গ্রুপে আছেন"
+
+msgid "Create a ledger row for each person with the package price as contract"
+msgstr "প্রত্যেকের খাতায় প্যাকেজের দাম চুক্তি হিসেবে লিখুন"
+
+msgid "Deposit received now (optional)"
+msgstr "এখন যে জমা পেয়েছেন (না দিলেও চলবে)"
+
+msgid "Recorded on the first person's ledger row."
+msgstr "প্রথম জনের খাতায় লেখা হবে।"
+
+msgid "Send a WhatsApp confirmation to %s"
+msgstr "%s-কে হোয়াটসঅ্যাপে নিশ্চিতকরণ পাঠান"
+
+msgid "Next"
+msgstr "পরের ধাপ"
+
+msgid "Confirm booking"
+msgstr "বুকিং নিশ্চিত করুন"
+
+msgid "Inquiries → bookings"
+msgstr "এনকোয়ারি → বুকিং"
+
+msgid "Booked by package"
+msgstr "প্যাকেজ অনুযায়ী বুক"
+
+msgid "Lost reasons"
+msgstr "না হওয়ার কারণ"
+
+msgid "%1$s booked %2$d pilgrims into %3$s"
+msgstr "%1$s %2$d জন হাজিকে %3$s-এ বুক করেছেন"
+
+msgid "%1$s set %2$s to %3$s"
+msgstr "%1$s %2$s-কে %3$s করেছেন"
+
+msgid "%1$s set a follow-up for %2$s"
+msgstr "%1$s %2$s-এর ফলো আপ দিয়েছেন"
+
+msgid "%1$s cleared the follow-up for %2$s"
+msgstr "%1$s %2$s-এর ফলো আপ তুলেছেন"
+
+msgid "%1$s added a note on %2$s"
+msgstr "%1$s %2$s-এ একটা নোট যোগ করেছেন"
+
+msgid "%1$s set a follow-up on %2$d inquiries"
+msgstr "%1$s %2$dটা এনকোয়ারিতে ফলো আপ দিয়েছেন"
+
+msgid "%1$s marked %2$d inquiries lost"
+msgstr "%1$s %2$dটা এনকোয়ারি হয়নি ধরেছেন"

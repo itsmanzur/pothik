@@ -3420,3 +3420,294 @@ msgstr ""
 
 msgid "Save"
 msgstr ""
+
+msgid "Package · share"
+msgstr ""
+
+msgid "Follow up"
+msgstr ""
+
+msgid "Follow up due"
+msgstr ""
+
+msgid "Follow up today"
+msgstr ""
+
+msgid "Not answered yet"
+msgstr ""
+
+msgid "Today or overdue"
+msgstr ""
+
+msgid "Waiting on them"
+msgstr ""
+
+msgid "In a group"
+msgstr ""
+
+msgid "Booked"
+msgstr ""
+
+msgid "Lost"
+msgstr ""
+
+msgid "%d%% booked"
+msgstr ""
+
+msgid "Book"
+msgstr ""
+
+msgid "Book into a group"
+msgstr ""
+
+msgid "Creates %d pilgrim files and their ledger rows in one step"
+msgstr ""
+
+msgid "Shows on the Desk and in “Follow up due” on that day."
+msgstr ""
+
+msgid "Office notes"
+msgstr ""
+
+msgid "Office"
+msgstr ""
+
+msgid "Add a note"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Reason"
+msgstr ""
+
+msgid "Choose why"
+msgstr ""
+
+msgid "Note, if Other"
+msgstr ""
+
+msgid "Choose a follow-up date."
+msgstr ""
+
+msgid "Choose why this inquiry was lost."
+msgstr ""
+
+msgid "Choose a status."
+msgstr ""
+
+msgid "This inquiry is already booked."
+msgstr ""
+
+msgid "Write a note first."
+msgstr ""
+
+msgid "You cannot edit this."
+msgstr ""
+
+msgid "You cannot open this."
+msgstr ""
+
+msgid "You cannot book this inquiry."
+msgstr ""
+
+msgid "Set follow-up…"
+msgstr ""
+
+msgid "Mark lost…"
+msgstr ""
+
+msgid "set a follow-up"
+msgstr ""
+
+msgid "marked inquiries lost"
+msgstr ""
+
+msgid "Price too high"
+msgstr ""
+
+msgid "Chose another agency"
+msgstr ""
+
+msgid "Dates did not suit"
+msgstr ""
+
+msgid "No reply"
+msgstr ""
+
+msgid "Postponed to next year"
+msgstr ""
+
+msgid "Other"
+msgstr ""
+
+msgid "Tomorrow"
+msgstr ""
+
+msgid "In 3 days"
+msgstr ""
+
+msgid "Next week"
+msgstr ""
+
+msgid "Overdue %dd"
+msgstr ""
+
+msgid "In %d days"
+msgstr ""
+
+msgid "Booked into %s."
+msgstr ""
+
+msgid "Open pilgrims"
+msgstr ""
+
+msgid "Assalamu alaikum, following up on your Umrah inquiry."
+msgstr ""
+
+msgid "Choose a group"
+msgstr ""
+
+msgid "Who is travelling"
+msgstr ""
+
+msgid "Check and confirm"
+msgstr ""
+
+msgid "Step %1$d of 3 · %2$s"
+msgstr ""
+
+msgid "Booked, alhamdulillah"
+msgstr ""
+
+msgid "%1$s and family are now in %2$s."
+msgstr ""
+
+msgid "%d pilgrim files created"
+msgstr ""
+
+msgid "Ledger rows · contract %s"
+msgstr ""
+
+msgid "Deposit %s recorded"
+msgstr ""
+
+msgid "Inquiry marked booked · logged"
+msgstr ""
+
+msgid "WhatsApp confirmation"
+msgstr ""
+
+msgid "Back to inquiries"
+msgstr ""
+
+msgid "Open pilgrim files"
+msgstr ""
+
+msgid "From inquiry · %s"
+msgstr ""
+
+msgid "Choose a group with enough seats."
+msgstr ""
+
+msgid "Already booked into %s."
+msgstr ""
+
+msgid "Someone just took seats — only %d left."
+msgstr ""
+
+msgid "The booking could not be saved."
+msgstr ""
+
+msgid "deposit %s"
+msgstr ""
+
+msgid "Assalamu alaikum %1$s. Alhamdulillah, your Umrah booking is confirmed in %2$s (%3$s). %4$d pilgrims · contract %5$s%6$s. We will send the paper list soon. — %7$s"
+msgstr ""
+
+msgid "Needs %d seats."
+msgstr ""
+
+msgid "No upcoming group has room for this party."
+msgstr ""
+
+msgid "Same package"
+msgstr ""
+
+msgid "Only %d left"
+msgstr ""
+
+msgid "Family name"
+msgstr ""
+
+msgid "groups them on the pilgrim file and rooming"
+msgstr ""
+
+msgid "Name as in passport"
+msgstr ""
+
+msgid "Name (can add later)"
+msgstr ""
+
+msgid "Empty names become the family name plus a number."
+msgstr ""
+
+msgid "+ Add person"
+msgstr ""
+
+msgid "Files"
+msgstr ""
+
+msgid "%1$d · %2$s"
+msgstr ""
+
+msgid "%s may already be in this group"
+msgstr ""
+
+msgid "Create a ledger row for each person with the package price as contract"
+msgstr ""
+
+msgid "Deposit received now (optional)"
+msgstr ""
+
+msgid "Recorded on the first person's ledger row."
+msgstr ""
+
+msgid "Send a WhatsApp confirmation to %s"
+msgstr ""
+
+msgid "Next"
+msgstr ""
+
+msgid "Confirm booking"
+msgstr ""
+
+msgid "Inquiries → bookings"
+msgstr ""
+
+msgid "Booked by package"
+msgstr ""
+
+msgid "Lost reasons"
+msgstr ""
+
+msgid "%1$s booked %2$d pilgrims into %3$s"
+msgstr ""
+
+msgid "%1$s set %2$s to %3$s"
+msgstr ""
+
+msgid "%1$s set a follow-up for %2$s"
+msgstr ""
+
+msgid "%1$s cleared the follow-up for %2$s"
+msgstr ""
+
+msgid "%1$s added a note on %2$s"
+msgstr ""
+
+msgid "%1$s set a follow-up on %2$d inquiries"
+msgstr ""
+
+msgid "%1$s marked %2$d inquiries lost"
+msgstr ""

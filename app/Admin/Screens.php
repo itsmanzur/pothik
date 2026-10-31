@@ -1072,7 +1072,7 @@ final class Screens
         $share = isset($_GET['share']) ? sanitize_key((string) $_GET['share']) : '';
         $per_page = 20;
 
-        $paged_data = InquiryRepository::paginate($page, $per_page, $status, $search, $share);
+        $paged_data = InquiryRepository::query(self::inquiry_list_args($page, $per_page, $status, $search, $share));
         $counts = InquiryRepository::count_by_status();
         $total_pages = (int) ($paged_data['pages'] ?? 1);
         $rows = (array) ($paged_data['items'] ?? []);
@@ -1083,13 +1083,19 @@ final class Screens
 
         echo '<section class="screen" data-screen="inquiries">';
 
+        do_action('pothik/inquiries_before_table', $counts);
+
+        $show_chips = (bool) apply_filters('pothik/inquiries_show_status_chips', true);
+
         // Toolbar
         echo '<div class="toolbar pk-toolbar">';
-        echo '<div class="chips pk-chips" id="inqChips">';
-        echo '<button type="button" class="chip pk-chip ' . ($status === '' ? 'on' : '') . '" data-f="">' . esc_html(I18n::t('All')) . ' <b data-c="all">' . $counts['all'] . '</b></button>';
-        echo '<button type="button" class="chip pk-chip ' . ($status === 'waiting' ? 'on' : '') . '" data-f="waiting">' . esc_html(I18n::t('Waiting')) . ' <b data-c="wait">' . $counts['waiting'] . '</b></button>';
-        echo '<button type="button" class="chip pk-chip ' . ($status === 'replied' ? 'on' : '') . '" data-f="replied">' . esc_html(I18n::t('Replied')) . ' <b data-c="done">' . $counts['replied'] . '</b></button>';
-        echo '</div>'; // .chips
+        if ($show_chips) {
+            echo '<div class="chips pk-chips" id="inqChips">';
+            echo '<button type="button" class="chip pk-chip ' . ($status === '' ? 'on' : '') . '" data-f="">' . esc_html(I18n::t('All')) . ' <b data-c="all">' . $counts['all'] . '</b></button>';
+            echo '<button type="button" class="chip pk-chip ' . ($status === 'waiting' ? 'on' : '') . '" data-f="waiting">' . esc_html(I18n::t('Waiting')) . ' <b data-c="wait">' . $counts['waiting'] . '</b></button>';
+            echo '<button type="button" class="chip pk-chip ' . ($status === 'replied' ? 'on' : '') . '" data-f="replied">' . esc_html(I18n::t('Replied')) . ' <b data-c="done">' . $counts['replied'] . '</b></button>';
+            echo '</div>'; // .chips
+        }
 
         echo '<label class="search pk-search"><svg class="i sm"><use href="#i-search"/></svg><input id="inqSearch" value="' . esc_attr($search) . '" placeholder="' . esc_attr(I18n::t('Search name, phone or city  ( / )')) . '"></label>';
 
@@ -1111,6 +1117,7 @@ final class Screens
         echo '<span class="spacer"></span>';
         echo '<button type="button" class="btn pk-btn pk-btn-ghost btn-ghost" id="bulkReply"><svg class="i sm"><use href="#i-check"/></svg>' . esc_html(I18n::t('Mark replied')) . '</button>';
         echo '<button type="button" class="btn pk-btn pk-btn-ghost btn-ghost" id="bulkExport"><svg class="i sm"><use href="#i-down"/></svg>' . esc_html(I18n::t('Export')) . '</button>';
+        do_action('pothik/inquiries_bulk_actions');
         echo '<div id="bulkDelWrap" class="bulk-del-wrap">';
         echo '<button type="button" class="btn pk-btn pk-btn-ghost btn-ghost bulk-del-btn" id="bulkDel"><svg class="i sm"><use href="#i-trash"/></svg>' . esc_html(I18n::t('Delete')) . '</button>';
         echo '<div id="bulkDelConfirm" class="bulk-del-confirm" hidden>';
@@ -1126,15 +1133,13 @@ final class Screens
         echo '<div class="tbl-wrap pk-tbl-wrap">';
         echo '<table class="tbl pk-tbl">';
         echo '<thead><tr>';
-        echo '<th class="cb-th"><input type="checkbox" class="cb pk-cb" id="cbAll" aria-label="' . esc_attr(I18n::t('Select all')) . '"></th>';
-        echo '<th>' . esc_html(I18n::t('Pilgrim')) . '</th>';
-        echo '<th>' . esc_html(I18n::t('Phone')) . '</th>';
-        echo '<th>' . esc_html(I18n::t('City')) . '</th>';
-        echo '<th>' . esc_html(I18n::t('Share')) . '</th>';
-        echo '<th>' . esc_html(I18n::t('Pilgrims')) . '</th>';
-        echo '<th>' . esc_html(I18n::t('Status')) . '</th>';
-        echo '<th>' . esc_html(I18n::t('Received')) . '</th>';
-        echo '<th></th>';
+        foreach (self::inquiry_columns() as $column_key => $column_label) {
+            if ($column_key === 'cb') {
+                echo '<th class="cb-th"><input type="checkbox" class="cb pk-cb" id="cbAll" aria-label="' . esc_attr(I18n::t('Select all')) . '"></th>';
+                continue;
+            }
+            echo '<th>' . esc_html((string) $column_label) . '</th>';
+        }
         echo '</tr></thead>';
 
         echo '<tbody id="inqBody">';
@@ -1164,7 +1169,9 @@ final class Screens
         if ($total_pages > 1) {
             echo '<div class="pg pk-pg">';
             for ($i = 1; $i <= $total_pages; $i++) {
-                $url = add_query_arg(['page' => 'pothik-inquiries', 'paged' => $i, 'status' => $status, 's' => $search, 'share' => $share], admin_url('admin.php'));
+                // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+                $stage = isset($_GET['stage']) ? sanitize_key((string) wp_unslash($_GET['stage'])) : '';
+                $url = add_query_arg(['page' => 'pothik-inquiries', 'paged' => $i, 'status' => $status, 's' => $search, 'share' => $share, 'stage' => $stage], admin_url('admin.php'));
                 echo '<a href="' . esc_url($url) . '" class="btn pk-btn-sm ' . ($i === $page ? 'on' : '') . '" data-p="' . $i . '">' . $i . '</a>';
             }
             echo '</div>';
@@ -1184,6 +1191,7 @@ final class Screens
         echo '<div class="drawer-bg pk-drawer-bg" id="drBg"></div>';
         echo '<aside class="drawer pk-drawer" id="drawer" aria-label="' . esc_attr(I18n::t('Inquiry details')) . '">';
         echo '<div class="dr-head pk-dr-head"><span class="ava pk-ava" id="drAva"></span><div class="dr-title-meta"><h3 id="drName"></h3><div class="sub" id="drPkg"></div></div><button type="button" class="icon-btn pk-icon-btn" id="drClose" aria-label="' . esc_attr(I18n::t('Close')) . '"><svg class="i"><use href="#i-x"/></svg></button></div>';
+        do_action('pothik/inquiry_drawer_top', []);
         echo '<div class="dr-body pk-dr-body">';
         echo '<div id="drState"></div>';
         echo '<div class="facts pk-facts" id="drFacts"></div>';
@@ -1257,11 +1265,86 @@ final class Screens
             . ' data-replied="' . ($replied ? '1' : '0') . '"'
             . '>';
 
-        // Col 1: Checkbox
-        $html .= '<td><input type="checkbox" class="cb pk-cb" name="ids[]" value="' . esc_attr($id) . '" aria-label="' . esc_attr(I18n::t('Select')) . '"></td>';
+        $known = [
+            'cb' => '<td><input type="checkbox" class="cb pk-cb" name="ids[]" value="' . esc_attr($id) . '" aria-label="' . esc_attr(I18n::t('Select')) . '"></td>',
+            'pilgrim' => self::inquiry_pilgrim_cell($row, $name, $pkg_title, $bg, $initial),
+            'phone' => '<td><b class="cell-phone">' . esc_html($phone) . '</b></td>',
+            'city' => '<td>' . esc_html($city) . '</td>',
+            'share' => '<td><span class="pill pk-pill plain">' . esc_html($share_label) . '</span></td>',
+            'people' => self::inquiry_people_cell($adults, $children, $infants),
+            'status' => '<td><button type="button" class="pill pk-pill status-btn ' . ($replied ? 'done' : 'wait') . '" data-inq-id="' . esc_attr($id) . '" title="' . esc_attr(I18n::t('Click to toggle')) . '">' . esc_html(I18n::t($replied ? 'Replied' : 'Waiting')) . '</button></td>',
+            'received' => '<td class="sub pk-sub nowrap-cell" title="' . esc_attr($full_date) . '">' . esc_html($time_diff) . '</td>',
+        ];
+        $actions = '';
+        if ($tel_href !== '') {
+            $actions .= '<a class="icon-btn pk-icon-btn" href="' . esc_url($tel_href) . '" title="' . esc_attr(I18n::t('Call')) . '"><svg class="i"><use href="#i-phone"/></svg></a>';
+        }
+        if ($wa_href !== '') {
+            $actions .= '<a class="icon-btn pk-icon-btn wa" href="' . esc_url($wa_href) . '" target="_blank" rel="noopener" title="' . esc_attr(I18n::t('WhatsApp')) . '"><svg class="i"><use href="#i-wa"/></svg></a>';
+        }
+        $actions = (string) apply_filters('pothik/inquiry_row_actions', $actions, $row);
 
-        // Col 2: Pilgrim (avatar + name + pkg + demo chip)
-        $html .= '<td><div class="who pk-who">';
+        foreach (self::inquiry_columns() as $column_key => $column_label) {
+            unset($column_label);
+            if ($column_key === 'actions') {
+                $html .= '<td><div class="acts pk-acts">' . $actions . '</div></td>';
+                continue;
+            }
+            if (isset($known[$column_key])) {
+                $html .= $known[$column_key];
+                continue;
+            }
+            $html .= '<td>' . (string) apply_filters('pothik/inquiry_cell', '', (string) $column_key, $row) . '</td>';
+        }
+
+        $html .= '</tr>';
+        return $html;
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    private static function inquiry_columns(): array
+    {
+        $columns = [
+            'cb' => '',
+            'pilgrim' => I18n::t('Pilgrim'),
+            'phone' => I18n::t('Phone'),
+            'city' => I18n::t('City'),
+            'share' => I18n::t('Share'),
+            'people' => I18n::t('Pilgrims'),
+            'status' => I18n::t('Status'),
+            'received' => I18n::t('Received'),
+            'actions' => '',
+        ];
+        $filtered = apply_filters('pothik/inquiry_columns', $columns);
+
+        return is_array($filtered) && $filtered !== [] ? $filtered : $columns;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private static function inquiry_list_args(int $page, int $per_page, string $status, string $search, string $share): array
+    {
+        $args = [
+            'page' => $page,
+            'per_page' => $per_page,
+            'status' => $status,
+            'search' => $search,
+            'share' => $share,
+        ];
+        $filtered = apply_filters('pothik/inquiries_query_args', $args);
+
+        return is_array($filtered) ? $filtered : $args;
+    }
+
+    /**
+     * @param array<string, mixed> $row
+     */
+    private static function inquiry_pilgrim_cell(array $row, string $name, string $pkg_title, string $bg, string $initial): string
+    {
+        $html = '<td><div class="who pk-who">';
         $html .= '<span class="ava pk-ava" style="background:' . esc_attr($bg) . '">' . esc_html($initial) . '</span>';
         $html .= '<div class="dr-title-meta"><b>' . esc_html($name) . '</b>';
         $html .= '<span class="sub pk-sub pkg-sub-cell">' . esc_html($pkg_title);
@@ -1270,17 +1353,12 @@ final class Screens
         }
         $html .= '</span></div></div></td>';
 
-        // Col 3: Phone
-        $html .= '<td><b class="cell-phone">' . esc_html($phone) . '</b></td>';
+        return $html;
+    }
 
-        // Col 4: City
-        $html .= '<td>' . esc_html($city) . '</td>';
-
-        // Col 5: Share
-        $html .= '<td><span class="pill pk-pill plain">' . esc_html($share_label) . '</span></td>';
-
-        // Col 6: Pilgrims chips
-        $html .= '<td><div class="pax pk-pax"><span>👤 ' . $adults . '</span>';
+    private static function inquiry_people_cell(int $adults, int $children, int $infants): string
+    {
+        $html = '<td><div class="pax pk-pax"><span>👤 ' . $adults . '</span>';
         if ($children > 0) {
             $html .= '<span>🧒 ' . $children . '</span>';
         }
@@ -1289,23 +1367,6 @@ final class Screens
         }
         $html .= '</div></td>';
 
-        // Col 7: Status toggle pill button
-        $html .= '<td><button type="button" class="pill pk-pill status-btn ' . ($replied ? 'done' : 'wait') . '" data-inq-id="' . esc_attr($id) . '" title="' . esc_attr(I18n::t('Click to toggle')) . '">' . esc_html(I18n::t($replied ? 'Replied' : 'Waiting')) . '</button></td>';
-
-        // Col 8: Received time
-        $html .= '<td class="sub pk-sub nowrap-cell" title="' . esc_attr($full_date) . '">' . esc_html($time_diff) . '</td>';
-
-        // Col 9: Action icons
-        $html .= '<td><div class="acts pk-acts">';
-        if ($tel_href !== '') {
-            $html .= '<a class="icon-btn pk-icon-btn" href="' . esc_url($tel_href) . '" title="' . esc_attr(I18n::t('Call')) . '"><svg class="i"><use href="#i-phone"/></svg></a>';
-        }
-        if ($wa_href !== '') {
-            $html .= '<a class="icon-btn pk-icon-btn wa" href="' . esc_url($wa_href) . '" target="_blank" rel="noopener" title="' . esc_attr(I18n::t('WhatsApp')) . '"><svg class="i"><use href="#i-wa"/></svg></a>';
-        }
-        $html .= '</div></td>';
-
-        $html .= '</tr>';
         return $html;
     }
 
@@ -1324,7 +1385,7 @@ final class Screens
         $share = isset($_POST['share']) ? sanitize_key((string) $_POST['share']) : '';
         $per_page = 20;
 
-        $paged_data = InquiryRepository::paginate($page, $per_page, $status, $search, $share);
+        $paged_data = InquiryRepository::query(self::inquiry_list_args($page, $per_page, $status, $search, $share));
         $counts = InquiryRepository::count_by_status();
 
         ob_start();

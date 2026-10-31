@@ -75,6 +75,14 @@ Add-ons extend Pothik through these hooks. The free plugin does not ship add-on 
 * `pothik/seat_line` — the seat sentence on a package page. Arguments: the current line, then the package array. A callback registered with one argument still receives only the line.
 * `pothik/package_card_badges` — extra pills on a catalog card. Arguments: an array of pills, then the package. Each pill is `['label' => string, 'class' => string]`.
 * `pothik/inquiry_actions` — inside the inquiry drawer footer. Argument: the inquiry row when the drawer was built for one row. The shared drawer passes an empty array because the open row is chosen in the browser.
+* `pothik/inquiries_before_table` — above the inquiries toolbar. Argument: the status counts (`all`, `waiting`, `replied`).
+* `pothik/inquiries_show_status_chips` — whether the Waiting and Replied chips show. Default true. Return false when the toolbar is replaced.
+* `pothik/inquiry_columns` — the inquiries table columns. Argument: an array of column key to label. The free keys are `cb`, `pilgrim`, `phone`, `city`, `share`, `people`, `status`, `received` and `actions`.
+* `pothik/inquiry_cell` — HTML for a column key the free plugin does not draw. Arguments: an empty string, the column key, the inquiry row. Return escaped HTML.
+* `pothik/inquiry_row_actions` — extra buttons in the actions cell. Arguments: the call and WhatsApp HTML, then the inquiry row.
+* `pothik/inquiries_query_args` — the list query. Argument: `page`, `per_page`, `status`, `search` and `share`. Add `include_ids` or `exclude_ids` (arrays of inquiry ids). An empty `include_ids` list matches no rows.
+* `pothik/inquiry_drawer_top` — after the inquiry drawer header. Argument: the inquiry row when the drawer was built for one row. The shared drawer passes an empty array.
+* `pothik/inquiries_bulk_actions` — extra controls inside the bulk bar. No arguments. The form posts `ids[]` with nonce `pothik_bulk_inquiries`.
 * `pothik/desk_cards` — extra cards on the Desk. Argument: an array of HTML strings. Callbacks return escaped HTML.
 * `pothik/can` — whether a user may view or edit an area. Arguments: the default (false for anyone who is not a WordPress administrator), the area name, the level (`view` or `edit`), and the user id. WordPress administrators are always allowed before this filter runs. Return true only when that user may do that level of that area.
 * `pothik/package_saved` — after a package is saved. Arguments: package id, the row before the save, the row after the save.
