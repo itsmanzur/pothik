@@ -245,6 +245,8 @@ final class Settings
         echo '</div>';
         echo '</div>'; // card danger
 
+        do_action('pothik/settings_data');
+
         echo '</div>'; // Pane 4 (Data)
 
         // Sticky save bar

@@ -95,6 +95,7 @@ Add-ons extend Pothik through these hooks. The free plugin does not ship add-on 
 * `pothik/inquiries_exported` — after an inquiry CSV is built. Argument: the number of rows.
 * `pothik/receipt_saved` — after the receipt is saved. Arguments: the option before, the option after.
 * `pothik/settings_saved` — after settings are saved. Arguments: the option before, the option after.
+* `pothik/settings_data` — inside the Data pane of the settings form. No arguments. Printed fields are saved with the rest of the form.
 * `pothik/demo_data` — after demo data is loaded or removed. Argument: `loaded` or `removed`.
 
 == Changelog ==

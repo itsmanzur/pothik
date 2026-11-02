@@ -3711,3 +3711,234 @@ msgstr ""
 
 msgid "%1$s marked %2$d inquiries lost"
 msgstr ""
+
+msgid "Every payment with its date and receipt, each pilgrim's installment plan, and who is due this week."
+msgstr ""
+
+msgid "Installments due"
+msgstr ""
+
+msgid "Nothing here, alhamdulillah."
+msgstr ""
+
+msgid "Installment %1$d of %2$d · %3$s"
+msgstr ""
+
+msgid "Search name, receipt no. or transaction ID"
+msgstr ""
+
+msgid "Pilgrim account"
+msgstr ""
+
+msgid "This week"
+msgstr ""
+
+msgid "This month"
+msgstr ""
+
+msgid "Week"
+msgstr ""
+
+msgid "Voided"
+msgstr ""
+
+msgid "Overdue now"
+msgstr ""
+
+msgid "Collected per week"
+msgstr ""
+
+msgid "Receipt numbers"
+msgstr ""
+
+msgid "Prefix"
+msgstr ""
+
+msgid "Hijri"
+msgstr ""
+
+msgid "Gregorian"
+msgstr ""
+
+msgid "Next number"
+msgstr ""
+
+msgid "Changing the prefix never renumbers old receipts."
+msgstr ""
+
+msgid "%d payments"
+msgstr ""
+
+msgid "No plan"
+msgstr ""
+
+msgid "%dd overdue"
+msgstr ""
+
+msgid "in %dd"
+msgstr ""
+
+msgid "+ Add payment"
+msgstr ""
+
+msgid "Contract & notes"
+msgstr ""
+
+msgid "Ticket note"
+msgstr ""
+
+msgid "Ground note"
+msgstr ""
+
+msgid "Opening balance"
+msgstr ""
+
+msgid "by %s"
+msgstr ""
+
+msgid "Voided: %s"
+msgstr ""
+
+msgid "Why void this payment?"
+msgstr ""
+
+msgid "Void"
+msgstr ""
+
+msgid "Payments are never deleted. A wrong entry is voided with a reason — it stays visible and stops counting."
+msgstr ""
+
+msgid "Make a plan"
+msgstr ""
+
+msgid "Make a new plan"
+msgstr ""
+
+msgid "Split the balance %s into"
+msgstr ""
+
+msgid "monthly installments from"
+msgstr ""
+
+msgid "Create plan"
+msgstr ""
+
+msgid "Last date should be before the leave date (%s)."
+msgstr ""
+
+msgid "The last installment is after the leave date."
+msgstr ""
+
+msgid "Payments fill installments from the oldest. Plans are reminders — they never change the contract."
+msgstr ""
+
+msgid "Or edit the rows"
+msgstr ""
+
+msgid "Plan total must equal the balance."
+msgstr ""
+
+msgid "Save plan"
+msgstr ""
+
+msgid "Next installment %s"
+msgstr ""
+
+msgid "This transaction ID is already on another payment."
+msgstr ""
+
+msgid "Receipt number %s is given on save."
+msgstr ""
+
+msgid "This is more than the balance. Save it anyway."
+msgstr ""
+
+msgid "Save & make receipt"
+msgstr ""
+
+msgid "Payment received"
+msgstr ""
+
+msgid "Received by"
+msgstr ""
+
+msgid "Paid so far"
+msgstr ""
+
+msgid "Balance after this"
+msgstr ""
+
+msgid "✓ Fully paid"
+msgstr ""
+
+msgid "Two copies"
+msgstr ""
+
+msgid "Office copy"
+msgstr ""
+
+msgid "Pilgrim copy"
+msgstr ""
+
+msgid "Installment plan"
+msgstr ""
+
+msgid "Statement"
+msgstr ""
+
+msgid "paid"
+msgstr ""
+
+msgid "That ledger row is not here."
+msgstr ""
+
+msgid "That ledger row is not in this group."
+msgstr ""
+
+msgid "Enter an amount."
+msgstr ""
+
+msgid "Choose a date."
+msgstr ""
+
+msgid "The date cannot be more than a day ahead."
+msgstr ""
+
+msgid "Choose a channel."
+msgstr ""
+
+msgid "This is %s more than the balance."
+msgstr ""
+
+msgid "The payment could not be saved."
+msgstr ""
+
+msgid "Payment history was not started. Totals did not match: %s"
+msgstr ""
+
+msgid "A void needs a reason of at least 5 characters."
+msgstr ""
+
+msgid "%1$s voided a payment of %2$s for %3$s"
+msgstr ""
+
+msgid "%1$s saved an installment plan for %2$s"
+msgstr ""
+
+msgid "%1$s printed receipt %2$s"
+msgstr ""
+
+msgid "%1$s shared receipt %2$s"
+msgstr ""
+
+msgid "%1$s sent an installment reminder to %2$s"
+msgstr ""
+
+msgid "Receipt %1$s · %2$s"
+msgstr ""
+
+msgid "Assalamu alaikum %1$s. We received %2$s on %3$s by %4$s. Receipt %5$s. Paid so far %6$s, balance %7$s. JazakAllahu khairan — %8$s"
+msgstr ""
+
+msgid "Assalamu alaikum %1$s. A gentle reminder: installment %2$d of %3$s for %4$s was due on %5$s. Balance %6$s. You can pay by bKash/Nagad to %7$s. — %8$s"
+msgstr ""

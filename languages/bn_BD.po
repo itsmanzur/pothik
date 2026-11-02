@@ -3717,3 +3717,234 @@ msgstr "%1$s %2$dটা এনকোয়ারিতে ফলো আপ দ�
 
 msgid "%1$s marked %2$d inquiries lost"
 msgstr "%1$s %2$dটা এনকোয়ারি হয়নি ধরেছেন"
+
+msgid "Every payment with its date and receipt, each pilgrim's installment plan, and who is due this week."
+msgstr "প্রতিটি পরিশোধের তারিখ ও রসিদ, যাত্রীর কিস্তির পরিকল্পনা, আর এ সপ্তাহে কার কিস্তি।"
+
+msgid "Installments due"
+msgstr "বকেয়া কিস্তি"
+
+msgid "Nothing here, alhamdulillah."
+msgstr "এখানে কিছু নেই, আলহামদুলিল্লাহ।"
+
+msgid "Installment %1$d of %2$d · %3$s"
+msgstr "কিস্তি %2$d-এর %1$d · %3$s"
+
+msgid "Search name, receipt no. or transaction ID"
+msgstr "নাম, রসিদ নম্বর বা ট্রানজেকশন আইডি খুঁজুন"
+
+msgid "Pilgrim account"
+msgstr "যাত্রীর হিসাব"
+
+msgid "This week"
+msgstr "এ সপ্তাহ"
+
+msgid "This month"
+msgstr "এ মাস"
+
+msgid "Week"
+msgstr "সপ্তাহ"
+
+msgid "Voided"
+msgstr "বাতিল"
+
+msgid "Overdue now"
+msgstr "এখন বকেয়া"
+
+msgid "Collected per week"
+msgstr "সপ্তাহে আদায়"
+
+msgid "Receipt numbers"
+msgstr "রসিদ নম্বর"
+
+msgid "Prefix"
+msgstr "আগের অংশ"
+
+msgid "Hijri"
+msgstr "হিজরি"
+
+msgid "Gregorian"
+msgstr "খ্রিষ্টীয়"
+
+msgid "Next number"
+msgstr "পরের নম্বর"
+
+msgid "Changing the prefix never renumbers old receipts."
+msgstr "আগের অংশ বদলালে পুরনো রসিদের নম্বর বদলায় না।"
+
+msgid "%d payments"
+msgstr "%dটি পরিশোধ"
+
+msgid "No plan"
+msgstr "কোনো পরিকল্পনা নেই"
+
+msgid "%dd overdue"
+msgstr "%d দিন বকেয়া"
+
+msgid "in %dd"
+msgstr "%d দিনে"
+
+msgid "+ Add payment"
+msgstr "+ পরিশোধ যোগ"
+
+msgid "Contract & notes"
+msgstr "চুক্তি ও নোট"
+
+msgid "Ticket note"
+msgstr "টিকিটের নোট"
+
+msgid "Ground note"
+msgstr "সৌদি খরচের নোট"
+
+msgid "Opening balance"
+msgstr "শুরুর ব্যালেন্স"
+
+msgid "by %s"
+msgstr "%s-এর মাধ্যমে"
+
+msgid "Voided: %s"
+msgstr "বাতিল: %s"
+
+msgid "Why void this payment?"
+msgstr "এই পরিশোধ কেন বাতিল?"
+
+msgid "Void"
+msgstr "বাতিল"
+
+msgid "Payments are never deleted. A wrong entry is voided with a reason — it stays visible and stops counting."
+msgstr "পরিশোধ মুছে যায় না। ভুল এন্ট্রি কারণসহ বাতিল হয় — দেখা যায়, হিসাবে আসে না।"
+
+msgid "Make a plan"
+msgstr "পরিকল্পনা করুন"
+
+msgid "Make a new plan"
+msgstr "নতুন পরিকল্পনা"
+
+msgid "Split the balance %s into"
+msgstr "বকেয়া %s ভাগ করুন"
+
+msgid "monthly installments from"
+msgstr "মাসিক কিস্তি, শুরু"
+
+msgid "Create plan"
+msgstr "পরিকল্পনা তৈরি"
+
+msgid "Last date should be before the leave date (%s)."
+msgstr "শেষ তারিখ ছাড়ার দিনের (%s) আগে হওয়া ভালো।"
+
+msgid "The last installment is after the leave date."
+msgstr "শেষ কিস্তি ছাড়ার দিনের পরে।"
+
+msgid "Payments fill installments from the oldest. Plans are reminders — they never change the contract."
+msgstr "পরিশোধ পুরনো কিস্তি থেকে ভরে। পরিকল্পনা শুধু মনে করিয়ে দেয় — চুক্তি বদলায় না।"
+
+msgid "Or edit the rows"
+msgstr "অথবা সারি বদলান"
+
+msgid "Plan total must equal the balance."
+msgstr "পরিকল্পনার মোট বকেয়ার সমান হতে হবে।"
+
+msgid "Save plan"
+msgstr "পরিকল্পনা সেভ"
+
+msgid "Next installment %s"
+msgstr "পরের কিস্তি %s"
+
+msgid "This transaction ID is already on another payment."
+msgstr "এই ট্রানজেকশন আইডি আরেক পরিশোধে আছে।"
+
+msgid "Receipt number %s is given on save."
+msgstr "সেভ করলে রসিদ নম্বর %s হবে।"
+
+msgid "This is more than the balance. Save it anyway."
+msgstr "এটা বকেয়ার চেয়ে বেশি। তবু সেভ করুন।"
+
+msgid "Save & make receipt"
+msgstr "সেভ করে রসিদ"
+
+msgid "Payment received"
+msgstr "পরিশোধ পাওয়া গেছে"
+
+msgid "Received by"
+msgstr "গ্রহণ করেছেন"
+
+msgid "Paid so far"
+msgstr "এ পর্যন্ত পরিশোধ"
+
+msgid "Balance after this"
+msgstr "এর পর বকেয়া"
+
+msgid "✓ Fully paid"
+msgstr "✓ পুরো পরিশোধ"
+
+msgid "Two copies"
+msgstr "দুই কপি"
+
+msgid "Office copy"
+msgstr "অফিস কপি"
+
+msgid "Pilgrim copy"
+msgstr "যাত্রীর কপি"
+
+msgid "Installment plan"
+msgstr "কিস্তির পরিকল্পনা"
+
+msgid "Statement"
+msgstr "স্টেটমেন্ট"
+
+msgid "paid"
+msgstr "পরিশোধ"
+
+msgid "That ledger row is not here."
+msgstr "খাতার এই সারি এখানে নেই।"
+
+msgid "That ledger row is not in this group."
+msgstr "খাতার এই সারি এই দলে নেই।"
+
+msgid "Enter an amount."
+msgstr "পরিমাণ লিখুন।"
+
+msgid "Choose a date."
+msgstr "তারিখ বেছে নিন।"
+
+msgid "The date cannot be more than a day ahead."
+msgstr "তারিখ এক দিনের বেশি পরের হতে পারে না।"
+
+msgid "Choose a channel."
+msgstr "মাধ্যম বেছে নিন।"
+
+msgid "This is %s more than the balance."
+msgstr "এটা বকেয়ার চেয়ে %s বেশি।"
+
+msgid "The payment could not be saved."
+msgstr "পরিশোধ সেভ হয়নি।"
+
+msgid "Payment history was not started. Totals did not match: %s"
+msgstr "পরিশোধের ইতিহাস শুরু হয়নি। মোট মিলেনি: %s"
+
+msgid "A void needs a reason of at least 5 characters."
+msgstr "বাতিল করতে অন্তত ৫ অক্ষরের কারণ লাগে।"
+
+msgid "%1$s voided a payment of %2$s for %3$s"
+msgstr "%1$s %3$s-এর %2$s পরিশোধ বাতিল করেছেন"
+
+msgid "%1$s saved an installment plan for %2$s"
+msgstr "%1$s %2$s-এর কিস্তির পরিকল্পনা সেভ করেছেন"
+
+msgid "%1$s printed receipt %2$s"
+msgstr "%1$s রসিদ %2$s প্রিন্ট করেছেন"
+
+msgid "%1$s shared receipt %2$s"
+msgstr "%1$s রসিদ %2$s শেয়ার করেছেন"
+
+msgid "%1$s sent an installment reminder to %2$s"
+msgstr "%1$s %2$s-কে কিস্তির কথা মনে করিয়েছেন"
+
+msgid "Receipt %1$s · %2$s"
+msgstr "রসিদ %1$s · %2$s"
+
+msgid "Assalamu alaikum %1$s. We received %2$s on %3$s by %4$s. Receipt %5$s. Paid so far %6$s, balance %7$s. JazakAllahu khairan — %8$s"
+msgstr "আসসালামু আলাইকুম %1$s। আমরা %3$s তারিখে %4$s-এ %2$s পেয়েছি। রসিদ %5$s। এ পর্যন্ত %6$s, বকেয়া %7$s। জাযাকাল্লাহু খাইরান — %8$s"
+
+msgid "Assalamu alaikum %1$s. A gentle reminder: installment %2$d of %3$s for %4$s was due on %5$s. Balance %6$s. You can pay by bKash/Nagad to %7$s. — %8$s"
+msgstr "আসসালামু আলাইকুম %1$s। মনে করিয়ে দিচ্ছি: %4$s-এর %3$s কিস্তি %2$d, তারিখ ছিল %5$s। বকেয়া %6$s। বিকাশ/নগদে %7$s-এ দিতে পারেন। — %8$s"

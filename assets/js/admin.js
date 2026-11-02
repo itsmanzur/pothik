@@ -3428,6 +3428,9 @@
         if (typeof window.pothikProLead === 'function') {
             window.pothikProLead();
         }
+        if (typeof window.pothikProPay === 'function') {
+            window.pothikProPay();
+        }
     }
 
     // URL of a Pothik screen we can swap in, or null.
