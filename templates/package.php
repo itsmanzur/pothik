@@ -302,6 +302,7 @@ $facts = array_filter([
                     <input type="hidden" name="action" value="pothik_inquiry">
                     <input type="hidden" name="pothik_trap" value="<?php echo esc_attr(InquiryStore::generate_time_trap()); ?>">
                     <input type="hidden" name="package_id" value="<?php echo esc_attr((string) ($package['id'] ?? '')); ?>">
+                    <?php \Pothik\Referral::field(); ?>
                     <label class="pk-trap" aria-hidden="true">Website<input type="text" name="company_website" tabindex="-1" autocomplete="off"></label>
                     <div class="pk-form-grid">
                         <label><?php echo esc_html(I18n::t('Name')); ?><input name="name" required autocomplete="name" value="<?php echo esc_attr((string) ($prefill['name'] ?? '')); ?>"></label>

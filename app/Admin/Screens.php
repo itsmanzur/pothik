@@ -501,7 +501,7 @@ final class Screens
             [I18n::t('Makkah & Madinah bed / rooming lists'), '—', '✓'],
             [I18n::t('Installment ledger & bKash matching'), '—', '✓'],
             [I18n::t('Visa board with Masar status tracking'), '—', '✓'],
-            [I18n::t('Sub-agent commission reports'), '—', '✓'],
+            [I18n::t('Partner commission rules, referral links, payouts & statements'), '—', '✓'],
             [I18n::t('Direct 1-on-1 agency support'), 'Community', 'Priority VIP'],
         ];
 
@@ -1263,6 +1263,7 @@ final class Screens
             . ' data-note="' . esc_attr($note) . '"'
             . ' data-time="' . esc_attr($time_diff) . '"'
             . ' data-replied="' . ($replied ? '1' : '0') . '"'
+            . ' data-ref="' . esc_attr((string) ($row['ref'] ?? '')) . '"'
             . '>';
 
         $known = [

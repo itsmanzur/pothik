@@ -21,7 +21,7 @@ if (!defined('ABSPATH')) {
 
 final class InquiryRepository
 {
-    public const DB_VERSION = '1.1.0';
+    public const DB_VERSION = '1.2.0';
 
     public static function table_name(): string
     {
@@ -60,6 +60,7 @@ final class InquiryRepository
             status varchar(20) NOT NULL DEFAULT 'new',
             replied tinyint(1) NOT NULL DEFAULT 0,
             demo tinyint(1) NOT NULL DEFAULT 0,
+            ref varchar(10) NULL,
             PRIMARY KEY  (id),
             KEY created_gmt (created_gmt),
             KEY status (status),
@@ -186,9 +187,10 @@ final class InquiryRepository
                 'status' => mb_substr((string) ($data['status'] ?? 'new'), 0, 20),
                 'replied' => !empty($data['replied']) ? 1 : 0,
                 'demo' => !empty($data['demo']) ? 1 : 0,
+                'ref' => Referral::sanitize((string) ($data['ref'] ?? '')) ?: null,
             ],
             [
-                '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%d', '%d'
+                '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%s'
             ]
         );
 
@@ -808,6 +810,7 @@ final class InquiryRepository
             'Replied',
             'Demo',
             'Note',
+            'Ref',
         ]);
 
         foreach ($rows as $r) {
@@ -831,6 +834,7 @@ final class InquiryRepository
                 ((int) $r->replied === 1) ? 'Yes' : 'No',
                 ((int) $r->demo === 1) ? 'Yes' : 'No',
                 $r->note,
+                (string) ($r->ref ?? ''),
             ]);
         }
 
@@ -871,6 +875,7 @@ final class InquiryRepository
             'status' => (string) ($r->status ?? 'new'),
             'replied' => ((int) ($r->replied ?? 0) === 1) ? '1' : '0',
             'demo' => ((int) ($r->demo ?? 0) === 1),
+            'ref' => Referral::sanitize((string) ($r->ref ?? '')),
         ];
     }
 

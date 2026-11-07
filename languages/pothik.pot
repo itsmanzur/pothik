@@ -3942,3 +3942,288 @@ msgstr ""
 
 msgid "Assalamu alaikum %1$s. A gentle reminder: installment %2$d of %3$s for %4$s was due on %5$s. Balance %6$s. You can pay by bKash/Nagad to %7$s. — %8$s"
 msgstr ""
+
+msgid "Partner commission rules, referral links, payouts & statements"
+msgstr ""
+
+msgid "Agents & commission"
+msgstr ""
+
+msgid "Partner commission rules, referral links, payouts and statements."
+msgstr ""
+
+msgid "Who brought the pilgrim, what they earn, and what the office still owes."
+msgstr ""
+
+msgid "Pilgrims through agents"
+msgstr ""
+
+msgid "%1$d of %2$d pilgrims this season"
+msgstr ""
+
+msgid "Commission earned"
+msgstr ""
+
+msgid "Paid to agents"
+msgstr ""
+
+msgid "Owed now · %d agents"
+msgstr ""
+
+msgid "Search agent, area or code"
+msgstr ""
+
+msgid "Owed"
+msgstr ""
+
+msgid "Agents"
+msgstr ""
+
+msgid "Sub-agents"
+msgstr ""
+
+msgid "New agent"
+msgstr ""
+
+msgid "Rule"
+msgstr ""
+
+msgid "Earned"
+msgstr ""
+
+msgid "Sub-agent"
+msgstr ""
+
+msgid "%d via sub-agents"
+msgstr ""
+
+msgid "pending"
+msgstr ""
+
+msgid "Overpaid %s"
+msgstr ""
+
+msgid "✓ 0"
+msgstr ""
+
+msgid "Sub-agent of %1$s · %2$s · %3$s"
+msgstr ""
+
+msgid "Agent · %1$s · %2$s"
+msgstr ""
+
+msgid "Payouts"
+msgstr ""
+
+msgid "Referral link"
+msgstr ""
+
+msgid "Bangla name"
+msgstr ""
+
+msgid "Works under"
+msgstr ""
+
+msgid "Choose"
+msgstr ""
+
+msgid "That code is already used."
+msgstr ""
+
+msgid "Pay commission by"
+msgstr ""
+
+msgid "Account or number"
+msgstr ""
+
+msgid "Fixed per pilgrim"
+msgstr ""
+
+msgid "Whole taka"
+msgstr ""
+
+msgid "% of contract"
+msgstr ""
+
+msgid "0 to 30"
+msgstr ""
+
+msgid "Sub-agent keeps"
+msgstr ""
+
+msgid "Use the default"
+msgstr ""
+
+msgid "On booking"
+msgstr ""
+
+msgid "When fully paid"
+msgstr ""
+
+msgid "When visa is issued"
+msgstr ""
+
+msgid "A Quad pilgrim at ৳1,45,000 uses this rule. Changing the rule only affects pilgrims linked from now on."
+msgstr ""
+
+msgid "Create agent"
+msgstr ""
+
+msgid "Archive only when nothing is owed and sub-agents are moved or archived."
+msgstr ""
+
+msgid "Archive agent"
+msgstr ""
+
+msgid "Recalculate pending lines"
+msgstr ""
+
+msgid "via %s"
+msgstr ""
+
+msgid "contract %s"
+msgstr ""
+
+msgid "agent share"
+msgstr ""
+
+msgid "No commission lines yet"
+msgstr ""
+
+msgid "Earned commission is paid out together; there is no per-pilgrim payout."
+msgstr ""
+
+msgid "Record a payout"
+msgstr ""
+
+msgid "Save payout"
+msgstr ""
+
+msgid "Why void this payout?"
+msgstr ""
+
+msgid "Payouts are never deleted. A wrong entry is voided with a reason."
+msgstr ""
+
+msgid "Share this link. The inquiry keeps the code."
+msgstr ""
+
+msgid "Download QR (PNG)"
+msgstr ""
+
+msgid "Inquiries from link: %1$d · Booked: %2$d"
+msgstr ""
+
+msgid "When is commission earned?"
+msgstr ""
+
+msgid "Before this, a pilgrim's commission shows as Pending. Agents can override it."
+msgstr ""
+
+msgid "Owed to agents"
+msgstr ""
+
+msgid "Pilgrims by source"
+msgstr ""
+
+msgid "Commission earned per month"
+msgstr ""
+
+msgid "Owed by agent"
+msgstr ""
+
+msgid "Referral links booked"
+msgstr ""
+
+msgid "Ref: %s (unknown code)"
+msgstr ""
+
+msgid "Create agent with this code"
+msgstr ""
+
+msgid "Ref: %1$s · %2$s"
+msgstr ""
+
+msgid "Came through"
+msgstr ""
+
+msgid "Came through %1$s (%2$s)"
+msgstr ""
+
+msgid "Agent copy"
+msgstr ""
+
+msgid "%s%% of contract"
+msgstr ""
+
+msgid "%s per pilgrim"
+msgstr ""
+
+msgid "%1$s to sub-agent · %2$s to %3$s"
+msgstr ""
+
+msgid "Earned on booking"
+msgstr ""
+
+msgid "Earned when fully paid"
+msgstr ""
+
+msgid "Earned when the visa is issued"
+msgstr ""
+
+msgid "Cancelled · %s"
+msgstr ""
+
+msgid "Pending · visa %s"
+msgstr ""
+
+msgid "The code needs 2 to 10 letters or digits."
+msgstr ""
+
+msgid "A sub-agent needs an active agent above them."
+msgstr ""
+
+msgid "%d pilgrims through agents"
+msgstr ""
+
+msgid "All agents"
+msgstr ""
+
+msgid "Set agent…"
+msgstr ""
+
+msgid "Archived agent"
+msgstr ""
+
+msgid "Some earned commission was already paid out, so those lines stayed."
+msgstr ""
+
+msgid "Rules, referral links, payouts"
+msgstr ""
+
+msgid "%1$s added agent %2$s"
+msgstr ""
+
+msgid "%1$s updated agent %2$s"
+msgstr ""
+
+msgid "%1$s changed the commission rule for %2$s"
+msgstr ""
+
+msgid "%1$s linked %2$s to %3$s"
+msgstr ""
+
+msgid "%1$s removed the agent from %2$s"
+msgstr ""
+
+msgid "%1$s paid %2$s to %3$s"
+msgstr ""
+
+msgid "%1$s voided a payout of %2$s for %3$s"
+msgstr ""
+
+msgid "%1$s set commission to be earned %2$s"
+msgstr ""
+
+msgid "Assalamu alaikum %1$s. Commission statement: earned %2$s, paid %3$s, owed %4$s. — %5$s"
+msgstr ""

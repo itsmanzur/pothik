@@ -3948,3 +3948,288 @@ msgstr "আসসালামু আলাইকুম %1$s। আমরা %3$s
 
 msgid "Assalamu alaikum %1$s. A gentle reminder: installment %2$d of %3$s for %4$s was due on %5$s. Balance %6$s. You can pay by bKash/Nagad to %7$s. — %8$s"
 msgstr "আসসালামু আলাইকুম %1$s। মনে করিয়ে দিচ্ছি: %4$s-এর %3$s কিস্তি %2$d, তারিখ ছিল %5$s। বকেয়া %6$s। বিকাশ/নগদে %7$s-এ দিতে পারেন। — %8$s"
+
+msgid "Partner commission rules, referral links, payouts & statements"
+msgstr "পার্টনার কমিশনের নিয়ম, রেফারেল লিংক, পরিশোধ ও স্টেটমেন্ট"
+
+msgid "Agents & commission"
+msgstr "এজেন্ট ও কমিশন"
+
+msgid "Partner commission rules, referral links, payouts and statements."
+msgstr "পার্টনার কমিশনের নিয়ম, রেফারেল লিংক, পরিশোধ ও স্টেটমেন্ট।"
+
+msgid "Who brought the pilgrim, what they earn, and what the office still owes."
+msgstr "হাজিকে কে এনেছেন, তিনি কত পাবেন, অফিসের কাছে এখনো কত বাকি।"
+
+msgid "Pilgrims through agents"
+msgstr "এজেন্টের মাধ্যমে হাজি"
+
+msgid "%1$d of %2$d pilgrims this season"
+msgstr "এ মৌসুমে %2$d জনের মধ্যে %1$d জন"
+
+msgid "Commission earned"
+msgstr "কমিশন হয়েছে"
+
+msgid "Paid to agents"
+msgstr "এজেন্টকে দেওয়া"
+
+msgid "Owed now · %d agents"
+msgstr "এখন বাকি · %d জন এজেন্ট"
+
+msgid "Search agent, area or code"
+msgstr "এজেন্ট, এলাকা বা কোড খুঁজুন"
+
+msgid "Owed"
+msgstr "বাকি"
+
+msgid "Agents"
+msgstr "এজেন্ট"
+
+msgid "Sub-agents"
+msgstr "সাব-এজেন্ট"
+
+msgid "New agent"
+msgstr "নতুন এজেন্ট"
+
+msgid "Rule"
+msgstr "নিয়ম"
+
+msgid "Earned"
+msgstr "হয়েছে"
+
+msgid "Sub-agent"
+msgstr "সাব-এজেন্ট"
+
+msgid "%d via sub-agents"
+msgstr "সাব-এজেন্টের মাধ্যমে %d"
+
+msgid "pending"
+msgstr "অপেক্ষায়"
+
+msgid "Overpaid %s"
+msgstr "বেশি দেওয়া %s"
+
+msgid "✓ 0"
+msgstr "✓ ০"
+
+msgid "Sub-agent of %1$s · %2$s · %3$s"
+msgstr "%1$s-এর সাব-এজেন্ট · %2$s · %3$s"
+
+msgid "Agent · %1$s · %2$s"
+msgstr "এজেন্ট · %1$s · %2$s"
+
+msgid "Payouts"
+msgstr "পরিশোধ"
+
+msgid "Referral link"
+msgstr "রেফারেল লিংক"
+
+msgid "Bangla name"
+msgstr "বাংলা নাম"
+
+msgid "Works under"
+msgstr "কার অধীনে"
+
+msgid "Choose"
+msgstr "বেছে নিন"
+
+msgid "That code is already used."
+msgstr "এই কোড আগেই আছে।"
+
+msgid "Pay commission by"
+msgstr "কমিশন দেবেন"
+
+msgid "Account or number"
+msgstr "অ্যাকাউন্ট বা নম্বর"
+
+msgid "Fixed per pilgrim"
+msgstr "প্রতি হাজিতে নির্দিষ্ট"
+
+msgid "Whole taka"
+msgstr "পূর্ণ টাকা"
+
+msgid "% of contract"
+msgstr "চুক্তির %"
+
+msgid "0 to 30"
+msgstr "০ থেকে ৩০"
+
+msgid "Sub-agent keeps"
+msgstr "সাব-এজেন্ট রাখবেন"
+
+msgid "Use the default"
+msgstr "ডিফল্ট ব্যবহার"
+
+msgid "On booking"
+msgstr "বুকিং হলে"
+
+msgid "When fully paid"
+msgstr "পুরো পরিশোধ হলে"
+
+msgid "When visa is issued"
+msgstr "ভিসা ইস্যু হলে"
+
+msgid "A Quad pilgrim at ৳1,45,000 uses this rule. Changing the rule only affects pilgrims linked from now on."
+msgstr "১,৪৫,০০০ টাকার কোয়াড হাজির ক্ষেত্রে এই নিয়ম। নিয়ম বদলালে শুধু এখন থেকে যুক্ত হাজিতে লাগবে।"
+
+msgid "Create agent"
+msgstr "এজেন্ট তৈরি"
+
+msgid "Archive only when nothing is owed and sub-agents are moved or archived."
+msgstr "বাকি না থাকলে এবং সাব-এজেন্ট সরিয়ে বা আর্কাইভ করলে তবেই আর্কাইভ।"
+
+msgid "Archive agent"
+msgstr "এজেন্ট আর্কাইভ"
+
+msgid "Recalculate pending lines"
+msgstr "অপেক্ষমাণ লাইন আবার হিসাব"
+
+msgid "via %s"
+msgstr "%s-এর মাধ্যমে"
+
+msgid "contract %s"
+msgstr "চুক্তি %s"
+
+msgid "agent share"
+msgstr "এজেন্টের অংশ"
+
+msgid "No commission lines yet"
+msgstr "এখনো কোনো কমিশন লাইন নেই"
+
+msgid "Earned commission is paid out together; there is no per-pilgrim payout."
+msgstr "হওয়া কমিশন একসাথে দেওয়া হয়; হাজি প্রতি আলাদা পরিশোধ নেই।"
+
+msgid "Record a payout"
+msgstr "একটি পরিশোধ লিখুন"
+
+msgid "Save payout"
+msgstr "পরিশোধ সেভ"
+
+msgid "Why void this payout?"
+msgstr "এই পরিশোধ কেন বাতিল?"
+
+msgid "Payouts are never deleted. A wrong entry is voided with a reason."
+msgstr "পরিশোধ মুছে যায় না। ভুল এন্ট্রি কারণসহ বাতিল হয়।"
+
+msgid "Share this link. The inquiry keeps the code."
+msgstr "এই লিংক দিন। এনকোয়ারিতে কোড থেকে যায়।"
+
+msgid "Download QR (PNG)"
+msgstr "QR ডাউনলোড (PNG)"
+
+msgid "Inquiries from link: %1$d · Booked: %2$d"
+msgstr "লিংক থেকে এনকোয়ারি: %1$d · বুক হয়েছে: %2$d"
+
+msgid "When is commission earned?"
+msgstr "কমিশন কখন হয়?"
+
+msgid "Before this, a pilgrim's commission shows as Pending. Agents can override it."
+msgstr "এর আগে হাজির কমিশন অপেক্ষায় থাকে। এজেন্ট আলাদা রাখতে পারেন।"
+
+msgid "Owed to agents"
+msgstr "এজেন্টদের বাকি"
+
+msgid "Pilgrims by source"
+msgstr "উৎস অনুযায়ী হাজি"
+
+msgid "Commission earned per month"
+msgstr "মাসে কত কমিশন হয়েছে"
+
+msgid "Owed by agent"
+msgstr "এজেন্ট অনুযায়ী বাকি"
+
+msgid "Referral links booked"
+msgstr "রেফারেল লিংক থেকে বুক"
+
+msgid "Ref: %s (unknown code)"
+msgstr "রেফ: %s (অজানা কোড)"
+
+msgid "Create agent with this code"
+msgstr "এই কোডে এজেন্ট তৈরি"
+
+msgid "Ref: %1$s · %2$s"
+msgstr "রেফ: %1$s · %2$s"
+
+msgid "Came through"
+msgstr "এসেছেন"
+
+msgid "Came through %1$s (%2$s)"
+msgstr "%1$s (%2$s)-এর মাধ্যমে এসেছেন"
+
+msgid "Agent copy"
+msgstr "এজেন্ট কপি"
+
+msgid "%s%% of contract"
+msgstr "চুক্তির %s%%"
+
+msgid "%s per pilgrim"
+msgstr "প্রতি হাজিতে %s"
+
+msgid "%1$s to sub-agent · %2$s to %3$s"
+msgstr "সাব-এজেন্ট %1$s · %3$s-কে %2$s"
+
+msgid "Earned on booking"
+msgstr "বুকিং হলেই কমিশন"
+
+msgid "Earned when fully paid"
+msgstr "পুরো পরিশোধ হলে কমিশন"
+
+msgid "Earned when the visa is issued"
+msgstr "ভিসা ইস্যু হলে কমিশন"
+
+msgid "Cancelled · %s"
+msgstr "বাতিল · %s"
+
+msgid "Pending · visa %s"
+msgstr "অপেক্ষায় · ভিসা %s"
+
+msgid "The code needs 2 to 10 letters or digits."
+msgstr "কোডে ২ থেকে ১০টি অক্ষর বা সংখ্যা লাগে।"
+
+msgid "A sub-agent needs an active agent above them."
+msgstr "সাব-এজেন্টের উপরে একজন সক্রিয় এজেন্ট লাগে।"
+
+msgid "%d pilgrims through agents"
+msgstr "এজেন্টের মাধ্যমে %d জন হাজি"
+
+msgid "All agents"
+msgstr "সব এজেন্ট"
+
+msgid "Set agent…"
+msgstr "এজেন্ট বসান…"
+
+msgid "Archived agent"
+msgstr "আর্কাইভ করা এজেন্ট"
+
+msgid "Some earned commission was already paid out, so those lines stayed."
+msgstr "কিছু হওয়া কমিশন আগেই দেওয়া হয়েছে, তাই সেই লাইন থেকে গেছে।"
+
+msgid "Rules, referral links, payouts"
+msgstr "নিয়ম, রেফারেল লিংক, পরিশোধ"
+
+msgid "%1$s added agent %2$s"
+msgstr "%1$s এজেন্ট %2$s যোগ করেছেন"
+
+msgid "%1$s updated agent %2$s"
+msgstr "%1$s এজেন্ট %2$s আপডেট করেছেন"
+
+msgid "%1$s changed the commission rule for %2$s"
+msgstr "%1$s %2$s-এর কমিশনের নিয়ম বদলেছেন"
+
+msgid "%1$s linked %2$s to %3$s"
+msgstr "%1$s %2$s-কে %3$s-এর সাথে যুক্ত করেছেন"
+
+msgid "%1$s removed the agent from %2$s"
+msgstr "%1$s %2$s-এর এজেন্ট সরিয়েছেন"
+
+msgid "%1$s paid %2$s to %3$s"
+msgstr "%1$s %3$s-কে %2$s দিয়েছেন"
+
+msgid "%1$s voided a payout of %2$s for %3$s"
+msgstr "%1$s %3$s-এর %2$s পরিশোধ বাতিল করেছেন"
+
+msgid "%1$s set commission to be earned %2$s"
+msgstr "%1$s কমিশন হওয়ার সময় %2$s করেছেন"
+
+msgid "Assalamu alaikum %1$s. Commission statement: earned %2$s, paid %3$s, owed %4$s. — %5$s"
+msgstr "আসসালামু আলাইকুম %1$s। কমিশন স্টেটমেন্ট: হয়েছে %2$s, দেওয়া %3$s, বাকি %4$s। — %5$s"

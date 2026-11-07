@@ -65,6 +65,7 @@ final class Plugin
         add_action('init', [I18n::class, 'load_textdomain'], 0);
         add_action('init', [PackagePage::class, 'register_shortcodes']);
         add_action('wp', [PackagePage::class, 'maybe_enqueue']);
+        Referral::register();
         add_filter('template_include', [PackagePage::class, 'template'], 1000);
     }
 

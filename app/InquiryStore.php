@@ -152,9 +152,14 @@ final class InquiryStore
             'package_title' => $package_title,
             'status' => 'new',
             'replied' => 0,
+            'ref' => Referral::sanitize(isset($post['ref']) ? (string) $post['ref'] : ''),
         ];
 
-        InquiryRepository::insert($inquiry_data);
+        $inquiry_id = InquiryRepository::insert($inquiry_data);
+        if ($inquiry_id !== '') {
+            $saved = InquiryRepository::find($inquiry_id);
+            do_action('pothik/inquiry_created', $inquiry_id, is_array($saved) ? $saved : $inquiry_data);
+        }
 
         // Send notification email to admin(s)
         self::send_notification_email($inquiry_data);

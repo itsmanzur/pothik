@@ -2383,6 +2383,18 @@
             if (drPkg) drPkg.textContent = pkg + ' · ' + time;
             if (drState) {
                 drState.innerHTML = '<span class="pill pk-pill ' + (replied ? 'done' : 'wait') + '">' + (replied ? (i18n.replied || 'Replied') : (i18n.waitingForReply || 'Waiting for reply')) + '</span>';
+                var refCode = tr.getAttribute('data-ref') || '';
+                if (refCode) {
+                    var refChip = document.createElement('span');
+                    refChip.className = 'pill pk-pill';
+                    refChip.id = 'drRef';
+                    refChip.textContent = 'Ref: ' + refCode;
+                    drState.appendChild(document.createTextNode(' '));
+                    drState.appendChild(refChip);
+                    if (typeof window.pothikProAgentRef === 'function') {
+                        window.pothikProAgentRef(refCode, refChip);
+                    }
+                }
             }
 
             var paxStr = a + ' adults';

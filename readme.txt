@@ -96,6 +96,12 @@ Add-ons extend Pothik through these hooks. The free plugin does not ship add-on 
 * `pothik/receipt_saved` — after the receipt is saved. Arguments: the option before, the option after.
 * `pothik/settings_saved` — after settings are saved. Arguments: the option before, the option after.
 * `pothik/settings_data` — inside the Data pane of the settings form. No arguments. Printed fields are saved with the rest of the form.
+* `pothik/inquiry_created` — after a public inquiry is saved. Arguments: the inquiry id, then the saved row.
+* `pothik/referral_cookie` — whether to store a referral code in the `pothik_ref` cookie. Default true. Return false to leave the cookie unset. The form still keeps a `ref` field for the same visit.
+
+== Privacy ==
+
+A package or catalog page that is opened with `?ref=` followed by 2–10 letters or digits stores that code in a first-party cookie named `pothik_ref` for 30 days (path `/`, SameSite=Lax). The cookie holds only that code. It is not HttpOnly, so the inquiry form can fill itself on a cached page. No name, phone, or other personal data is stored in it. Return false from `pothik/referral_cookie` to disable the cookie. The inquiry row stores the same code and shows it as “Ref: …” in the inquiry drawer and in the CSV export.
 * `pothik/demo_data` — after demo data is loaded or removed. Argument: `loaded` or `removed`.
 
 == Changelog ==
