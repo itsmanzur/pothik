@@ -4233,3 +4233,264 @@ msgstr "%1$s কমিশন হওয়ার সময় %2$s করেছ�
 
 msgid "Assalamu alaikum %1$s. Commission statement: earned %2$s, paid %3$s, owed %4$s. — %5$s"
 msgstr "আসসালামু আলাইকুম %1$s। কমিশন স্টেটমেন্ট: হয়েছে %2$s, দেওয়া %3$s, বাকি %4$s। — %5$s"
+
+msgid "Agent"
+msgstr "এজেন্ট"
+
+msgid "Code"
+msgstr "কোড"
+
+msgid "Passport, photo, vaccine and the other papers, kept off the public web."
+msgstr "পাসপোর্ট, ছবি, ভ্যাকসিন ও অন্য কাগজ। পাবলিক ওয়েবে থাকে না।"
+
+msgid "Passport, photo, vaccine and the other papers for this group."
+msgstr "এই গ্রুপের পাসপোর্ট, ছবি, ভ্যাকসিন ও অন্য কাগজ।"
+
+msgid "One group file. Papers stay off the public web."
+msgstr "একটা গ্রুপ ফাইল। কাগজ পাবলিক ওয়েবে থাকে না।"
+
+msgid "Papers to check"
+msgstr "যাচাইয়ের কাগজ"
+
+msgid "Missing papers in groups leaving within 30 days"
+msgstr "৩০ দিনের মধ্যে রওনা হওয়া গ্রুপে ঘাটতি কাগজ"
+
+msgid "Complete"
+msgstr "সম্পূর্ণ"
+
+msgid "To check"
+msgstr "যাচাই বাকি"
+
+msgid "Missing papers"
+msgstr "ঘাটতি কাগজ"
+
+msgid "Needs a new copy"
+msgstr "নতুন কপি লাগবে"
+
+msgid "not needed"
+msgstr "লাগবে না"
+
+msgid "checked"
+msgstr "ঠিক আছে"
+
+msgid "uploaded to check"
+msgstr "আপলোড হয়েছে, যাচাই বাকি"
+
+msgid "needs a new copy"
+msgstr "নতুন কপি লাগবে"
+
+msgid "missing"
+msgstr "ঘাটতি"
+
+msgid "Paper types for this group"
+msgstr "এই গ্রুপের কাগজের ধরন"
+
+msgid "Check the current rule with your Saudi company"
+msgstr "বর্তমান নিয়ম আপনার সৌদি কোম্পানির সঙ্গে মিলিয়ে নিন"
+
+msgid "Save order"
+msgstr "ক্রম সেভ"
+
+msgid "English name"
+msgstr "ইংরেজি নাম"
+
+msgid "Hint"
+msgstr "ইঙ্গিত"
+
+msgid "Optional"
+msgstr "ঐচ্ছিক"
+
+msgid "Only some pilgrims"
+msgstr "কিছু যাত্রী"
+
+msgid "Younger than"
+msgstr "এর চেয়ে কম বয়স"
+
+msgid "Photo or PDF"
+msgstr "ছবি বা পিডিএফ"
+
+msgid "Photo only"
+msgstr "শুধু ছবি"
+
+msgid "Add type"
+msgstr "ধরন যোগ"
+
+msgid "Save as agency default"
+msgstr "এজেন্সির ডিফল্ট হিসেবে সেভ"
+
+msgid "Reset to agency default"
+msgstr "এজেন্সির ডিফল্টে ফেরত"
+
+msgid "Download for visa"
+msgstr "ভিসার জন্য ডাউনলোড"
+
+msgid "Passport, photo and vaccine, only when passport and photo are checked. More than 300 files asks you to split by family."
+msgstr "পাসপোর্ট ও ছবি যাচাই হলে পাসপোর্ট, ছবি ও ভ্যাকসিন। ৩০০ ফাইলের বেশি হলে পরিবারে ভাগ করে নিন।"
+
+msgid "Passport photo page"
+msgstr "পাসপোর্টের ছবির পাতা"
+
+msgid "Photo white background"
+msgstr "সাদা ব্যাকগ্রাউন্ডের ছবি"
+
+msgid "Meningitis vaccine card"
+msgstr "মেনিনজাইটিসের কার্ড"
+
+msgid "Remind missing"
+msgstr "ঘাটতির কথা মনে করিয়ে দিন"
+
+msgid "Reminded %s"
+msgstr "মনে করানো হয়েছে %s"
+
+msgid "Nothing missing in this list."
+msgstr "এই তালিকায় ঘাটতি নেই।"
+
+msgid "Not needed"
+msgstr "লাগবে না"
+
+msgid "Download"
+msgstr "ডাউনলোড"
+
+msgid "Upload"
+msgstr "আপলোড"
+
+msgid "Replace"
+msgstr "বদলান"
+
+msgid "Mark checked"
+msgstr "যাচাই হয়েছে"
+
+msgid "Blurry"
+msgstr "ঝাপসা"
+
+msgid "Cut off"
+msgstr "কাটা"
+
+msgid "Expired"
+msgstr "মেয়াদোত্তীর্ণ"
+
+msgid "Wrong document"
+msgstr "ভুল কাগজ"
+
+msgid "Previous versions"
+msgstr "আগের কপি"
+
+msgid "Ask for missing"
+msgstr "যা নেই, তা চাইুন"
+
+msgid "Open PDF"
+msgstr "পিডিএফ খুলুন"
+
+msgid "Papers"
+msgstr "কাগজ"
+
+msgid "Open the papers"
+msgstr "কাগজ খুলুন"
+
+msgid "Papers complete"
+msgstr "কাগজ সম্পূর্ণ"
+
+msgid "Pilgrim papers"
+msgstr "যাত্রীর কাগজ"
+
+msgid "Protected"
+msgstr "সুরক্ষিত"
+
+msgid "This folder can be opened from the web. Move it outside public_html with POTHIK_PRIVATE_DIR."
+msgstr "এই ফোল্ডার ওয়েব থেকে খোলা যায়। POTHIK_PRIVATE_DIR দিয়ে public_html-এর বাইরে নিন।"
+
+msgid "Keep papers after the group returns"
+msgstr "গ্রুপ ফেরার পর কাগজ রাখা"
+
+msgid "Keep"
+msgstr "রেখে দিন"
+
+msgid "Largest paper"
+msgstr "সবচেয়ে বড় কাগজ"
+
+msgid "Stamp downloaded photos"
+msgstr "ডাউনলোড করা ছবিতে সিল"
+
+msgid "PDF files are downloaded as they are."
+msgstr "পিডিএফ যেমন আছে তেমনই নামে।"
+
+msgid "This file is larger than %d MB."
+msgstr "এই ফাইল %d এমবির বড়।"
+
+msgid "Choose which paper this is."
+msgstr "এটা কোন কাগজ, বেছে নিন।"
+
+msgid "Choose a file."
+msgstr "একটা ফাইল বেছে নিন।"
+
+msgid "This paper needs a photo."
+msgstr "এই কাগজে ছবি লাগবে।"
+
+msgid "This file is already on this pilgrim."
+msgstr "এই ফাইল এই যাত্রীর কাছে আগেই আছে।"
+
+msgid "The file could not be stored."
+msgstr "ফাইল রাখা যায়নি।"
+
+msgid "That paper is gone."
+msgstr "সেই কাগজ আর নেই।"
+
+msgid "ZIP is not available on this server."
+msgstr "এই সার্ভারে জিপ নেই।"
+
+msgid "That is more than 300 files. Download one family at a time."
+msgstr "৩০০ ফাইলের বেশি। এক পরিবার করে নামান।"
+
+msgid "The ZIP could not be built."
+msgstr "জিপ বানানো যায়নি।"
+
+msgid "%d documents deleted by retention"
+msgstr "নিয়ম অনুযায়ী %dটা কাগজ মুছে গেছে"
+
+msgid "This phone photo (HEIC) cannot be converted here. Send a JPG."
+msgstr "এই ফোনের ছবি (HEIC) এখানে বদলানো যায় না। JPG পাঠান।"
+
+msgid "Use a JPG, PNG, WEBP or PDF."
+msgstr "JPG, PNG, WEBP বা PDF দিন।"
+
+msgid "This PDF is not allowed."
+msgstr "এই পিডিএফ নেওয়া যাবে না।"
+
+msgid "The photo could not be saved."
+msgstr "ছবি সেভ হয়নি।"
+
+msgid "Assalamu alaikum %1$s, we still need these papers: %2$s"
+msgstr "আসসালামু আলাইকুম %1$s, এই কাগজগুলো এখনো লাগবে: %2$s"
+
+msgid "The paper type could not be saved."
+msgstr "কাগজের ধরন সেভ হয়নি।"
+
+msgid "Choose a pilgrim first."
+msgstr "আগে একজন যাত্রী বেছে নিন।"
+
+msgid "Passport number stays on this desk. Papers open from the side card."
+msgstr "পাসপোর্ট নম্বর এই ডেস্কেই থাকে। কাগজ পাশের কার্ড থেকে খুলবে।"
+
+msgid "%1$s uploaded a paper for %2$s"
+msgstr "%1$s %2$s-এর একটা কাগজ তুলেছেন"
+
+msgid "%1$s replaced a paper for %2$s"
+msgstr "%1$s %2$s-এর একটা কাগজ বদলেছেন"
+
+msgid "%1$s checked a paper"
+msgstr "%1$s একটা কাগজ যাচাই করেছেন"
+
+msgid "%1$s marked a paper as needing a new copy"
+msgstr "%1$s একটা কাগজে নতুন কপি চেয়েছেন"
+
+msgid "%1$s viewed a paper"
+msgstr "%1$s একটা কাগজ দেখেছেন"
+
+msgid "%1$s downloaded a paper"
+msgstr "%1$s একটা কাগজ নামিয়েছেন"
+
+msgid "%1$s downloaded %2$s papers for visa"
+msgstr "%1$s ভিসার জন্য %2$sটা কাগজ নামিয়েছেন"
+
+msgid "%1$s marked a paper reminder for %2$s"
+msgstr "%1$s %2$s-কে কাগজের কথা মনে করিয়েছেন"

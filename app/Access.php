@@ -33,6 +33,7 @@ final class Access
         'pothik-settings' => 'settings',
         'pothik-departures' => 'groups',
         'pothik-pilgrims' => 'pilgrims',
+        'pothik-documents' => 'pilgrims',
         'pothik-rooming' => 'rooming',
         'pothik-ledger' => 'ledger',
         'pothik-visa' => 'visa',
@@ -81,7 +82,17 @@ final class Access
 
     public static function area_for_module(string $id): string
     {
-        return $id === 'package' ? 'packages' : ($id === 'departures' ? 'groups' : $id);
+        if ($id === 'package') {
+            return 'packages';
+        }
+        if ($id === 'departures') {
+            return 'groups';
+        }
+        if ($id === 'documents') {
+            return 'pilgrims';
+        }
+
+        return $id;
     }
 
     public static function readonly(): bool

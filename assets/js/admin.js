@@ -3443,6 +3443,12 @@
         if (typeof window.pothikProPay === 'function') {
             window.pothikProPay();
         }
+        if (typeof window.pothikProAgent === 'function') {
+            window.pothikProAgent();
+        }
+        if (typeof window.pothikProDocs === 'function') {
+            window.pothikProDocs();
+        }
     }
 
     // URL of a Pothik screen we can swap in, or null.

@@ -4227,3 +4227,264 @@ msgstr ""
 
 msgid "Assalamu alaikum %1$s. Commission statement: earned %2$s, paid %3$s, owed %4$s. — %5$s"
 msgstr ""
+
+msgid "Agent"
+msgstr ""
+
+msgid "Code"
+msgstr ""
+
+msgid "Passport, photo, vaccine and the other papers, kept off the public web."
+msgstr ""
+
+msgid "Passport, photo, vaccine and the other papers for this group."
+msgstr ""
+
+msgid "One group file. Papers stay off the public web."
+msgstr ""
+
+msgid "Papers to check"
+msgstr ""
+
+msgid "Missing papers in groups leaving within 30 days"
+msgstr ""
+
+msgid "Complete"
+msgstr ""
+
+msgid "To check"
+msgstr ""
+
+msgid "Missing papers"
+msgstr ""
+
+msgid "Needs a new copy"
+msgstr ""
+
+msgid "not needed"
+msgstr ""
+
+msgid "checked"
+msgstr ""
+
+msgid "uploaded to check"
+msgstr ""
+
+msgid "needs a new copy"
+msgstr ""
+
+msgid "missing"
+msgstr ""
+
+msgid "Paper types for this group"
+msgstr ""
+
+msgid "Check the current rule with your Saudi company"
+msgstr ""
+
+msgid "Save order"
+msgstr ""
+
+msgid "English name"
+msgstr ""
+
+msgid "Hint"
+msgstr ""
+
+msgid "Optional"
+msgstr ""
+
+msgid "Only some pilgrims"
+msgstr ""
+
+msgid "Younger than"
+msgstr ""
+
+msgid "Photo or PDF"
+msgstr ""
+
+msgid "Photo only"
+msgstr ""
+
+msgid "Add type"
+msgstr ""
+
+msgid "Save as agency default"
+msgstr ""
+
+msgid "Reset to agency default"
+msgstr ""
+
+msgid "Download for visa"
+msgstr ""
+
+msgid "Passport, photo and vaccine, only when passport and photo are checked. More than 300 files asks you to split by family."
+msgstr ""
+
+msgid "Passport photo page"
+msgstr ""
+
+msgid "Photo white background"
+msgstr ""
+
+msgid "Meningitis vaccine card"
+msgstr ""
+
+msgid "Remind missing"
+msgstr ""
+
+msgid "Reminded %s"
+msgstr ""
+
+msgid "Nothing missing in this list."
+msgstr ""
+
+msgid "Not needed"
+msgstr ""
+
+msgid "Download"
+msgstr ""
+
+msgid "Upload"
+msgstr ""
+
+msgid "Replace"
+msgstr ""
+
+msgid "Mark checked"
+msgstr ""
+
+msgid "Blurry"
+msgstr ""
+
+msgid "Cut off"
+msgstr ""
+
+msgid "Expired"
+msgstr ""
+
+msgid "Wrong document"
+msgstr ""
+
+msgid "Previous versions"
+msgstr ""
+
+msgid "Ask for missing"
+msgstr ""
+
+msgid "Open PDF"
+msgstr ""
+
+msgid "Papers"
+msgstr ""
+
+msgid "Open the papers"
+msgstr ""
+
+msgid "Papers complete"
+msgstr ""
+
+msgid "Pilgrim papers"
+msgstr ""
+
+msgid "Protected"
+msgstr ""
+
+msgid "This folder can be opened from the web. Move it outside public_html with POTHIK_PRIVATE_DIR."
+msgstr ""
+
+msgid "Keep papers after the group returns"
+msgstr ""
+
+msgid "Keep"
+msgstr ""
+
+msgid "Largest paper"
+msgstr ""
+
+msgid "Stamp downloaded photos"
+msgstr ""
+
+msgid "PDF files are downloaded as they are."
+msgstr ""
+
+msgid "This file is larger than %d MB."
+msgstr ""
+
+msgid "Choose which paper this is."
+msgstr ""
+
+msgid "Choose a file."
+msgstr ""
+
+msgid "This paper needs a photo."
+msgstr ""
+
+msgid "This file is already on this pilgrim."
+msgstr ""
+
+msgid "The file could not be stored."
+msgstr ""
+
+msgid "That paper is gone."
+msgstr ""
+
+msgid "ZIP is not available on this server."
+msgstr ""
+
+msgid "That is more than 300 files. Download one family at a time."
+msgstr ""
+
+msgid "The ZIP could not be built."
+msgstr ""
+
+msgid "%d documents deleted by retention"
+msgstr ""
+
+msgid "This phone photo (HEIC) cannot be converted here. Send a JPG."
+msgstr ""
+
+msgid "Use a JPG, PNG, WEBP or PDF."
+msgstr ""
+
+msgid "This PDF is not allowed."
+msgstr ""
+
+msgid "The photo could not be saved."
+msgstr ""
+
+msgid "Assalamu alaikum %1$s, we still need these papers: %2$s"
+msgstr ""
+
+msgid "The paper type could not be saved."
+msgstr ""
+
+msgid "Choose a pilgrim first."
+msgstr ""
+
+msgid "Passport number stays on this desk. Papers open from the side card."
+msgstr ""
+
+msgid "%1$s uploaded a paper for %2$s"
+msgstr ""
+
+msgid "%1$s replaced a paper for %2$s"
+msgstr ""
+
+msgid "%1$s checked a paper"
+msgstr ""
+
+msgid "%1$s marked a paper as needing a new copy"
+msgstr ""
+
+msgid "%1$s viewed a paper"
+msgstr ""
+
+msgid "%1$s downloaded a paper"
+msgstr ""
+
+msgid "%1$s downloaded %2$s papers for visa"
+msgstr ""
+
+msgid "%1$s marked a paper reminder for %2$s"
+msgstr ""
