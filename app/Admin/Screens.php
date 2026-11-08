@@ -105,11 +105,14 @@ final class Screens
         if (class_exists('IntlDateFormatter')) {
             try {
                 $locale = I18n::is_bn() ? 'bn_BD' : 'en_GB';
+                // ICU rejects a bare offset like "+00:00" but accepts "GMT+00:00".
+                $zone = wp_timezone_string();
+                $zone = preg_match('/^[+-]\d{2}:\d{2}$/', $zone) ? 'GMT' . $zone : $zone;
                 $fmt = new \IntlDateFormatter(
                     $locale . '@calendar=islamic-umalqura',
                     \IntlDateFormatter::LONG,
                     \IntlDateFormatter::NONE,
-                    wp_timezone_string(),
+                    $zone,
                     \IntlDateFormatter::TRADITIONAL,
                     'd MMMM y'
                 );
