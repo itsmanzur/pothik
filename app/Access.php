@@ -34,6 +34,7 @@ final class Access
         'pothik-departures' => 'groups',
         'pothik-pilgrims' => 'pilgrims',
         'pothik-documents' => 'pilgrims',
+        'pothik-messages' => 'messages',
         'pothik-rooming' => 'rooming',
         'pothik-ledger' => 'ledger',
         'pothik-visa' => 'visa',
@@ -62,7 +63,7 @@ final class Access
         if (current_user_can('manage_options')) {
             return true;
         }
-        foreach (array_merge(self::AREAS, ['groups', 'pilgrims', 'rooming', 'visa', 'ledger', 'receipt', 'team', 'activity']) as $area) {
+        foreach (array_merge(self::AREAS, ['groups', 'pilgrims', 'rooming', 'visa', 'ledger', 'receipt', 'messages', 'team', 'activity']) as $area) {
             if (self::can($area, 'view')) {
                 return true;
             }
