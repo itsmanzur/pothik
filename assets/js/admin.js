@@ -1145,7 +1145,8 @@
         if (!form || !form.getAttribute) {
             return;
         }
-        var message = form.getAttribute('data-pk-confirm');
+        var button = event.submitter && event.submitter.getAttribute ? event.submitter : null;
+        var message = (button && button.getAttribute('data-pk-confirm')) || form.getAttribute('data-pk-confirm');
         if (message && !window.confirm(message)) {
             event.preventDefault();
         }
