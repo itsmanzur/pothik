@@ -38,6 +38,7 @@ final class Access
         'pothik-portal' => 'portal',
         'pothik-plan' => 'plan',
         'pothik-cards' => 'pilgrims',
+        'pothik-travel' => 'pilgrims',
         'pothik-rooming' => 'rooming',
         'pothik-ledger' => 'ledger',
         'pothik-visa' => 'visa',
