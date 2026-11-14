@@ -3,7 +3,7 @@
  * Plugin Name:       Pothik
  * Plugin URI:        https://thereadscope.com/pothik
  * Description:       Create Umrah and Hajj package landing pages, collect pilgrim inquiries with WhatsApp integration, and print payment receipts.
- * Version:           0.3.0
+ * Version:           1.0.0
  * Requires at least: 6.5
  * Requires PHP:      8.1
  * Author:            itsmanzur
@@ -22,7 +22,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('POTHIK_VERSION', '0.3.0');
+define('POTHIK_VERSION', '1.0.0');
 define('POTHIK_FILE', __FILE__);
 define('POTHIK_DIR', plugin_dir_path(__FILE__));
 define('POTHIK_URL', plugin_dir_url(__FILE__));

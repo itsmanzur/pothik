@@ -5,7 +5,7 @@ Tags: umrah, hajj, travel agency, package, inquiry
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 0.3.0
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -121,33 +121,12 @@ Pothik stores the following. Its text is also added to the site's privacy policy
 
 == Changelog ==
 
-= 0.3.0 =
-* Removed the 40-package limit. You can create as many packages as you need.
-* The referral code is now filled in by the plugin's script file instead of an inline script.
-* Added the cookies and inquiry data to the site's privacy policy guide, and documented WhatsApp links under External services.
-* Redesigned admin:
-  - Haramain skyline hero on Desk with Makkah/Madinah crossfade, live Makkah local time, Hijri date, and countdowns.
-  - Interactive reply queue with one-tap status toggling and undo toast notification.
-  - Packages grid with deterministic color gradient covers, hotel distance meters, and AJAX publish toggling.
-  - 3-column Package editor with sticky progress nav, live smartphone preview, star rating widget, and range distance sliders.
-  - Server-side inquiries table with live search, room share filter, bulk actions, and slide-over detail drawer with quick WhatsApp templates.
-  - Branded payment receipt screen with English & Bengali words generator, channel radio tiles, and ticket slip preview.
-  - Analytics dashboard with segmented 7d/30d/All range, trend %, SVG column chart, room share donut, and reply rate semicircle gauge.
-  - 2-column Settings tabs with media library logo dropzone, email tagger, and rate limit slider.
-  - Unified Pro comparison page.
-  - Removed all legacy CSS and optimized vanilla JavaScript bundle.
-
-= 0.2.0 =
-* Major release: Custom database repository for inquiries with UTF-8 CSV export.
-* Added signed time-traps and configurable IP rate limiting for spam protection.
-* Added package status workflow (Draft / Published) and 40-package free tier.
-* Added frontend shortcodes `[pothik_package]` and `[pothik_catalog]`.
-* Added Settings screen with agency branding, logo media picker, and contact fallback.
-* Added instant admin email notifications on new inquiries with one-tap wa.me reply link.
-* Added post-submission WhatsApp CTA button with prefilled inquiry details.
-* Added self-hosted Noto Sans Bengali and Source Sans 3 WOFF2 fonts.
-* Added gettext i18n support with `bn_BD` translations and standard text domain.
-* Collapsed locked submenus into a single unified Pothik Pro comparison page.
-
-= 0.1.0 =
-* Initial internal release.
+= 1.0.0 =
+* First public release.
+* Package landing pages with Makkah and Madinah hotels, distances, flight route and Quad, Triple, Double and Single prices. No limit on the number of packages.
+* Inquiry form with honeypot, signed time-trap and IP rate limit. Inquiries are saved in a custom table, with search, filters, bulk actions and a UTF-8 CSV export.
+* Email notification and one-tap WhatsApp reply link for every new inquiry.
+* Payment receipt slip with English and Bengali amount in words.
+* Analytics, shortcodes `[pothik_package]` and `[pothik_catalog]`, and a referral code kept in a first-party cookie.
+* English and Bengali (বাংলা) interface with self-hosted fonts.
+* Cookies and inquiry data are added to the site's privacy policy guide.

@@ -10,6 +10,8 @@
  * @package Pothik
  */
 
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- Template variables are local to the function that includes this file.
+
 declare(strict_types=1);
 
 use Pothik\I18n;
