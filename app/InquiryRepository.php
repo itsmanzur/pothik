@@ -813,9 +813,18 @@ final class InquiryRepository
             'Ref',
         ]);
 
+        // Visitors fill these fields, so a cell that looks like a formula is made harmless.
+        $safe = static function ($value): string {
+            $text = (string) $value;
+            if ($text !== '' && !is_numeric($text) && in_array($text[0], ['=', '+', '-', '@', "\t", "\r"], true)) {
+                return "'" . $text;
+            }
+
+            return $text;
+        };
         foreach ($rows as $r) {
             $local_date = self::format_local_datetime((string) $r->created_gmt);
-            fputcsv($output, [
+            fputcsv($output, array_map($safe, [
                 $r->uuid,
                 $r->created_gmt,
                 $local_date,
@@ -835,7 +844,7 @@ final class InquiryRepository
                 ((int) $r->demo === 1) ? 'Yes' : 'No',
                 $r->note,
                 (string) ($r->ref ?? ''),
-            ]);
+            ]));
         }
 
         // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose

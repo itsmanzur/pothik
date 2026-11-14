@@ -353,12 +353,6 @@ final class Chrome
             }
         }
 
-        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-        if (isset($_GET['error']) && $_GET['error'] === 'limit') {
-            $msg = I18n::t('Free version is limited to 40 packages. Upgrade to Pothik Pro for unlimited packages.');
-            echo '<div data-pk-flash="' . esc_attr($msg) . '" class="notice notice-warning is-dismissible pk-flash"><p>' . esc_html($msg) . '</p></div>';
-            $flashed = true;
-        }
     }
 
     /**

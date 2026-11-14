@@ -1544,15 +1544,6 @@
                 if (liveBtn) liveBtn.textContent = live;
                 if (draftBtn) draftBtn.textContent = draft;
             }
-            var usage = document.querySelector('.usage, .pk-usage');
-            if (usage) {
-                var pct = Math.min(100, Math.round((total / 40) * 100));
-                var meter = usage.querySelector('i');
-                if (meter) {
-                    meter.style.width = pct + '%';
-                    meter.setAttribute('data-pk-w', pct);
-                }
-            }
         }
 
         function filterCards() {

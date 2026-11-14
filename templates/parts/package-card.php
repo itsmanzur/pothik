@@ -21,10 +21,10 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-$id = (string) ($package['id'] ?? '');
-$title = I18n::field($package, 'title');
-if ($title === '') {
-    $title = I18n::t('Untitled package');
+$card_id = (string) ($package['id'] ?? '');
+$card_title = I18n::field($package, 'title');
+if ($card_title === '') {
+    $card_title = I18n::t('Untitled package');
 }
 $prices = is_array($package['prices'] ?? null) ? $package['prices'] : [];
 $quad = (int) ($prices['quad'] ?? 0);
@@ -40,21 +40,21 @@ $mh = I18n::field($package, 'makkah_hotel');
 $dh = I18n::field($package, 'madinah_hotel');
 $route = I18n::field($package, 'route');
 $kicker = I18n::field($package, 'kicker');
-$colors = Catalog::colors($id);
-$href = PackagePage::url($id);
+$colors = Catalog::colors($card_id);
+$href = PackagePage::url($card_id);
 $inclusions = I18n::lines($package, 'inclusions');
 $shown = array_slice($inclusions, 0, 4);
-$more = max(0, count($inclusions) - count($shown));
+$card_more = max(0, count($inclusions) - count($shown));
 $draft = ($package['status'] ?? 'draft') !== 'published';
-$wa = Format::whatsapp_href($contact['whatsapp'], sprintf(I18n::t('I want to ask about %s.'), $title));
+$wa = Format::whatsapp_href($contact['whatsapp'], sprintf(I18n::t('I want to ask about %s.'), $card_title));
 $hotels = trim($mh . ' ' . $dh);
 $depart = Catalog::depart_label($package);
 ?>
 <article
     class="card"
     style="<?php echo esc_attr('--c1:' . $colors[0] . ';--c2:' . $colors[1] . ';animation-delay:' . ($card_index * 60) . 'ms'); ?>"
-    data-id="<?php echo esc_attr($id); ?>"
-    data-title="<?php echo esc_attr(strtolower($title)); ?>"
+    data-id="<?php echo esc_attr($card_id); ?>"
+    data-title="<?php echo esc_attr(strtolower($card_title)); ?>"
     data-hotels="<?php echo esc_attr(strtolower($hotels)); ?>"
     data-days="<?php echo esc_attr((string) $days); ?>"
     data-price="<?php echo esc_attr((string) $quad); ?>"
@@ -73,7 +73,7 @@ $depart = Catalog::depart_label($package);
     data-ramadan="<?php echo !empty($package['is_ramadan']) ? '1' : '0'; ?>"
 >
     <label class="cmp">
-        <input type="checkbox" data-pk-cmp value="<?php echo esc_attr($id); ?>">
+        <input type="checkbox" data-pk-cmp value="<?php echo esc_attr($card_id); ?>">
         <?php echo esc_html(I18n::t('Compare')); ?>
     </label>
     <div class="cover">
@@ -131,7 +131,7 @@ $depart = Catalog::depart_label($package);
         </div>
     </div>
     <div class="body">
-        <h3><a href="<?php echo esc_url($href); ?>"><?php echo esc_html($title); ?></a></h3>
+        <h3><a href="<?php echo esc_url($href); ?>"><?php echo esc_html($card_title); ?></a></h3>
         <?php if ($route !== '') : ?>
             <div class="route"><svg class="i sm"><use href="#i-route"/></svg><?php echo esc_html($route); ?></div>
         <?php endif; ?>
@@ -164,8 +164,8 @@ $depart = Catalog::depart_label($package);
                 <?php foreach ($shown as $item) : ?>
                     <span><svg class="i sm"><use href="#i-<?php echo esc_attr(Catalog::inclusion_icon($item)); ?>"/></svg><?php echo esc_html($item); ?></span>
                 <?php endforeach; ?>
-                <?php if ($more > 0) : ?>
-                    <span><?php echo esc_html(sprintf(I18n::t('+%d more'), $more)); ?></span>
+                <?php if ($card_more > 0) : ?>
+                    <span><?php echo esc_html(sprintf(I18n::t('+%d more'), $card_more)); ?></span>
                 <?php endif; ?>
             </div>
         <?php endif; ?>

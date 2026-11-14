@@ -79,8 +79,7 @@ final class Screens
                 $published_count++;
             }
         }
-        $pkg_meter_pct = min(100, (int) round(($packages_count / 40) * 100));
-        $pkg_limit_text = $is_pro ? sprintf(I18n::t('%d packages'), $packages_count) : sprintf(I18n::t('%d of 40 free'), $packages_count);
+        $pkg_limit_text = sprintf(I18n::t('%d packages'), $packages_count);
 
         // Receipt data
         $rc_amt = (int) ($receipt['amount'] ?? 0);
@@ -257,7 +256,6 @@ final class Screens
         echo '<strong data-pk-count="' . $packages_count . '" data-count="' . $packages_count . '">' . $packages_count . '</strong>';
         echo '<span class="lb">' . esc_html(I18n::t('Packages')) . '</span>';
         echo '<span class="ln">' . esc_html($pkg_limit_text) . '</span>';
-        echo '<div class="meter"><i data-pk-w="' . $pkg_meter_pct . '" data-w="' . $pkg_meter_pct . '" style="width:' . $pkg_meter_pct . '%"></i></div>';
         echo '</a>';
 
         // Stat 4: Published
@@ -379,7 +377,7 @@ final class Screens
                         $lowest_price = $v;
                     }
                 }
-                $edit_url = admin_url('admin.php?page=pothik-package&package=' . urlencode((string) ($p['id'] ?? '')));
+                $edit_url = admin_url('admin.php?page=pothik-package&package=' . rawurlencode((string) ($p['id'] ?? '')));
 
                 echo '<div class="mini-pkg">';
                 echo '<span class="thumb" style="background:linear-gradient(135deg,' . $pair[0] . ',' . $pair[1] . ')">' . $days . '<small>' . esc_html(I18n::t('DAYS')) . '</small></span>';
@@ -496,7 +494,6 @@ final class Screens
 
         // 3. Comparison Table
         $comparison = [
-            [I18n::t('Package landing pages'), '40', 'Unlimited'],
             [I18n::t('Inquiry form, WhatsApp, email alerts'), '✓', '✓'],
             [I18n::t('Payment receipts'), '1 latest', 'Full history'],
             [I18n::t('Flight & group departures board'), '—', '✓'],
@@ -571,7 +568,6 @@ final class Screens
     {
         $packages = PackageStore::all();
         $total_count = count($packages);
-        $is_pro = defined('POTHIK_PRO_FILE');
         $live_count = 0;
         $draft_count = 0;
         foreach ($packages as $pkg) {
@@ -582,7 +578,6 @@ final class Screens
                 $draft_count++;
             }
         }
-        $usage_pct = min(100, round(($total_count / 40) * 100, 1));
 
         $actions_html = '<form method="post" action="' . esc_url(admin_url('admin-post.php')) . '" class="inline-form">'
             . wp_nonce_field('pothik_new_package', '_wpnonce', true, false)
@@ -592,17 +587,6 @@ final class Screens
 
         Chrome::open('Packages', 'Each package becomes a landing page with prices, hotels and a WhatsApp button.', $actions_html);
         Chrome::saved();
-
-        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-        if (isset($_GET['error']) && $_GET['error'] === 'limit') {
-            echo '<div class="pk-card limit-banner">';
-            echo '<div class="flex-center">';
-            echo '<svg class="i" style="color:var(--gold)"><use href="#i-spark"/></svg>';
-            echo '<span>' . esc_html(I18n::t('Free version is limited to 40 packages. Upgrade to Pothik Pro for unlimited packages.')) . '</span>';
-            echo '</div>';
-            echo '<a href="' . esc_url(admin_url('admin.php?page=pothik-pro')) . '" class="pk-btn pk-btn-gold pk-btn-sm">' . esc_html(I18n::t('Upgrade to Pro')) . ' &rarr;</a>';
-            echo '</div>';
-        }
 
         echo '<section class="screen" data-screen="packages">';
 
@@ -615,9 +599,6 @@ final class Screens
         echo '<button class="chip pk-chip" type="button" data-f="draft">' . esc_html(I18n::t('Draft')) . ' <b>' . $draft_count . '</b></button>';
         echo '</div>';
         echo '<span class="spacer"></span>';
-        if (!$is_pro) {
-            echo '<div class="usage pk-usage">' . sprintf(esc_html(I18n::t('%d of 40 packages')), $total_count) . '<div class="meter pk-meter"><i data-pk-w="' . esc_attr($usage_pct) . '" style="width:' . esc_attr($usage_pct) . '%"></i></div></div>';
-        }
         echo '</div>'; // .toolbar
 
         // Grid

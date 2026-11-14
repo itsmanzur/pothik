@@ -3161,7 +3161,9 @@ select.share-sel option,
   .pk-admin .pk-analytics-grid{grid-template-columns:1fr}
   .pk-admin .pk-ring-wrap{flex-direction:column;align-items:flex-start}
 }
-.pk-admin .pk-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:38px;padding:0 16px;border-radius:10px;border:1px solid transparent;font-weight:700;font-size:14px;cursor:pointer;text-decoration:none;background:linear-gradient(180deg,var(--g700),var(--g800));color:#fff}
+/* A button with no colour class looks primary. Variants and sizes defined above keep their own look. */
+.pk-admin .pk-btn:not(.pk-btn-primary):not(.pk-btn-ghost):not(.pk-btn-danger):not(.pk-btn-wa):not(.pk-btn-gold):not(.btn-ghost):not(.btn-danger):not(.btn-wa):not(.btn-gold){background:linear-gradient(180deg,var(--g700),var(--g800));color:#fff}
+.pk-admin .pk-btn:not(.pk-btn-primary):not(.pk-btn-ghost):not(.pk-btn-danger):not(.pk-btn-wa):not(.pk-btn-gold):not(.btn-ghost):not(.btn-danger):not(.btn-wa):not(.btn-gold):hover{background:linear-gradient(180deg,var(--g600),var(--g700));color:#fff}
 .pk-admin .pk-form-actions{display:flex;justify-content:flex-end;margin-top:16px}
 @media (max-width:700px){
   .pk-admin .pk-grid,.pk-admin .pk-fgrid,.pk-admin .pk-fgrid.three,.pk-admin .pk-person .pin{grid-template-columns:1fr}

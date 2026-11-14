@@ -29,12 +29,6 @@ msgstr ""
 msgid "%d nights fit inside %d days"
 msgstr ""
 
-msgid "%d of 40 free"
-msgstr ""
-
-msgid "%d of 40 packages"
-msgstr ""
-
 msgid "%d packages"
 msgstr ""
 
@@ -560,9 +554,6 @@ msgstr ""
 msgid "Free Version"
 msgstr ""
 
-msgid "Free version is limited to 40 packages. Upgrade to Pothik Pro for unlimited packages."
-msgstr ""
-
 msgid "Free version keeps one receipt. Full history is in Pro."
 msgstr ""
 
@@ -1002,9 +993,6 @@ msgid "Package duplicated"
 msgstr ""
 
 msgid "Package landing pages"
-msgstr ""
-
-msgid "Package limit reached (maximum 40 packages)."
 msgstr ""
 
 msgid "Package name"
@@ -1752,9 +1740,6 @@ msgid "inquiries"
 msgstr ""
 
 msgid "mins"
-msgstr ""
-
-msgid "of 40 free"
 msgstr ""
 
 msgid "of 5"
@@ -4487,4 +4472,16 @@ msgid "%1$s downloaded %2$s papers for visa"
 msgstr ""
 
 msgid "%1$s marked a paper reminder for %2$s"
+msgstr ""
+
+msgid "Pothik cookies"
+msgstr ""
+
+msgid "When a package or catalog page is opened with a referral code (?ref=), Pothik stores that code in a first-party cookie named pothik_ref for 30 days. The cookie holds only the code, no personal data. When a visitor picks a language, Pothik stores their choice (en or bn) in a cookie named pothik_lang for one year. For a signed-in user the choice is also saved in their profile."
+msgstr ""
+
+msgid "Pothik inquiries"
+msgstr ""
+
+msgid "When a visitor sends an inquiry, Pothik saves the name, phone, WhatsApp number, city, room share, number of pilgrims and note in the site database, and emails them to the office. To limit spam it keeps a short-lived counter per visitor address for one hour."
 msgstr ""

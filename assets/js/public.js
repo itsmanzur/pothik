@@ -1,4 +1,23 @@
 (function () {
+    var fields = document.querySelectorAll('input[name="ref"]');
+    if (!fields.length) {
+        return;
+    }
+    var fromUrl = location.search.match(/[?&]ref=([A-Za-z0-9]{2,10})/i);
+    var code = fromUrl ? fromUrl[1].toUpperCase() : '';
+    if (!code) {
+        var fromCookie = document.cookie.match(/(?:^|; )pothik_ref=([A-Za-z0-9]{2,10})/);
+        code = fromCookie ? fromCookie[1].toUpperCase() : '';
+    }
+    if (!code) {
+        return;
+    }
+    fields.forEach(function (field) {
+        field.value = code;
+    });
+})();
+
+(function () {
     var root = document.querySelector('.pk-price');
     var select = document.querySelector('.pk-inquiry select[name="share"]');
     if (!root || !select) {

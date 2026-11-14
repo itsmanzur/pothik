@@ -98,15 +98,33 @@ Add-ons extend Pothik through these hooks. The free plugin does not ship add-on 
 * `pothik/settings_data` — inside the Data pane of the settings form. No arguments. Printed fields are saved with the rest of the form.
 * `pothik/inquiry_created` — after a public inquiry is saved. Arguments: the inquiry id, then the saved row.
 * `pothik/referral_cookie` — whether to store a referral code in the `pothik_ref` cookie. Default true. Return false to leave the cookie unset. The form still keeps a `ref` field for the same visit.
+* `pothik/demo_data` — after demo data is loaded or removed. Argument: `loaded` or `removed`.
+* `pothik/notify_email` — the new-inquiry email before it is sent. Argument: an array with `to`, `subject`, `message`, `headers` and `inquiry`. Return false to send nothing.
+* `pothik/trusted_proxy_headers` — server headers to trust for the visitor address used by the rate limit, for example `HTTP_X_FORWARDED_FOR`. Argument: an array of header names. Default: empty.
+
+== External services ==
+
+Pothik makes no request to any outside server by itself. It does build links to **WhatsApp** (wa.me, operated by WhatsApp LLC / Meta), and the visitor or the office staff opens them by clicking:
+
+* The "Chat with the office on WhatsApp" and share buttons on package and catalog pages open `https://wa.me/` with a message that holds the package name and room share, and the visitor's name and pilgrim counts after they send an inquiry. The data goes to WhatsApp only when the visitor taps the button.
+* The new-inquiry email and the inquiries screen contain a `https://wa.me/<number>` reply link for the office. The pilgrim's number and a greeting are in that link. It is sent only when staff click it.
+
+WhatsApp terms: https://www.whatsapp.com/legal/terms-of-service. Privacy policy: https://www.whatsapp.com/legal/privacy-policy
 
 == Privacy ==
 
-A package or catalog page that is opened with `?ref=` followed by 2–10 letters or digits stores that code in a first-party cookie named `pothik_ref` for 30 days (path `/`, SameSite=Lax). The cookie holds only that code. It is not HttpOnly, so the inquiry form can fill itself on a cached page. No name, phone, or other personal data is stored in it. Return false from `pothik/referral_cookie` to disable the cookie. The inquiry row stores the same code and shows it as “Ref: …” in the inquiry drawer and in the CSV export.
-* `pothik/demo_data` — after demo data is loaded or removed. Argument: `loaded` or `removed`.
+Pothik stores the following. Its text is also added to the site's privacy policy guide (Settings → Privacy).
+
+* **Inquiries.** The name, phone, WhatsApp number, city, room share, pilgrim counts, note and referral code that a visitor sends are saved in the `pothik_inquiries` table and emailed to the office. A counter per visitor address (the address is hashed) lives for one hour to limit spam.
+* **Cookie `pothik_ref`.** A package or catalog page that is opened with `?ref=` followed by 2–10 letters or digits stores that code in a first-party cookie for 30 days (path `/`, SameSite=Lax). The cookie holds only that code. It is not HttpOnly, so the inquiry form can fill itself on a cached page. No name, phone, or other personal data is stored in it. Return false from `pothik/referral_cookie` to disable the cookie. The inquiry row stores the same code and shows it as “Ref: …” in the inquiry drawer and in the CSV export.
+* **Cookie `pothik_lang`.** When a visitor picks English or Bengali, the choice (`en` or `bn`) is stored in a first-party HttpOnly cookie for one year. For a signed-in user it is also saved in their profile as the user meta `pothik_lang`.
 
 == Changelog ==
 
 = 0.3.0 =
+* Removed the 40-package limit. You can create as many packages as you need.
+* The referral code is now filled in by the plugin's script file instead of an inline script.
+* Added the cookies and inquiry data to the site's privacy policy guide, and documented WhatsApp links under External services.
 * Redesigned admin:
   - Haramain skyline hero on Desk with Makkah/Madinah crossfade, live Makkah local time, Hijri date, and countdowns.
   - Interactive reply queue with one-tap status toggling and undo toast notification.

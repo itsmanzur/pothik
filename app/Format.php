@@ -60,9 +60,8 @@ final class Format
             $digits = substr($digits, 2);
         }
 
-        if ($digits !== '' && str_starts_with($digits, $cc)) {
-            // Number already begins with the country code.
-        } elseif (str_starts_with($digits, '0')) {
+        // A number that already begins with the country code stays as it is.
+        if (($digits === '' || !str_starts_with($digits, $cc)) && str_starts_with($digits, '0')) {
             $digits = $cc . substr($digits, 1);
         }
 

@@ -344,10 +344,6 @@ final class PackageStore
         check_admin_referer('pothik_new_package');
 
         $rows = self::all();
-        if (count($rows) >= 40) {
-            wp_safe_redirect(admin_url('admin.php?page=pothik-package&error=limit'));
-            exit;
-        }
         $row = self::blank();
         $rows[] = $row;
         self::put($rows);
@@ -424,11 +420,6 @@ final class PackageStore
             wp_safe_redirect(self::copy_back($post, ''));
             exit;
         }
-        if (count($rows) >= 40) {
-            wp_safe_redirect(admin_url('admin.php?page=pothik-package&error=limit'));
-            exit;
-        }
-
         $copy = $current;
         $copy['id'] = self::fresh_id();
         $copy['status'] = 'draft';
@@ -553,9 +544,6 @@ final class PackageStore
         $rows = self::all();
         if ($current === null) {
             wp_send_json_error(['message' => 'Package not found'], 404);
-        }
-        if (count($rows) >= 40) {
-            wp_send_json_error(['message' => 'limit_reached'], 400);
         }
 
         $copy = $current;
@@ -805,6 +793,6 @@ final class PackageStore
     private static function put(array $rows): void
     {
         self::$memo = null;
-        update_option('pothik_packages', array_slice(array_values($rows), 0, 40), false);
+        update_option('pothik_packages', array_values($rows), false);
     }
 }

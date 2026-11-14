@@ -30,12 +30,6 @@ msgstr "%d রাত %d দিনের মধ্যে মেলে না"
 msgid "%d nights fit inside %d days"
 msgstr "%d রাত %d দিনের মধ্যে মিলেছে"
 
-msgid "%d of 40 free"
-msgstr "৪০টির মধ্যে %dটি ফ্রি"
-
-msgid "%d of 40 packages"
-msgstr "৪০টির মধ্যে %dটি প্যাকেজ"
-
 msgid "%d packages"
 msgstr "%d টি প্যাকেজ"
 
@@ -561,9 +555,6 @@ msgstr "চারজনে এক রুম"
 msgid "Free Version"
 msgstr "ফ্রি ভার্সন"
 
-msgid "Free version is limited to 40 packages. Upgrade to Pothik Pro for unlimited packages."
-msgstr "ফ্রি ভার্সনে সর্বোচ্চ ৪০টি প্যাকেজ রাখা যায়। আনলিমিটেড প্যাকেজের জন্য পথিক প্রো-তে আপগ্রেড করুন।"
-
 msgid "Free version keeps one receipt. Full history is in Pro."
 msgstr "ফ্রি ভার্সনে শেষ রসিদ থাকে। সম্পূর্ণ হিস্ট্রি প্রিমিয়ামে।"
 
@@ -1004,9 +995,6 @@ msgstr "প্যাকেজ ডুপ্লিকেট হয়েছে"
 
 msgid "Package landing pages"
 msgstr "প্যাকেজ ল্যান্ডিং পেজ"
-
-msgid "Package limit reached (maximum 40 packages)."
-msgstr "প্যাকেজের সর্বোচ্চ সীমা (৪০টি) পূর্ণ হয়েছে।"
 
 msgid "Package name"
 msgstr "প্যাকেজের নাম"
@@ -1754,9 +1742,6 @@ msgstr "এনকোয়ারি"
 
 msgid "mins"
 msgstr "মিনিট"
-
-msgid "of 40 free"
-msgstr "সর্বোচ্চ ৪০টি (ফ্রি)"
 
 msgid "of 5"
 msgstr "টির মধ্যে ৫টি"
@@ -4494,3 +4479,15 @@ msgstr "%1$s ভিসার জন্য %2$sটা কাগজ নামি�
 
 msgid "%1$s marked a paper reminder for %2$s"
 msgstr "%1$s %2$s-কে কাগজের কথা মনে করিয়েছেন"
+
+msgid "Pothik cookies"
+msgstr "পথিক কুকি"
+
+msgid "When a package or catalog page is opened with a referral code (?ref=), Pothik stores that code in a first-party cookie named pothik_ref for 30 days. The cookie holds only the code, no personal data. When a visitor picks a language, Pothik stores their choice (en or bn) in a cookie named pothik_lang for one year. For a signed-in user the choice is also saved in their profile."
+msgstr "কোনো প্যাকেজ বা ক্যাটালগ পেজ রেফারেল কোড (?ref=) সহ খুললে পথিক সেই কোডটি ৩০ দিনের জন্য pothik_ref নামের একটি ফার্স্ট-পার্টি কুকিতে রাখে। কুকিতে শুধু কোডটি থাকে, কোনো ব্যক্তিগত তথ্য নয়। দর্শক ভাষা বেছে নিলে পথিক সেই পছন্দ (en বা bn) এক বছরের জন্য pothik_lang নামের কুকিতে রাখে। সাইন-ইন করা ইউজারের ক্ষেত্রে পছন্দটি তাঁর প্রোফাইলেও সংরক্ষিত হয়।"
+
+msgid "Pothik inquiries"
+msgstr "পথিক ইনকোয়ারি"
+
+msgid "When a visitor sends an inquiry, Pothik saves the name, phone, WhatsApp number, city, room share, number of pilgrims and note in the site database, and emails them to the office. To limit spam it keeps a short-lived counter per visitor address for one hour."
+msgstr "কোনো দর্শক ইনকোয়ারি পাঠালে পথিক নাম, ফোন, হোয়াটসঅ্যাপ নম্বর, শহর, রুম শেয়ার, যাত্রীর সংখ্যা ও নোট সাইটের ডেটাবেসে সংরক্ষণ করে এবং অফিসে ইমেইল করে। স্প্যাম ঠেকাতে এক ঘণ্টার জন্য প্রতিটি দর্শকের ঠিকানাভিত্তিক একটি সংক্ষিপ্ত কাউন্টার রাখা হয়।"

@@ -384,6 +384,7 @@ final class PackagePage
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         $requested = $force_id !== ''
             ? $force_id
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only package id, no state change.
             : (isset($_GET['package']) ? sanitize_key((string) wp_unslash($_GET['package'])) : '');
         $package = null;
         if ($requested !== '') {
