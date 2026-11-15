@@ -45,5 +45,5 @@ register_activation_hook(POTHIK_FILE, ['Pothik\\Plugin', 'activate']);
 
 add_action('plugins_loaded', static function (): void {
     Pothik\Plugin::boot();
-    do_action('pothik/loaded');
+    do_action('pothik_loaded');
 }, 10);

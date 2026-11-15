@@ -69,38 +69,38 @@ Yes. Use `[pothik_package id="package_id"]` to embed a single package or `[pothi
 
 Add-ons extend Pothik through these hooks. The free plugin does not ship add-on behaviour.
 
-* `pothik/admin_header_tools` — actions inside the admin header, before search. Argument: the current page slug.
-* `pothik/admin_sidebar_before_pro` — markup directly under the Pro label in the sidebar. Argument: the current page slug. Give the wrapper the class `pk-side-slot` so mini mode hides its text.
-* `pothik/admin_before_content` — markup after the header, before the page body. Argument: the current page slug.
-* `pothik/seat_line` — the seat sentence on a package page. Arguments: the current line, then the package array. A callback registered with one argument still receives only the line.
-* `pothik/package_card_badges` — extra pills on a catalog card. Arguments: an array of pills, then the package. Each pill is `['label' => string, 'class' => string]`.
-* `pothik/inquiry_actions` — inside the inquiry drawer footer. Argument: the inquiry row when the drawer was built for one row. The shared drawer passes an empty array because the open row is chosen in the browser.
-* `pothik/inquiries_before_table` — above the inquiries toolbar. Argument: the status counts (`all`, `waiting`, `replied`).
-* `pothik/inquiries_show_status_chips` — whether the Waiting and Replied chips show. Default true. Return false when the toolbar is replaced.
-* `pothik/inquiry_columns` — the inquiries table columns. Argument: an array of column key to label. The free keys are `cb`, `pilgrim`, `phone`, `city`, `share`, `people`, `status`, `received` and `actions`.
-* `pothik/inquiry_cell` — HTML for a column key the free plugin does not draw. Arguments: an empty string, the column key, the inquiry row. Return escaped HTML.
-* `pothik/inquiry_row_actions` — extra buttons in the actions cell. Arguments: the call and WhatsApp HTML, then the inquiry row.
-* `pothik/inquiries_query_args` — the list query. Argument: `page`, `per_page`, `status`, `search` and `share`. Add `include_ids` or `exclude_ids` (arrays of inquiry ids). An empty `include_ids` list matches no rows.
-* `pothik/inquiry_drawer_top` — after the inquiry drawer header. Argument: the inquiry row when the drawer was built for one row. The shared drawer passes an empty array.
-* `pothik/inquiries_bulk_actions` — extra controls inside the bulk bar. No arguments. The form posts `ids[]` with nonce `pothik_bulk_inquiries`.
-* `pothik/desk_cards` — extra cards on the Desk. Argument: an array of HTML strings. Callbacks return escaped HTML.
-* `pothik/can` — whether a user may view or edit an area. Arguments: the default (false for anyone who is not a WordPress administrator), the area name, the level (`view` or `edit`), and the user id. WordPress administrators are always allowed before this filter runs. Return true only when that user may do that level of that area.
-* `pothik/package_saved` — after a package is saved. Arguments: package id, the row before the save, the row after the save.
-* `pothik/package_created` — after a package is created or copied. Arguments: package id, the new row.
-* `pothik/package_deleted` — after a package is deleted. Arguments: package id, the row before it was deleted.
-* `pothik/package_status_changed` — after a package is published or unpublished. Arguments: package id, the old status, the new status.
-* `pothik/inquiry_reply_toggled` — after one inquiry is marked replied or waiting. Arguments: inquiry id, true when it is now replied.
-* `pothik/inquiry_deleted` — after one inquiry is deleted. Arguments: inquiry id, the row before it was deleted.
-* `pothik/inquiries_bulk` — after a bulk reply or delete. Arguments: `reply` or `delete`, then the number of rows. One action for the whole bulk, not one per row.
-* `pothik/inquiries_exported` — after an inquiry CSV is built. Argument: the number of rows.
-* `pothik/receipt_saved` — after the receipt is saved. Arguments: the option before, the option after.
-* `pothik/settings_saved` — after settings are saved. Arguments: the option before, the option after.
-* `pothik/settings_data` — inside the Data pane of the settings form. No arguments. Printed fields are saved with the rest of the form.
-* `pothik/inquiry_created` — after a public inquiry is saved. Arguments: the inquiry id, then the saved row.
-* `pothik/referral_cookie` — whether to store a referral code in the `pothik_ref` cookie. Default true. Return false to leave the cookie unset. The form still keeps a `ref` field for the same visit.
-* `pothik/demo_data` — after demo data is loaded or removed. Argument: `loaded` or `removed`.
-* `pothik/notify_email` — the new-inquiry email before it is sent. Argument: an array with `to`, `subject`, `message`, `headers` and `inquiry`. Return false to send nothing.
-* `pothik/trusted_proxy_headers` — server headers to trust for the visitor address used by the rate limit, for example `HTTP_X_FORWARDED_FOR`. Argument: an array of header names. Default: empty.
+* `pothik_admin_header_tools` — actions inside the admin header, before search. Argument: the current page slug.
+* `pothik_admin_sidebar_before_pro` — markup directly under the Pro label in the sidebar. Argument: the current page slug. Give the wrapper the class `pk-side-slot` so mini mode hides its text.
+* `pothik_admin_before_content` — markup after the header, before the page body. Argument: the current page slug.
+* `pothik_seat_line` — the seat sentence on a package page. Arguments: the current line, then the package array. A callback registered with one argument still receives only the line.
+* `pothik_package_card_badges` — extra pills on a catalog card. Arguments: an array of pills, then the package. Each pill is `['label' => string, 'class' => string]`.
+* `pothik_inquiry_actions` — inside the inquiry drawer footer. Argument: the inquiry row when the drawer was built for one row. The shared drawer passes an empty array because the open row is chosen in the browser.
+* `pothik_inquiries_before_table` — above the inquiries toolbar. Argument: the status counts (`all`, `waiting`, `replied`).
+* `pothik_inquiries_show_status_chips` — whether the Waiting and Replied chips show. Default true. Return false when the toolbar is replaced.
+* `pothik_inquiry_columns` — the inquiries table columns. Argument: an array of column key to label. The free keys are `cb`, `pilgrim`, `phone`, `city`, `share`, `people`, `status`, `received` and `actions`.
+* `pothik_inquiry_cell` — HTML for a column key the free plugin does not draw. Arguments: an empty string, the column key, the inquiry row. Return escaped HTML.
+* `pothik_inquiry_row_actions` — extra buttons in the actions cell. Arguments: the call and WhatsApp HTML, then the inquiry row.
+* `pothik_inquiries_query_args` — the list query. Argument: `page`, `per_page`, `status`, `search` and `share`. Add `include_ids` or `exclude_ids` (arrays of inquiry ids). An empty `include_ids` list matches no rows.
+* `pothik_inquiry_drawer_top` — after the inquiry drawer header. Argument: the inquiry row when the drawer was built for one row. The shared drawer passes an empty array.
+* `pothik_inquiries_bulk_actions` — extra controls inside the bulk bar. No arguments. The form posts `ids[]` with nonce `pothik_bulk_inquiries`.
+* `pothik_desk_cards` — extra cards on the Desk. Argument: an array of HTML strings. Callbacks return escaped HTML.
+* `pothik_can` — whether a user may view or edit an area. Arguments: the default (false for anyone who is not a WordPress administrator), the area name, the level (`view` or `edit`), and the user id. WordPress administrators are always allowed before this filter runs. Return true only when that user may do that level of that area.
+* `pothik_package_saved` — after a package is saved. Arguments: package id, the row before the save, the row after the save.
+* `pothik_package_created` — after a package is created or copied. Arguments: package id, the new row.
+* `pothik_package_deleted` — after a package is deleted. Arguments: package id, the row before it was deleted.
+* `pothik_package_status_changed` — after a package is published or unpublished. Arguments: package id, the old status, the new status.
+* `pothik_inquiry_reply_toggled` — after one inquiry is marked replied or waiting. Arguments: inquiry id, true when it is now replied.
+* `pothik_inquiry_deleted` — after one inquiry is deleted. Arguments: inquiry id, the row before it was deleted.
+* `pothik_inquiries_bulk` — after a bulk reply or delete. Arguments: `reply` or `delete`, then the number of rows. One action for the whole bulk, not one per row.
+* `pothik_inquiries_exported` — after an inquiry CSV is built. Argument: the number of rows.
+* `pothik_receipt_saved` — after the receipt is saved. Arguments: the option before, the option after.
+* `pothik_settings_saved` — after settings are saved. Arguments: the option before, the option after.
+* `pothik_settings_data` — inside the Data pane of the settings form. No arguments. Printed fields are saved with the rest of the form.
+* `pothik_inquiry_created` — after a public inquiry is saved. Arguments: the inquiry id, then the saved row.
+* `pothik_referral_cookie` — whether to store a referral code in the `pothik_ref` cookie. Default true. Return false to leave the cookie unset. The form still keeps a `ref` field for the same visit.
+* `pothik_demo_data` — after demo data is loaded or removed. Argument: `loaded` or `removed`.
+* `pothik_notify_email` — the new-inquiry email before it is sent. Argument: an array with `to`, `subject`, `message`, `headers` and `inquiry`. Return false to send nothing.
+* `pothik_trusted_proxy_headers` — server headers to trust for the visitor address used by the rate limit, for example `HTTP_X_FORWARDED_FOR`. Argument: an array of header names. Default: empty.
 
 == External services ==
 
@@ -116,7 +116,7 @@ WhatsApp terms: https://www.whatsapp.com/legal/terms-of-service. Privacy policy:
 Pothik stores the following. Its text is also added to the site's privacy policy guide (Settings → Privacy).
 
 * **Inquiries.** The name, phone, WhatsApp number, city, room share, pilgrim counts, note and referral code that a visitor sends are saved in the `pothik_inquiries` table and emailed to the office. A counter per visitor address (the address is hashed) lives for one hour to limit spam.
-* **Cookie `pothik_ref`.** A package or catalog page that is opened with `?ref=` followed by 2–10 letters or digits stores that code in a first-party cookie for 30 days (path `/`, SameSite=Lax). The cookie holds only that code. It is not HttpOnly, so the inquiry form can fill itself on a cached page. No name, phone, or other personal data is stored in it. Return false from `pothik/referral_cookie` to disable the cookie. The inquiry row stores the same code and shows it as “Ref: …” in the inquiry drawer and in the CSV export.
+* **Cookie `pothik_ref`.** A package or catalog page that is opened with `?ref=` followed by 2–10 letters or digits stores that code in a first-party cookie for 30 days (path `/`, SameSite=Lax). The cookie holds only that code. It is not HttpOnly, so the inquiry form can fill itself on a cached page. No name, phone, or other personal data is stored in it. Return false from `pothik_referral_cookie` to disable the cookie. The inquiry row stores the same code and shows it as “Ref: …” in the inquiry drawer and in the CSV export.
 * **Cookie `pothik_lang`.** When a visitor picks English or Bengali, the choice (`en` or `bn`) is stored in a first-party HttpOnly cookie for one year. For a signed-in user it is also saved in their profile as the user meta `pothik_lang`.
 
 == Changelog ==

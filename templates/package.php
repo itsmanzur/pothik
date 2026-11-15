@@ -107,7 +107,7 @@ $facts = array_filter([
                     <?php endforeach; ?>
                 </ul>
                 <?php
-                $seat_filtered = apply_filters('pothik/seat_line', isset($seat_line) && is_string($seat_line) ? $seat_line : '', $package);
+                $seat_filtered = apply_filters('pothik_seat_line', isset($seat_line) && is_string($seat_line) ? $seat_line : '', $package);
                 $seat_line = is_string($seat_filtered) ? $seat_filtered : '';
                 ?>
                 <?php if ($seat_line !== '') : ?>

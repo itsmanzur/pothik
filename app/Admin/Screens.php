@@ -130,7 +130,7 @@ final class Screens
             I18n::t("May Allah accept the Umrah of every pilgrim you serve."),
             I18n::t("Serve the guests of Ar-Rahman with ihsan."),
         ];
-        $desk_lines = apply_filters('pothik/desk_lines', $desk_lines);
+        $desk_lines = apply_filters('pothik_desk_lines', $desk_lines);
 
         $waiting_inquiries = InquiryRepository::recent_waiting(5);
 
@@ -413,7 +413,7 @@ final class Screens
         echo '</div>'; // .grid
         echo '</div>'; // .desk2
 
-        $desk_cards = apply_filters('pothik/desk_cards', []);
+        $desk_cards = apply_filters('pothik_desk_cards', []);
         if (is_array($desk_cards)) {
             foreach ($desk_cards as $desk_card) {
                 if (is_string($desk_card) && $desk_card !== '') {
@@ -468,7 +468,7 @@ final class Screens
     public static function pro(): void
     {
         $upgrade_url = defined('POTHIK_UPGRADE_URL') ? POTHIK_UPGRADE_URL : 'https://thereadscope.com/pothik';
-        $upgrade_url = apply_filters('pothik/upgrade_url', $upgrade_url);
+        $upgrade_url = apply_filters('pothik_upgrade_url', $upgrade_url);
 
         Chrome::open('Pothik Pro', 'Advanced Umrah & Hajj agency operations management.');
 
@@ -1067,9 +1067,9 @@ final class Screens
 
         echo '<section class="screen" data-screen="inquiries">';
 
-        do_action('pothik/inquiries_before_table', $counts);
+        do_action('pothik_inquiries_before_table', $counts);
 
-        $show_chips = (bool) apply_filters('pothik/inquiries_show_status_chips', true);
+        $show_chips = (bool) apply_filters('pothik_inquiries_show_status_chips', true);
 
         // Toolbar
         echo '<div class="toolbar pk-toolbar">';
@@ -1101,7 +1101,7 @@ final class Screens
         echo '<span class="spacer"></span>';
         echo '<button type="button" class="btn pk-btn pk-btn-ghost btn-ghost" id="bulkReply"><svg class="i sm"><use href="#i-check"/></svg>' . esc_html(I18n::t('Mark replied')) . '</button>';
         echo '<button type="button" class="btn pk-btn pk-btn-ghost btn-ghost" id="bulkExport"><svg class="i sm"><use href="#i-down"/></svg>' . esc_html(I18n::t('Export')) . '</button>';
-        do_action('pothik/inquiries_bulk_actions');
+        do_action('pothik_inquiries_bulk_actions');
         echo '<div id="bulkDelWrap" class="bulk-del-wrap">';
         echo '<button type="button" class="btn pk-btn pk-btn-ghost btn-ghost bulk-del-btn" id="bulkDel"><svg class="i sm"><use href="#i-trash"/></svg>' . esc_html(I18n::t('Delete')) . '</button>';
         echo '<div id="bulkDelConfirm" class="bulk-del-confirm" hidden>';
@@ -1175,7 +1175,7 @@ final class Screens
         echo '<div class="drawer-bg pk-drawer-bg" id="drBg"></div>';
         echo '<aside class="drawer pk-drawer" id="drawer" aria-label="' . esc_attr(I18n::t('Inquiry details')) . '">';
         echo '<div class="dr-head pk-dr-head"><span class="ava pk-ava" id="drAva"></span><div class="dr-title-meta"><h3 id="drName"></h3><div class="sub" id="drPkg"></div></div><button type="button" class="icon-btn pk-icon-btn" id="drClose" aria-label="' . esc_attr(I18n::t('Close')) . '"><svg class="i"><use href="#i-x"/></svg></button></div>';
-        do_action('pothik/inquiry_drawer_top', []);
+        do_action('pothik_inquiry_drawer_top', []);
         echo '<div class="dr-body pk-dr-body">';
         echo '<div id="drState"></div>';
         echo '<div class="facts pk-facts" id="drFacts"></div>';
@@ -1187,14 +1187,14 @@ final class Screens
             I18n::t('Here are the full prices and hotel details for your package…'),
             I18n::t('Please send passport copies to book your seat.'),
         ];
-        $templates = apply_filters('pothik/reply_templates', $templates);
+        $templates = apply_filters('pothik_reply_templates', $templates);
         foreach ($templates as $tpl) {
             echo '<button type="button" class="tpl pk-tpl" data-tpl="' . esc_attr($tpl) . '"><svg class="i"><use href="#i-wa"/></svg>' . esc_html($tpl) . '</button>';
         }
         echo '</div></div>'; // .templates
         echo '</div>'; // .dr-body
         echo '<div class="dr-foot pk-dr-foot">';
-        do_action('pothik/inquiry_actions', []);
+        do_action('pothik_inquiry_actions', []);
         echo '<a class="btn pk-btn pk-btn-ghost btn-ghost" id="drCall" href="#"><svg class="i sm"><use href="#i-phone"/></svg>' . esc_html(I18n::t('Call')) . '</a>';
         echo '<a class="btn pk-btn pk-btn-wa btn-wa" id="drWa" href="#" target="_blank" rel="noopener"><svg class="i sm"><use href="#i-wa"/></svg>' . esc_html(I18n::t('WhatsApp')) . '</a>';
         echo '<button type="button" class="btn pk-btn pk-btn-primary btn-primary" id="drMark"><svg class="i sm"><use href="#i-check"/></svg><span id="drMarkText">' . esc_html(I18n::t('Mark replied')) . '</span></button>';
@@ -1267,7 +1267,7 @@ final class Screens
         if ($wa_href !== '') {
             $actions .= '<a class="icon-btn pk-icon-btn wa" href="' . esc_url($wa_href) . '" target="_blank" rel="noopener" title="' . esc_attr(I18n::t('WhatsApp')) . '"><svg class="i"><use href="#i-wa"/></svg></a>';
         }
-        $actions = (string) apply_filters('pothik/inquiry_row_actions', $actions, $row);
+        $actions = (string) apply_filters('pothik_inquiry_row_actions', $actions, $row);
 
         foreach (self::inquiry_columns() as $column_key => $column_label) {
             unset($column_label);
@@ -1279,7 +1279,7 @@ final class Screens
                 $html .= $known[$column_key];
                 continue;
             }
-            $html .= '<td>' . (string) apply_filters('pothik/inquiry_cell', '', (string) $column_key, $row) . '</td>';
+            $html .= '<td>' . (string) apply_filters('pothik_inquiry_cell', '', (string) $column_key, $row) . '</td>';
         }
 
         $html .= '</tr>';
@@ -1302,7 +1302,7 @@ final class Screens
             'received' => I18n::t('Received'),
             'actions' => '',
         ];
-        $filtered = apply_filters('pothik/inquiry_columns', $columns);
+        $filtered = apply_filters('pothik_inquiry_columns', $columns);
 
         return is_array($filtered) && $filtered !== [] ? $filtered : $columns;
     }
@@ -1319,7 +1319,7 @@ final class Screens
             'search' => $search,
             'share' => $share,
         ];
-        $filtered = apply_filters('pothik/inquiries_query_args', $args);
+        $filtered = apply_filters('pothik_inquiries_query_args', $args);
 
         return is_array($filtered) ? $filtered : $args;
     }

@@ -158,7 +158,7 @@ final class InquiryStore
         $inquiry_id = InquiryRepository::insert($inquiry_data);
         if ($inquiry_id !== '') {
             $saved = InquiryRepository::find($inquiry_id);
-            do_action('pothik/inquiry_created', $inquiry_id, is_array($saved) ? $saved : $inquiry_data);
+            do_action('pothik_inquiry_created', $inquiry_id, is_array($saved) ? $saved : $inquiry_data);
         }
 
         // Send notification email to admin(s)
@@ -289,7 +289,7 @@ final class InquiryStore
              *
              * @param array<string, mixed>|false $mail_args
              */
-            $mail_args = apply_filters('pothik/notify_email', $mail_args);
+            $mail_args = apply_filters('pothik_notify_email', $mail_args);
 
             if ($mail_args !== false && is_array($mail_args) && !empty($mail_args['to'])) {
                 wp_mail(

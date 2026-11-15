@@ -347,7 +347,7 @@ final class PackageStore
         $row = self::blank();
         $rows[] = $row;
         self::put($rows);
-        do_action('pothik/package_created', (string) $row['id'], $row);
+        do_action('pothik_package_created', (string) $row['id'], $row);
 
         wp_safe_redirect(admin_url('admin.php?page=pothik-package&package=' . rawurlencode((string) $row['id'])));
         exit;
@@ -378,7 +378,7 @@ final class PackageStore
             }
         }
         self::put($rows);
-        do_action('pothik/package_saved', $id, $current, $merged);
+        do_action('pothik_package_saved', $id, $current, $merged);
 
         wp_safe_redirect(admin_url('admin.php?page=pothik-package&package=' . rawurlencode($id) . '&updated=1'));
         exit;
@@ -398,7 +398,7 @@ final class PackageStore
             static fn (array $row): bool => ($row['id'] ?? '') !== $id
         ));
         self::put($rows);
-        do_action('pothik/package_deleted', $id, $before);
+        do_action('pothik_package_deleted', $id, $before);
 
         wp_safe_redirect(admin_url('admin.php?page=pothik-package&updated=1'));
         exit;
@@ -432,7 +432,7 @@ final class PackageStore
         $copy['bn'] = $bn;
         $rows[] = $copy;
         self::put($rows);
-        do_action('pothik/package_created', (string) $copy['id'], $copy);
+        do_action('pothik_package_created', (string) $copy['id'], $copy);
 
         wp_safe_redirect(self::copy_back($post, (string) $copy['id']));
         exit;
@@ -459,7 +459,7 @@ final class PackageStore
         }
         self::put($rows);
         if ($old_status !== '' && $old_status !== $new_status) {
-            do_action('pothik/package_status_changed', $id, $old_status, $new_status);
+            do_action('pothik_package_status_changed', $id, $old_status, $new_status);
         }
 
         $back = isset($_POST['back']) ? sanitize_key(wp_unslash((string) $_POST['back'])) : 'pothik-package';
@@ -498,7 +498,7 @@ final class PackageStore
 
         self::put($rows);
         if ($old_status !== '' && $old_status !== $new_status) {
-            do_action('pothik/package_status_changed', $id, $old_status, $new_status);
+            do_action('pothik_package_status_changed', $id, $old_status, $new_status);
         }
 
         wp_send_json_success([
@@ -525,7 +525,7 @@ final class PackageStore
             static fn (array $row): bool => ($row['id'] ?? '') !== $id
         ));
         self::put($rows);
-        do_action('pothik/package_deleted', $id, $before);
+        do_action('pothik_package_deleted', $id, $before);
 
         wp_send_json_success(['id' => $id]);
     }
@@ -558,7 +558,7 @@ final class PackageStore
         $copy['bn'] = $bn;
         $rows[] = $copy;
         self::put($rows);
-        do_action('pothik/package_created', (string) $copy['id'], $copy);
+        do_action('pothik_package_created', (string) $copy['id'], $copy);
 
         ob_start();
         Screens::package_card($copy);

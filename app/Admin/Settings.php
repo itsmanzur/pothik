@@ -245,7 +245,7 @@ final class Settings
         echo '</div>';
         echo '</div>'; // card danger
 
-        do_action('pothik/settings_data');
+        do_action('pothik_settings_data');
 
         echo '</div>'; // Pane 4 (Data)
 
@@ -360,7 +360,7 @@ final class Settings
         }
         $sanitized = self::sanitize($post);
         update_option('pothik_settings', $sanitized, false);
-        do_action('pothik/settings_saved', $before, $sanitized);
+        do_action('pothik_settings_saved', $before, $sanitized);
 
         wp_safe_redirect(admin_url('admin.php?page=pothik-settings&updated=1'));
         exit;

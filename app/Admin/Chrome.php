@@ -156,7 +156,7 @@ final class Chrome
         ];
 
         /** @var array<string, array<string, mixed>> $nav_groups */
-        $nav_groups = apply_filters('pothik/admin_nav', $nav_groups);
+        $nav_groups = apply_filters('pothik_admin_nav', $nav_groups);
         $nav_groups = self::filter_nav($nav_groups);
 
         echo '<div class="pk-admin' . (Access::readonly() ? ' pothik-readonly' : '') . '">';
@@ -179,7 +179,7 @@ final class Chrome
             }
             echo '<div class="side-grp">' . esc_html($grp['label']) . '</div>';
             if ($grp_key === 'pro') {
-                do_action('pothik/admin_sidebar_before_pro', $current_page);
+                do_action('pothik_admin_sidebar_before_pro', $current_page);
             }
             foreach ($grp['items'] as $item) {
                 if (!empty($item['is_form_action'])) {
@@ -249,7 +249,7 @@ final class Chrome
         echo '</div>';
 
         echo '<div class="tools">';
-        do_action('pothik/admin_header_tools', $current_page);
+        do_action('pothik_admin_header_tools', $current_page);
         echo '<button type="button" class="kbd-btn" data-pk-cmdk data-cmdk aria-label="' . esc_attr(I18n::t('Search')) . '">';
         echo '<svg class="i sm" aria-hidden="true"><use href="#i-search"/></svg><kbd>Ctrl K</kbd>';
         echo '</button>';
@@ -281,7 +281,7 @@ final class Chrome
         echo '<hr class="wp-header-end">';
 
         echo '<div class="pk" id="app">';
-        do_action('pothik/admin_before_content', $current_page);
+        do_action('pothik_admin_before_content', $current_page);
 
         if ($actions_html !== '') {
             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped

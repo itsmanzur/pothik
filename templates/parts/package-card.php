@@ -103,7 +103,7 @@ $depart = Catalog::depart_label($package);
                 <div class="depart"><?php echo esc_html($depart); ?></div>
             <?php endif; ?>
             <?php
-            $card_badges = apply_filters('pothik/package_card_badges', [], $package);
+            $card_badges = apply_filters('pothik_package_card_badges', [], $package);
             if (is_array($card_badges) && $card_badges !== []) :
                 echo '<div class="pk-pills">';
                 foreach ($card_badges as $pill) {

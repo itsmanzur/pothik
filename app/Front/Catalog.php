@@ -90,7 +90,7 @@ final class Catalog
      */
     public static function heading_html(): string
     {
-        $text = apply_filters('pothik/catalog_heading', I18n::t('Umrah packages from Dhaka'));
+        $text = apply_filters('pothik_catalog_heading', I18n::t('Umrah packages from Dhaka'));
         $text = is_string($text) ? trim($text) : '';
         if ($text === '') {
             $text = I18n::t('Umrah packages from Dhaka');
@@ -106,7 +106,7 @@ final class Catalog
 
     public static function heading_plain(): string
     {
-        $text = apply_filters('pothik/catalog_heading', I18n::t('Umrah packages from Dhaka'));
+        $text = apply_filters('pothik_catalog_heading', I18n::t('Umrah packages from Dhaka'));
 
         return is_string($text) && trim($text) !== '' ? trim($text) : I18n::t('Umrah packages from Dhaka');
     }
@@ -174,7 +174,7 @@ final class Catalog
                 'text' => sprintf(I18n::t($count === 1 ? '%d package' : '%d packages'), $count),
             ];
         }
-        $extra = apply_filters('pothik/catalog_trust', []);
+        $extra = apply_filters('pothik_catalog_trust', []);
         if (is_array($extra)) {
             foreach ($extra as $line) {
                 if (is_string($line) && $line !== '') {
@@ -197,7 +197,7 @@ final class Catalog
             ['title' => I18n::t('Office replies'), 'text' => I18n::t('On WhatsApp or a phone call.')],
             ['title' => I18n::t('Pay the deposit'), 'text' => I18n::t('bKash, Nagad, bank or cash.')],
         ];
-        $filtered = apply_filters('pothik/catalog_steps', $steps);
+        $filtered = apply_filters('pothik_catalog_steps', $steps);
         if (!is_array($filtered)) {
             return $steps;
         }

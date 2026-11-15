@@ -477,7 +477,7 @@ final class InquiryRepository
         if ($updated !== false) {
             self::clear_waiting_cache();
             if ($announce) {
-                do_action('pothik/inquiry_reply_toggled', $id, $new_replied === 1);
+                do_action('pothik_inquiry_reply_toggled', $id, $new_replied === 1);
             }
             return true;
         }
@@ -504,7 +504,7 @@ final class InquiryRepository
     }
 
     /**
-     * Set the replied flag. Fires pothik/inquiry_reply_toggled.
+     * Set the replied flag. Fires pothik_inquiry_reply_toggled.
      */
     public static function set_replied(string $id, bool $replied): bool
     {
@@ -533,7 +533,7 @@ final class InquiryRepository
             return false;
         }
         self::clear_waiting_cache();
-        do_action('pothik/inquiry_reply_toggled', $id, $replied);
+        do_action('pothik_inquiry_reply_toggled', $id, $replied);
 
         return true;
     }
@@ -559,7 +559,7 @@ final class InquiryRepository
         if ($result !== false && (int) $result > 0) {
             self::clear_waiting_cache();
             if ($announce) {
-                do_action('pothik/inquiry_deleted', $id, is_array($before) ? $before : []);
+                do_action('pothik_inquiry_deleted', $id, is_array($before) ? $before : []);
             }
             return true;
         }
@@ -724,7 +724,7 @@ final class InquiryRepository
             }
             self::clear_waiting_cache();
             if ($changed > 0) {
-                do_action('pothik/inquiries_bulk', 'reply', $changed);
+                do_action('pothik_inquiries_bulk', 'reply', $changed);
             }
             wp_safe_redirect(admin_url('admin.php?page=pothik-inquiries&updated=replied'));
             exit;
@@ -739,7 +739,7 @@ final class InquiryRepository
             }
             self::clear_waiting_cache();
             if ($changed > 0) {
-                do_action('pothik/inquiries_bulk', 'delete', $changed);
+                do_action('pothik_inquiries_bulk', 'delete', $changed);
             }
             wp_safe_redirect(admin_url('admin.php?page=pothik-inquiries&updated=deleted'));
             exit;
@@ -773,7 +773,7 @@ final class InquiryRepository
             $results = $wpdb->get_results("SELECT * FROM {$table} ORDER BY created_gmt DESC");
         }
         $rows = is_array($results) ? $results : [];
-        do_action('pothik/inquiries_exported', count($rows));
+        do_action('pothik_inquiries_exported', count($rows));
 
         $filename = 'pothik-inquiries-' . gmdate('Y-m-d') . '.csv';
 

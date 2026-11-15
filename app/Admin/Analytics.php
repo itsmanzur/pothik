@@ -152,7 +152,7 @@ final class Analytics
             echo '<button type="button" class="btn pk-btn pk-btn-primary btn-primary" data-pk-copy="' . esc_url(\Pothik\Front\PackagePage::url()) . '"><svg class="i"><use href="#i-copy"/></svg>' . esc_html(I18n::t('Copy catalog link')) . '</button>';
             echo '</div>';
             echo '</section>';
-            do_action('pothik/analytics');
+            do_action('pothik_analytics');
             Chrome::close();
             return;
         }
@@ -311,7 +311,7 @@ final class Analytics
 
         echo '</section>'; // .screen
 
-        do_action('pothik/analytics');
+        do_action('pothik_analytics');
         Chrome::close();
     }
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Who may open a Pothik screen. Pro extends this through pothik/can.
+ * Who may open a Pothik screen. Pro extends this through pothik_can.
  *
  * @package Pothik
  */
@@ -52,7 +52,7 @@ final class Access
             return true;
         }
         $level = $level === 'edit' ? 'edit' : 'view';
-        $allowed = apply_filters('pothik/can', false, $area, $level, get_current_user_id());
+        $allowed = apply_filters('pothik_can', false, $area, $level, get_current_user_id());
 
         return (bool) $allowed;
     }

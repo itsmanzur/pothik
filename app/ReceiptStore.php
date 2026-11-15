@@ -122,7 +122,7 @@ final class ReceiptStore
             'demo' => false,
         ];
         update_option('pothik_receipt', $after, false);
-        do_action('pothik/receipt_saved', $before, $after);
+        do_action('pothik_receipt_saved', $before, $after);
 
         wp_safe_redirect(admin_url('admin.php?page=pothik-receipt&updated=1'));
         exit;

@@ -161,7 +161,7 @@ final class Menu
             ],
         ]);
 
-        do_action('pothik/admin_enqueue', $hook);
+        do_action('pothik_admin_enqueue', $hook);
     }
 
     public static function overview(): void

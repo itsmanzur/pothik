@@ -18,11 +18,11 @@ final class Request
     /**
      * Resolve the client IP address.
      * Respects Cloudflare Connecting IP if request comes through Cloudflare,
-     * or any proxy header permitted via 'pothik/trusted_proxy_headers' filter.
+     * or any proxy header permitted via 'pothik_trusted_proxy_headers' filter.
      */
     public static function ip(): string
     {
-        $trusted_headers = (array) apply_filters('pothik/trusted_proxy_headers', []);
+        $trusted_headers = (array) apply_filters('pothik_trusted_proxy_headers', []);
         $remote = isset($_SERVER['REMOTE_ADDR'])
             ? sanitize_text_field(wp_unslash((string) $_SERVER['REMOTE_ADDR']))
             : '';

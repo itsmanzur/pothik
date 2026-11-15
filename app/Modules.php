@@ -74,7 +74,7 @@ final class Modules
             ],
         ];
 
-        $filtered = apply_filters('pothik/modules', $modules);
+        $filtered = apply_filters('pothik_modules', $modules);
 
         return is_array($filtered) ? $filtered : $modules;
     }

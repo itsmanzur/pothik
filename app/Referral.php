@@ -30,7 +30,7 @@ final class Referral
         if ($code === '' || !self::on_pothik_page() || headers_sent()) {
             return;
         }
-        if (!apply_filters('pothik/referral_cookie', true)) {
+        if (!apply_filters('pothik_referral_cookie', true)) {
             return;
         }
         setcookie('pothik_ref', $code, [
