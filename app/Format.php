@@ -199,14 +199,8 @@ final class Format
     public static function avatar_color(string $name): string
     {
         $colors = ['#1b4336', '#2d6a4f', '#40916c', '#52796f', '#a07a26', '#b4532a', '#8a4f6e', '#3f6b8a'];
-        $h = 0;
-        $len = mb_strlen($name, 'UTF-8');
-        for ($i = 0; $i < $len; $i++) {
-            $ch = mb_substr($name, $i, 1, 'UTF-8');
-            $h = ($h * 31 + mb_ord($ch, 'UTF-8')) & 0x7FFFFFFF;
-        }
-
-        return $colors[$h % count($colors)];
+        // crc32 works on bytes, so it needs no mbstring function and gives the same colour for the same name.
+        return $colors[crc32($name) % count($colors)];
     }
 
     /**
