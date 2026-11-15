@@ -1,4 +1,4 @@
-=== Pothik ===
+=== Pothik – Umrah & Hajj Package Manager ===
 Contributors: itsmanzur
 Donate link: https://thereadscope.com/pothik
 Tags: umrah, hajj, travel agency, package, inquiry
