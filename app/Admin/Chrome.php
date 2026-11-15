@@ -58,12 +58,17 @@ final class Chrome
             'visa' => 'i-shield',
         ];
         $pro_nav_items = [];
+        $has_closed = false;
         $free_slugs = ['package', 'inquiries', 'receipt', 'analytics'];
         foreach (Modules::all() as $m_id => $m_data) {
             if (in_array($m_id, $free_slugs, true)) {
                 continue;
             }
-            $is_open = Modules::is_open($m_data);
+            // A module the add-on has not opened gets no menu entry of its own.
+            if (!Modules::is_open($m_data)) {
+                $has_closed = true;
+                continue;
+            }
             $icon = $icon_map[$m_id] ?? 'i-spark';
             $item_title = isset($m_data['title']) ? (string) $m_data['title'] : ucfirst($m_id);
             $item_menu = isset($m_data['menu']) ? (string) $m_data['menu'] : $item_title;
@@ -71,9 +76,19 @@ final class Chrome
                 'slug' => 'pothik-' . $m_id,
                 'label' => I18n::t($item_menu),
                 'icon' => $icon,
-                'url' => $is_open ? admin_url('admin.php?page=pothik-' . $m_id) : admin_url('admin.php?page=pothik-pro'),
-                'locked' => !$is_open,
+                'url' => admin_url('admin.php?page=pothik-' . $m_id),
                 'active' => ($current_page === 'pothik-' . $m_id),
+            ];
+        }
+        if ($has_closed) {
+            // One plain link to the page that describes the add-on.
+            $pro_nav_items[] = [
+                'slug' => 'pothik-pro',
+                'label' => I18n::t('Pothik Pro'),
+                'icon' => 'i-spark',
+                'url' => admin_url('admin.php?page=pothik-pro'),
+                'admin_only' => true,
+                'active' => ($current_page === 'pothik-pro'),
             ];
         }
 
@@ -370,7 +385,7 @@ final class Chrome
                 if (!is_array($item)) {
                     continue;
                 }
-                if (!empty($item['locked']) && !current_user_can('manage_options')) {
+                if ((!empty($item['locked']) || !empty($item['admin_only'])) && !current_user_can('manage_options')) {
                     continue;
                 }
                 if (!empty($item['is_form_action']) && !Access::can('packages', 'edit')) {

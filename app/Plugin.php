@@ -128,7 +128,8 @@ final class Plugin
             <?php
         }
 
-        if (!get_option('pothik_welcome')) {
+        // A draft page is not "ready": the draft notice above already says what to do.
+        if ($is_draft || !get_option('pothik_welcome')) {
             return;
         }
 
