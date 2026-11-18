@@ -79,7 +79,7 @@ final class ProFeatures
                 'group' => 'Visa',
                 'rows' => [
                     $row('Visa board', 'Staff move each file through statuses. The visa is issued on Masar.', '—', '✓', 'available'),
-                    $row('Masar-ready export & import', 'Download in your Saudi company’s format; bring visa numbers back.', '—', '', 'soon', '6A'),
+                    $row('Masar-ready export & import', 'Download in your Saudi company’s format; bring visa numbers back.', '—', '✓', 'available', '6A'),
                 ],
             ],
             [
