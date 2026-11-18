@@ -108,9 +108,6 @@ msgstr "এজেন্সির নাম · ইংরেজি"
 msgid "Agency name · বাংলা"
 msgstr "এজেন্সির নাম · বাংলা"
 
-msgid "Agent commissions"
-msgstr "এজেন্ট কমিশন"
-
 msgid "Airline"
 msgstr "এয়ারলাইন"
 
@@ -405,9 +402,6 @@ msgstr "ডিপারচার"
 msgid "Departures board"
 msgstr "ফ্লাইট ও কাফেলা বোর্ড"
 
-msgid "Departures, pilgrim files, rooming lists, installments and the visa board — built for Bangladeshi agencies."
-msgstr "ফ্লাইট শিডিউল, যাত্রী ফাইল, রুম তালিকা, কিস্তির হিসাব ও ভিসা বোর্ড — দেশীয় এজেন্সির উপযোগী।"
-
 msgid "Deposit"
 msgstr "ডিপোজিট"
 
@@ -416,9 +410,6 @@ msgstr "ডেস্ক"
 
 msgid "Dhaka"
 msgstr "ঢাকা"
-
-msgid "Direct 1-on-1 agency support"
-msgstr "সরাসরি এজেন্সি সাপোর্ট"
 
 msgid "Direction"
 msgstr "দিক"
@@ -537,12 +528,6 @@ msgstr "সেটআপ সম্পন্ন করুন"
 msgid "Flight"
 msgstr "ফ্লাইট"
 
-msgid "Flight & group departures board"
-msgstr "ফ্লাইট ও কাফেলা বোর্ড"
-
-msgid "Flight dates, seats left and group or private quotas at a glance."
-msgstr "ফ্লাইটের তারিখ, অবশিষ্ট আসন এবং গ্রুপ কোটা এক নজরে।"
-
 msgid "Flight direction"
 msgstr "ফ্লাইটের দিক"
 
@@ -651,14 +636,8 @@ msgstr "এনকোয়ারি"
 msgid "Inquiry details"
 msgstr "এনকোয়ারির বিস্তারিত"
 
-msgid "Inquiry form, WhatsApp, email alerts"
-msgstr "এনকোয়ারি ফর্ম, হোয়াটসঅ্যাপ ও ইমেইল নোটিফিকেশন"
-
 msgid "Installment ledger"
 msgstr "কিস্তির খাতা"
-
-msgid "Installment ledger & bKash matching"
-msgstr "কিস্তির খাতা ও bKash ট্রানজেকশন মেলানো"
 
 msgid "Installments"
 msgstr "কিস্তির খাতা"
@@ -767,9 +746,6 @@ msgstr "মদিনা, সমমান"
 
 msgid "Makkah"
 msgstr "মক্কা"
-
-msgid "Makkah & Madinah bed / rooming lists"
-msgstr "মক্কা ও মদিনার রুম বণ্টন তালিকা"
 
 msgid "Makkah al-Mukarramah"
 msgstr "মক্কা আল-মুকাররমা"
@@ -1053,17 +1029,11 @@ msgstr "জমা, টাকা"
 msgid "Papers: %s"
 msgstr "কাগজ: %s"
 
-msgid "Partial payments, balance due, bKash & Nagad matching."
-msgstr "আংশিক পেমেন্ট, বাকি হিসাব এবং bKash ও Nagad মেলানো।"
-
 msgid "Passport"
 msgstr "পাসপোর্ট"
 
 msgid "Passport number stays on this desk. The photo file comes in a later version."
 msgstr "পাসপোর্ট নম্বর শুধু এই ডেস্কে। ছবির ফাইল পরের ভার্সনে।"
-
-msgid "Passport scans, mahram and family links, visa column per pilgrim."
-msgstr "পাসপোর্ট কপি, মাহরাম ও পারিবারিক সম্পর্ক এবং ভিসা স্ট্যাটাস।"
 
 msgid "Passport, family link and visa column."
 msgstr "পাসপোর্ট, পরিবারের লিংক ও ভিসার ঘর।"
@@ -1100,9 +1070,6 @@ msgstr "যাত্রী ফাইল"
 
 msgid "Pilgrim name"
 msgstr "যাত্রীর নাম"
-
-msgid "Pilgrim passport & visa tracking"
-msgstr "যাত্রীর পাসপোর্ট ও ভিসা ট্র্যাকিং"
 
 msgid "Pilgrim · package · share"
 msgstr "যাত্রী · প্যাকেজ · শেয়ার"
@@ -1287,9 +1254,6 @@ msgstr "রুম নম্বর এখনো আসেনি"
 msgid "Rooming"
 msgstr "রুমিং"
 
-msgid "Rooming lists"
-msgstr "রুম বণ্টন তালিকা"
-
 msgid "Run the whole Umrah season %s"
 msgstr "পুরো উমরা মৌসুম পরিচালনা করুন %s"
 
@@ -1383,9 +1347,6 @@ msgstr "এই পাতা পাঠান"
 msgid "Send to"
 msgstr "প্রাপক"
 
-msgid "Separate Makkah and Madinah bed lists, auto-filled by share."
-msgstr "মক্কা ও মদিনার আলাদা বেড লিস্ট, রুম শেয়ার অনুযায়ী তৈরি।"
-
 msgid "Separate Makkah and Madinah bed lists."
 msgstr "মক্কা ও মদিনার আলাদা বিছানার তালিকা।"
 
@@ -1434,9 +1395,6 @@ msgstr "স্প্যাম প্রতিরোধ"
 msgid "Staff change the status here. The visa is issued on the Masar portal."
 msgstr "স্ট্যাটাস এখানে হাতে বদলায়। ইস্যু হয় Masar পোর্টালে।"
 
-msgid "Staff move each file through statuses. Issue happens on Masar."
-msgstr "কর্মী ফাইল এগিয়ে নেন। ভিসা ইস্যু হয় সরাসরি Masar-এ।"
-
 msgid "Staff update the status here. Issue happens on Masar."
 msgstr "স্ট্যাটাস এখানে হাতে বদলায়। ইস্যু হয় Masar পোর্টালে।"
 
@@ -1457,9 +1415,6 @@ msgstr "এখনো অপেক্ষায়"
 
 msgid "Sub-agent commission reports"
 msgstr "সাব-এজেন্ট কমিশন রিপোর্ট"
-
-msgid "Sub-agent leads and commission reports."
-msgstr "সাব-এজেন্ট লিড ও কমিশন হিসাব।"
 
 msgid "System"
 msgstr "সিস্টেম"
@@ -1634,9 +1589,6 @@ msgstr "ভিসা"
 
 msgid "Visa board"
 msgstr "ভিসা বোর্ড"
-
-msgid "Visa board with Masar status tracking"
-msgstr "Masar স্ট্যাটাস সহ ভিসা বোর্ড"
 
 msgid "Visa issue is dated to open on %s."
 msgstr "ভিসা ইস্যুর তারিখ ফাইলে %s।"
@@ -3934,9 +3886,6 @@ msgstr "আসসালামু আলাইকুম %1$s। আমরা %3$s
 msgid "Assalamu alaikum %1$s. A gentle reminder: installment %2$d of %3$s for %4$s was due on %5$s. Balance %6$s. You can pay by bKash/Nagad to %7$s. — %8$s"
 msgstr "আসসালামু আলাইকুম %1$s। মনে করিয়ে দিচ্ছি: %4$s-এর %3$s কিস্তি %2$d, তারিখ ছিল %5$s। বকেয়া %6$s। বিকাশ/নগদে %7$s-এ দিতে পারেন। — %8$s"
 
-msgid "Partner commission rules, referral links, payouts & statements"
-msgstr "পার্টনার কমিশনের নিয়ম, রেফারেল লিংক, পরিশোধ ও স্টেটমেন্ট"
-
 msgid "Agents & commission"
 msgstr "এজেন্ট ও কমিশন"
 
@@ -4491,3 +4440,174 @@ msgstr "পথিক ইনকোয়ারি"
 
 msgid "When a visitor sends an inquiry, Pothik saves the name, phone, WhatsApp number, city, room share, number of pilgrims and note in the site database, and emails them to the office. To limit spam it keeps a short-lived counter per visitor address for one hour."
 msgstr "কোনো দর্শক ইনকোয়ারি পাঠালে পথিক নাম, ফোন, হোয়াটসঅ্যাপ নম্বর, শহর, রুম শেয়ার, যাত্রীর সংখ্যা ও নোট সাইটের ডেটাবেসে সংরক্ষণ করে এবং অফিসে ইমেইল করে। স্প্যাম ঠেকাতে এক ঘণ্টার জন্য প্রতিটি দর্শকের ঠিকানাভিত্তিক একটি সংক্ষিপ্ত কাউন্টার রাখা হয়।"
+
+msgid "Sell"
+msgstr "বিক্রি"
+
+msgid "Pilgrims & papers"
+msgstr "হাজি ও কাগজপত্র"
+
+msgid "Travel"
+msgstr "যাত্রা"
+
+msgid "Days, hotels, prices and a WhatsApp button on each page."
+msgstr "প্রতিটা পেইজে দিন, হোটেল, দাম আর হোয়াটসঅ্যাপ বাটন।"
+
+msgid "Up to 40 packages"
+msgstr "সর্বোচ্চ ৪০টা প্যাকেজ"
+
+msgid "Unlimited packages"
+msgstr "যত খুশি প্যাকেজ"
+
+msgid "Inquiry form, WhatsApp reply, email alerts"
+msgstr "ইনকোয়ারি ফর্ম, হোয়াটসঅ্যাপে উত্তর, ইমেইল সতর্কতা"
+
+msgid "Anti-spam time trap included."
+msgstr "স্প্যাম ঠেকানোর টাইম ট্র্যাপ সহ।"
+
+msgid "Inquiry to pilgrim in one click"
+msgstr "এক ক্লিকে ইনকোয়ারি থেকে হাজি"
+
+msgid "Turn a won inquiry into a booked pilgrim without typing again."
+msgstr "বুক হওয়া ইনকোয়ারিকে আবার না লিখেই হাজি বানান।"
+
+msgid "Agent & sub-agent commission"
+msgstr "এজেন্ট ও সাব-এজেন্ট কমিশন"
+
+msgid "Who brought which pilgrim, earned and owed commission."
+msgstr "কে কোন হাজি আনলেন, কত কমিশন পেলেন আর কত বাকি।"
+
+msgid "Season report"
+msgstr "মৌসুমের রিপোর্ট"
+
+msgid "Best packages, districts, inquiry conversion, agents."
+msgstr "সেরা প্যাকেজ, জেলা, ইনকোয়ারি থেকে বুকিং, এজেন্ট।"
+
+msgid "Passport details, mahram and family links, readiness."
+msgstr "পাসপোর্টের তথ্য, মাহরাম ও পরিবারের যোগসূত্র, প্রস্তুতি।"
+
+msgid "Several groups per season, dates and seats."
+msgstr "এক মৌসুমে একাধিক গ্রুপ, তারিখ আর সিট।"
+
+msgid "Paper upload & checklist"
+msgstr "কাগজপত্র আপলোড ও চেকলিস্ট"
+
+msgid "Passport, photo, NID and vaccine card in a private folder."
+msgstr "পাসপোর্ট, ছবি, NID আর টিকার কার্ড সুরক্ষিত ফোল্ডারে।"
+
+msgid "Pilgrim’s own page"
+msgstr "হাজির নিজস্ব পাতা"
+
+msgid "A private link with payments, papers, flight and hotel."
+msgstr "টাকা, কাগজ, ফ্লাইট আর হোটেলসহ একটা গোপন লিংক।"
+
+msgid "Message many pilgrims"
+msgstr "একসাথে অনেক হাজিকে মেসেজ"
+
+msgid "WhatsApp one by one, SMS gateway later."
+msgstr "হোয়াটসঅ্যাপে একটার পর একটা, SMS গেটওয়ে পরে।"
+
+msgid "Printable receipt with your agency details."
+msgstr "আপনার এজেন্সির তথ্যসহ ছাপানো রসিদ।"
+
+msgid "1 latest receipt"
+msgstr "সর্বশেষ ১টা রসিদ"
+
+msgid "Full receipt history"
+msgstr "রসিদের পূর্ণ ইতিহাস"
+
+msgid "Partial payments, balance due, bKash / Nagad transaction IDs."
+msgstr "আংশিক পেমেন্ট, বাকি টাকা, বিকাশ / নগদের ট্রানজেকশন আইডি।"
+
+msgid "Payment history with receipt numbers"
+msgstr "রসিদ নম্বরসহ পেমেন্টের ইতিহাস"
+
+msgid "Payments are never edited — voided with a reason."
+msgstr "পেমেন্ট কখনো বদলানো হয় না, কারণ লিখে বাতিল করা হয়।"
+
+msgid "Cost & profit per group"
+msgstr "গ্রুপভিত্তিক খরচ ও লাভ"
+
+msgid "Tickets in USD, Saudi ground in SAR, home costs in BDT."
+msgstr "টিকেট ডলারে, সৌদির খরচ রিয়ালে, দেশের খরচ টাকায়।"
+
+msgid "Makkah & Madinah rooming lists"
+msgstr "মক্কা ও মদিনার রুমিং তালিকা"
+
+msgid "Separate bed lists for each city."
+msgstr "প্রতিটা শহরের আলাদা বিছানার তালিকা।"
+
+msgid "Day-by-day plan"
+msgstr "দিনভিত্তিক সফরসূচি"
+
+msgid "Ziyarah, bus times, meeting points — print and share."
+msgstr "যিয়ারত, বাসের সময়, মিটিং পয়েন্ট। প্রিন্ট করে বা পাঠিয়ে দিন।"
+
+msgid "ID cards & badges"
+msgstr "আইডি কার্ড ও ব্যাজ"
+
+msgid "8 per A4 with a QR to the pilgrim’s page."
+msgstr "A4 পাতায় ৮টা, সাথে হাজির পাতার QR কোড।"
+
+msgid "Bus seats, luggage tags, passenger list"
+msgstr "বাসের সিট, লাগেজ ট্যাগ, যাত্রী তালিকা"
+
+msgid "Families sit together; CSV for the airline."
+msgstr "পরিবার একসাথে বসে; এয়ারলাইনের জন্য CSV।"
+
+msgid "Staff move each file through statuses. The visa is issued on Masar."
+msgstr "স্টাফ প্রতিটা ফাইল এক ধাপ থেকে আরেক ধাপে সরান। ভিসা হয় Masar-এ।"
+
+msgid "Masar-ready export & import"
+msgstr "Masar-এর জন্য তৈরি এক্সপোর্ট ও ইমপোর্ট"
+
+msgid "Download in your Saudi company’s format; bring visa numbers back."
+msgstr "আপনার সৌদি কোম্পানির ফরম্যাটে নামান, ভিসা নম্বর ফিরিয়ে আনুন।"
+
+msgid "Staff roles & group access"
+msgstr "স্টাফের ভূমিকা ও গ্রুপে প্রবেশ"
+
+msgid "Who can open which screens and groups."
+msgstr "কে কোন পাতা আর গ্রুপ খুলতে পারবেন।"
+
+msgid "Who changed what, and when."
+msgstr "কে কী বদলালেন, আর কখন।"
+
+msgid "Support"
+msgstr "সাপোর্ট"
+
+msgid "Community forum"
+msgstr "কমিউনিটি ফোরাম"
+
+msgid "1-on-1 agency onboarding"
+msgstr "সরাসরি এজেন্সি অনবোর্ডিং"
+
+msgid "%s is coming soon to Pothik Pro."
+msgstr "%s শিগগিরই পথিক Pro-তে আসছে।"
+
+msgid "Departures, pilgrim files, rooming, installments and the visa board — built for Bangladeshi agencies. More is on the way; everything marked “Coming soon” is in our plan and arrives as a Pro update — at no extra cost for Pro customers."
+msgstr "ডিপার্চার, হাজির ফাইল, রুমিং, কিস্তি আর ভিসা বোর্ড, সবই বাংলাদেশের এজেন্সির জন্য বানানো। আরও আসছে। “শিগগিরই আসছে” চিহ্ন দেওয়া সবকিছু আমাদের পরিকল্পনায় আছে এবং Pro আপডেট হিসেবে আসবে, বর্তমান Pro গ্রাহকদের কোনো বাড়তি টাকা ছাড়াই।"
+
+msgid "In Pro now"
+msgstr "এখন Pro-তে আছে"
+
+msgid "Coming soon"
+msgstr "শিগগিরই আসছে"
+
+msgid "Free"
+msgstr "ফ্রি"
+
+msgid "Show coming soon"
+msgstr "শিগগিরই আসছে দেখান"
+
+msgid "%1$d in Pro now · %2$d coming soon"
+msgstr "Pro-তে এখন %1$dটা · শিগগিরই আসছে %2$dটা"
+
+msgid "Matches Pothik %s"
+msgstr "পথিক %s-এর সাথে মেলে"
+
+msgid " and Pothik Pro %s"
+msgstr " আর পথিক Pro %s"
+
+msgid "Free never limits your inquiries, WhatsApp buttons or email alerts."
+msgstr "ফ্রিতে ইনকোয়ারি, হোয়াটসঅ্যাপ বাটন বা ইমেইল সতর্কতায় কোনো সীমা নেই।"

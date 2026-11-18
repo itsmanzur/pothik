@@ -465,71 +465,83 @@ final class Screens
         Chrome::close();
     }
 
-    public static function pro(): void
+    public static function pro(string $module = ''): void
     {
         $upgrade_url = defined('POTHIK_UPGRADE_URL') ? POTHIK_UPGRADE_URL : 'https://thereadscope.com/pothik';
         $upgrade_url = apply_filters('pothik_upgrade_url', $upgrade_url);
+        $groups = ProFeatures::all();
+        $count = ProFeatures::counts($groups);
 
         Chrome::open('Pothik Pro', 'Advanced Umrah & Hajj agency operations management.');
 
         echo '<section class="screen" data-screen="pro">';
 
-        // 1. Hero
+        $soon = ProFeatures::soon_title($module);
+        if ($soon !== '') {
+            /* translators: %s: feature name */
+            echo '<p class="pk-pro-soon">' . esc_html(sprintf(I18n::t('%s is coming soon to Pothik Pro.'), $soon)) . '</p>';
+        }
+
+        // Hero.
         echo '<div class="pro-hero pk-pro-hero">';
         echo '<span class="pill pk-pill pro-badge">Pothik Pro</span>';
         echo '<h1>' . sprintf(esc_html(I18n::t('Run the whole Umrah season %s')), '<span>' . esc_html(I18n::t('from one desk')) . '</span>') . '</h1>';
-        echo '<p>' . esc_html(I18n::t('Departures, pilgrim files, rooming lists, installments and the visa board — built for Bangladeshi agencies.')) . '</p>';
+        echo '<p>' . esc_html(I18n::t('Departures, pilgrim files, rooming, installments and the visa board — built for Bangladeshi agencies. More is on the way; everything marked “Coming soon” is in our plan and arrives as a Pro update — at no extra cost for Pro customers.')) . '</p>';
         echo '<a class="btn pk-btn pk-btn-gold btn-gold btn-lg" href="' . esc_url($upgrade_url) . '" target="_blank" rel="noopener">' . esc_html(I18n::t('Upgrade to Pro')) . ' <svg class="i"><use href="#i-arrow"/></svg></a>';
-        echo '</div>'; // .pro-hero
+        echo '</div>';
 
-        // 2. Feature Cards (6 features)
-        echo '<div class="pro-feats pk-pro-feats">';
-        echo '<div class="pf pk-pf"><span class="kpi-ico"><svg class="i"><use href="#i-plane"/></svg></span><h3>' . esc_html(I18n::t('Departures board')) . '</h3><p>' . esc_html(I18n::t('Flight dates, seats left and group or private quotas at a glance.')) . '</p></div>';
-        echo '<div class="pf pk-pf"><span class="kpi-ico"><svg class="i"><use href="#i-passport"/></svg></span><h3>' . esc_html(I18n::t('Pilgrim file')) . '</h3><p>' . esc_html(I18n::t('Passport scans, mahram and family links, visa column per pilgrim.')) . '</p></div>';
-        echo '<div class="pf pk-pf"><span class="kpi-ico"><svg class="i"><use href="#i-bed"/></svg></span><h3>' . esc_html(I18n::t('Rooming lists')) . '</h3><p>' . esc_html(I18n::t('Separate Makkah and Madinah bed lists, auto-filled by share.')) . '</p></div>';
-        echo '<div class="pf pk-pf"><span class="kpi-ico"><svg class="i"><use href="#i-wallet"/></svg></span><h3>' . esc_html(I18n::t('Installment ledger')) . '</h3><p>' . esc_html(I18n::t('Partial payments, balance due, bKash & Nagad matching.')) . '</p></div>';
-        echo '<div class="pf pk-pf"><span class="kpi-ico"><svg class="i"><use href="#i-shield"/></svg></span><h3>' . esc_html(I18n::t('Visa board')) . '</h3><p>' . esc_html(I18n::t('Staff move each file through statuses. Issue happens on Masar.')) . '</p></div>';
-        echo '<div class="pf pk-pf"><span class="kpi-ico"><svg class="i"><use href="#i-users"/></svg></span><h3>' . esc_html(I18n::t('Agent commissions')) . '</h3><p>' . esc_html(I18n::t('Sub-agent leads and commission reports.')) . '</p></div>';
-        echo '</div>'; // .pro-feats
+        // Legend, switch and count.
+        echo '<div class="cm-bar pk-cm-bar"><div class="cm-leg">';
+        echo '<span class="cm-chip ok">✓ ' . esc_html(I18n::t('In Pro now')) . '</span><span class="cm-chip soon">' . esc_html(I18n::t('Coming soon')) . '</span><span class="cm-chip free">' . esc_html(I18n::t('Free')) . '</span>';
+        echo '</div>';
+        echo '<label class="cm-sw" hidden data-pk-cm-switch><input type="checkbox" checked data-pk-cm-soon> ' . esc_html(I18n::t('Show coming soon')) . '</label>';
+        echo '<span class="cm-cnt">' . esc_html(sprintf(I18n::t('%1$d in Pro now · %2$d coming soon'), $count['available'], $count['soon'])) . '</span>';
+        echo '</div>';
 
-        // 3. Comparison Table
-        $comparison = [
-            [I18n::t('Inquiry form, WhatsApp, email alerts'), '✓', '✓'],
-            [I18n::t('Payment receipts'), '1 latest', 'Full history'],
-            [I18n::t('Flight & group departures board'), '—', '✓'],
-            [I18n::t('Pilgrim passport & visa tracking'), '—', '✓'],
-            [I18n::t('Makkah & Madinah bed / rooming lists'), '—', '✓'],
-            [I18n::t('Installment ledger & bKash matching'), '—', '✓'],
-            [I18n::t('Visa board with Masar status tracking'), '—', '✓'],
-            [I18n::t('Partner commission rules, referral links, payouts & statements'), '—', '✓'],
-            [I18n::t('Direct 1-on-1 agency support'), 'Community', 'Priority VIP'],
-        ];
-
-        echo '<div class="card pk-card">';
-        echo '<div class="tbl-wrap pk-tbl-wrap">';
-        echo '<table class="tbl pk-tbl cmp pk-cmp">';
-        echo '<thead><tr><th>' . esc_html(I18n::t('Feature')) . '</th><th>' . esc_html(I18n::t('Free Version')) . '</th><th class="th-pro">' . esc_html(I18n::t('Pothik Pro')) . '</th></tr></thead>';
-        echo '<tbody>';
-        foreach ($comparison as $row) {
-            echo '<tr>';
-            echo '<td><b>' . esc_html($row[0]) . '</b></td>';
-            $free_class = $row[1] === '✓' ? 'yes pk-yes' : ($row[1] === '—' ? 'no' : '');
-            echo '<td class="' . esc_attr($free_class) . '">' . esc_html($row[1]) . '</td>';
-            $pro_class = $row[2] === '✓' ? 'yes pk-yes' : '';
-            echo '<td class="' . esc_attr($pro_class) . '"><strong class="pro-val">' . esc_html($row[2]) . '</strong></td>';
-            echo '</tr>';
+        // Table.
+        echo '<div class="card pk-card pk-cm-card"><table class="cm-t pk-cm-t" data-pk-cm-table>';
+        echo '<thead><tr><th>' . esc_html(I18n::t('Feature')) . '</th><th>' . esc_html(I18n::t('Free Version')) . '</th><th class="pro">' . esc_html(I18n::t('Pothik Pro')) . '</th></tr></thead><tbody>';
+        foreach ($groups as $group) {
+            $name = (string) ($group['group'] ?? '');
+            if ($name !== '') {
+                echo '<tr class="grp"><td colspan="3">' . esc_html(I18n::t($name)) . '</td></tr>';
+            }
+            foreach ((array) ($group['rows'] ?? []) as $row) {
+                $is_soon = ($row['status'] ?? '') === 'soon';
+                $free = (string) ($row['free'] ?? '—');
+                $pro = (string) ($row['pro'] ?? '');
+                $desc = (string) ($row['desc'] ?? '');
+                echo '<tr class="' . esc_attr($is_soon ? 'soon' : 'ok') . '" data-status="' . esc_attr($is_soon ? 'soon' : 'available') . '">';
+                echo '<td><b>' . esc_html(I18n::t((string) $row['title'])) . '</b>' . ($desc !== '' ? '<small>' . esc_html(I18n::t($desc)) . '</small>' : '') . '</td>';
+                if ($free === '—') {
+                    echo '<td><span class="no">—</span></td>';
+                } elseif ($free === '✓') {
+                    echo '<td><span class="cm-chip free">✓ ' . esc_html(I18n::t('Free')) . '</span></td>';
+                } else {
+                    echo '<td>' . esc_html(I18n::t($free)) . '</td>';
+                }
+                if ($is_soon) {
+                    echo '<td><span class="cm-chip soon">' . esc_html(I18n::t('Coming soon')) . '</span></td>';
+                } else {
+                    echo '<td>' . ($pro !== '' && $pro !== '✓' ? '<b class="cm-pv">' . esc_html(I18n::t($pro)) . '</b>' : '') . '<span class="cm-chip ok">✓ ' . esc_html(I18n::t('In Pro now')) . '</span></td>';
+                }
+                echo '</tr>';
+            }
         }
-        echo '</tbody>';
-        echo '</table>';
-        echo '</div>'; // .tbl-wrap
-        echo '</div>'; // .card
+        echo '</tbody></table></div>';
 
-        // Bottom CTA
+        $matches = sprintf(I18n::t('Matches Pothik %s'), POTHIK_VERSION);
+        if (defined('POTHIK_PRO_VERSION')) {
+            $matches .= sprintf(I18n::t(' and Pothik Pro %s'), (string) POTHIK_PRO_VERSION);
+        }
+        echo '<p class="hint pk-cm-foot">' . esc_html($matches) . ' · ' . esc_html(I18n::t('Free never limits your inquiries, WhatsApp buttons or email alerts.')) . '</p>';
+
+        // Bottom CTA.
         echo '<div class="pro-cta-bottom">';
         echo '<a class="btn pk-btn pk-btn-gold btn-gold btn-lg" href="' . esc_url($upgrade_url) . '" target="_blank" rel="noopener">' . esc_html(I18n::t('Upgrade to Pothik Pro Now')) . ' <svg class="i"><use href="#i-arrow"/></svg></a>';
         echo '</div>';
 
-        echo '</section>'; // .screen
+        echo '</section>';
 
         Chrome::close();
     }
@@ -539,7 +551,7 @@ final class Screens
      */
     public static function locked(array $module): void
     {
-        self::pro();
+        self::pro(isset($module['id']) ? (string) $module['id'] : '');
     }
 
     public static function package(): void

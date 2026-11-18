@@ -191,6 +191,6 @@ final class Menu
             return;
         }
 
-        Screens::pro();
+        Screens::pro($id);
     }
 }

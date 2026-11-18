@@ -3410,6 +3410,7 @@
     }
 
     function bootPage() {
+        initProCompare();
         lockReadonly();
         readFlashes();
         checkAppbar();
@@ -3629,6 +3630,22 @@
         }
     });
 
+    /* Pro comparison: show or hide the "coming soon" rows. Without JS the switch stays hidden and every row shows. */
+    function initProCompare() {
+        document.querySelectorAll("[data-pk-cm-switch]").forEach(function (el) {
+            el.hidden = false;
+        });
+    }
+    document.addEventListener("change", function (event) {
+        var box = event.target;
+        if (!box || !box.matches || !box.matches("[data-pk-cm-soon]")) {
+            return;
+        }
+        var table = document.querySelector("[data-pk-cm-table]");
+        if (table) {
+            table.classList.toggle("hide-soon", !box.checked);
+        }
+    });
     /* Boot when DOM is ready */
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', bootPage);

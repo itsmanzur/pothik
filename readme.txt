@@ -72,6 +72,7 @@ Add-ons extend Pothik through these hooks. The free plugin does not ship add-on 
 * `pothik_admin_header_tools` — actions inside the admin header, before search. Argument: the current page slug.
 * `pothik_admin_sidebar_before_pro` — markup directly under the Pro label in the sidebar. Argument: the current page slug. Give the wrapper the class `pk-side-slot` so mini mode hides its text.
 * `pothik_admin_before_content` — markup after the header, before the page body. Argument: the current page slug.
+* `pothik_pro_features` — the rows of the Pro comparison table. Argument: an array of groups, each with `group` and `rows`; a row has `title`, `desc`, `free`, `pro`, `status` (`available` or `soon`) and `step`. Default: the list shown on the Pro screen.
 * `pothik_seat_line` — the seat sentence on a package page. Arguments: the current line, then the package array. A callback registered with one argument still receives only the line.
 * `pothik_package_card_badges` — extra pills on a catalog card. Arguments: an array of pills, then the package. Each pill is `['label' => string, 'class' => string]`.
 * `pothik_inquiry_actions` — inside the inquiry drawer footer. Argument: the inquiry row when the drawer was built for one row. The shared drawer passes an empty array because the open row is chosen in the browser.
