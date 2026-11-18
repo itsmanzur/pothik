@@ -40,7 +40,7 @@ final class ProFeatures
             [
                 'group' => 'Sell',
                 'rows' => [
-                    $row('Package landing pages', 'Days, hotels, prices and a WhatsApp button on each page.', 'Up to 40 packages', 'Unlimited packages', 'available'),
+                    $row('Package landing pages', 'Days, hotels, prices and a WhatsApp button on each page.', '✓', '✓', 'available'),
                     $row('Inquiry form, WhatsApp reply, email alerts', 'Anti-spam time trap included.', '✓', '✓', 'available'),
                     $row('Inquiry to pilgrim in one click', 'Turn a won inquiry into a booked pilgrim without typing again.', '—', '✓', 'available', '2.1'),
                     $row('Agent & sub-agent commission', 'Who brought which pilgrim, earned and owed commission.', '—', '✓', 'available', '2.3'),
