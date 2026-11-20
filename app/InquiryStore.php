@@ -63,36 +63,60 @@ final class InquiryStore
     }
 
     /**
+     * Fresh nonce and time-trap for the public form, fetched by public.js so cached pages stay valid.
+     */
+    public static function ajax_fresh_nonce(): void
+    {
+        nocache_headers();
+        wp_send_json_success([
+            'nonce' => wp_create_nonce('pothik_inquiry'),
+            'trap' => self::generate_time_trap(),
+        ]);
+    }
+
+    /**
      * Handle public form submission from website visitors.
      */
     public static function handle_public(): void
     {
-        // phpcs:ignore WordPress.Security.NonceVerification.Missing
-        $post = wp_unslash($_POST);
-        $post = is_array($post) ? $post : [];
-        $package_id = isset($post['package_id']) ? sanitize_key((string) $post['package_id']) : '';
+        // The nonce is fetched by public.js when the visitor starts typing, so cached pages keep working.
+        $nonce = isset($_POST['pothik_inquiry_nonce']) ? sanitize_text_field(wp_unslash((string) $_POST['pothik_inquiry_nonce'])) : '';
+        $nonce_ok = $nonce !== '' && wp_verify_nonce($nonce, 'pothik_inquiry') !== false;
+
+        $post = [];
+        foreach (['package_id', 'name', 'phone', 'whatsapp', 'city', 'share', 'trip', 'ref', 'pothik_trap', 'company_website'] as $field) {
+            $post[$field] = isset($_POST[$field]) ? sanitize_text_field(wp_unslash((string) $_POST[$field])) : '';
+        }
+        foreach (['adults', 'children', 'infants'] as $field) {
+            $post[$field] = isset($_POST[$field]) ? absint(wp_unslash($_POST[$field])) : 0;
+        }
+        $post['note'] = isset($_POST['note']) ? sanitize_textarea_field(wp_unslash((string) $_POST['note'])) : '';
+        $package_id = sanitize_key($post['package_id']);
+
+        if (!$nonce_ok) {
+            self::redirect_with_state('nonce', $post, $package_id);
+        }
 
         // Honeypot check: reject silently if bot filled hidden field.
-        if (!empty($post['company_website'])) {
+        if ($post['company_website'] !== '') {
             self::redirect('sent', [], $package_id);
         }
 
-        // Time-trap verification (replaces nonce to prevent issues on page-cached sites).
-        $trap = isset($post['pothik_trap']) ? sanitize_text_field((string) $post['pothik_trap']) : '';
+        // Time-trap: a token that is present but forged or submitted in under 3 s is dropped silently.
+        $trap = $post['pothik_trap'];
         if ($trap !== '') {
             $parts = explode('.', $trap);
-            if (count($parts) === 2) {
-                $ts = (int) $parts[0];
-                $hash = (string) $parts[1];
-                if (hash_equals(wp_hash('pothik_time_trap_' . $ts), $hash)) {
-                    $elapsed = time() - $ts;
-                    // Reject silently if submitted in under 3 seconds or older than 24 hours.
-                    if ($elapsed < 3 || $elapsed > DAY_IN_SECONDS) {
-                        self::redirect('sent', [], $package_id);
-                    }
-                }
-                // If timestamp/HMAC is missing or invalid due to full page caching, do not reject;
-                // fall through to honeypot + IP rate limiting.
+            $ts = count($parts) === 2 ? (int) $parts[0] : 0;
+            if ($ts === 0 || !hash_equals(wp_hash('pothik_time_trap_' . $ts), (string) $parts[1])) {
+                self::redirect('sent', [], $package_id);
+            }
+            $elapsed = time() - $ts;
+            if ($elapsed > DAY_IN_SECONDS) {
+                // A page cached for over a day: ask the visitor to send again instead of losing the inquiry.
+                self::redirect_with_state('nonce', $post, $package_id);
+            }
+            if ($elapsed < 3) {
+                self::redirect('sent', [], $package_id);
             }
         }
 

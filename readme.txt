@@ -21,12 +21,12 @@ Publish beautiful, high-converting package landing pages in minutes, collect pil
 * **Package Landing Pages**: Showcase days, Makkah & Madinah hotels, walking distance in meters to the Haram and the Prophet's Mosque, star ratings, flight routes, and detailed Quad/Triple/Double/Single pricing in BDT.
 * **Instant WhatsApp Integration**: Visitors can inquire and immediately tap "Chat with the office on WhatsApp" with pre-filled details (name, package, room share, and number of pilgrims).
 * **Reliable Lead Capture**: No lost leads. Uses custom database tables (`{$wpdb->prefix}pothik_inquiries`) with pagination and one-click UTF-8 CSV export for Excel.
-* **Smart Spam Protection**: Cache-compatible signed HMAC time-trap and configurable IP rate limiting — zero reliance on fragile page nonces that break on cached pages.
+* **Smart Spam Protection**: A nonce-protected, cache-friendly inquiry form with a honeypot, a signed time-trap and configurable IP rate limiting.
 * **Instant Email Notifications**: Get notified via `wp_mail` the moment a pilgrim sends an inquiry, complete with a direct one-tap WhatsApp link to reply immediately.
 * **Payment Receipt Slip**: Generate, print, or copy branded payment proof slips with bKash, Nagad, Rocket, Bank, and Cash channels.
 * **Bilingual English & Bengali (বাংলা)**: Seamless native language toggle with full translation coverage.
 * **Self-Hosted Typography**: Includes subsetted WOFF2 fonts (Noto Sans Bengali and Source Sans 3) for lightning-fast, privacy-friendly page loads without external Google Fonts dependencies.
-* **Shortcodes Included**: Easily embed packages anywhere with `[hejazer_kafela_package id="..."]` or show your entire package offering with `[hejazer_kafela_catalog]`.
+* **Shortcodes Included**: Easily embed packages anywhere with `[hejazer_kafela_package id="..."]` or show your entire package offering with `[hejazer_kafela_catalog]`. The older `[pothik_package]`, `[pothik_catalog]` and `[pothik]` shortcodes keep working.
 
 == Installation ==
 
@@ -38,7 +38,7 @@ Publish beautiful, high-converting package landing pages in minutes, collect pil
 == Frequently Asked Questions ==
 
 = Does Hejazer Kafela work with full-page caching plugins? =
-Yes. Hejazer Kafela does not rely on fragile WordPress nonces for public lead submission forms. It uses honeypot fields, signed HMAC timestamps, and IP-based rate limiting that work smoothly alongside WP Rocket, LiteSpeed Cache, Super Cache, Cloudflare, and server-side Nginx caching.
+Yes. The public inquiry form is protected by a WordPress nonce that the page fetches fresh when the visitor starts typing, so a cached page never serves an expired one. A honeypot field, a signed time-trap and IP-based rate limiting add to that. It works alongside WP Rocket, LiteSpeed Cache, Super Cache, Cloudflare, and server-side Nginx caching.
 
 = How do inquiries reach our office? =
 Inquiries are saved directly to your WordPress database table with pagination and CSV export. Simultaneously, an email notification is dispatched to your configured notification email(s) with an instant WhatsApp link to reply to the pilgrim.

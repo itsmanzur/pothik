@@ -294,12 +294,13 @@ $facts = array_filter([
                 ?>
                 <?php if ($result === 'missing') : ?>
                     <p class="pk-alert" role="alert"><?php echo esc_html(I18n::t('Name and phone are both required.')); ?></p>
-                <?php elseif ($result === 'limit') : ?>
+                <?php elseif ($result === 'limit' || $result === 'nonce') : ?>
                     <p class="pk-alert" role="alert"><?php echo esc_html(I18n::t('Please try again shortly.')); ?></p>
                 <?php endif; ?>
                 <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
                     <input type="hidden" name="action" value="pothik_inquiry">
                     <input type="hidden" name="pothik_trap" value="<?php echo esc_attr(InquiryStore::generate_time_trap()); ?>">
+                    <input type="hidden" name="pothik_inquiry_nonce" value="<?php echo esc_attr(wp_create_nonce('pothik_inquiry')); ?>">
                     <input type="hidden" name="package_id" value="<?php echo esc_attr((string) ($package['id'] ?? '')); ?>">
                     <?php \Pothik\Referral::field(); ?>
                     <label class="pk-trap" aria-hidden="true">Website<input type="text" name="company_website" tabindex="-1" autocomplete="off"></label>

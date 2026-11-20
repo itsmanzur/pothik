@@ -680,3 +680,54 @@
     render();
     paintTray();
 }());
+
+(function () {
+    // The page may come from a cache, so ask the server for a fresh nonce once the visitor starts the form.
+    var form = document.querySelector('.pk-inquiry form');
+    var config = window.pothikPublic;
+    if (!form || !config || !config.ajaxUrl) {
+        return;
+    }
+    var nonce = form.querySelector('input[name="pothik_inquiry_nonce"]');
+    var trap = form.querySelector('input[name="pothik_trap"]');
+    var pending = null;
+
+    function refresh() {
+        if (pending) {
+            return pending;
+        }
+        pending = fetch(config.ajaxUrl + '?action=pothik_fresh_nonce', { credentials: 'same-origin', cache: 'no-store' })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (payload) {
+                if (payload && payload.success && payload.data) {
+                    if (nonce) {
+                        nonce.value = payload.data.nonce;
+                    }
+                    // Only replace a token that is close to expiring; a new one would look too fast for the 3-second rule.
+                    var issued = trap ? parseInt(String(trap.value).split('.')[0], 10) : 0;
+                    if (trap && (!issued || Date.now() / 1000 - issued > 72000)) {
+                        trap.value = payload.data.trap;
+                    }
+                }
+            })
+            .catch(function () {});
+        return pending;
+    }
+
+    ['focusin', 'input', 'pointerdown'].forEach(function (name) {
+        form.addEventListener(name, refresh, { once: true });
+    });
+
+    form.addEventListener('submit', function (event) {
+        if (form.getAttribute('data-pk-ready') === '1') {
+            return;
+        }
+        event.preventDefault();
+        refresh().then(function () {
+            form.setAttribute('data-pk-ready', '1');
+            form.submit();
+        });
+    });
+}());

@@ -180,6 +180,7 @@ final class PackagePage
         }
         self::$script_ready = true;
         wp_localize_script('pothik-public', 'pothikPublic', [
+            'ajaxUrl' => admin_url('admin-ajax.php'),
             'i18n' => [
                 'one' => I18n::t('%d package'),
                 'many' => I18n::t('%d packages'),

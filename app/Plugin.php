@@ -60,6 +60,8 @@ final class Plugin
         add_action('admin_page_access_denied', [Access::class, 'on_denied']);
         add_action('admin_post_pothik_inquiry', [InquiryStore::class, 'handle_public']);
         add_action('admin_post_nopriv_pothik_inquiry', [InquiryStore::class, 'handle_public']);
+        add_action('wp_ajax_nopriv_pothik_fresh_nonce', [InquiryStore::class, 'ajax_fresh_nonce']);
+        add_action('wp_ajax_pothik_fresh_nonce', [InquiryStore::class, 'ajax_fresh_nonce']);
 
         add_action('init', [I18n::class, 'capture'], 0);
         add_action('init', [PackagePage::class, 'register_shortcodes']);
