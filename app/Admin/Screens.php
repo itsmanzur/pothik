@@ -9,7 +9,6 @@ declare(strict_types=1);
 
 namespace Pothik\Admin;
 
-// phpcs:disable WordPress.Security.EscapeOutput
 
 use Pothik\Access;
 use Pothik\Format;
@@ -236,7 +235,7 @@ final class Screens
         echo '<a class="stat" href="' . esc_url(admin_url('admin.php?page=pothik-analytics')) . '">';
         echo '<span class="ic"><svg class="i"><use href="#i-inbox"/></svg></span>';
         echo '<span class="trend ' . ($trend_down ? 'neg' : 'pos') . '">' . esc_html($trend_label) . '</span>';
-        echo '<strong data-pk-count="' . $curr_7_count . '" data-count="' . $curr_7_count . '">' . $curr_7_count . '</strong>';
+        echo '<strong data-pk-count="' . esc_attr($curr_7_count) . '" data-count="' . esc_attr($curr_7_count) . '">' . esc_html($curr_7_count) . '</strong>';
         echo '<span class="lb">' . esc_html(I18n::t('Inquiries')) . '</span>';
         echo '<span class="ln">' . esc_html(I18n::t('Last 7 days')) . '</span>';
         echo '<svg class="spark" viewBox="0 0 100 40" preserveAspectRatio="none"><path d="' . esc_attr($fill_d) . '" fill="#40916c" opacity=".12"/><path d="' . esc_attr($line_d) . '" fill="none" stroke="#40916c" stroke-width="2"/></svg>';
@@ -245,7 +244,7 @@ final class Screens
         if (Access::can('inquiries', 'view')) {
         echo '<a class="stat c2" href="' . esc_url(admin_url('admin.php?page=pothik-inquiries&status=waiting')) . '">';
         echo '<span class="ic"><svg class="i"><use href="#i-clock"/></svg></span>';
-        echo '<strong data-pk-count="' . $waiting_count . '" data-count="' . $waiting_count . '" data-pk-wait-count data-wait-count>' . $waiting_count . '</strong>';
+        echo '<strong data-pk-count="' . esc_attr($waiting_count) . '" data-count="' . esc_attr($waiting_count) . '" data-pk-wait-count data-wait-count>' . esc_html($waiting_count) . '</strong>';
         echo '<span class="lb">' . esc_html(I18n::t('Waiting reply')) . '</span>';
         echo '<span class="ln">' . esc_html($oldest_diff !== '' ? sprintf(I18n::t('Oldest %s ago'), $oldest_diff) : I18n::t('All answered')) . '</span>';
         echo '</a>';
@@ -253,7 +252,7 @@ final class Screens
         if (Access::can('packages', 'view')) {
         echo '<a class="stat c3" href="' . esc_url(admin_url('admin.php?page=pothik-package')) . '">';
         echo '<span class="ic"><svg class="i"><use href="#i-box"/></svg></span>';
-        echo '<strong data-pk-count="' . $packages_count . '" data-count="' . $packages_count . '">' . $packages_count . '</strong>';
+        echo '<strong data-pk-count="' . esc_attr($packages_count) . '" data-count="' . esc_attr($packages_count) . '">' . esc_html($packages_count) . '</strong>';
         echo '<span class="lb">' . esc_html(I18n::t('Packages')) . '</span>';
         echo '<span class="ln">' . esc_html($pkg_limit_text) . '</span>';
         echo '</a>';
@@ -261,7 +260,7 @@ final class Screens
         // Stat 4: Published
         echo '<a class="stat c4" href="' . esc_url(admin_url('admin.php?page=pothik-package')) . '">';
         echo '<span class="ic"><svg class="i"><use href="#i-globe"/></svg></span>';
-        echo '<strong data-pk-count="' . $published_count . '" data-count="' . $published_count . '">' . $published_count . '</strong>';
+        echo '<strong data-pk-count="' . esc_attr($published_count) . '" data-count="' . esc_attr($published_count) . '">' . esc_html($published_count) . '</strong>';
         echo '<span class="lb">' . esc_html(I18n::t('Published')) . '</span>';
         echo '<span class="ln">' . esc_html(I18n::t('Live on your site')) . '</span>';
         echo '</a>';
@@ -269,7 +268,7 @@ final class Screens
         if (Access::can('receipt', 'view')) {
         echo '<a class="stat c5" href="' . esc_url(admin_url('admin.php?page=pothik-receipt')) . '">';
         echo '<span class="ic"><svg class="i"><use href="#i-receipt"/></svg></span>';
-        echo '<strong data-pk-count="' . $rc_amt . '" data-count="' . $rc_amt . '" data-pk-money data-money>' . Format::money($rc_amt) . '</strong>';
+        echo '<strong data-pk-count="' . esc_attr($rc_amt) . '" data-count="' . esc_attr($rc_amt) . '" data-pk-money data-money>' . esc_html(Format::money($rc_amt)) . '</strong>';
         echo '<span class="lb">' . esc_html(I18n::t('Last receipt')) . '</span>';
         echo '<span class="ln">' . esc_html($rc_summary) . '</span>';
         echo '</a>';
@@ -277,7 +276,7 @@ final class Screens
         if (Access::can('analytics', 'view')) {
         echo '<a class="stat c6" href="' . esc_url(admin_url('admin.php?page=pothik-analytics')) . '">';
         echo '<span class="ic"><svg class="i"><use href="#i-check"/></svg></span>';
-        echo '<strong data-pk-count="' . $reply_rate_30 . '" data-count="' . $reply_rate_30 . '" data-suffix="%">' . $reply_rate_30 . '%</strong>';
+        echo '<strong data-pk-count="' . esc_attr($reply_rate_30) . '" data-count="' . esc_attr($reply_rate_30) . '" data-suffix="%">' . esc_html($reply_rate_30) . '%</strong>';
         echo '<span class="lb">' . esc_html(I18n::t('Reply rate')) . '</span>';
         echo '<span class="ln">' . esc_html(I18n::t('Last 30 days')) . '</span>';
         echo '</a>';
@@ -320,7 +319,7 @@ final class Screens
                 echo '<div class="q-act">';
                 echo '<span class="q-time">' . esc_html($time_str) . '</span>';
                 if ($tel_href !== '') {
-                    echo '<a class="pk-icon-btn icon-btn" href="' . esc_url($tel_href) . '" title="' . sprintf(esc_attr(I18n::t('Call %s')), $phone) . '"><svg class="i"><use href="#i-phone"/></svg></a>';
+                    echo '<a class="pk-icon-btn icon-btn" href="' . esc_url($tel_href) . '" title="' . sprintf(esc_attr(I18n::t('Call %s')), esc_html($phone)) . '"><svg class="i"><use href="#i-phone"/></svg></a>';
                 }
                 if ($wa_href !== '') {
                     echo '<a class="pk-icon-btn icon-btn wa" href="' . esc_url($wa_href) . '" target="_blank" rel="noopener" title="' . esc_attr(I18n::t('Reply on WhatsApp')) . '"><svg class="i"><use href="#i-wa"/></svg></a>';
@@ -380,10 +379,10 @@ final class Screens
                 $edit_url = admin_url('admin.php?page=pothik-package&package=' . rawurlencode((string) ($p['id'] ?? '')));
 
                 echo '<div class="mini-pkg">';
-                echo '<span class="thumb" style="background:linear-gradient(135deg,' . $pair[0] . ',' . $pair[1] . ')">' . $days . '<small>' . esc_html(I18n::t('DAYS')) . '</small></span>';
+                echo '<span class="thumb" style="background:linear-gradient(135deg,' . esc_html($pair[0]) . ',' . esc_html($pair[1]) . ')">' . esc_html($days) . '<small>' . esc_html(I18n::t('DAYS')) . '</small></span>';
                 echo '<div class="m"><b><a href="' . esc_url($edit_url) . '" style="color:inherit;text-decoration:none">' . esc_html($title) . '</a></b>';
                 if ($lowest_price > 0) {
-                    echo '<span class="sub">' . esc_html(I18n::t('from')) . ' ' . Format::money($lowest_price) . '</span>';
+                    echo '<span class="sub">' . esc_html(I18n::t('from')) . ' ' . esc_html(Format::money($lowest_price)) . '</span>';
                 } else {
                     echo '<span class="sub">—</span>';
                 }
@@ -398,8 +397,8 @@ final class Screens
 
         if ($show_setup && Access::can('settings', 'view')) {
             echo '<div class="card pk-card setup-light">';
-            echo '<div class="card-head pk-card-head"><h3>' . esc_html(I18n::t('Finish setting up')) . '</h3><span class="sub"><b>' . $completed_steps . '</b> ' . esc_html(I18n::t('of 5')) . '</span></div>';
-            echo '<div class="meter"><i data-pk-w="' . $progress_pct . '" style="width:' . $progress_pct . '%"></i></div>';
+            echo '<div class="card-head pk-card-head"><h3>' . esc_html(I18n::t('Finish setting up')) . '</h3><span class="sub"><b>' . esc_html($completed_steps) . '</b> ' . esc_html(I18n::t('of 5')) . '</span></div>';
+            echo '<div class="meter"><i data-pk-w="' . esc_attr($progress_pct) . '" style="width:' . esc_html($progress_pct) . '%"></i></div>';
             echo '<ul>';
             echo '<li class="' . ($s1 ? 'ok' : '') . '"><a href="' . esc_url(admin_url('admin.php?page=pothik-settings')) . '"><span class="tick">' . ($s1 ? '<svg class="i sm"><use href="#i-check"/></svg>' : '') . '</span><span>' . esc_html(I18n::t('Add agency name & phone')) . '</span></a></li>';
             echo '<li class="' . ($s3 ? 'ok' : '') . '"><a href="' . esc_url(admin_url('admin.php?page=pothik-settings')) . '"><span class="tick">' . ($s3 ? '<svg class="i sm"><use href="#i-check"/></svg>' : '') . '</span><span>' . esc_html(I18n::t('Set WhatsApp number')) . '</span></a></li>';
@@ -417,8 +416,7 @@ final class Screens
         if (is_array($desk_cards)) {
             foreach ($desk_cards as $desk_card) {
                 if (is_string($desk_card) && $desk_card !== '') {
-                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped by the callback.
-                    echo $desk_card;
+                    echo wp_kses($desk_card, UI::allowed_html());
                 }
             }
         }
@@ -606,9 +604,9 @@ final class Screens
         echo '<div class="toolbar">';
         echo '<label class="search pk-search"><svg class="i sm"><use href="#i-search"/></svg><input id="pkgSearch" placeholder="' . esc_attr(I18n::t('Search packages or hotels…')) . '"></label>';
         echo '<div class="chips pk-chips" id="pkgChips">';
-        echo '<button class="chip pk-chip on" type="button" data-f="">' . esc_html(I18n::t('All')) . ' <b>' . $total_count . '</b></button>';
-        echo '<button class="chip pk-chip" type="button" data-f="live">' . esc_html(I18n::t('Published')) . ' <b>' . $live_count . '</b></button>';
-        echo '<button class="chip pk-chip" type="button" data-f="draft">' . esc_html(I18n::t('Draft')) . ' <b>' . $draft_count . '</b></button>';
+        echo '<button class="chip pk-chip on" type="button" data-f="">' . esc_html(I18n::t('All')) . ' <b>' . esc_html($total_count) . '</b></button>';
+        echo '<button class="chip pk-chip" type="button" data-f="live">' . esc_html(I18n::t('Published')) . ' <b>' . esc_html($live_count) . '</b></button>';
+        echo '<button class="chip pk-chip" type="button" data-f="draft">' . esc_html(I18n::t('Draft')) . ' <b>' . esc_html($draft_count) . '</b></button>';
         echo '</div>';
         echo '<span class="spacer"></span>';
         echo '</div>'; // .toolbar
@@ -703,12 +701,12 @@ final class Screens
         // Cover
         echo '<div class="pkg-cover pk-pkg-cover">';
         echo '<div class="row">';
-        echo '<div class="days pk-days"><strong>' . $days . '</strong><span>' . esc_html(I18n::t('days')) . '</span></div>';
+        echo '<div class="days pk-days"><strong>' . esc_html($days) . '</strong><span>' . esc_html(I18n::t('days')) . '</span></div>';
         echo '<span class="pill pk-pill ' . ($is_live ? 'live' : 'draft') . '">' . esc_html(I18n::t($is_live ? 'Published' : 'Draft')) . '</span>';
         echo '</div>'; // .row
         echo '<div class="nights pk-nights">';
-        echo '<span>🕋 ' . sprintf(esc_html(I18n::t('%d nights Makkah')), $nm) . '</span>';
-        echo '<span>🕌 ' . sprintf(esc_html(I18n::t('%d Madinah')), $nd) . '</span>';
+        echo '<span>🕋 ' . sprintf(esc_html(I18n::t('%d nights Makkah')), esc_html($nm)) . '</span>';
+        echo '<span>🕌 ' . sprintf(esc_html(I18n::t('%d Madinah')), esc_html($nd)) . '</span>';
         echo '</div>'; // .nights
         echo '</div>'; // .pkg-cover
 
@@ -719,19 +717,19 @@ final class Screens
         echo '<span class="city">' . esc_html(I18n::t('Makkah')) . '</span>';
         echo '<span class="nm">' . esc_html($mh) . '</span>';
         echo '<span class="stars">' . esc_html($m_stars_str) . '</span>';
-        echo '<div class="dist"><div class="meter pk-meter"><i style="width:' . $m_dist_pct . '%"></i></div>' . $mm . ' m</div>';
+        echo '<div class="dist"><div class="meter pk-meter"><i style="width:' . esc_html($m_dist_pct) . '%"></i></div>' . esc_html($mm) . ' m</div>';
         echo '</div>'; // .hotel
         echo '<div class="hotel pk-hotel">';
         echo '<span class="city">' . esc_html(I18n::t('Madinah')) . '</span>';
         echo '<span class="nm">' . esc_html($dh) . '</span>';
         echo '<span class="stars">' . esc_html($d_stars_str) . '</span>';
-        echo '<div class="dist"><div class="meter pk-meter"><i style="width:' . $d_dist_pct . '%"></i></div>' . $dm . ' m</div>';
+        echo '<div class="dist"><div class="meter pk-meter"><i style="width:' . esc_html($d_dist_pct) . '%"></i></div>' . esc_html($dm) . ' m</div>';
         echo '</div>'; // .hotel
         echo '</div>'; // .pkg-body
 
         // Foot
         echo '<div class="pkg-foot pk-pkg-foot">';
-        echo '<div class="price"><small>' . esc_html(I18n::t('from, quad')) . '</small><b>' . Format::money($quad_price) . '</b></div>';
+        echo '<div class="price"><small>' . esc_html(I18n::t('from, quad')) . '</small><b>' . esc_html(Format::money($quad_price)) . '</b></div>';
         echo '<div class="flex-center">';
 
         // Status switch form
@@ -945,7 +943,7 @@ final class Screens
         echo '<div class="field pk-field"><span>' . esc_html(I18n::t('Madinah nights')) . '</span><div class="stepper pk-stepper"><button type="button" data-step="-1">−</button><input name="nights_madinah" data-pv="nd" value="' . esc_attr((string) $nd) . '" inputmode="numeric"><button type="button" data-step="1">+</button></div></div>';
         echo '</div>'; // .three
         $fit = ($nm + $nd < $days);
-        echo '<p class="hint' . (!$fit ? ' clay' : '') . '" id="nightWarn">' . ($fit ? '✓ ' . sprintf(esc_html(I18n::t('%d nights fit inside %d days')), ($nm + $nd), $days) : '⚠ ' . sprintf(esc_html(I18n::t('%d nights do not fit inside %d days')), ($nm + $nd), $days)) . '</p>';
+        echo '<p class="hint' . (!$fit ? ' clay' : '') . '" id="nightWarn">' . ($fit ? '✓ ' . sprintf(esc_html(I18n::t('%d nights fit inside %d days')), esc_html($nm + $nd), esc_html($days)) : '⚠ ' . sprintf(esc_html(I18n::t('%d nights do not fit inside %d days')), esc_html($nm + $nd), esc_html($days))) . '</p>';
         echo '<label class="field pk-field mt-14"><span>' . esc_html(I18n::t('Group note')) . '</span><input name="group_note" value="' . esc_attr($group_note) . '" placeholder="' . esc_attr($text_ph('group_note')) . '"></label>';
         $departure = (string) ($package['departure'] ?? '');
         echo '<label class="field pk-field mt-14"><span>' . esc_html(I18n::t('Departure month')) . '</span><input type="month" name="departure" value="' . esc_attr($departure) . '"><em class="sub">' . esc_html(I18n::t('Shown as a filter on the All packages page')) . '</em></label>';
@@ -962,8 +960,8 @@ final class Screens
         echo '<h4><i>MK</i>' . esc_html(I18n::t('Makkah')) . '</h4>';
         echo '<label class="field pk-field"><span>' . esc_html(I18n::t('Hotel')) . '</span><input name="makkah_hotel" data-pv="mh" value="' . esc_attr($mh) . '" placeholder="' . esc_attr($text_ph('makkah_hotel')) . '"></label>';
         echo '<label class="field pk-field mt-10"><span>' . esc_html(I18n::t('Or similar')) . '</span><input name="makkah_similar" value="' . esc_attr($m_sim) . '" placeholder="' . esc_attr($text_ph('makkah_similar')) . '"></label>';
-        echo '<div class="field pk-field mt-10"><span>' . esc_html(I18n::t('Stars')) . '</span><div class="rate pk-rate" data-rate="ms" data-val="' . $ms . '"></div><input type="hidden" name="makkah_stars" id="makkahStarsInput" value="' . $ms . '"></div>';
-        echo '<div class="field pk-field mt-6"><span>' . esc_html(I18n::t('Distance to the Haram')) . ' <em class="walk" data-walk="mm"></em></span><div class="range-row pk-range-row"><input type="range" min="0" max="2000" step="10" value="' . $mm . '" data-range="mm" id="makkahMetersRange"><input type="hidden" name="makkah_meters" id="makkahMetersInput" value="' . $mm . '"><output data-out="mm">' . $mm . ' m</output></div></div>';
+        echo '<div class="field pk-field mt-10"><span>' . esc_html(I18n::t('Stars')) . '</span><div class="rate pk-rate" data-rate="ms" data-val="' . esc_attr($ms) . '"></div><input type="hidden" name="makkah_stars" id="makkahStarsInput" value="' . esc_attr($ms) . '"></div>';
+        echo '<div class="field pk-field mt-6"><span>' . esc_html(I18n::t('Distance to the Haram')) . ' <em class="walk" data-walk="mm"></em></span><div class="range-row pk-range-row"><input type="range" min="0" max="2000" step="10" value="' . esc_attr($mm) . '" data-range="mm" id="makkahMetersRange"><input type="hidden" name="makkah_meters" id="makkahMetersInput" value="' . esc_attr($mm) . '"><output data-out="mm">' . esc_html($mm) . ' m</output></div></div>';
         echo '</div>'; // Makkah card
 
         // Madinah Card
@@ -971,8 +969,8 @@ final class Screens
         echo '<h4><i>MD</i>' . esc_html(I18n::t('Madinah')) . '</h4>';
         echo '<label class="field pk-field"><span>' . esc_html(I18n::t('Hotel')) . '</span><input name="madinah_hotel" data-pv="dh" value="' . esc_attr($dh) . '" placeholder="' . esc_attr($text_ph('madinah_hotel')) . '"></label>';
         echo '<label class="field pk-field mt-10"><span>' . esc_html(I18n::t('Or similar')) . '</span><input name="madinah_similar" value="' . esc_attr($d_sim) . '" placeholder="' . esc_attr($text_ph('madinah_similar')) . '"></label>';
-        echo '<div class="field pk-field mt-10"><span>' . esc_html(I18n::t('Stars')) . '</span><div class="rate pk-rate" data-rate="ds" data-val="' . $ds . '"></div><input type="hidden" name="madinah_stars" id="madinahStarsInput" value="' . $ds . '"></div>';
-        echo '<div class="field pk-field mt-6"><span>' . esc_html(I18n::t("Distance to Prophet's Mosque")) . ' <em class="walk" data-walk="dm"></em></span><div class="range-row pk-range-row"><input type="range" min="0" max="2000" step="10" value="' . $dm . '" data-range="dm" id="madinahMetersRange"><input type="hidden" name="madinah_meters" id="madinahMetersInput" value="' . $dm . '"><output data-out="dm">' . $dm . ' m</output></div></div>';
+        echo '<div class="field pk-field mt-10"><span>' . esc_html(I18n::t('Stars')) . '</span><div class="rate pk-rate" data-rate="ds" data-val="' . esc_attr($ds) . '"></div><input type="hidden" name="madinah_stars" id="madinahStarsInput" value="' . esc_attr($ds) . '"></div>';
+        echo '<div class="field pk-field mt-6"><span>' . esc_html(I18n::t("Distance to Prophet's Mosque")) . ' <em class="walk" data-walk="dm"></em></span><div class="range-row pk-range-row"><input type="range" min="0" max="2000" step="10" value="' . esc_attr($dm) . '" data-range="dm" id="madinahMetersRange"><input type="hidden" name="madinah_meters" id="madinahMetersInput" value="' . esc_attr($dm) . '"><output data-out="dm">' . esc_html($dm) . ' m</output></div></div>';
         echo '</div>'; // Madinah card
 
         echo '</div>'; // .fgrid
@@ -1024,11 +1022,11 @@ final class Screens
         echo '<div class="pv-hero pk-pv-hero">';
         echo '<small data-pvo="kicker">' . esc_html($kicker ?: 'Umrah 2026 · Group') . '</small>';
         echo '<h5 data-pvo="title">' . esc_html($display_title) . '</h5>';
-        echo '<div class="pv-chips pk-pv-chips"><span><b data-pvo="days">' . $days . '</b> ' . esc_html(I18n::t('days')) . '</span><span><b data-pvo="nm">' . $nm . '</b> ' . esc_html(I18n::t('Makkah')) . '</span><span><b data-pvo="nd">' . $nd . '</b> ' . esc_html(I18n::t('Madinah')) . '</span></div>';
+        echo '<div class="pv-chips pk-pv-chips"><span><b data-pvo="days">' . esc_html($days) . '</b> ' . esc_html(I18n::t('days')) . '</span><span><b data-pvo="nm">' . esc_html($nm) . '</b> ' . esc_html(I18n::t('Makkah')) . '</span><span><b data-pvo="nd">' . esc_html($nd) . '</b> ' . esc_html(I18n::t('Madinah')) . '</span></div>';
         echo '</div>'; // .pv-hero
         echo '<div class="pv-body pk-pv-body">';
-        echo '<div class="pv-box pk-pv-box"><small class="muted">' . esc_html(I18n::t('Makkah')) . '</small><b data-pvo="mh">' . esc_html($mh ?: 'Makkah hotel') . '</b><span class="muted" data-pvo="mmtxt">' . $mm . ' m ' . esc_html(I18n::t('to the Haram')) . '</span></div>';
-        echo '<div class="pv-box pk-pv-box"><small class="muted">' . esc_html(I18n::t('Madinah')) . '</small><b data-pvo="dh">' . esc_html($dh ?: 'Madinah hotel') . '</b><span class="muted" data-pvo="dmtxt">' . $dm . ' m ' . esc_html(I18n::t("to the Prophet's Mosque")) . '</span></div>';
+        echo '<div class="pv-box pk-pv-box"><small class="muted">' . esc_html(I18n::t('Makkah')) . '</small><b data-pvo="mh">' . esc_html($mh ?: 'Makkah hotel') . '</b><span class="muted" data-pvo="mmtxt">' . esc_html($mm) . ' m ' . esc_html(I18n::t('to the Haram')) . '</span></div>';
+        echo '<div class="pv-box pk-pv-box"><small class="muted">' . esc_html(I18n::t('Madinah')) . '</small><b data-pvo="dh">' . esc_html($dh ?: 'Madinah hotel') . '</b><span class="muted" data-pvo="dmtxt">' . esc_html($dm) . ' m ' . esc_html(I18n::t("to the Prophet's Mosque")) . '</span></div>';
         echo '<div class="pv-price pk-pv-price">';
         echo '<div><small class="muted">' . esc_html(I18n::t('Quad')) . '</small><strong>৳<span data-pvo="pq">' . ($pq > 0 ? number_format($pq) : '—') . '</span></strong></div>';
         echo '<div><small class="muted">' . esc_html(I18n::t('Triple')) . '</small><strong>৳<span data-pvo="pt">' . ($pt > 0 ? number_format($pt) : '—') . '</span></strong></div>';
@@ -1087,9 +1085,9 @@ final class Screens
         echo '<div class="toolbar pk-toolbar">';
         if ($show_chips) {
             echo '<div class="chips pk-chips" id="inqChips">';
-            echo '<button type="button" class="chip pk-chip ' . ($status === '' ? 'on' : '') . '" data-f="">' . esc_html(I18n::t('All')) . ' <b data-c="all">' . $counts['all'] . '</b></button>';
-            echo '<button type="button" class="chip pk-chip ' . ($status === 'waiting' ? 'on' : '') . '" data-f="waiting">' . esc_html(I18n::t('Waiting')) . ' <b data-c="wait">' . $counts['waiting'] . '</b></button>';
-            echo '<button type="button" class="chip pk-chip ' . ($status === 'replied' ? 'on' : '') . '" data-f="replied">' . esc_html(I18n::t('Replied')) . ' <b data-c="done">' . $counts['replied'] . '</b></button>';
+            echo '<button type="button" class="chip pk-chip ' . ($status === '' ? 'on' : '') . '" data-f="">' . esc_html(I18n::t('All')) . ' <b data-c="all">' . esc_html($counts['all']) . '</b></button>';
+            echo '<button type="button" class="chip pk-chip ' . ($status === 'waiting' ? 'on' : '') . '" data-f="waiting">' . esc_html(I18n::t('Waiting')) . ' <b data-c="wait">' . esc_html($counts['waiting']) . '</b></button>';
+            echo '<button type="button" class="chip pk-chip ' . ($status === 'replied' ? 'on' : '') . '" data-f="replied">' . esc_html(I18n::t('Replied')) . ' <b data-c="done">' . esc_html($counts['replied']) . '</b></button>';
             echo '</div>'; // .chips
         }
 
@@ -1141,8 +1139,7 @@ final class Screens
         echo '<tbody id="inqBody">';
         if (!empty($rows)) {
             foreach ($rows as $row) {
-                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                echo self::inquiry_row_html($row);
+                echo wp_kses(self::inquiry_row_html($row), UI::allowed_html());
             }
         }
         echo '</tbody>';
@@ -1160,7 +1157,7 @@ final class Screens
         $start_item = $total > 0 ? ($page - 1) * $per_page + 1 : 0;
         $end_item = min($total, $page * $per_page);
         echo '<div class="pager pk-pager" id="inqPager">';
-        echo '<span id="inqShowing">' . sprintf(esc_html(I18n::t('Showing %d–%d of %d')), $start_item, $end_item, $total) . '</span>';
+        echo '<span id="inqShowing">' . sprintf(esc_html(I18n::t('Showing %d–%d of %d')), esc_html($start_item), esc_html($end_item), esc_html($total)) . '</span>';
         echo '<div class="pager-nav pk-pager-nav">';
         if ($total_pages > 1) {
             echo '<div class="pg pk-pg">';
@@ -1168,7 +1165,7 @@ final class Screens
                 // phpcs:ignore WordPress.Security.NonceVerification.Recommended
                 $stage = isset($_GET['stage']) ? sanitize_key((string) wp_unslash($_GET['stage'])) : '';
                 $url = add_query_arg(['page' => 'pothik-inquiries', 'paged' => $i, 'status' => $status, 's' => $search, 'share' => $share, 'stage' => $stage], admin_url('admin.php'));
-                echo '<a href="' . esc_url($url) . '" class="btn pk-btn-sm ' . ($i === $page ? 'on' : '') . '" data-p="' . $i . '">' . $i . '</a>';
+                echo '<a href="' . esc_url($url) . '" class="btn pk-btn-sm ' . ($i === $page ? 'on' : '') . '" data-p="' . esc_attr($i) . '">' . esc_html($i) . '</a>';
             }
             echo '</div>';
         }
@@ -1387,8 +1384,7 @@ final class Screens
 
         ob_start();
         foreach ($paged_data['items'] as $row) {
-            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-            echo self::inquiry_row_html($row);
+            echo wp_kses(self::inquiry_row_html($row), UI::allowed_html());
         }
         $tbody_html = ob_get_clean();
 
@@ -1528,7 +1524,7 @@ final class Screens
         echo '<div class="slip-amt pk-slip-amt">';
         echo '<span class="stamp pk-stamp">PAID</span>';
         echo '<small>' . esc_html(I18n::t('Amount received')) . '</small>';
-        echo '<strong id="sAmt">' . Format::money($amount) . '</strong>';
+        echo '<strong id="sAmt">' . esc_html(Format::money($amount)) . '</strong>';
         echo '<div class="sub pk-sub" id="sWords">' . esc_html($words) . '</div>';
         echo '</div>'; // .slip-amt
 

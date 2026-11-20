@@ -9,7 +9,6 @@ declare(strict_types=1);
 
 namespace Pothik\Admin;
 
-// phpcs:disable WordPress.Security.EscapeOutput
 
 use DateTimeImmutable;
 use DateTimeZone;
@@ -161,16 +160,16 @@ final class Analytics
         echo '<div class="kpis pk-kpis">';
         
         // KPI 1: Inquiries
-        echo '<div class="kpi pk-kpi"><div class="kpi-top"><span class="kpi-ico"><svg class="i"><use href="#i-inbox"/></svg></span>' . $trend_html . '</div><strong data-pk-count="' . $total_inquiries . '">' . $total_inquiries . '</strong><span class="sub">' . esc_html(I18n::t('Inquiries')) . '</span></div>';
+        echo '<div class="kpi pk-kpi"><div class="kpi-top"><span class="kpi-ico"><svg class="i"><use href="#i-inbox"/></svg></span>' . wp_kses($trend_html, ['span' => ['class' => true]]) . '</div><strong data-pk-count="' . esc_attr($total_inquiries) . '">' . esc_html($total_inquiries) . '</strong><span class="sub">' . esc_html(I18n::t('Inquiries')) . '</span></div>';
         
         // KPI 2: Still waiting
-        echo '<div class="kpi pk-kpi warn"><div class="kpi-top"><span class="kpi-ico"><svg class="i"><use href="#i-clock"/></svg></span></div><strong data-pk-count="' . $waiting . '">' . $waiting . '</strong><span class="sub">' . esc_html(I18n::t('Still waiting')) . '</span></div>';
+        echo '<div class="kpi pk-kpi warn"><div class="kpi-top"><span class="kpi-ico"><svg class="i"><use href="#i-clock"/></svg></span></div><strong data-pk-count="' . esc_attr($waiting) . '">' . esc_html($waiting) . '</strong><span class="sub">' . esc_html(I18n::t('Still waiting')) . '</span></div>';
         
         // KPI 3: Pilgrims asked
-        echo '<div class="kpi pk-kpi"><div class="kpi-top"><span class="kpi-ico"><svg class="i"><use href="#i-users"/></svg></span></div><strong data-pk-count="' . $total_pax . '">' . $total_pax . '</strong><span class="sub">' . sprintf(esc_html(I18n::t('Pilgrims asked · %d adults · %d children · %d infants')), $adults, $children, $infants) . '</span></div>';
+        echo '<div class="kpi pk-kpi"><div class="kpi-top"><span class="kpi-ico"><svg class="i"><use href="#i-users"/></svg></span></div><strong data-pk-count="' . esc_attr($total_pax) . '">' . esc_html($total_pax) . '</strong><span class="sub">' . sprintf(esc_html(I18n::t('Pilgrims asked · %d adults · %d children · %d infants')), esc_html($adults), esc_html($children), esc_html($infants)) . '</span></div>';
         
         // KPI 4: Reply rate
-        echo '<div class="kpi pk-kpi gold"><div class="kpi-top"><span class="kpi-ico"><svg class="i"><use href="#i-check"/></svg></span></div><strong data-pk-count="' . $reply_rate . '" data-suffix="%">' . $reply_rate . '%</strong><span class="sub">' . esc_html(I18n::t('Reply rate')) . '</span></div>';
+        echo '<div class="kpi pk-kpi gold"><div class="kpi-top"><span class="kpi-ico"><svg class="i"><use href="#i-check"/></svg></span></div><strong data-pk-count="' . esc_attr($reply_rate) . '" data-suffix="%">' . esc_html($reply_rate) . '%</strong><span class="sub">' . esc_html(I18n::t('Reply rate')) . '</span></div>';
         
         echo '</div>'; // .kpis
 
@@ -186,11 +185,11 @@ final class Analytics
         echo '<div class="chart-head"><h3>' . esc_html(I18n::t('Inquiries by day')) . '</h3><span class="sub">' . esc_html(I18n::t('Hover a bar')) . '</span></div>';
         echo '<div class="chart pk-chart" id="dayChart">';
 
-        echo '<svg viewBox="0 0 ' . $W . ' ' . ($H + 24) . '" preserveAspectRatio="none">';
+        echo '<svg viewBox="0 0 ' . esc_html($W) . ' ' . esc_html($H + 24) . '" preserveAspectRatio="none">';
         echo '<defs><linearGradient id="bg1" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#40916c"/><stop offset="1" stop-color="#1b4336"/></linearGradient></defs>';
         for ($g = 0; $g <= 4; $g++) {
             $y = $H - ($H * $g / 4);
-            echo '<line x1="0" x2="' . $W . '" y1="' . $y . '" y2="' . $y . '" stroke="#f2ece2"/>';
+            echo '<line x1="0" x2="' . esc_attr($W) . '" y1="' . esc_attr($y) . '" y2="' . esc_attr($y) . '" stroke="#f2ece2"/>';
         }
 
         $bar_idx = 0;
@@ -205,10 +204,10 @@ final class Analytics
             $date_lbl = $stamp ? wp_date('j M', $stamp) : $day_str;
             $day_num = $stamp ? wp_date('j', $stamp) : (string) ($bar_idx + 1);
 
-            echo '<rect class="day-bar" data-i="' . $bar_idx . '" data-label="' . esc_attr($date_lbl) . '" data-v="' . $cnt . '" x="' . $x . '" y="' . $y . '" width="' . $w . '" height="' . $h . '" rx="' . $rx . '" fill="' . $fill . '"/>';
+            echo '<rect class="day-bar" data-i="' . esc_attr($bar_idx) . '" data-label="' . esc_attr($date_lbl) . '" data-v="' . esc_attr($cnt) . '" x="' . esc_attr($x) . '" y="' . esc_attr($y) . '" width="' . esc_attr($w) . '" height="' . esc_attr($h) . '" rx="' . esc_attr($rx) . '" fill="' . esc_attr($fill) . '"/>';
 
             if ($num_bars <= 14 || ($bar_idx % 5 === 0)) {
-                echo '<text x="' . ($bar_idx * $bw + $bw / 2) . '" y="' . ($H + 18) . '" text-anchor="middle" font-size="12" fill="#9a9286">' . esc_html($day_num) . '</text>';
+                echo '<text x="' . esc_attr($bar_idx * $bw + $bw / 2) . '" y="' . esc_attr($H + 18) . '" text-anchor="middle" font-size="12" fill="#9a9286">' . esc_html($day_num) . '</text>';
             }
             $bar_idx++;
         }
@@ -219,7 +218,7 @@ final class Analytics
         // Accessible table for screen readers
         echo '<table class="screen-reader-text"><caption>' . esc_html(I18n::t('Inquiries by day')) . '</caption><thead><tr><th>' . esc_html(I18n::t('Date')) . '</th><th>' . esc_html(I18n::t('Inquiries')) . '</th></tr></thead><tbody>';
         foreach ($series as $day_str => $cnt) {
-            echo '<tr><td>' . esc_html($day_str) . '</td><td>' . $cnt . '</td></tr>';
+            echo '<tr><td>' . esc_html($day_str) . '</td><td>' . esc_html($cnt) . '</td></tr>';
         }
         echo '</tbody></table>';
 
@@ -238,26 +237,26 @@ final class Analytics
         echo '<div class="card pk-card chart-card"><div class="chart-head"><h3>' . esc_html(I18n::t('By room share')) . '</h3></div>';
         echo '<div class="donut-wrap pk-donut-wrap">';
         echo '<div class="donut pk-donut" id="donut">';
-        echo '<svg viewBox="0 0 150 150" width="150" height="150"><circle cx="75" cy="75" r="' . $R . '" fill="none" stroke="#f2ece2" stroke-width="18"/>';
+        echo '<svg viewBox="0 0 150 150" width="150" height="150"><circle cx="75" cy="75" r="' . esc_attr($R) . '" fill="none" stroke="#f2ece2" stroke-width="18"/>';
 
         $d_offset = 0.0;
         $sh_idx = 0;
         foreach ($shares as $sh_name => $sh_cnt) {
             $len = ($sh_cnt / $donut_total) * $C;
             $col = $donut_colors[$sh_idx % count($donut_colors)];
-            echo '<circle class="donut-seg" data-k="' . $sh_idx . '" data-name="' . esc_attr($sh_name) . '" data-val="' . $sh_cnt . '" cx="75" cy="75" r="' . $R . '" fill="none" stroke="' . esc_attr($col) . '" stroke-width="18" stroke-dasharray="' . max(0, $len - 2) . ' ' . ($C - $len + 2) . '" stroke-dashoffset="' . (-$d_offset) . '"/>';
+            echo '<circle class="donut-seg" data-k="' . esc_attr($sh_idx) . '" data-name="' . esc_attr($sh_name) . '" data-val="' . esc_attr($sh_cnt) . '" cx="75" cy="75" r="' . esc_attr($R) . '" fill="none" stroke="' . esc_attr($col) . '" stroke-width="18" stroke-dasharray="' . esc_attr(max(0, $len - 2) . ' ' . ($C - $len + 2)) . '" stroke-dashoffset="' . esc_attr(-$d_offset) . '"/>';
             $d_offset += $len;
             $sh_idx++;
         }
         echo '</svg>';
-        echo '<div class="c"><div><strong id="dnum">' . $donut_total . '</strong><span class="sub" id="dlab">' . esc_html(I18n::t('inquiries')) . '</span></div></div>';
+        echo '<div class="c"><div><strong id="dnum">' . esc_html($donut_total) . '</strong><span class="sub" id="dlab">' . esc_html(I18n::t('inquiries')) . '</span></div></div>';
         echo '</div>'; // #donut
 
         echo '<ul class="legend pk-legend" id="legend">';
         $sh_idx = 0;
         foreach ($shares as $sh_name => $sh_cnt) {
             $col = $donut_colors[$sh_idx % count($donut_colors)];
-            echo '<li class="legend-item" data-k="' . $sh_idx . '"><i style="background:' . esc_attr($col) . '"></i><span>' . esc_html($sh_name) . '</span><b>' . $sh_cnt . '</b></li>';
+            echo '<li class="legend-item" data-k="' . esc_attr($sh_idx) . '"><i style="background:' . esc_attr($col) . '"></i><span>' . esc_html($sh_name) . '</span><b>' . esc_html($sh_cnt) . '</b></li>';
             $sh_idx++;
         }
         echo '</ul>';
@@ -273,7 +272,7 @@ final class Analytics
             echo '<div class="hbar pk-hbar">';
             echo '<span class="hbar-name">' . esc_html($city_name) . '</span>';
             echo '<span class="hbar-track"><i style="width:' . esc_attr((string) $pct) . '%"></i></span>';
-            echo '<b class="hbar-val">' . $city_count . '</b>';
+            echo '<b class="hbar-val">' . esc_html($city_count) . '</b>';
             echo '</div>';
         }
         echo '</div>'; // #cities
@@ -291,7 +290,7 @@ final class Analytics
             echo '<div class="hbar pk-hbar">';
             echo '<span>' . esc_html(I18n::choice('trip', $trip_k)) . '</span>';
             echo '<span class="' . esc_attr($tr_class) . '"><i style="width:' . esc_attr((string) $pct) . '%"></i></span>';
-            echo '<b class="hbar-val">' . $t_cnt . '</b>';
+            echo '<b class="hbar-val">' . esc_html($t_cnt) . '</b>';
             echo '</div>';
         }
         echo '</div>'; // #types
@@ -300,9 +299,9 @@ final class Analytics
         echo '<div class="gauge pk-gauge">';
         echo '<svg viewBox="0 0 200 110">';
         echo '<path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="#f2ece2" stroke-width="16" stroke-linecap="round"/>';
-        echo '<path id="gArc" d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="url(#gg)" stroke-width="16" stroke-linecap="round" stroke-dasharray="251" stroke-dashoffset="' . $gauge_offset . '"/>';
+        echo '<path id="gArc" d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="url(#gg)" stroke-width="16" stroke-linecap="round" stroke-dasharray="251" stroke-dashoffset="' . esc_attr($gauge_offset) . '"/>';
         echo '<defs><linearGradient id="gg"><stop offset="0" stop-color="#40916c"/><stop offset="1" stop-color="#1b4336"/></linearGradient></defs>';
-        echo '<text x="100" y="92" text-anchor="middle" font-size="26" font-weight="800" fill="#1c1916">' . $reply_rate . '%</text>';
+        echo '<text x="100" y="92" text-anchor="middle" font-size="26" font-weight="800" fill="#1c1916">' . esc_html($reply_rate) . '%</text>';
         echo '</svg>';
         echo '<div class="sub">' . esc_html(I18n::t('of inquiries got a reply')) . '</div>';
         echo '</div>'; // .gauge

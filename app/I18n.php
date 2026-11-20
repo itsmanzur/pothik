@@ -2160,6 +2160,14 @@ When a pilgrim submits an inquiry on your site, you will receive an alert like t
         return $html;
     }
 
+    public static function print_toggle(): void
+    {
+        echo wp_kses(self::toggle(), [
+            'nav' => ['class' => true, 'aria-label' => true],
+            'a' => ['class' => true, 'href' => true],
+        ]);
+    }
+
     /**
      * @param array<string, mixed> $source
      */

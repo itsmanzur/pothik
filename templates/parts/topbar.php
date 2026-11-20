@@ -43,8 +43,7 @@ $share = $catalog_url === '' ? '' : 'https://wa.me/?text=' . rawurlencode(trim(I
         </nav>
         <div class="tools">
             <?php
-            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-            echo I18n::toggle();
+            I18n::print_toggle();
             ?>
             <?php if ($share !== '') : ?>
                 <a class="icon-btn share" href="<?php echo esc_url($share); ?>" target="_blank" rel="noopener" aria-label="<?php echo esc_attr(I18n::t('Share this page')); ?>">

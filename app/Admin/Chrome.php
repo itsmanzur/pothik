@@ -299,8 +299,7 @@ final class Chrome
         do_action('pothik_admin_before_content', $current_page);
 
         if ($actions_html !== '') {
-            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-            echo '<div class="pk-page-actions">' . $actions_html . '</div>';
+            echo '<div class="pk-page-actions">' . wp_kses($actions_html, UI::allowed_html()) . '</div>';
         }
 
         self::flash();

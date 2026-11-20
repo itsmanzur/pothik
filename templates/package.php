@@ -76,8 +76,7 @@ $facts = array_filter([
         </a>
         <div class="pk-bar-actions">
             <?php
-            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-            echo I18n::toggle();
+            I18n::print_toggle();
             ?>
             <?php if ($share_href !== '') : ?>
                 <a href="<?php echo esc_url($share_href); ?>" target="_blank" rel="noopener"><?php echo esc_html(I18n::t('Send this page')); ?></a>

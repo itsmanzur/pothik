@@ -34,6 +34,33 @@ if (!defined('ABSPATH')) {
 
 final class UI
 {
+    /**
+     * Tags allowed in admin HTML that comes from add-ons: post HTML plus the inline icon SVG.
+     *
+     * @return array<string, array<string, bool>>
+     */
+    public static function allowed_html(): array
+    {
+        $allowed = wp_kses_allowed_html('post');
+        $allowed['svg'] = ['class' => true, 'aria-hidden' => true, 'focusable' => true, 'viewbox' => true, 'width' => true, 'height' => true, 'role' => true];
+        $allowed['use'] = ['href' => true, 'xlink:href' => true];
+        $allowed['path'] = ['d' => true, 'fill' => true, 'stroke' => true, 'stroke-width' => true, 'stroke-linecap' => true, 'stroke-linejoin' => true];
+
+        // Controls the admin screens build themselves (toolbar forms, row checkboxes, status buttons).
+        $global = ['class' => true, 'id' => true, 'style' => true, 'title' => true, 'role' => true, 'data-*' => true, 'aria-*' => true, 'hidden' => true];
+        $allowed['form'] = $global + ['method' => true, 'action' => true];
+        $allowed['input'] = $global + ['type' => true, 'name' => true, 'value' => true, 'placeholder' => true, 'checked' => true, 'disabled' => true, 'min' => true, 'max' => true, 'step' => true, 'required' => true];
+        $allowed['button'] = $global + ['type' => true, 'name' => true, 'value' => true, 'disabled' => true];
+        $allowed['select'] = $global + ['name' => true, 'disabled' => true];
+        $allowed['option'] = $global + ['value' => true, 'selected' => true];
+        $allowed['label'] = $global + ['for' => true];
+        $allowed['textarea'] = $global + ['name' => true, 'rows' => true, 'placeholder' => true, 'disabled' => true];
+        $allowed['nav'] = $global;
+        $allowed['a'] = ($allowed['a'] ?? []) + $global + ['href' => true, 'target' => true, 'rel' => true];
+
+        return $allowed;
+    }
+
     public static function icon(string $name): string
     {
         $name = preg_replace('/[^a-z0-9_-]/', '', strtolower($name)) ?? '';
