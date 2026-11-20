@@ -197,6 +197,6 @@ $schema = [
     </div>
     <div class="pk-toast" data-pk-toast hidden role="status"></div>
     <?php if ($schema_items !== []) : ?>
-        <script type="application/ld+json"><?php echo wp_json_encode($schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES); ?></script>
+        <?php wp_print_inline_script_tag((string) wp_json_encode($schema, JSON_HEX_TAG | JSON_HEX_AMP), ['type' => 'application/ld+json']); ?>
     <?php endif; ?>
 </article>

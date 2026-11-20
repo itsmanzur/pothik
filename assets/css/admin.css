@@ -2985,6 +2985,8 @@ kbd {
 .pk-admin .st-nav button small, .pk-admin .pk-st-nav button small{display:block;font-size:12px;font-weight:500;color:var(--faint)}
 .pk-admin .st-pane[hidden], .pk-admin .pk-st-pane[hidden]{display:none}
 .pk-admin .st-pane .card, .pk-admin .pk-st-pane .card{margin-bottom:18px}
+/* No JavaScript: WordPress keeps body.no-js, so show every settings pane stacked. */
+.no-js .pk-admin .st-pane, .no-js .pk-admin .pk-st-pane{display:block !important;margin-bottom:24px}
 .pk-admin .drop, .pk-admin .pk-drop{border:2px dashed #dcd2c1;border-radius:14px;padding:18px 22px;display:flex;align-items:center;gap:18px;cursor:pointer;transition:all .2s;background:#fcfaf6;margin-top:14px}
 .pk-admin .drop:hover, .pk-admin .pk-drop:hover, .pk-admin .drop.over, .pk-admin .pk-drop.over{border-color:var(--g500);background:var(--g50)}
 .pk-admin .drop .logo-prev, .pk-admin .pk-drop .logo-prev{width:56px;height:56px;border-radius:14px;background:var(--g50);display:grid;place-items:center;color:var(--g700);flex:none;overflow:hidden;border:1px solid var(--line-2)}

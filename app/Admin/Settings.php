@@ -138,7 +138,6 @@ final class Settings
         }
 
         echo '<section class="screen" data-screen="settings">';
-        echo '<noscript><style>.pk-admin .st-pane { display: block !important; margin-bottom: 24px; }</style></noscript>';
         echo '<div class="st pk-st">';
 
         // Left Navigation
