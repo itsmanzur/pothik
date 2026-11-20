@@ -278,7 +278,7 @@ final class Plugin
         }
 
         $key = isset($_POST['key']) ? sanitize_key(wp_unslash((string) $_POST['key'])) : '';
-        $val = isset($_POST['value']) && wp_unslash($_POST['value']) === '1' ? '1' : '0';
+        $val = isset($_POST['value']) && sanitize_text_field(wp_unslash((string) $_POST['value'])) === '1' ? '1' : '0';
 
         if (!in_array($key, ['focus', 'side_mini', 'hide_setup'], true)) {
             wp_send_json_error(['message' => 'Invalid key'], 400);
@@ -296,7 +296,7 @@ final class Plugin
         check_admin_referer('pothik_ui_pref');
 
         $key = isset($_POST['key']) ? sanitize_key(wp_unslash((string) $_POST['key'])) : '';
-        $val = isset($_POST['value']) && wp_unslash($_POST['value']) === '1' ? '1' : '0';
+        $val = isset($_POST['value']) && sanitize_text_field(wp_unslash((string) $_POST['value'])) === '1' ? '1' : '0';
 
         if (in_array($key, ['focus', 'side_mini', 'hide_setup'], true)) {
             update_user_meta(get_current_user_id(), 'pothik_' . $key, $val);
