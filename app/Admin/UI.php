@@ -47,7 +47,7 @@ final class UI
         $allowed['path'] = ['d' => true, 'fill' => true, 'stroke' => true, 'stroke-width' => true, 'stroke-linecap' => true, 'stroke-linejoin' => true];
 
         // Controls the admin screens build themselves (toolbar forms, row checkboxes, status buttons).
-        $global = ['class' => true, 'id' => true, 'style' => true, 'title' => true, 'role' => true, 'data-*' => true, 'aria-*' => true, 'hidden' => true];
+        $global = ['class' => true, 'id' => true, 'style' => true, 'title' => true, 'role' => true, 'data-*' => true, 'hidden' => true, 'aria-label' => true, 'aria-hidden' => true, 'aria-expanded' => true, 'aria-controls' => true, 'aria-describedby' => true, 'aria-current' => true, 'aria-pressed' => true, 'aria-selected' => true];
         $allowed['form'] = $global + ['method' => true, 'action' => true];
         $allowed['input'] = $global + ['type' => true, 'name' => true, 'value' => true, 'placeholder' => true, 'checked' => true, 'disabled' => true, 'min' => true, 'max' => true, 'step' => true, 'required' => true];
         $allowed['button'] = $global + ['type' => true, 'name' => true, 'value' => true, 'disabled' => true];
