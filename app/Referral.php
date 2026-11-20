@@ -86,11 +86,11 @@ final class Referral
         if (!function_exists('wp_add_privacy_policy_content')) {
             return;
         }
-        $text = '<h2>' . esc_html__('Pothik cookies', 'pothik') . '</h2>'
-            . '<p>' . esc_html__('When a package or catalog page is opened with a referral code (?ref=), Pothik stores that code in a first-party cookie named pothik_ref for 30 days. The cookie holds only the code, no personal data. When a visitor picks a language, Pothik stores their choice (en or bn) in a cookie named pothik_lang for one year. For a signed-in user the choice is also saved in their profile.', 'pothik') . '</p>'
-            . '<h2>' . esc_html__('Pothik inquiries', 'pothik') . '</h2>'
-            . '<p>' . esc_html__('When a visitor sends an inquiry, Pothik saves the name, phone, WhatsApp number, city, room share, number of pilgrims and note in the site database, and emails them to the office. To limit spam it keeps a short-lived counter per visitor address for one hour.', 'pothik') . '</p>';
-        wp_add_privacy_policy_content('Pothik', wp_kses_post(wpautop($text, false)));
+        $text = '<h2>' . esc_html__('Hejazer Kafela cookies', 'hejazer-kafela') . '</h2>'
+            . '<p>' . esc_html__('When a package or catalog page is opened with a referral code (?ref=), Hejazer Kafela stores that code in a first-party cookie named pothik_ref for 30 days. The cookie holds only the code, no personal data. When a visitor picks a language, Hejazer Kafela stores their choice (en or bn) in a cookie named pothik_lang for one year. For a signed-in user the choice is also saved in their profile.', 'hejazer-kafela') . '</p>'
+            . '<h2>' . esc_html__('Hejazer Kafela inquiries', 'hejazer-kafela') . '</h2>'
+            . '<p>' . esc_html__('When a visitor sends an inquiry, Hejazer Kafela saves the name, phone, WhatsApp number, city, room share, number of pilgrims and note in the site database, and emails them to the office. To limit spam it keeps a short-lived counter per visitor address for one hour.', 'hejazer-kafela') . '</p>';
+        wp_add_privacy_policy_content('Hejazer Kafela', wp_kses_post(wpautop($text, false)));
     }
 
     private static function on_pothik_page(): bool

@@ -1,7 +1,7 @@
 <?php
 /**
- * Plugin Name:       Pothik – Umrah & Hajj Package Manager
- * Plugin URI:        https://thereadscope.com/pothik
+ * Plugin Name:       Hejazer Kafela – Umrah & Hajj Package Manager
+ * Plugin URI:        https://thereadscope.com/hejazer-kafela
  * Description:       Create Umrah and Hajj package landing pages, collect pilgrim inquiries with WhatsApp integration, and print payment receipts.
  * Version:           1.0.0
  * Requires at least: 6.5
@@ -10,8 +10,7 @@
  * Author URI:        https://thereadscope.com
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       pothik
- * Domain Path:       /languages
+ * Text Domain:       hejazer-kafela
  *
  * @package Pothik
  */

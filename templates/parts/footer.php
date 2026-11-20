@@ -19,7 +19,7 @@ if (!defined('ABSPATH')) {
 <footer>
     <div class="wrap">
         <span>
-            <b><?php echo esc_html($contact['agency'] !== '' ? $contact['agency'] : 'Pothik'); ?></b>
+            <b><?php echo esc_html($contact['agency'] !== '' ? $contact['agency'] : 'Hejazer Kafela'); ?></b>
             <?php if ($contact['license'] !== '') : ?>
                 · <?php echo esc_html(sprintf(I18n::t('Hajj & Umrah licence %s'), $contact['license'])); ?>
             <?php endif; ?>

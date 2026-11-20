@@ -70,7 +70,7 @@ $facts = array_filter([
             <?php if ($contact['logo_url'] !== '') : ?>
                 <img src="<?php echo esc_url($contact['logo_url']); ?>" alt="<?php echo esc_attr($contact['agency']); ?>">
             <?php else : ?>
-                <span>Pothik</span>
+                <span>Hejazer Kafela</span>
             <?php endif; ?>
             <small><?php echo esc_html($contact['agency']); ?></small>
         </a>

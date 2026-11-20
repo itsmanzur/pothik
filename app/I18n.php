@@ -33,15 +33,15 @@ final class I18n
         'Assalamu alaikum! Thank you for your Umrah inquiry. Our office will call you today.' => 'আসসালামু আলাইকুম! উমরা সম্পর্কে জানার জন্য ধন্যবাদ। আজই আমাদের অফিস থেকে আপনার সাথে যোগাযোগ করা হবে।',
         'Assalamu alaikum,
 
-This is a test notification from your Pothik Umrah plugin.
+This is a test notification from your Hejazer Kafela plugin.
 When a pilgrim submits an inquiry on your site, you will receive an alert like this.
 
-— Pothik Desk' => 'আসসালামু আলাইকুম,
+— Hejazer Kafela Desk' => 'আসসালামু আলাইকুম,
 
-এটি পথিক উমরা প্লাগিনের একটি টেস্ট নোটিফিকেশন।
+এটি হেজাজের কাফেলা প্লাগিনের একটি টেস্ট নোটিফিকেশন।
 আপনার সাইটে কোনো যাত্রী আবেদন করলে আপনি এমন একটি বার্তা পাবেন।
 
-— পথিক ডেস্ক',
+— হেজাজের কাফেলা ডেস্ক',
         'Basics' => 'মৌলিক তথ্য',
         'By room share' => 'রুম শেয়ার অনুযায়ী',
         'Cancellation' => 'বাতিল নীতিমালা',
@@ -165,7 +165,7 @@ When a pilgrim submits an inquiry on your site, you will receive an alert like t
         'Yes' => 'হ্যাঁ',
         'You do not have permission to perform this action.' => 'আপনার এই কাজটি করার অনুমতি নেই।',
         'You have unsaved changes. Are you sure you want to leave?' => 'আপনার কিছু অসংরক্ষিত পরিবর্তন আছে। আপনি কি নিশ্চিত বের হতে চান?',
-        '[Pothik] Test Notification (%s)' => '[পথিক] টেস্ট নোটিফিকেশন (%s)',
+        '[Hejazer Kafela] Test Notification (%s)' => '[হেজাজের কাফেলা] টেস্ট নোটিফিকেশন (%s)',
         'ago' => 'আগে',
         'complete' => 'সম্পন্ন',
         'e.g. Personal shopping' => 'যেমন: ব্যক্তিগত কেনাকাটা',
@@ -565,7 +565,6 @@ When a pilgrim submits an inquiry on your site, you will receive an alert like t
         'Trying things out?' => 'টেস্ট করছেন?',
         'Command palette' => 'কমান্ড প্যালেট',
         'Type a command or search pilgrims...' => 'কমান্ড টাইপ করুন বা যাত্রী খুঁজুন...',
-        'Pothik sections' => 'পথিক সেকশন',
         'Search' => 'অনুসন্ধান',
         'Site' => 'সাইট',
         'Each package becomes a landing page with prices, hotels and a WhatsApp button.' => 'প্রতিটি প্যাকেজে মূল্য, হোটেল এবং একটি হোয়াটসঅ্যাপ বাটনসহ ল্যান্ডিং পেজ তৈরি হয়।',
@@ -590,7 +589,7 @@ When a pilgrim submits an inquiry on your site, you will receive an alert like t
         'Makkah' => 'মক্কা',
         'Madinah' => 'মদিনা',
     
-        'Pothik menu' => 'পথিক মেনু',
+        'Hejazer Kafela menu' => 'হেজাজের কাফেলা মেনু',
         '%d packages' => '%d টি প্যাকেজ',
         'No receipts yet' => 'এখনো কোনো রসিদ নেই',
         'Assalamu alaikum, %s' => 'আসসালামু আলাইকুম, %s',
@@ -2137,12 +2136,6 @@ When a pilgrim submits an inquiry on your site, you will receive an alert like t
     public static function is_bn(): bool
     {
         return self::lang() === 'bn';
-    }
-
-    public static function load_textdomain(): void
-    {
-        // phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound
-        load_plugin_textdomain('pothik', false, dirname(plugin_basename(POTHIK_FILE)) . '/languages');
     }
 
     public static function t(string $text, string $context = ''): string

@@ -2,8 +2,8 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Pothik 1.0.0\n"
-"Report-Msgid-Bugs-To: https://thereadscope.com/pothik\n"
+"Project-Id-Version: Hejazer Kafela 1.0.0\n"
+"Report-Msgid-Bugs-To: https://thereadscope.com/hejazer-kafela\n"
 "Last-Translator: itsmanzur\n"
 "Language-Team: Bengali <itsmanzur@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -4423,13 +4423,13 @@ msgstr ""
 msgid "%1$s marked a paper reminder for %2$s"
 msgstr ""
 
-msgid "Pothik cookies"
+msgid "Hejazer Kafela cookies"
 msgstr ""
 
 msgid "When a package or catalog page is opened with a referral code (?ref=), Pothik stores that code in a first-party cookie named pothik_ref for 30 days. The cookie holds only the code, no personal data. When a visitor picks a language, Pothik stores their choice (en or bn) in a cookie named pothik_lang for one year. For a signed-in user the choice is also saved in their profile."
 msgstr ""
 
-msgid "Pothik inquiries"
+msgid "Hejazer Kafela inquiries"
 msgstr ""
 
 msgid "When a visitor sends an inquiry, Pothik saves the name, phone, WhatsApp number, city, room share, number of pilgrims and note in the site database, and emails them to the office. To limit spam it keeps a short-lived counter per visitor address for one hour."

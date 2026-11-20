@@ -1,6 +1,5 @@
-=== Pothik – Umrah & Hajj Package Manager ===
+=== Hejazer Kafela – Umrah & Hajj Package Manager ===
 Contributors: itsmanzur
-Donate link: https://thereadscope.com/pothik
 Tags: umrah, hajj, travel agency, package, inquiry
 Requires at least: 6.5
 Tested up to: 7.1
@@ -13,7 +12,7 @@ Create Umrah and Hajj package landing pages, collect pilgrim inquiries with What
 
 == Description ==
 
-**Pothik** is a lightweight, purpose-built WordPress plugin crafted specifically for Umrah and Hajj travel agencies in Bangladesh and South Asia.
+**Hejazer Kafela** is a lightweight, purpose-built WordPress plugin crafted specifically for Umrah and Hajj travel agencies in Bangladesh and South Asia.
 
 Publish beautiful, high-converting package landing pages in minutes, collect pilgrim inquiries directly into your WordPress dashboard, receive instant email notifications, and connect with prospective pilgrims on WhatsApp with one click.
 
@@ -31,21 +30,21 @@ Publish beautiful, high-converting package landing pages in minutes, collect pil
 
 == Installation ==
 
-1. Upload the `pothik` directory to your `/wp-content/plugins/` directory, or install it directly through the WordPress plugin directory.
+1. Upload the `hejazer-kafela` directory to your `/wp-content/plugins/` directory, or install it directly through the WordPress plugin directory.
 2. Activate the plugin through the **Plugins** menu in WordPress.
-3. Go to **Pothik → Settings** to set your agency name, office phone, WhatsApp number, and notification email.
-4. Go to **Pothik → Packages** to create and publish your first Umrah package.
+3. Go to **Hejazer Kafela → Settings** to set your agency name, office phone, WhatsApp number, and notification email.
+4. Go to **Hejazer Kafela → Packages** to create and publish your first Umrah package.
 
 == Frequently Asked Questions ==
 
-= Does Pothik work with full-page caching plugins? =
-Yes. Pothik does not rely on fragile WordPress nonces for public lead submission forms. It uses honeypot fields, signed HMAC timestamps, and IP-based rate limiting that work smoothly alongside WP Rocket, LiteSpeed Cache, Super Cache, Cloudflare, and server-side Nginx caching.
+= Does Hejazer Kafela work with full-page caching plugins? =
+Yes. Hejazer Kafela does not rely on fragile WordPress nonces for public lead submission forms. It uses honeypot fields, signed HMAC timestamps, and IP-based rate limiting that work smoothly alongside WP Rocket, LiteSpeed Cache, Super Cache, Cloudflare, and server-side Nginx caching.
 
 = How do inquiries reach our office? =
 Inquiries are saved directly to your WordPress database table with pagination and CSV export. Simultaneously, an email notification is dispatched to your configured notification email(s) with an instant WhatsApp link to reply to the pilgrim.
 
 = Can I customize the office phone and WhatsApp for individual packages? =
-Yes. By default, packages inherit the agency phone and WhatsApp numbers defined in **Pothik → Settings**. However, each package can optionally specify its own contact details to override global settings.
+Yes. By default, packages inherit the agency phone and WhatsApp numbers defined in **Hejazer Kafela → Settings**. However, each package can optionally specify its own contact details to override global settings.
 
 = Can I use shortcodes? =
 Yes. Use `[pothik_package id="package_id"]` to embed a single package or `[pothik_catalog]` to display your package catalog on any post, page, or block layout.
@@ -67,7 +66,7 @@ Yes. Use `[pothik_package id="package_id"]` to embed a single package or `[pothi
 
 == Hooks ==
 
-Add-ons extend Pothik through these hooks. The free plugin does not ship add-on behaviour.
+Add-ons extend Hejazer Kafela through these hooks. The free plugin does not ship add-on behaviour.
 
 * `pothik_admin_header_tools` — actions inside the admin header, before search. Argument: the current page slug.
 * `pothik_admin_sidebar_before_pro` — markup directly under the Pro label in the sidebar. Argument: the current page slug. Give the wrapper the class `pk-side-slot` so mini mode hides its text.
@@ -105,7 +104,7 @@ Add-ons extend Pothik through these hooks. The free plugin does not ship add-on 
 
 == External services ==
 
-Pothik makes no request to any outside server by itself. It does build links to **WhatsApp** (wa.me, operated by WhatsApp LLC / Meta), and the visitor or the office staff opens them by clicking:
+Hejazer Kafela makes no request to any outside server by itself. It does build links to **WhatsApp** (wa.me, operated by WhatsApp LLC / Meta), and the visitor or the office staff opens them by clicking:
 
 * The "Chat with the office on WhatsApp" and share buttons on package and catalog pages open `https://wa.me/` with a message that holds the package name and room share, and the visitor's name and pilgrim counts after they send an inquiry. The data goes to WhatsApp only when the visitor taps the button.
 * The new-inquiry email and the inquiries screen contain a `https://wa.me/<number>` reply link for the office. The pilgrim's number and a greeting are in that link. It is sent only when staff click it.
@@ -114,7 +113,7 @@ WhatsApp terms: https://www.whatsapp.com/legal/terms-of-service. Privacy policy:
 
 == Privacy ==
 
-Pothik stores the following. Its text is also added to the site's privacy policy guide (Settings → Privacy).
+Hejazer Kafela stores the following. Its text is also added to the site's privacy policy guide (Settings → Privacy).
 
 * **Inquiries.** The name, phone, WhatsApp number, city, room share, pilgrim counts, note and referral code that a visitor sends are saved in the `pothik_inquiries` table and emailed to the office. A counter per visitor address (the address is hashed) lives for one hour to limit spam.
 * **Cookie `pothik_ref`.** A package or catalog page that is opened with `?ref=` followed by 2–10 letters or digits stores that code in a first-party cookie for 30 days (path `/`, SameSite=Lax). The cookie holds only that code. It is not HttpOnly, so the inquiry form can fill itself on a cached page. No name, phone, or other personal data is stored in it. Return false from `pothik_referral_cookie` to disable the cookie. The inquiry row stores the same code and shows it as “Ref: …” in the inquiry drawer and in the CSV export.

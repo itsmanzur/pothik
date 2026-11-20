@@ -30,7 +30,7 @@ $share = $catalog_url === '' ? '' : 'https://wa.me/?text=' . rawurlencode(trim(I
                 <span class="brand-mark"><svg class="i"><use href="#i-pin"/></svg></span>
             <?php endif; ?>
             <span>
-                <b><?php echo esc_html($contact['agency'] !== '' ? $contact['agency'] : 'Pothik'); ?></b>
+                <b><?php echo esc_html($contact['agency'] !== '' ? $contact['agency'] : 'Hejazer Kafela'); ?></b>
                 <?php if ($contact['license'] !== '') : ?>
                     <small><?php echo esc_html(sprintf(I18n::t('Hajj & Umrah licence %s'), $contact['license'])); ?></small>
                 <?php endif; ?>

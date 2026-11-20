@@ -23,8 +23,8 @@ final class Menu
     {
         $desk_cap = Access::any() ? 'read' : 'manage_options';
         add_menu_page(
-            'Pothik',
-            'Pothik',
+            'Hejazer Kafela',
+            'Hejazer Kafela',
             $desk_cap,
             'pothik',
             [self::class, 'overview'],
@@ -32,7 +32,7 @@ final class Menu
             58
         );
 
-        add_submenu_page('pothik', 'Pothik', I18n::t('Desk'), $desk_cap, 'pothik', [self::class, 'overview']);
+        add_submenu_page('pothik', 'Hejazer Kafela', I18n::t('Desk'), $desk_cap, 'pothik', [self::class, 'overview']);
 
         $has_locked = false;
         foreach (Modules::all() as $id => $module) {

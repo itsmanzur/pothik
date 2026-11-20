@@ -62,7 +62,6 @@ final class Plugin
         add_action('admin_post_nopriv_pothik_inquiry', [InquiryStore::class, 'handle_public']);
 
         add_action('init', [I18n::class, 'capture'], 0);
-        add_action('init', [I18n::class, 'load_textdomain'], 0);
         add_action('init', [PackagePage::class, 'register_shortcodes']);
         add_action('wp', [PackagePage::class, 'maybe_enqueue']);
         Referral::register();
@@ -121,7 +120,7 @@ final class Plugin
             ?>
             <div class="notice notice-warning is-dismissible">
                 <p>
-                    <strong>Pothik:</strong> <?php echo esc_html(I18n::t('The package page is currently a draft.')); ?>
+                    <strong>Hejazer Kafela:</strong> <?php echo esc_html(I18n::t('The package page is currently a draft.')); ?>
                     <a class="button button-small button-primary" href="<?php echo esc_url($publish_url); ?>" style="margin-left:8px;"><?php echo esc_html(I18n::t('Publish page')); ?></a>
                 </p>
             </div>
@@ -138,7 +137,7 @@ final class Plugin
         ?>
         <div class="notice notice-info">
             <p>
-                <strong>Pothik</strong>
+                <strong>Hejazer Kafela</strong>
                 <?php echo esc_html(I18n::t('The package page is ready.')); ?>
                 <?php if ($url !== '') : ?>
                     <a href="<?php echo esc_url($url); ?>"><?php echo esc_html(I18n::t('View on site')); ?></a>

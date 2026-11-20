@@ -123,7 +123,7 @@ final class Access
         $back = I18n::t('Back to Desk');
         $url = admin_url('admin.php?page=pothik');
         if (class_exists(Chrome::class) && is_admin()) {
-            Chrome::open('Pothik', '');
+            Chrome::open('Hejazer Kafela', '');
             echo '<section class="pk-card pk-empty"><b>' . esc_html($message) . '</b>';
             echo '<p>' . esc_html($ask) . '</p>';
             echo '<a class="pk-btn pk-btn-primary" href="' . esc_url($url) . '">' . esc_html($back) . '</a></section>';

@@ -162,7 +162,7 @@
             return (live[role] && live[role][area]) || 'none';
         }
         var phrases = data.phrases || {};
-        var html = '<div class="h"><span class="mark"><svg class="i sm" aria-hidden="true"><use href="#i-pin"/></svg></span><div><b>Pothik</b><small>' + (phrases.desk || 'Umrah desk') + '</small></div></div>';
+        var html = '<div class="h"><span class="mark"><svg class="i sm" aria-hidden="true"><use href="#i-pin"/></svg></span><div><b>Hejazer Kafela</b><small>' + (phrases.desk || 'Umrah desk') + '</small></div></div>';
         var group = '';
         var buckets = { edit: [], view: [], none: [] };
         (data.nav || []).forEach(function (item) {
@@ -2627,7 +2627,7 @@
         // Copy for WhatsApp
         if (copyBtn) {
             copyBtn.addEventListener('click', function () {
-                var agency = slipEl.querySelector('.slip-top b') ? slipEl.querySelector('.slip-top b').textContent : 'Pothik Umrah';
+                var agency = slipEl.querySelector('.slip-top b') ? slipEl.querySelector('.slip-top b').textContent : 'Hejazer Kafela';
                 var textParts = [
                     'Payment received — ' + agency,
                     (sAmt ? sAmt.textContent : '') + ' (' + (sWords ? sWords.textContent : '') + ')',

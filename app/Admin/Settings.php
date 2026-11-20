@@ -36,7 +36,7 @@ final class Settings
     public static function get_all(): array
     {
         $defaults = [
-            'agency' => 'Pothik Umrah',
+            'agency' => 'Hejazer Kafela',
             'agency_bn' => 'পথিক উমরা',
             'phone' => '01711-000000',
             'whatsapp' => '8801711000000',
@@ -163,7 +163,7 @@ final class Settings
         echo '<div class="card-head pk-card-head"><h3>' . esc_html(I18n::t('Agency details')) . '</h3><span class="sub">' . esc_html(I18n::t('Used on packages, receipts and the WhatsApp button')) . '</span></div>';
         echo '<div class="card-pad pk-card-pad">';
         echo '<div class="fgrid pk-fgrid">';
-        echo '<label class="field pk-field"><span>' . esc_html(I18n::t('Agency name · English')) . '</span><input name="agency" value="' . esc_attr((string) $settings['agency']) . '" placeholder="Pothik Umrah"></label>';
+        echo '<label class="field pk-field"><span>' . esc_html(I18n::t('Agency name · English')) . '</span><input name="agency" value="' . esc_attr((string) $settings['agency']) . '" placeholder="Hejazer Kafela"></label>';
         echo '<label class="field pk-field"><span>' . esc_html(I18n::t('Agency name · বাংলা')) . '</span><input name="agency_bn" value="' . esc_attr((string) $settings['agency_bn']) . '" placeholder="পথিক উমরা"></label>';
         echo '<label class="field pk-field"><span>' . esc_html(I18n::t('Office phone')) . '</span><input name="phone" value="' . esc_attr((string) $settings['phone']) . '" placeholder="01711-000000"></label>';
         echo '<label class="field pk-field"><span>' . esc_html(I18n::t('WhatsApp')) . ' <em>' . esc_html(I18n::t('with country code')) . '</em></span><div class="affix pk-affix"><i>+</i><input name="whatsapp" value="' . esc_attr((string) $settings['whatsapp']) . '" placeholder="8801711000000"></div></label>';
@@ -333,8 +333,8 @@ final class Settings
         $settings = self::get_all();
         $email = (string) ($settings['notification_emails'] ?: get_option('admin_email'));
 
-        $subject = sprintf(I18n::t('[Pothik] Test Notification (%s)'), wp_specialchars_decode(get_bloginfo('name'), ENT_QUOTES));
-        $message = I18n::t("Assalamu alaikum,\n\nThis is a test notification from your Pothik Umrah plugin.\nWhen a pilgrim submits an inquiry on your site, you will receive an alert like this.\n\n— Pothik Desk");
+        $subject = sprintf(I18n::t('[Hejazer Kafela] Test Notification (%s)'), wp_specialchars_decode(get_bloginfo('name'), ENT_QUOTES));
+        $message = I18n::t("Assalamu alaikum,\n\nThis is a test notification from your Hejazer Kafela plugin.\nWhen a pilgrim submits an inquiry on your site, you will receive an alert like this.\n\n— Hejazer Kafela Desk");
 
         $sent = wp_mail($email, $subject, $message);
         if ($sent) {

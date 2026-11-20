@@ -255,7 +255,7 @@ final class PackagePage
         }
         $view = self::resolve('');
         $contact = PackageStore::contact(is_array($view['package'] ?? null) ? $view['package'] : []);
-        $agency = $contact['agency'] !== '' ? $contact['agency'] : 'Pothik';
+        $agency = $contact['agency'] !== '' ? $contact['agency'] : 'Hejazer Kafela';
         if (($view['type'] ?? '') === 'package' && is_array($view['package'] ?? null)) {
             $name = I18n::field($view['package'], 'title');
             if ($name === '') {
@@ -280,7 +280,7 @@ final class PackagePage
         }
         $contact = PackageStore::contact([]);
         $lead = I18n::t('Compare days, hotels and walking distance to the Haram. Pick a room share and send an inquiry — the office replies on WhatsApp.');
-        $title = Catalog::heading_plain() . ' — ' . ($contact['agency'] !== '' ? $contact['agency'] : 'Pothik');
+        $title = Catalog::heading_plain() . ' — ' . ($contact['agency'] !== '' ? $contact['agency'] : 'Hejazer Kafela');
         $url = self::url();
         echo '<meta name="description" content="' . esc_attr($lead) . '">' . "\n";
         echo '<meta property="og:title" content="' . esc_attr($title) . '">' . "\n";

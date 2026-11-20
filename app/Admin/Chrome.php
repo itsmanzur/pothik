@@ -178,10 +178,10 @@ final class Chrome
         echo '<div class="pk-app' . ($is_mini ? ' mini' : '') . '" id="pkApp">';
 
         // Dedicated Pothik Sidebar
-        echo '<aside class="pk-side" aria-label="' . esc_attr(I18n::t('Pothik menu')) . '">';
+        echo '<aside class="pk-side" aria-label="' . esc_attr(I18n::t('Hejazer Kafela menu')) . '">';
         echo '<div class="side-top">';
         echo '<span class="brand-mark"><svg class="i lg" aria-hidden="true"><use href="#i-pin"/></svg></span>';
-        echo '<div><b>Pothik</b><small>' . esc_html(I18n::t('Umrah desk')) . '</small></div>';
+        echo '<div><b>Hejazer Kafela</b><small>' . esc_html(I18n::t('Umrah desk')) . '</small></div>';
         echo '<button type="button" class="side-collapse" id="sideToggle" aria-label="' . esc_attr(I18n::t('Collapse menu')) . '" title="' . esc_attr(I18n::t('Collapse menu')) . '">';
         echo '<svg class="i sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg>';
         echo '</button>';
@@ -249,7 +249,7 @@ final class Chrome
 
         // Header
         echo '<header class="pk-head">';
-        echo '<button type="button" class="pk-side-open" id="pkSideOpen" aria-label="' . esc_attr(I18n::t('Pothik menu')) . '">';
+        echo '<button type="button" class="pk-side-open" id="pkSideOpen" aria-label="' . esc_attr(I18n::t('Hejazer Kafela menu')) . '">';
         echo '<svg class="i" aria-hidden="true"><use href="#i-menu"/></svg>';
         echo '</button>';
         echo '<div class="pk-side-scrim" id="pkSideScrim"></div>';

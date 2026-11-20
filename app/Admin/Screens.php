@@ -1415,7 +1415,7 @@ final class Screens
         $settings = Settings::get_all();
         $is_bn = I18n::is_bn();
 
-        $agency_name = (string) ($is_bn && !empty($settings['agency_bn']) ? $settings['agency_bn'] : ($settings['agency'] ?: 'Pothik Umrah'));
+        $agency_name = (string) ($is_bn && !empty($settings['agency_bn']) ? $settings['agency_bn'] : ($settings['agency'] ?: 'Hejazer Kafela'));
         $phone = (string) ($settings['phone'] ?: '');
         $license = (string) ($settings['license'] ?: '');
         $logo_url = (string) ($settings['logo_url'] ?? '');

@@ -27,7 +27,7 @@ final class PackageStore
     public static function defaults(): array
     {
         return [
-            'agency' => 'Pothik Umrah',
+            'agency' => 'Hejazer Kafela',
             'phone' => '01711-000000',
             'whatsapp' => '8801711000000',
             'status' => 'draft',
