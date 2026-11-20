@@ -697,7 +697,7 @@ final class InquiryRepository
     {
         check_admin_referer('pothik_bulk_inquiries');
 
-        $op = isset($_POST['op']) ? sanitize_key((string) $_POST['op']) : '';
+        $op = isset($_POST['op']) ? sanitize_key(wp_unslash((string) $_POST['op'])) : '';
         if (!Access::can('inquiries', $op === 'export' ? 'view' : 'edit')) {
             Access::deny();
         }

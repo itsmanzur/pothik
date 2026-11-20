@@ -248,7 +248,7 @@ final class Plugin
     {
         global $hook_suffix;
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-        $page = isset($_GET['page']) ? sanitize_key((string) $_GET['page']) : '';
+        $page = isset($_GET['page']) ? sanitize_key(wp_unslash((string) $_GET['page'])) : '';
         $is_pothik = (is_string($hook_suffix) && str_contains($hook_suffix, 'pothik')) || str_starts_with($page, 'pothik');
 
         if ($is_pothik) {
@@ -277,8 +277,8 @@ final class Plugin
             wp_send_json_error(['message' => 'Unauthorized'], 403);
         }
 
-        $key = isset($_POST['key']) ? sanitize_key((string) $_POST['key']) : '';
-        $val = isset($_POST['value']) && $_POST['value'] === '1' ? '1' : '0';
+        $key = isset($_POST['key']) ? sanitize_key(wp_unslash((string) $_POST['key'])) : '';
+        $val = isset($_POST['value']) && wp_unslash($_POST['value']) === '1' ? '1' : '0';
 
         if (!in_array($key, ['focus', 'side_mini', 'hide_setup'], true)) {
             wp_send_json_error(['message' => 'Invalid key'], 400);
@@ -295,8 +295,8 @@ final class Plugin
         }
         check_admin_referer('pothik_ui_pref');
 
-        $key = isset($_POST['key']) ? sanitize_key((string) $_POST['key']) : '';
-        $val = isset($_POST['value']) && $_POST['value'] === '1' ? '1' : '0';
+        $key = isset($_POST['key']) ? sanitize_key(wp_unslash((string) $_POST['key'])) : '';
+        $val = isset($_POST['value']) && wp_unslash($_POST['value']) === '1' ? '1' : '0';
 
         if (in_array($key, ['focus', 'side_mini', 'hide_setup'], true)) {
             update_user_meta(get_current_user_id(), 'pothik_' . $key, $val);

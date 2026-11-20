@@ -1057,13 +1057,13 @@ final class Screens
             Access::deny();
         }
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-        $page = isset($_GET['paged']) ? max(1, absint($_GET['paged'])) : 1;
+        $page = isset($_GET['paged']) ? max(1, absint(wp_unslash($_GET['paged']))) : 1;
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-        $status = isset($_GET['status']) ? sanitize_key((string) $_GET['status']) : '';
+        $status = isset($_GET['status']) ? sanitize_key(wp_unslash((string) $_GET['status'])) : '';
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         $search = isset($_GET['s']) ? sanitize_text_field(wp_unslash((string) $_GET['s'])) : '';
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-        $share = isset($_GET['share']) ? sanitize_key((string) $_GET['share']) : '';
+        $share = isset($_GET['share']) ? sanitize_key(wp_unslash((string) $_GET['share'])) : '';
         $per_page = 20;
 
         $paged_data = InquiryRepository::query(self::inquiry_list_args($page, $per_page, $status, $search, $share));
@@ -1373,10 +1373,10 @@ final class Screens
             wp_send_json_error(['message' => 'Unauthorized'], 403);
         }
 
-        $page = isset($_POST['paged']) ? max(1, absint($_POST['paged'])) : 1;
-        $status = isset($_POST['status']) ? sanitize_key((string) $_POST['status']) : '';
+        $page = isset($_POST['paged']) ? max(1, absint(wp_unslash($_POST['paged']))) : 1;
+        $status = isset($_POST['status']) ? sanitize_key(wp_unslash((string) $_POST['status'])) : '';
         $search = isset($_POST['s']) ? sanitize_text_field(wp_unslash((string) $_POST['s'])) : '';
-        $share = isset($_POST['share']) ? sanitize_key((string) $_POST['share']) : '';
+        $share = isset($_POST['share']) ? sanitize_key(wp_unslash((string) $_POST['share'])) : '';
         $per_page = 20;
 
         $paged_data = InquiryRepository::query(self::inquiry_list_args($page, $per_page, $status, $search, $share));

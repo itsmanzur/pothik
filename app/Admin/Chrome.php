@@ -45,7 +45,7 @@ final class Chrome
         $is_mini = $user_id ? (get_user_meta($user_id, 'pothik_side_mini', true) === '1') : false;
 
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-        $current_page = isset($_GET['page']) ? sanitize_key((string) $_GET['page']) : 'pothik';
+        $current_page = isset($_GET['page']) ? sanitize_key(wp_unslash((string) $_GET['page'])) : 'pothik';
         $wait_count = InquiryRepository::count_waiting();
         $packages_count = count(PackageStore::all());
 

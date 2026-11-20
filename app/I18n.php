@@ -2118,7 +2118,7 @@ When a pilgrim submits an inquiry on your site, you will receive an alert like t
 
     public static function lang(): string
     {
-        $cookie = isset($_COOKIE['pothik_lang']) ? sanitize_key((string) $_COOKIE['pothik_lang']) : '';
+        $cookie = isset($_COOKIE['pothik_lang']) ? sanitize_key(wp_unslash((string) $_COOKIE['pothik_lang'])) : '';
         if ($cookie === 'bn' || $cookie === 'en') {
             return $cookie;
         }
