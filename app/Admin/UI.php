@@ -1,6 +1,6 @@
 <?php
 /**
- * Stable markup for Pothik screens and add-ons.
+ * Stable markup for Hejazer Kafela screens and add-ons.
  *
  * POTHIK_UI_VERSION is 1. Add-ons should check class_exists before calling these.
  *

@@ -1,6 +1,6 @@
 <?php
 /**
- * One manual receipt. Installments live in Pothik Pro.
+ * One manual receipt. Installments live in Hejazer Kafela Pro.
  *
  * @package Pothik
  */

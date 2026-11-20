@@ -79,6 +79,9 @@ final class PackagePage
     {
         add_shortcode('pothik_package', [self::class, 'package_shortcode']);
         add_shortcode('pothik_catalog', [self::class, 'catalog_shortcode']);
+        add_shortcode('hejazer_kafela_package', [self::class, 'package_shortcode']);
+        add_shortcode('hejazer_kafela_catalog', [self::class, 'catalog_shortcode']);
+        add_shortcode('hejazer_kafela', [self::class, 'shortcode']);
         add_shortcode('pothik', [self::class, 'shortcode']);
     }
 
@@ -232,8 +235,8 @@ final class PackagePage
             return;
         }
         $content = (string) $post->post_content;
-        $catalog = has_shortcode($content, 'pothik_catalog');
-        if ($catalog || has_shortcode($content, 'pothik_package') || has_shortcode($content, 'pothik')) {
+        $catalog = has_shortcode($content, 'pothik_catalog') || has_shortcode($content, 'hejazer_kafela_catalog');
+        if ($catalog || has_shortcode($content, 'pothik_package') || has_shortcode($content, 'pothik') || has_shortcode($content, 'hejazer_kafela_package') || has_shortcode($content, 'hejazer_kafela')) {
             self::enqueue($catalog);
         }
     }

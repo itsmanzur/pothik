@@ -26,7 +26,7 @@ Publish beautiful, high-converting package landing pages in minutes, collect pil
 * **Payment Receipt Slip**: Generate, print, or copy branded payment proof slips with bKash, Nagad, Rocket, Bank, and Cash channels.
 * **Bilingual English & Bengali (বাংলা)**: Seamless native language toggle with full translation coverage.
 * **Self-Hosted Typography**: Includes subsetted WOFF2 fonts (Noto Sans Bengali and Source Sans 3) for lightning-fast, privacy-friendly page loads without external Google Fonts dependencies.
-* **Shortcodes Included**: Easily embed packages anywhere with `[pothik_package id="..."]` or show your entire package offering with `[pothik_catalog]`.
+* **Shortcodes Included**: Easily embed packages anywhere with `[hejazer_kafela_package id="..."]` or show your entire package offering with `[hejazer_kafela_catalog]`.
 
 == Installation ==
 
@@ -47,7 +47,7 @@ Inquiries are saved directly to your WordPress database table with pagination an
 Yes. By default, packages inherit the agency phone and WhatsApp numbers defined in **Hejazer Kafela → Settings**. However, each package can optionally specify its own contact details to override global settings.
 
 = Can I use shortcodes? =
-Yes. Use `[pothik_package id="package_id"]` to embed a single package or `[pothik_catalog]` to display your package catalog on any post, page, or block layout.
+Yes. Use `[hejazer_kafela_package id="package_id"]` to embed a single package or `[hejazer_kafela_catalog]` to display your package catalog on any post, page, or block layout.
 
 == Screenshots ==
 
@@ -127,6 +127,6 @@ Hejazer Kafela stores the following. Its text is also added to the site's privac
 * Inquiry form with honeypot, signed time-trap and IP rate limit. Inquiries are saved in a custom table, with search, filters, bulk actions and a UTF-8 CSV export.
 * Email notification and one-tap WhatsApp reply link for every new inquiry.
 * Payment receipt slip with English and Bengali amount in words.
-* Analytics, shortcodes `[pothik_package]` and `[pothik_catalog]`, and a referral code kept in a first-party cookie.
+* Analytics, shortcodes `[hejazer_kafela_package]` and `[hejazer_kafela_catalog]`, and a referral code kept in a first-party cookie.
 * English and Bengali (বাংলা) interface with self-hosted fonts.
 * Cookies and inquiry data are added to the site's privacy policy guide.

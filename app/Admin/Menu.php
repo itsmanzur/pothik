@@ -57,8 +57,8 @@ final class Menu
         if ($has_locked) {
             add_submenu_page(
                 'pothik',
-                'Pothik Pro',
-                'Pothik Pro',
+                'Hejazer Kafela Pro',
+                'Hejazer Kafela Pro',
                 'manage_options',
                 'pothik-pro',
                 [Screens::class, 'pro']
@@ -127,9 +127,9 @@ final class Menu
                 'settings' => I18n::t('Settings'),
                 'newPackage' => I18n::t('New package'),
                 'exportCsv' => I18n::t('Export inquiries CSV'),
-                'copyCatalog' => I18n::t('Copy [pothik_catalog]'),
-                'catalogCopied' => I18n::t('Copied [pothik_catalog]'),
-                'pro' => I18n::t('Pothik Pro'),
+                'copyCatalog' => I18n::t('Copy [hejazer_kafela_catalog]'),
+                'catalogCopied' => I18n::t('Copied [hejazer_kafela_catalog]'),
+                'pro' => I18n::t('Hejazer Kafela Pro'),
                 'allCaughtUp' => I18n::t('All caught up, alhamdulillah'),
                 'newInquiriesHere' => I18n::t('New inquiries will appear here.'),
                 'guestWaiting' => I18n::t('guest of Allah is waiting for your reply.'),

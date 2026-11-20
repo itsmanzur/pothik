@@ -1,6 +1,6 @@
 <?php
 /**
- * SVG sprite symbols for Pothik admin icons.
+ * SVG sprite symbols for Hejazer Kafela admin icons.
  *
  * @package Pothik
  */

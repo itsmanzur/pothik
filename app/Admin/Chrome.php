@@ -84,7 +84,7 @@ final class Chrome
             // One plain link to the page that describes the add-on.
             $pro_nav_items[] = [
                 'slug' => 'pothik-pro',
-                'label' => I18n::t('Pothik Pro'),
+                'label' => I18n::t('Hejazer Kafela Pro'),
                 'icon' => 'i-spark',
                 'url' => admin_url('admin.php?page=pothik-pro'),
                 'admin_only' => true,
@@ -177,7 +177,7 @@ final class Chrome
         echo '<div class="pk-admin' . (Access::readonly() ? ' pothik-readonly' : '') . '">';
         echo '<div class="pk-app' . ($is_mini ? ' mini' : '') . '" id="pkApp">';
 
-        // Dedicated Pothik Sidebar
+        // Dedicated Hejazer Kafela Sidebar
         echo '<aside class="pk-side" aria-label="' . esc_attr(I18n::t('Hejazer Kafela menu')) . '">';
         echo '<div class="side-top">';
         echo '<span class="brand-mark"><svg class="i lg" aria-hidden="true"><use href="#i-pin"/></svg></span>';

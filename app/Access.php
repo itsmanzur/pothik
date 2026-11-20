@@ -1,6 +1,6 @@
 <?php
 /**
- * Who may open a Pothik screen. Pro extends this through pothik_can.
+ * Who may open a Hejazer Kafela screen. Pro extends this through pothik_can.
  *
  * @package Pothik
  */

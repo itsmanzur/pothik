@@ -93,7 +93,7 @@ final class Plugin
             'post_name' => 'umrah-package',
             'post_status' => $status,
             'post_type' => 'page',
-            'post_content' => '[pothik_package]',
+            'post_content' => '[hejazer_kafela_package]',
         ]);
         if ($page_id > 0) {
             update_option('pothik_page_id', $page_id, false);

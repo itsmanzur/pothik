@@ -103,7 +103,7 @@ final class Referral
         if (!$post instanceof \WP_Post) {
             return false;
         }
-        foreach (['pothik_package', 'pothik_catalog', 'pothik'] as $tag) {
+        foreach (['pothik_package', 'pothik_catalog', 'pothik', 'hejazer_kafela_package', 'hejazer_kafela_catalog', 'hejazer_kafela'] as $tag) {
             if (has_shortcode($post->post_content, $tag)) {
                 return true;
             }

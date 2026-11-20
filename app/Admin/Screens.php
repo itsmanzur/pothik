@@ -223,7 +223,7 @@ final class Screens
             echo '<button type="submit" class="btn pk-btn btn-ghost pk-btn-ghost"><svg class="i sm"><use href="#i-down"/></svg>' . esc_html(I18n::t('Export CSV')) . '</button>';
             echo '</form>';
         }
-        echo '<button type="button" class="btn pk-btn btn-ghost pk-btn-ghost" data-pk-copy="[pothik_catalog]"><svg class="i sm"><use href="#i-copy"/></svg>' . esc_html(I18n::t('Copy shortcode')) . '</button>';
+        echo '<button type="button" class="btn pk-btn btn-ghost pk-btn-ghost" data-pk-copy="[hejazer_kafela_catalog]"><svg class="i sm"><use href="#i-copy"/></svg>' . esc_html(I18n::t('Copy shortcode')) . '</button>';
         if (Access::can('settings', 'view')) {
             echo '<a class="btn pk-btn btn-ghost pk-btn-ghost" href="' . esc_url(admin_url('admin.php?page=pothik-settings')) . '"><svg class="i sm"><use href="#i-gear"/></svg>' . esc_html(I18n::t('Settings')) . '</a>';
         }
@@ -426,7 +426,7 @@ final class Screens
             echo '<div class="card pk-card pro-card">';
             echo '<div class="ph"><span class="eyebrow">' . esc_html(I18n::t('Pro')) . '</span><a class="link" href="' . esc_url(admin_url('admin.php?page=pothik-pro')) . '">' . esc_html(I18n::t('Docs')) . '</a></div>';
             echo '<div class="pro-inner">';
-            echo '<div><h4>' . esc_html(I18n::t('Pothik Pro')) . ' <span class="pill pk-pill draft plain" style="background:var(--gold-100);color:#8a6414">PRO</span></h4>';
+            echo '<div><h4>' . esc_html(I18n::t('Hejazer Kafela Pro')) . ' <span class="pill pk-pill draft plain" style="background:var(--gold-100);color:#8a6414">PRO</span></h4>';
             echo '<p>' . esc_html(I18n::t('Run the whole season: departures, pilgrim files, rooming, installments and the visa board.')) . '</p>';
             echo '<a class="btn pk-btn btn-primary pk-btn-primary btn-sm" href="' . esc_url(admin_url('admin.php?page=pothik-pro')) . '">' . esc_html(I18n::t('Learn about Pro')) . '</a></div>';
             echo '<div class="pro-chips">';
@@ -470,19 +470,19 @@ final class Screens
         $groups = ProFeatures::all();
         $count = ProFeatures::counts($groups);
 
-        Chrome::open('Pothik Pro', 'Advanced Umrah & Hajj agency operations management.');
+        Chrome::open('Hejazer Kafela Pro', 'Advanced Umrah & Hajj agency operations management.');
 
         echo '<section class="screen" data-screen="pro">';
 
         $soon = ProFeatures::soon_title($module);
         if ($soon !== '') {
             /* translators: %s: feature name */
-            echo '<p class="pk-pro-soon">' . esc_html(sprintf(I18n::t('%s is coming soon to Pothik Pro.'), $soon)) . '</p>';
+            echo '<p class="pk-pro-soon">' . esc_html(sprintf(I18n::t('%s is coming soon to Hejazer Kafela Pro.'), $soon)) . '</p>';
         }
 
         // Hero.
         echo '<div class="pro-hero pk-pro-hero">';
-        echo '<span class="pill pk-pill pro-badge">Pothik Pro</span>';
+        echo '<span class="pill pk-pill pro-badge">Hejazer Kafela Pro</span>';
         echo '<h1>' . sprintf(esc_html(I18n::t('Run the whole Umrah season %s')), '<span>' . esc_html(I18n::t('from one desk')) . '</span>') . '</h1>';
         echo '<p>' . esc_html(I18n::t('Departures, pilgrim files, rooming, installments and the visa board — built for Bangladeshi agencies. More is on the way; everything marked “Coming soon” is in our plan and arrives as a Pro update — at no extra cost for Pro customers.')) . '</p>';
         echo '<a class="btn pk-btn pk-btn-gold btn-gold btn-lg" href="' . esc_url($upgrade_url) . '" target="_blank" rel="noopener">' . esc_html(I18n::t('Upgrade to Pro')) . ' <svg class="i"><use href="#i-arrow"/></svg></a>';
@@ -498,7 +498,7 @@ final class Screens
 
         // Table.
         echo '<div class="card pk-card pk-cm-card"><table class="cm-t pk-cm-t" data-pk-cm-table>';
-        echo '<thead><tr><th>' . esc_html(I18n::t('Feature')) . '</th><th>' . esc_html(I18n::t('Free Version')) . '</th><th class="pro">' . esc_html(I18n::t('Pothik Pro')) . '</th></tr></thead><tbody>';
+        echo '<thead><tr><th>' . esc_html(I18n::t('Feature')) . '</th><th>' . esc_html(I18n::t('Free Version')) . '</th><th class="pro">' . esc_html(I18n::t('Hejazer Kafela Pro')) . '</th></tr></thead><tbody>';
         foreach ($groups as $group) {
             $name = (string) ($group['group'] ?? '');
             if ($name !== '') {
@@ -528,15 +528,15 @@ final class Screens
         }
         echo '</tbody></table></div>';
 
-        $matches = sprintf(I18n::t('Matches Pothik %s'), POTHIK_VERSION);
+        $matches = sprintf(I18n::t('Matches Hejazer Kafela %s'), POTHIK_VERSION);
         if (defined('POTHIK_PRO_VERSION')) {
-            $matches .= sprintf(I18n::t(' and Pothik Pro %s'), (string) POTHIK_PRO_VERSION);
+            $matches .= sprintf(I18n::t(' and Hejazer Kafela Pro %s'), (string) POTHIK_PRO_VERSION);
         }
         echo '<p class="hint pk-cm-foot">' . esc_html($matches) . ' · ' . esc_html(I18n::t('Free never limits your inquiries, WhatsApp buttons or email alerts.')) . '</p>';
 
         // Bottom CTA.
         echo '<div class="pro-cta-bottom">';
-        echo '<a class="btn pk-btn pk-btn-gold btn-gold btn-lg" href="' . esc_url($upgrade_url) . '" target="_blank" rel="noopener">' . esc_html(I18n::t('Upgrade to Pothik Pro Now')) . ' <svg class="i"><use href="#i-arrow"/></svg></a>';
+        echo '<a class="btn pk-btn pk-btn-gold btn-gold btn-lg" href="' . esc_url($upgrade_url) . '" target="_blank" rel="noopener">' . esc_html(I18n::t('Upgrade to Hejazer Kafela Pro Now')) . ' <svg class="i"><use href="#i-arrow"/></svg></a>';
         echo '</div>';
 
         echo '</section>';
@@ -694,7 +694,7 @@ final class Screens
 
         $edit_url = admin_url('admin.php?page=pothik-package&package=' . rawurlencode($id));
         $public_url = PackagePage::url($id);
-        $shortcode = '[pothik_package id="' . esc_attr($id) . '"]';
+        $shortcode = '[hejazer_kafela_package id="' . esc_attr($id) . '"]';
 
         echo '<article class="pkg pk-pkg" style="--c1:' . esc_attr($c1) . ';--c2:' . esc_attr($c2) . '" data-id="' . esc_attr($id) . '" data-status="' . esc_attr($status_str) . '" data-search="' . esc_attr(strtolower($title . ' ' . $mh . ' ' . $dh)) . '">';
 

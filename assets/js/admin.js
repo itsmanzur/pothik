@@ -1,5 +1,5 @@
 /**
- * Pothik Admin JavaScript
+ * Hejazer Kafela Admin JavaScript
  *
  * Vanilla JS only, no external dependencies, no jQuery.
  * Scoped under IIFE with window.pothikAdmin.
@@ -545,10 +545,10 @@
         { g: i18n.goTo || 'Go to', l: i18n.receipt || 'Receipt', url: adminBase + '?page=pothik-receipt' },
         { g: i18n.goTo || 'Go to', l: i18n.analytics || 'Analytics', url: adminBase + '?page=pothik-analytics' },
         { g: i18n.goTo || 'Go to', l: i18n.settings || 'Settings', url: adminBase + '?page=pothik-settings' },
-        { g: i18n.goTo || 'Go to', l: i18n.pro || 'Pothik Pro', url: adminBase + '?page=pothik-pro' },
+        { g: i18n.goTo || 'Go to', l: i18n.pro || 'Hejazer Kafela Pro', url: adminBase + '?page=pothik-pro' },
         { g: i18n.actions || 'Actions', l: i18n.newPackage || 'New package', action: 'new_package' },
         { g: i18n.actions || 'Actions', l: i18n.exportCsv || 'Export inquiries CSV', action: 'export_csv' },
-        { g: i18n.actions || 'Actions', l: i18n.copyCatalog || 'Copy [pothik_catalog]', action: 'copy_catalog' }
+        { g: i18n.actions || 'Actions', l: i18n.copyCatalog || 'Copy [hejazer_kafela_catalog]', action: 'copy_catalog' }
     ];
 
     function ensureCmdkElements() {
@@ -696,8 +696,8 @@
         }
 
         if (item.action === 'copy_catalog') {
-            copyText('[pothik_catalog]').then(function () {
-                toast(i18n.catalogCopied || 'Copied [pothik_catalog]');
+            copyText('[hejazer_kafela_catalog]').then(function () {
+                toast(i18n.catalogCopied || 'Copied [hejazer_kafela_catalog]');
             });
             return;
         }
@@ -3047,7 +3047,7 @@
         var copyBtn = document.getElementById('copySinglePkgCode');
         if (pkgSelect && singleCode && copyBtn) {
             pkgSelect.addEventListener('change', function () {
-                var code = '[pothik_package id="' + pkgSelect.value + '"]';
+                var code = '[hejazer_kafela_package id="' + pkgSelect.value + '"]';
                 singleCode.textContent = code;
                 copyBtn.setAttribute('data-pk-copy', code);
             });
@@ -3056,7 +3056,7 @@
 
     /* =========================================================
        SOFT NAVIGATION
-       Moving between Pothik screens fetches the next screen and
+       Moving between Hejazer Kafela screens fetches the next screen and
        swaps .pk-admin in place: no full page reload, the WordPress
        chrome stays, the URL / history / title / menu follow along.
        Anything unusual falls back to a normal page load.
@@ -3444,7 +3444,7 @@
         }
     }
 
-    // URL of a Pothik screen we can swap in, or null.
+    // URL of a Hejazer Kafela screen we can swap in, or null.
     function softUrl(href) {
         var url;
         try {
@@ -3529,7 +3529,7 @@
 
         fetch(url.href, { credentials: 'same-origin', signal: request.signal })
             .then(function (res) {
-                // Logged out, error page, or redirected away from Pothik: load it for real.
+                // Logged out, error page, or redirected away from Hejazer Kafela: load it for real.
                 if (!res.ok || (res.redirected && !softUrl(res.url))) {
                     throw new Error('pk-soft-fallback');
                 }
@@ -3596,7 +3596,7 @@
         if (!a || (a.target && a.target !== '_self') || a.hasAttribute('download')) {
             return;
         }
-        // Pothik's own links, and the Pothik items in the WordPress sidebar.
+        // Hejazer Kafela's own links, and the Hejazer Kafela items in the WordPress sidebar.
         if (!a.closest('.pk-admin') && !a.closest('#toplevel_page_pothik')) {
             return;
         }

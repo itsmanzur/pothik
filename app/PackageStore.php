@@ -85,7 +85,7 @@ final class PackageStore
             'docs' => 'Passport photo page, photo, meningitis certificate.',
             'cancel' => 'The deposit holds the seat. The cancellation rule is this sentence: after the deposit, a cancellation follows the agency\'s written terms.',
             'bn' => [
-                'agency' => 'পথিক উমরা',
+                'agency' => 'হেজাজের কাফেলা',
                 'kicker' => 'মার্চ গ্রুপ · ঢাকা থেকে',
                 'title' => '৭ দিন সুপিরিয়র উমরা',
                 'route' => 'জেদ্দা আগে',

@@ -1,6 +1,6 @@
 <?php
 /**
- * Remove Pothik data when the plugin is deleted.
+ * Remove Hejazer Kafela data when the plugin is deleted.
  *
  * @package Pothik
  */

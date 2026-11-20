@@ -37,7 +37,7 @@ final class Settings
     {
         $defaults = [
             'agency' => 'Hejazer Kafela',
-            'agency_bn' => 'পথিক উমরা',
+            'agency_bn' => 'হেজাজের কাফেলা',
             'phone' => '01711-000000',
             'whatsapp' => '8801711000000',
             'license' => '',
@@ -269,7 +269,7 @@ final class Settings
         // Row 2: All packages shortcode
         echo '<div class="set-row pk-set-row">';
         echo '<div><b>' . esc_html(I18n::t('Show every package')) . '</b><span class="sub">' . esc_html(I18n::t('Paste on any page or block')) . '</span></div>';
-        echo '<div class="code pk-code"><code>[pothik_catalog]</code><button type="button" class="icon-btn pk-icon-btn" data-pk-copy="[pothik_catalog]"><svg class="i sm"><use href="#i-copy"/></svg></button></div>';
+        echo '<div class="code pk-code"><code>[hejazer_kafela_catalog]</code><button type="button" class="icon-btn pk-icon-btn" data-pk-copy="[hejazer_kafela_catalog]"><svg class="i sm"><use href="#i-copy"/></svg></button></div>';
         echo '</div>';
 
         // Row 3: Single package shortcode selector
@@ -284,7 +284,7 @@ final class Settings
             }
             echo '</select>';
         }
-        echo '<div class="code pk-code"><code id="singlePkgCode">[pothik_package id="' . esc_attr($first_pkg_id) . '"]</code><button type="button" class="icon-btn pk-icon-btn" id="copySinglePkgCode" data-pk-copy="[pothik_package id=&quot;' . esc_attr($first_pkg_id) . '&quot;]"><svg class="i sm"><use href="#i-copy"/></svg></button></div>';
+        echo '<div class="code pk-code"><code id="singlePkgCode">[hejazer_kafela_package id="' . esc_attr($first_pkg_id) . '"]</code><button type="button" class="icon-btn pk-icon-btn" id="copySinglePkgCode" data-pk-copy="[hejazer_kafela_package id=&quot;' . esc_attr($first_pkg_id) . '&quot;]"><svg class="i sm"><use href="#i-copy"/></svg></button></div>';
         echo '</div>';
         echo '</div>';
 
