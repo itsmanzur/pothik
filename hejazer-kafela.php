@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       Hejazer Kafela – Umrah & Hajj Package Manager
- * Plugin URI:        https://thereadscope.com/hejazer-kafela
+ * Plugin URI:        https://thereadscope.com/products/hejazer-kafela/
  * Description:       Create Umrah and Hajj package landing pages, collect pilgrim inquiries with WhatsApp integration, and print payment receipts.
  * Version:           1.0.0
  * Requires at least: 6.5
