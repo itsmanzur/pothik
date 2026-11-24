@@ -651,9 +651,7 @@ final class InquiryRepository
      */
     public static function ajax_toggle_reply(): void
     {
-        if (!check_ajax_referer('pothik_admin', 'nonce', false) && !check_ajax_referer('pothik_reply_inquiry', 'nonce', false)) {
-            wp_send_json_error(['message' => 'Invalid nonce'], 403);
-        }
+        check_ajax_referer('pothik_admin', 'nonce');
 
         if (!Access::can('inquiries', 'edit')) {
             wp_send_json_error(['message' => 'Unauthorized'], 403);
@@ -713,7 +711,7 @@ final class InquiryRepository
         }
 
         if ($op === 'export') {
-            self::export_csv($ids);
+            self::stream_csv($ids);
             exit;
         }
 
@@ -752,17 +750,27 @@ final class InquiryRepository
     }
 
     /**
-     * Export all inquiries as a UTF-8 CSV download (optionally filtered by IDs).
-     *
-     * @param array<int, string>|null $ids
+     * Export all inquiries as a UTF-8 CSV download.
      */
-    public static function export_csv(?array $ids = null): void
+    public static function export_csv(): void
     {
         if (!Access::can('inquiries', 'view')) {
             Access::deny();
         }
-        if (!check_admin_referer('pothik_export_inquiries', '_wpnonce', false) && !check_admin_referer('pothik_bulk_inquiries', '_wpnonce', false)) {
-            wp_die(esc_html(I18n::t('Security check failed.')));
+        check_admin_referer('pothik_export_inquiries');
+
+        self::stream_csv(null);
+    }
+
+    /**
+     * Send the CSV. Callers have already checked their own nonce.
+     *
+     * @param array<int, string>|null $ids
+     */
+    private static function stream_csv(?array $ids): void
+    {
+        if (!Access::can('inquiries', 'view')) {
+            Access::deny();
         }
 
         global $wpdb;

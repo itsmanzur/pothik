@@ -469,9 +469,7 @@ final class PackageStore
 
     public static function ajax_toggle_status(): void
     {
-        if (!check_ajax_referer('pothik_admin', 'nonce', false) && !check_ajax_referer('pothik_toggle_package_status', 'nonce', false)) {
-            wp_send_json_error(['message' => 'Invalid nonce'], 403);
-        }
+        check_ajax_referer('pothik_admin', 'nonce');
         if (!Access::can('packages', 'edit')) {
             wp_send_json_error(['message' => 'Unauthorized'], 403);
         }
@@ -511,9 +509,7 @@ final class PackageStore
 
     public static function ajax_delete(): void
     {
-        if (!check_ajax_referer('pothik_admin', 'nonce', false) && !check_ajax_referer('pothik_delete_package', 'nonce', false)) {
-            wp_send_json_error(['message' => 'Invalid nonce'], 403);
-        }
+        check_ajax_referer('pothik_admin', 'nonce');
         if (!Access::can('packages', 'edit')) {
             wp_send_json_error(['message' => 'Unauthorized'], 403);
         }
@@ -532,9 +528,7 @@ final class PackageStore
 
     public static function ajax_copy(): void
     {
-        if (!check_ajax_referer('pothik_admin', 'nonce', false) && !check_ajax_referer('pothik_copy_package', 'nonce', false)) {
-            wp_send_json_error(['message' => 'Invalid nonce'], 403);
-        }
+        check_ajax_referer('pothik_admin', 'nonce');
         if (!Access::can('packages', 'edit')) {
             wp_send_json_error(['message' => 'Unauthorized'], 403);
         }
