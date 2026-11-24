@@ -1745,7 +1745,7 @@ When a pilgrim submits an inquiry on your site, you will receive an alert like t
         'Trip page not opened' => 'সফরের পাতা খোলা হয়নি',
         'No link yet, or never opened' => 'লিংক নেই বা কখনো খোলা হয়নি',
         'Your trip page' => 'আপনার সফরের পাতা',
-        // Day plan (Pro 3.4).
+        // Day plan (day-plan screen).
         'Day plan' => 'সফরসূচি',
         'What happens each day of the trip' => 'সফরের প্রতিদিন কী হবে',
         'What happens each day of the trip: ziyarah, bus times and where to meet.' => 'সফরের প্রতিদিন কী হবে: যিয়ারত, বাসের সময় আর কোথায় একত্র হবেন।',

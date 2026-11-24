@@ -1,6 +1,6 @@
 <?php
 /**
- * Admin chrome shared by free screens and pro screens.
+ * Admin chrome shared by every screen, including add-on screens.
  *
  * @package Pothik
  */

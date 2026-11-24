@@ -12,6 +12,9 @@ namespace Pothik;
 if (!defined('ABSPATH')) {
     exit;
 }
+// Own table, table name is a fixed prefix + constant; every value goes through $wpdb->prepare()/insert()/update().
+// phpcs:disable WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB
+
 
 final class ReceiptStore
 {
