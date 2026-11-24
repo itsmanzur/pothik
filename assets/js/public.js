@@ -691,6 +691,49 @@
     var nonce = form.querySelector('input[name="pothik_inquiry_nonce"]');
     var trap = form.querySelector('input[name="pothik_trap"]');
     var pending = null;
+    var packageField = form.querySelector('input[name="package_id"]');
+    var storeKey = 'pothik_form_' + (packageField ? packageField.value : '');
+    var keep = ['name', 'phone', 'whatsapp', 'city', 'share', 'trip', 'adults', 'children', 'infants', 'note'];
+
+    // The typed values stay in this browser tab only, so a form that has to be sent again is not lost.
+    function save() {
+        try {
+            var data = {};
+            keep.forEach(function (name) {
+                var field = form.elements[name];
+                if (field) {
+                    data[name] = field.value;
+                }
+            });
+            window.sessionStorage.setItem(storeKey, JSON.stringify(data));
+        } catch (error) {}
+    }
+
+    function restore() {
+        try {
+            var data = JSON.parse(window.sessionStorage.getItem(storeKey) || '{}');
+            keep.forEach(function (name) {
+                var field = form.elements[name];
+                if (field && typeof data[name] === 'string' && data[name] !== '') {
+                    field.value = data[name];
+                }
+            });
+        } catch (error) {}
+    }
+
+    function clear() {
+        try {
+            window.sessionStorage.removeItem(storeKey);
+        } catch (error) {}
+    }
+
+    var result = (location.search.match(/[?&]pothik=([a-z]+)/) || [])[1] || '';
+    if (result === 'nonce') {
+        restore();
+    } else if (result === 'sent') {
+        clear();
+    }
+    form.addEventListener('input', save);
 
     function refresh() {
         if (pending) {
@@ -725,9 +768,24 @@
             return;
         }
         event.preventDefault();
+        save();
         refresh().then(function () {
             form.setAttribute('data-pk-ready', '1');
             form.submit();
         });
     });
+}());
+
+(function () {
+    // After a successful send, forget the values kept for a possible resend.
+    if (!/[?&]pothik=sent\b/.test(location.search)) {
+        return;
+    }
+    try {
+        Object.keys(window.sessionStorage).forEach(function (key) {
+            if (key.indexOf('pothik_form_') === 0) {
+                window.sessionStorage.removeItem(key);
+            }
+        });
+    } catch (error) {}
 }());

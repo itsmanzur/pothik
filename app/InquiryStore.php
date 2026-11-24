@@ -80,8 +80,10 @@ final class InquiryStore
     public static function handle_public(): void
     {
         // The nonce is fetched by public.js when the visitor starts typing, so cached pages keep working.
-        $nonce = isset($_POST['pothik_inquiry_nonce']) ? sanitize_text_field(wp_unslash((string) $_POST['pothik_inquiry_nonce'])) : '';
-        $nonce_ok = $nonce !== '' && wp_verify_nonce($nonce, 'pothik_inquiry') !== false;
+        // Nothing else in the request is read, and nothing is stored, until it has been verified.
+        if (!isset($_POST['pothik_inquiry_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash((string) $_POST['pothik_inquiry_nonce'])), 'pothik_inquiry')) {
+            self::redirect_back('nonce');
+        }
 
         $post = [];
         foreach (['package_id', 'name', 'phone', 'whatsapp', 'city', 'share', 'trip', 'ref', 'pothik_trap', 'company_website'] as $field) {
@@ -92,10 +94,6 @@ final class InquiryStore
         }
         $post['note'] = isset($_POST['note']) ? sanitize_textarea_field(wp_unslash((string) $_POST['note'])) : '';
         $package_id = sanitize_key($post['package_id']);
-
-        if (!$nonce_ok) {
-            self::redirect_with_state('nonce', $post, $package_id);
-        }
 
         // Honeypot check: reject silently if bot filled hidden field.
         if ($post['company_website'] !== '') {
@@ -113,7 +111,7 @@ final class InquiryStore
             $elapsed = time() - $ts;
             if ($elapsed > DAY_IN_SECONDS) {
                 // A page cached for over a day: ask the visitor to send again instead of losing the inquiry.
-                self::redirect_with_state('nonce', $post, $package_id);
+                self::redirect('nonce', [], $package_id);
             }
             if ($elapsed < 3) {
                 self::redirect('sent', [], $package_id);
@@ -354,6 +352,53 @@ final class InquiryStore
     }
 
     /**
+     * Send the visitor back to the page the form was on, without reading or keeping anything they typed.
+     */
+    private static function redirect_back(string $result): void
+    {
+        $url = wp_get_referer();
+        if (!is_string($url) || $url === '') {
+            $url = home_url('/');
+        }
+        $url = remove_query_arg(['pothik', 'ptk', 'ptn'], $url);
+        wp_safe_redirect(add_query_arg('pothik', $result, $url) . '#inquiry');
+        exit;
+    }
+
+    /**
+     * The values saved by a redirect (the "sent" or the "try again" state), read once.
+     * They are returned only for a token that comes with its own nonce, then deleted.
+     *
+     * @return array<string, mixed>
+     */
+    public static function read_state(string $prefix): array
+    {
+        static $seen = [];
+        if (isset($seen[$prefix])) {
+            return $seen[$prefix];
+        }
+        $seen[$prefix] = [];
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- the token has its own nonce, checked below.
+        if (!isset($_GET['ptk'], $_GET['ptn'])) {
+            return [];
+        }
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        $token = sanitize_key(wp_unslash((string) $_GET['ptk']));
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        $proof = sanitize_text_field(wp_unslash((string) $_GET['ptn']));
+        if ($token === '' || !wp_verify_nonce($proof, 'pothik_ptk_' . $token)) {
+            return [];
+        }
+        $saved = get_transient($prefix . $token);
+        delete_transient($prefix . $token);
+        if (is_array($saved)) {
+            $seen[$prefix] = $saved;
+        }
+
+        return $seen[$prefix];
+    }
+
+    /**
      * Safe redirect back to the package inquiry section.
      *
      * @param array<string, string> $extra_args
@@ -363,6 +408,9 @@ final class InquiryStore
         $url = PackagePage::url($package_id);
         if ($url === '') {
             $url = home_url('/');
+        }
+        if (isset($extra_args['ptk'])) {
+            $extra_args['ptn'] = wp_create_nonce('pothik_ptk_' . $extra_args['ptk']);
         }
         $args = array_merge(['pothik' => $result], $extra_args);
         wp_safe_redirect(add_query_arg($args, $url) . '#inquiry');

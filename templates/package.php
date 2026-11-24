@@ -229,15 +229,7 @@ $facts = array_filter([
             </div>
             <?php if ($result === 'sent') : ?>
                 <?php
-                // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-                $ptk_token = isset($_GET['ptk']) ? sanitize_key((string) wp_unslash($_GET['ptk'])) : '';
-                $sent_info = [];
-                if ($ptk_token !== '') {
-                    $saved_sent = get_transient('pothik_sent_' . $ptk_token);
-                    if (is_array($saved_sent)) {
-                        $sent_info = $saved_sent;
-                    }
-                }
+                $sent_info = InquiryStore::read_state('pothik_sent_');
                 $sent_name = (string) ($sent_info['name'] ?? '');
                 $sent_pkg = (string) ($sent_info['package_title'] ?? $page_title);
                 $sent_share = (string) ($sent_info['share'] ?? 'quad');
@@ -282,20 +274,14 @@ $facts = array_filter([
                 </div>
             <?php else : ?>
                 <?php
-                // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-                $ptk_token = isset($_GET['ptk']) ? sanitize_key((string) wp_unslash($_GET['ptk'])) : '';
-                $prefill = [];
-                if ($ptk_token !== '') {
-                    $saved = get_transient('pothik_form_' . $ptk_token);
-                    if (is_array($saved)) {
-                        $prefill = $saved;
-                    }
-                }
+                $prefill = InquiryStore::read_state('pothik_form_');
                 ?>
                 <?php if ($result === 'missing') : ?>
                     <p class="pk-alert" role="alert"><?php echo esc_html(I18n::t('Name and phone are both required.')); ?></p>
-                <?php elseif ($result === 'limit' || $result === 'nonce') : ?>
+                <?php elseif ($result === 'limit') : ?>
                     <p class="pk-alert" role="alert"><?php echo esc_html(I18n::t('Please try again shortly.')); ?></p>
+                <?php elseif ($result === 'nonce') : ?>
+                    <p class="pk-alert" role="alert" data-pk-resend><?php echo esc_html(I18n::t('Your form expired. Please press Send again.')); ?></p>
                 <?php endif; ?>
                 <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
                     <input type="hidden" name="action" value="pothik_inquiry">
