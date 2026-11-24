@@ -2082,32 +2082,6 @@ When a pilgrim submits an inquiry on your site, you will receive an alert like t
         'Surname first' => 'পদবি আগে',
 ];
 
-    public static function capture(): void
-    {
-        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-        if (!isset($_GET['pothik_lang'])) {
-            return;
-        }
-
-        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-        $lang = sanitize_key((string) wp_unslash($_GET['pothik_lang'])) === 'bn' ? 'bn' : 'en';
-        setcookie('pothik_lang', $lang, [
-            'expires' => time() + YEAR_IN_SECONDS,
-            'path' => '/',
-            'secure' => is_ssl(),
-            'httponly' => true,
-            'samesite' => 'Lax',
-        ]);
-        $_COOKIE['pothik_lang'] = $lang;
-
-        if (is_user_logged_in()) {
-            update_user_meta(get_current_user_id(), 'pothik_lang', $lang);
-        }
-
-        wp_safe_redirect(remove_query_arg('pothik_lang'));
-        exit;
-    }
-
     public static function lang(): string
     {
         $cookie = isset($_COOKIE['pothik_lang']) ? sanitize_key(wp_unslash((string) $_COOKIE['pothik_lang'])) : '';
@@ -2148,7 +2122,7 @@ When a pilgrim submits an inquiry on your site, you will receive an alert like t
         $html = '<nav class="pk-lang" aria-label="' . esc_attr(self::t('Language')) . '">';
         foreach (['en' => 'EN', 'bn' => 'বাংলা'] as $code => $label) {
             $class = $current === $code ? ' is-on' : '';
-            $html .= '<a class="pk-lang-btn' . $class . '" href="' . esc_url(add_query_arg('pothik_lang', $code)) . '">' . esc_html($label) . '</a>';
+            $html .= '<button type="button" class="pk-lang-btn' . $class . '" data-pk-lang="' . esc_attr($code) . '" aria-pressed="' . ($current === $code ? 'true' : 'false') . '">' . esc_html($label) . '</button>';
         }
         $html .= '</nav>';
 
@@ -2159,7 +2133,7 @@ When a pilgrim submits an inquiry on your site, you will receive an alert like t
     {
         echo wp_kses(self::toggle(), [
             'nav' => ['class' => true, 'aria-label' => true],
-            'a' => ['class' => true, 'href' => true],
+            'button' => ['type' => true, 'class' => true, 'data-pk-lang' => true, 'aria-pressed' => true],
         ]);
     }
 

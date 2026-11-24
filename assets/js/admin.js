@@ -3457,8 +3457,8 @@
         if (page.indexOf('pothik') !== 0) {
             return null;
         }
-        // Language switch re-renders WordPress itself; nonce / action links do work.
-        if (url.searchParams.has('pothik_lang') || url.searchParams.has('_wpnonce') || url.searchParams.has('action')) {
+        // Nonce / action links need a real page load.
+        if (url.searchParams.has('_wpnonce') || url.searchParams.has('action')) {
             return null;
         }
         // Settings uses the media library, which WordPress only loads on that screen's own load.
@@ -3635,3 +3635,21 @@
         bootPage();
     }
 }());
+(function () {
+    document.addEventListener('click', function (e) {
+        var btn = e.target.closest ? e.target.closest('[data-pk-lang]') : null;
+        var config = window.pothikAdmin;
+        if (!btn || !config) {
+            return;
+        }
+        e.preventDefault();
+        var lang = btn.getAttribute('data-pk-lang') === 'bn' ? 'bn' : 'en';
+        document.cookie = 'pothik_lang=' + lang + '; path=/; max-age=31536000; SameSite=Lax' + (location.protocol === 'https:' ? '; Secure' : '');
+        var fd = new FormData();
+        fd.append('action', 'pothik_ui_pref');
+        fd.append('key', 'lang');
+        fd.append('value', lang);
+        fd.append('nonce', config.nonce);
+        fetch(config.ajax, { method: 'POST', body: fd, credentials: 'same-origin' }).then(function () { location.reload(); }, function () { location.reload(); });
+    });
+})();

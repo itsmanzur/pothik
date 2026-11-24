@@ -120,7 +120,7 @@ Hejazer Kafela stores the following. Its text is also added to the site's privac
 * **Inquiries.** The name, phone, WhatsApp number, city, room share, pilgrim counts, note and referral code that a visitor sends are saved in the `pothik_inquiries` table and emailed to the office. A counter per visitor address (the address is hashed) lives for one hour to limit spam.
 * **Receipts.** The name, amount, channel, transaction ID, date and note that staff type into a payment receipt are saved in the `pothik_receipts` table until staff delete them.
 * **Cookie `pothik_ref`.** A package or catalog page that is opened with `?ref=` followed by 2–10 letters or digits stores that code in a first-party cookie for 30 days (path `/`, SameSite=Lax). The cookie holds only that code. It is not HttpOnly, so the inquiry form can fill itself on a cached page. No name, phone, or other personal data is stored in it. Return false from `pothik_referral_cookie` to disable the cookie. The inquiry row stores the same code and shows it as “Ref: …” in the inquiry drawer and in the CSV export.
-* **Cookie `pothik_lang`.** When a visitor picks English or Bengali, the choice (`en` or `bn`) is stored in a first-party HttpOnly cookie for one year. For a signed-in user it is also saved in their profile as the user meta `pothik_lang`.
+* **Cookie `pothik_lang`.** When a visitor picks English or Bengali, the choice (`en` or `bn`) is stored in a first-party cookie (set by a small script, SameSite=Lax) for one year. For a signed-in user it is also saved in their profile as the user meta `pothik_lang`.
 
 == Changelog ==
 

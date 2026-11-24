@@ -216,7 +216,6 @@
 
     function writeUrl() {
         var params = new URLSearchParams(window.location.search);
-        ['package', 'pothik', 'pothik_lang'].forEach(function () {});
         function set(key, value, skip) {
             if (!value || value === skip) {
                 params.delete(key);
@@ -789,3 +788,15 @@
         });
     } catch (error) {}
 }());
+
+(function () {
+    document.addEventListener('click', function (e) {
+        var btn = e.target.closest ? e.target.closest('[data-pk-lang]') : null;
+        if (!btn) {
+            return;
+        }
+        var lang = btn.getAttribute('data-pk-lang') === 'bn' ? 'bn' : 'en';
+        document.cookie = 'pothik_lang=' + lang + '; path=/; max-age=31536000; SameSite=Lax' + (location.protocol === 'https:' ? '; Secure' : '');
+        location.reload();
+    });
+})();

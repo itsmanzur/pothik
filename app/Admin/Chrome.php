@@ -251,8 +251,8 @@ final class Chrome
         // Language toggle
         $current_lang = I18n::lang();
         echo '<div class="pk-seg seg" role="group" aria-label="' . esc_attr(I18n::t('Language')) . '">';
-        echo '<a class="' . ($current_lang === 'en' ? 'on' : '') . '" href="' . esc_url(add_query_arg('pothik_lang', 'en')) . '">EN</a>';
-        echo '<a class="' . ($current_lang === 'bn' ? 'on' : '') . '" href="' . esc_url(add_query_arg('pothik_lang', 'bn')) . '">বাংলা</a>';
+        echo '<button type="button" class="' . ($current_lang === 'en' ? 'on' : '') . '" data-pk-lang="en">EN</button>';
+        echo '<button type="button" class="' . ($current_lang === 'bn' ? 'on' : '') . '" data-pk-lang="bn">বাংলা</button>';
         echo '</div>';
 
         // Full Screen / Focus toggle button

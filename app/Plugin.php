@@ -64,7 +64,6 @@ final class Plugin
         add_action('wp_ajax_nopriv_pothik_fresh_nonce', [InquiryStore::class, 'ajax_fresh_nonce']);
         add_action('wp_ajax_pothik_fresh_nonce', [InquiryStore::class, 'ajax_fresh_nonce']);
 
-        add_action('init', [I18n::class, 'capture'], 0);
         add_action('init', [PackagePage::class, 'register_shortcodes']);
         add_action('wp', [PackagePage::class, 'maybe_enqueue']);
         Referral::register();
@@ -279,9 +278,10 @@ final class Plugin
         }
 
         $key = isset($_POST['key']) ? sanitize_key(wp_unslash((string) $_POST['key'])) : '';
-        $val = isset($_POST['value']) && sanitize_text_field(wp_unslash((string) $_POST['value'])) === '1' ? '1' : '0';
+        $raw = isset($_POST['value']) ? sanitize_text_field(wp_unslash((string) $_POST['value'])) : '';
+        $val = $key === 'lang' ? ($raw === 'bn' ? 'bn' : 'en') : ($raw === '1' ? '1' : '0');
 
-        if (!in_array($key, ['focus', 'side_mini', 'hide_setup'], true)) {
+        if (!in_array($key, ['focus', 'side_mini', 'hide_setup', 'lang'], true)) {
             wp_send_json_error(['message' => 'Invalid key'], 400);
         }
 
@@ -297,9 +297,10 @@ final class Plugin
         check_admin_referer('pothik_ui_pref');
 
         $key = isset($_POST['key']) ? sanitize_key(wp_unslash((string) $_POST['key'])) : '';
-        $val = isset($_POST['value']) && sanitize_text_field(wp_unslash((string) $_POST['value'])) === '1' ? '1' : '0';
+        $raw = isset($_POST['value']) ? sanitize_text_field(wp_unslash((string) $_POST['value'])) : '';
+        $val = $key === 'lang' ? ($raw === 'bn' ? 'bn' : 'en') : ($raw === '1' ? '1' : '0');
 
-        if (in_array($key, ['focus', 'side_mini', 'hide_setup'], true)) {
+        if (in_array($key, ['focus', 'side_mini', 'hide_setup', 'lang'], true)) {
             update_user_meta(get_current_user_id(), 'pothik_' . $key, $val);
         }
 
