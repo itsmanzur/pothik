@@ -49,7 +49,7 @@ final class Chrome
         $wait_count = InquiryRepository::count_waiting();
         $packages_count = count(PackageStore::all());
 
-        // Pro items
+        // Screens opened by add-on plugins
         $icon_map = [
             'departures' => 'i-plane',
             'pilgrims' => 'i-passport',
@@ -57,22 +57,19 @@ final class Chrome
             'ledger' => 'i-wallet',
             'visa' => 'i-shield',
         ];
-        $pro_nav_items = [];
-        $has_closed = false;
+        $addon_nav_items = [];
         $free_slugs = ['package', 'inquiries', 'receipt', 'analytics'];
         foreach (Modules::all() as $m_id => $m_data) {
             if (in_array($m_id, $free_slugs, true)) {
                 continue;
             }
-            // A module the add-on has not opened gets no menu entry of its own.
             if (!Modules::is_open($m_data)) {
-                $has_closed = true;
                 continue;
             }
             $icon = $icon_map[$m_id] ?? 'i-spark';
             $item_title = isset($m_data['title']) ? (string) $m_data['title'] : ucfirst($m_id);
             $item_menu = isset($m_data['menu']) ? (string) $m_data['menu'] : $item_title;
-            $pro_nav_items[] = [
+            $addon_nav_items[] = [
                 'slug' => 'pothik-' . $m_id,
                 'label' => I18n::t($item_menu),
                 'icon' => $icon,
@@ -80,18 +77,6 @@ final class Chrome
                 'active' => ($current_page === 'pothik-' . $m_id),
             ];
         }
-        if ($has_closed) {
-            // One plain link to the page that describes the add-on.
-            $pro_nav_items[] = [
-                'slug' => 'pothik-pro',
-                'label' => I18n::t('Hejazer Kafela Pro'),
-                'icon' => 'i-spark',
-                'url' => admin_url('admin.php?page=pothik-pro'),
-                'admin_only' => true,
-                'active' => ($current_page === 'pothik-pro'),
-            ];
-        }
-
         $nav_groups = [
             'overview' => [
                 'label' => I18n::t('Overview'),
@@ -152,9 +137,9 @@ final class Chrome
                     ],
                 ],
             ],
-            'pro' => [
-                'label' => 'Pro',
-                'items' => $pro_nav_items,
+            'addons' => [
+                'label' => I18n::t('Add-ons'),
+                'items' => $addon_nav_items,
             ],
             'system' => [
                 'label' => I18n::t('System'),
@@ -193,7 +178,7 @@ final class Chrome
                 continue;
             }
             echo '<div class="side-grp">' . esc_html($grp['label']) . '</div>';
-            if ($grp_key === 'pro') {
+            if ($grp_key === 'addons') {
                 do_action('pothik_admin_sidebar_before_pro', $current_page);
             }
             foreach ($grp['items'] as $item) {
@@ -211,9 +196,6 @@ final class Chrome
                     if (!empty($item['active'])) {
                         $class .= ' on';
                     }
-                    if (!empty($item['locked'])) {
-                        $class .= ' locked';
-                    }
                     $class = trim($class);
                     $url = (string) ($item['url'] ?? '#');
                     echo '<a href="' . esc_url($url) . '"' . ($class !== '' ? ' class="' . esc_attr($class) . '"' : '') . ' title="' . esc_attr($item['label']) . '"' . (!empty($item['active']) ? ' aria-current="page"' : '') . '>';
@@ -226,9 +208,6 @@ final class Chrome
                         } else {
                             echo '<b class="' . esc_attr($cnt_class) . '">' . (int) $item['count'] . '</b>';
                         }
-                    }
-                    if (!empty($item['locked'])) {
-                        echo '<span class="lk"><svg class="i sm" aria-hidden="true"><use href="#i-lock"/></svg></span>';
                     }
                     echo '</a>';
                 }
@@ -384,14 +363,14 @@ final class Chrome
                 if (!is_array($item)) {
                     continue;
                 }
-                if ((!empty($item['locked']) || !empty($item['admin_only'])) && !current_user_can('manage_options')) {
+                if (!empty($item['admin_only']) && !current_user_can('manage_options')) {
                     continue;
                 }
                 if (!empty($item['is_form_action']) && !Access::can('packages', 'edit')) {
                     continue;
                 }
                 $slug = (string) ($item['slug'] ?? '');
-                if ($slug !== '' && $slug !== 'pothik' && $slug !== 'new_package' && empty($item['locked'])) {
+                if ($slug !== '' && $slug !== 'pothik' && $slug !== 'new_package') {
                     $area = Access::area_for_page($slug);
                     if ($area !== '' && !Access::can($area, 'view')) {
                         continue;

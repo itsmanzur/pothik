@@ -33,6 +33,7 @@ final class Plugin
         add_action('admin_post_pothik_copy_package', [PackageStore::class, 'handle_copy']);
         add_action('admin_post_pothik_toggle_package_status', [PackageStore::class, 'handle_toggle_status']);
         add_action('admin_post_pothik_save_receipt', [ReceiptStore::class, 'handle_save']);
+        add_action('admin_post_pothik_delete_receipt', [ReceiptStore::class, 'handle_delete']);
         add_action('admin_post_pothik_delete_inquiry', [InquiryStore::class, 'handle_delete']);
         add_action('admin_post_pothik_reply_inquiry', [InquiryStore::class, 'handle_reply']);
         add_action('admin_post_pothik_export_inquiries', [InquiryRepository::class, 'export_csv']);

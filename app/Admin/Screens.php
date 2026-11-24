@@ -50,7 +50,6 @@ final class Screens
         $packages = PackageStore::all();
         $packages_count = count($packages);
         $receipt = ReceiptStore::get();
-        $is_pro = defined('POTHIK_PRO_FILE');
 
         // Oldest waiting calculation
         $oldest_gmt = InquiryRepository::oldest_waiting_gmt();
@@ -132,19 +131,6 @@ final class Screens
         $desk_lines = apply_filters('pothik_desk_lines', $desk_lines);
 
         $waiting_inquiries = InquiryRepository::recent_waiting(5);
-
-        $locked_modules = [];
-        $free_slugs = ['package', 'inquiries', 'receipt', 'analytics'];
-        if (!$is_pro) {
-            foreach (Modules::all() as $mid => $m) {
-                if (in_array($mid, $free_slugs, true)) {
-                    continue;
-                }
-                if (!Modules::is_open($m)) {
-                    $locked_modules[$mid] = $m;
-                }
-            }
-        }
 
         $has_demo = PackageStore::has_demo() || InquiryRepository::has_demo() || ReceiptStore::has_demo();
         $makkah_initial = wp_date('g:i A', null, new \DateTimeZone('Asia/Riyadh'));
@@ -421,25 +407,6 @@ final class Screens
             }
         }
 
-        // 7. PRO CARD
-        if (!empty($locked_modules)) {
-            echo '<div class="card pk-card pro-card">';
-            echo '<div class="ph"><span class="eyebrow">' . esc_html(I18n::t('Pro')) . '</span><a class="link" href="' . esc_url(admin_url('admin.php?page=pothik-pro')) . '">' . esc_html(I18n::t('Docs')) . '</a></div>';
-            echo '<div class="pro-inner">';
-            echo '<div><h4>' . esc_html(I18n::t('Hejazer Kafela Pro')) . ' <span class="pill pk-pill draft plain" style="background:var(--gold-100);color:#8a6414">PRO</span></h4>';
-            echo '<p>' . esc_html(I18n::t('Run the whole season: departures, pilgrim files, rooming, installments and the visa board.')) . '</p>';
-            echo '<a class="btn pk-btn btn-primary pk-btn-primary btn-sm" href="' . esc_url(admin_url('admin.php?page=pothik-pro')) . '">' . esc_html(I18n::t('Learn about Pro')) . '</a></div>';
-            echo '<div class="pro-chips">';
-            echo '<span><svg class="i sm"><use href="#i-plane"/></svg>' . esc_html(I18n::t('Departures')) . '</span>';
-            echo '<span><svg class="i sm"><use href="#i-users"/></svg>' . esc_html(I18n::t('Pilgrim file')) . '</span>';
-            echo '<span><svg class="i sm"><use href="#i-bed"/></svg>' . esc_html(I18n::t('Rooming')) . '</span>';
-            echo '<span><svg class="i sm"><use href="#i-wallet"/></svg>' . esc_html(I18n::t('Installments')) . '</span>';
-            echo '<span><svg class="i sm"><use href="#i-shield"/></svg>' . esc_html(I18n::t('Visa board')) . '</span>';
-            echo '</div>'; // .pro-chips
-            echo '</div>'; // .pro-inner
-            echo '</div>'; // .pro-card
-        }
-
         // 8. DEMO FOOTER
         echo '<div class="pk-demo-footer">';
         echo '<span>' . esc_html(I18n::t('Trying things out?')) . '</span>';
@@ -461,95 +428,6 @@ final class Screens
         echo '</section>'; // .screen
 
         Chrome::close();
-    }
-
-    public static function pro(string $module = ''): void
-    {
-        $upgrade_url = defined('POTHIK_UPGRADE_URL') ? POTHIK_UPGRADE_URL : 'https://thereadscope.com/pothik';
-        $upgrade_url = apply_filters('pothik_upgrade_url', $upgrade_url);
-        $groups = ProFeatures::all();
-        $count = ProFeatures::counts($groups);
-
-        Chrome::open('Hejazer Kafela Pro', 'Advanced Umrah & Hajj agency operations management.');
-
-        echo '<section class="screen" data-screen="pro">';
-
-        $soon = ProFeatures::soon_title($module);
-        if ($soon !== '') {
-            /* translators: %s: feature name */
-            echo '<p class="pk-pro-soon">' . esc_html(sprintf(I18n::t('%s is coming soon to Hejazer Kafela Pro.'), $soon)) . '</p>';
-        }
-
-        // Hero.
-        echo '<div class="pro-hero pk-pro-hero">';
-        echo '<span class="pill pk-pill pro-badge">Hejazer Kafela Pro</span>';
-        echo '<h1>' . sprintf(esc_html(I18n::t('Run the whole Umrah season %s')), '<span>' . esc_html(I18n::t('from one desk')) . '</span>') . '</h1>';
-        echo '<p>' . esc_html(I18n::t('Departures, pilgrim files, rooming, installments and the visa board — built for Bangladeshi agencies. More is on the way; everything marked “Coming soon” is in our plan and arrives as a Pro update — at no extra cost for Pro customers.')) . '</p>';
-        echo '<a class="btn pk-btn pk-btn-gold btn-gold btn-lg" href="' . esc_url($upgrade_url) . '" target="_blank" rel="noopener">' . esc_html(I18n::t('Upgrade to Pro')) . ' <svg class="i"><use href="#i-arrow"/></svg></a>';
-        echo '</div>';
-
-        // Legend, switch and count.
-        echo '<div class="cm-bar pk-cm-bar"><div class="cm-leg">';
-        echo '<span class="cm-chip ok">✓ ' . esc_html(I18n::t('In Pro now')) . '</span><span class="cm-chip soon">' . esc_html(I18n::t('Coming soon')) . '</span><span class="cm-chip free">' . esc_html(I18n::t('Free')) . '</span>';
-        echo '</div>';
-        echo '<label class="cm-sw" hidden data-pk-cm-switch><input type="checkbox" checked data-pk-cm-soon> ' . esc_html(I18n::t('Show coming soon')) . '</label>';
-        echo '<span class="cm-cnt">' . esc_html(sprintf(I18n::t('%1$d in Pro now · %2$d coming soon'), $count['available'], $count['soon'])) . '</span>';
-        echo '</div>';
-
-        // Table.
-        echo '<div class="card pk-card pk-cm-card"><table class="cm-t pk-cm-t" data-pk-cm-table>';
-        echo '<thead><tr><th>' . esc_html(I18n::t('Feature')) . '</th><th>' . esc_html(I18n::t('Free Version')) . '</th><th class="pro">' . esc_html(I18n::t('Hejazer Kafela Pro')) . '</th></tr></thead><tbody>';
-        foreach ($groups as $group) {
-            $name = (string) ($group['group'] ?? '');
-            if ($name !== '') {
-                echo '<tr class="grp"><td colspan="3">' . esc_html(I18n::t($name)) . '</td></tr>';
-            }
-            foreach ((array) ($group['rows'] ?? []) as $row) {
-                $is_soon = ($row['status'] ?? '') === 'soon';
-                $free = (string) ($row['free'] ?? '—');
-                $pro = (string) ($row['pro'] ?? '');
-                $desc = (string) ($row['desc'] ?? '');
-                echo '<tr class="' . esc_attr($is_soon ? 'soon' : 'ok') . '" data-status="' . esc_attr($is_soon ? 'soon' : 'available') . '">';
-                echo '<td><b>' . esc_html(I18n::t((string) $row['title'])) . '</b>' . ($desc !== '' ? '<small>' . esc_html(I18n::t($desc)) . '</small>' : '') . '</td>';
-                if ($free === '—') {
-                    echo '<td><span class="no">—</span></td>';
-                } elseif ($free === '✓') {
-                    echo '<td><span class="cm-chip free">✓ ' . esc_html(I18n::t('Free')) . '</span></td>';
-                } else {
-                    echo '<td>' . esc_html(I18n::t($free)) . '</td>';
-                }
-                if ($is_soon) {
-                    echo '<td><span class="cm-chip soon">' . esc_html(I18n::t('Coming soon')) . '</span></td>';
-                } else {
-                    echo '<td>' . ($pro !== '' && $pro !== '✓' ? '<b class="cm-pv">' . esc_html(I18n::t($pro)) . '</b>' : '') . '<span class="cm-chip ok">✓ ' . esc_html(I18n::t('In Pro now')) . '</span></td>';
-                }
-                echo '</tr>';
-            }
-        }
-        echo '</tbody></table></div>';
-
-        $matches = sprintf(I18n::t('Matches Hejazer Kafela %s'), POTHIK_VERSION);
-        if (defined('POTHIK_PRO_VERSION')) {
-            $matches .= sprintf(I18n::t(' and Hejazer Kafela Pro %s'), (string) POTHIK_PRO_VERSION);
-        }
-        echo '<p class="hint pk-cm-foot">' . esc_html($matches) . ' · ' . esc_html(I18n::t('Free never limits your inquiries, WhatsApp buttons or email alerts.')) . '</p>';
-
-        // Bottom CTA.
-        echo '<div class="pro-cta-bottom">';
-        echo '<a class="btn pk-btn pk-btn-gold btn-gold btn-lg" href="' . esc_url($upgrade_url) . '" target="_blank" rel="noopener">' . esc_html(I18n::t('Upgrade to Hejazer Kafela Pro Now')) . ' <svg class="i"><use href="#i-arrow"/></svg></a>';
-        echo '</div>';
-
-        echo '</section>';
-
-        Chrome::close();
-    }
-
-    /**
-     * @param array<string, mixed> $module
-     */
-    public static function locked(array $module): void
-    {
-        self::pro(isset($module['id']) ? (string) $module['id'] : '');
     }
 
     public static function package(): void
@@ -1402,12 +1280,79 @@ final class Screens
         ]);
     }
 
+    /**
+     * Every saved receipt, newest first.
+     */
+    private static function receipt_history(int $current_id, int $page): void
+    {
+        $total = ReceiptStore::count();
+        $per_page = ReceiptStore::PER_PAGE;
+        $pages = max(1, (int) ceil($total / $per_page));
+        $page = min($page, $pages);
+        $rows = ReceiptStore::page($page, $per_page);
+        $can_edit = Access::can('receipt', 'edit');
+
+        echo '<div class="card pk-card card-pad pk-card-pad pk-receipt-history">';
+        echo '<div class="card-head pk-card-head"><h3>' . esc_html(I18n::t('All receipts')) . '</h3>';
+        echo '<a class="btn pk-btn btn-ghost pk-btn-ghost btn-sm" href="' . esc_url(admin_url('admin.php?page=pothik-receipt&receipt=new')) . '">' . esc_html(I18n::t('New receipt')) . '</a></div>';
+        if ($rows === []) {
+            echo '<p class="sub pk-sub">' . esc_html(I18n::t('No receipts yet. Save the one above to start the list.')) . '</p>';
+            echo '</div>';
+            return;
+        }
+        echo '<div class="tbl-wrap"><table class="tbl pk-tbl"><thead><tr>';
+        foreach (['Date', 'Paid by', 'Amount received', 'Channel', 'Transaction ID', ''] as $heading) {
+            echo '<th>' . esc_html($heading === '' ? '' : I18n::t($heading)) . '</th>';
+        }
+        echo '</tr></thead><tbody>';
+        foreach ($rows as $row) {
+            $row_id = (int) $row['id'];
+            $date = (string) $row['date'] !== '' ? wp_date('j M Y', strtotime((string) $row['date'])) : '—';
+            echo '<tr' . ($row_id === $current_id ? ' class="on"' : '') . '>';
+            echo '<td>' . esc_html((string) $date) . '</td>';
+            echo '<td>' . esc_html((string) $row['name']) . '</td>';
+            echo '<td>' . esc_html(Format::money((int) $row['amount'])) . '</td>';
+            echo '<td>' . esc_html(I18n::choice('channel', (string) $row['channel'])) . '</td>';
+            echo '<td>' . esc_html((string) $row['trx'] !== '' ? (string) $row['trx'] : '—') . '</td>';
+            echo '<td class="nowrap-cell"><a class="btn pk-btn btn-ghost pk-btn-ghost btn-sm" href="' . esc_url(admin_url('admin.php?page=pothik-receipt&receipt=' . $row_id)) . '">' . esc_html(I18n::t('Open')) . '</a> ';
+            if ($can_edit) {
+                echo '<form method="post" action="' . esc_url(admin_url('admin-post.php')) . '" class="inline-form" data-pk-confirm="' . esc_attr(I18n::t('Delete this receipt?')) . '">';
+                wp_nonce_field('pothik_delete_receipt');
+                echo '<input type="hidden" name="action" value="pothik_delete_receipt">';
+                echo '<input type="hidden" name="receipt_id" value="' . esc_attr((string) $row_id) . '">';
+                echo '<button type="submit" class="btn pk-btn btn-ghost pk-btn-ghost btn-sm">' . esc_html(I18n::t('Delete')) . '</button>';
+                echo '</form>';
+            }
+            echo '</td></tr>';
+        }
+        echo '</tbody></table></div>';
+        if ($pages > 1) {
+            echo '<div class="pager pk-pager">';
+            for ($i = 1; $i <= $pages; $i++) {
+                echo '<a href="' . esc_url(admin_url('admin.php?page=pothik-receipt&rpage=' . $i)) . '" class="btn pk-btn-sm ' . ($i === $page ? 'on' : '') . '">' . esc_html((string) $i) . '</a>';
+            }
+            echo '</div>';
+        }
+        echo '</div>';
+    }
+
     public static function receipt(): void
     {
         if (!Access::can('receipt', 'view')) {
             Access::deny();
         }
-        $receipt = ReceiptStore::get();
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        $wanted = isset($_GET['receipt']) ? sanitize_text_field(wp_unslash((string) $_GET['receipt'])) : '';
+        if ($wanted === 'new') {
+            $receipt = ReceiptStore::empty();
+        } elseif (ctype_digit($wanted) && (int) $wanted > 0) {
+            $receipt = ReceiptStore::find((int) $wanted) ?? ReceiptStore::empty();
+        } else {
+            $receipt = ReceiptStore::get();
+        }
+        $receipt_id = (int) ($receipt['id'] ?? 0);
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        $list_page = isset($_GET['rpage']) ? max(1, absint(wp_unslash($_GET['rpage']))) : 1;
         $settings = Settings::get_all();
         $is_bn = I18n::is_bn();
 
@@ -1443,6 +1388,7 @@ final class Screens
         echo '<form id="rcForm" class="grid pk-form" method="post" action="' . esc_url(admin_url('admin-post.php')) . '" data-pk-dirty>';
         wp_nonce_field('pothik_save_receipt');
         echo '<input type="hidden" name="action" value="pothik_save_receipt">';
+        echo '<input type="hidden" name="receipt_id" value="' . esc_attr((string) $receipt_id) . '">';
 
         // Card 1: Amount
         echo '<div class="card pk-card card-pad pk-card-pad">';
@@ -1545,13 +1491,11 @@ final class Screens
         echo '<button type="button" class="btn pk-btn pk-btn-ghost btn-ghost" onclick="window.print()"><svg class="i sm"><use href="#i-print"/></svg>' . esc_html(I18n::t('Print')) . '</button>';
         echo '</div>'; // .slip-actions
 
-        if (!defined('POTHIK_PRO_FILE')) {
-            echo '<p class="hint pk-hint">' . esc_html(I18n::t('Free version keeps one receipt. Full history is in Pro.')) . '</p>';
-        }
-
         echo '</aside>'; // .slip-wrap
 
         echo '</div>'; // .rc
+
+        self::receipt_history($receipt_id, $list_page);
         echo '</section>'; // .screen
 
         Chrome::close();

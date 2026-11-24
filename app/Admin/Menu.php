@@ -1,6 +1,6 @@
 <?php
 /**
- * Admin menu. Locked rows stay in this plugin as a title and one sentence.
+ * Admin menu.
  *
  * @package Pothik
  */
@@ -34,7 +34,6 @@ final class Menu
 
         add_submenu_page('pothik', 'Hejazer Kafela', I18n::t('Desk'), $desk_cap, 'pothik', [self::class, 'overview']);
 
-        $has_locked = false;
         foreach (Modules::all() as $id => $module) {
             if (Modules::is_open($module)) {
                 $title = I18n::t(isset($module['title']) ? (string) $module['title'] : $id);
@@ -49,20 +48,7 @@ final class Menu
                         self::dispatch($id);
                     }
                 );
-            } else {
-                $has_locked = true;
             }
-        }
-
-        if ($has_locked) {
-            add_submenu_page(
-                'pothik',
-                'Hejazer Kafela Pro',
-                'Hejazer Kafela Pro',
-                'manage_options',
-                'pothik-pro',
-                [Screens::class, 'pro']
-            );
         }
 
         add_submenu_page(
@@ -129,7 +115,6 @@ final class Menu
                 'exportCsv' => I18n::t('Export inquiries CSV'),
                 'copyCatalog' => I18n::t('Copy [hejazer_kafela_catalog]'),
                 'catalogCopied' => I18n::t('Copied [hejazer_kafela_catalog]'),
-                'pro' => I18n::t('Hejazer Kafela Pro'),
                 'allCaughtUp' => I18n::t('All caught up, alhamdulillah'),
                 'newInquiriesHere' => I18n::t('New inquiries will appear here.'),
                 'guestWaiting' => I18n::t('guest of Allah is waiting for your reply.'),
@@ -191,6 +176,6 @@ final class Menu
             return;
         }
 
-        Screens::pro($id);
+        Screens::overview();
     }
 }

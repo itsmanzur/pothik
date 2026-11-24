@@ -1,6 +1,6 @@
 <?php
 /**
- * Free module list. Pro rows carry a title and one sentence only.
+ * The screens this plugin provides. Add-ons extend the list through the pothik_modules filter.
  *
  * @package Pothik
  */
@@ -37,40 +37,15 @@ final class Modules
             ],
             'receipt' => [
                 'menu' => 'Receipt',
-                'title' => 'One receipt',
-                'summary' => 'Amount, channel and transaction ID.',
+                'title' => 'Receipts',
+                'summary' => 'Amount, channel and transaction ID. Every receipt is kept.',
                 'render' => [Screens::class, 'receipt'],
             ],
             'analytics' => [
                 'menu' => 'Analytics',
                 'title' => 'Analytics',
-                'summary' => 'Counts from inquiries and the receipt.',
+                'summary' => 'Counts from inquiries and receipts.',
                 'render' => [Admin\Analytics::class, 'render'],
-            ],
-            'departures' => [
-                'menu' => 'Departures',
-                'title' => 'Departure',
-                'summary' => 'Date, flight, seats, and group or private.',
-            ],
-            'pilgrims' => [
-                'menu' => 'Pilgrim file',
-                'title' => 'Pilgrim file',
-                'summary' => 'Passport, family link and visa column.',
-            ],
-            'rooming' => [
-                'menu' => 'Rooming',
-                'title' => 'Rooming',
-                'summary' => 'Separate Makkah and Madinah bed lists.',
-            ],
-            'ledger' => [
-                'menu' => 'Installments',
-                'title' => 'Installment ledger',
-                'summary' => 'Balance, who matched it, bKash and Nagad.',
-            ],
-            'visa' => [
-                'menu' => 'Visa board',
-                'title' => 'Visa board',
-                'summary' => 'Staff update the status here. Issue happens on Masar.',
             ],
         ];
 

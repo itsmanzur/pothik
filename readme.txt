@@ -16,6 +16,8 @@ Create Umrah and Hajj package landing pages, collect pilgrim inquiries with What
 
 Publish beautiful, high-converting package landing pages in minutes, collect pilgrim inquiries directly into your WordPress dashboard, receive instant email notifications, and connect with prospective pilgrims on WhatsApp with one click.
 
+An optional add-on plugin, Hejazer Kafela Pro, is available separately. Everything described here works in this plugin on its own.
+
 ### Key Features
 
 * **Package Landing Pages**: Showcase days, Makkah & Madinah hotels, walking distance in meters to the Haram and the Prophet's Mosque, star ratings, flight routes, and detailed Quad/Triple/Double/Single pricing in BDT.
@@ -23,7 +25,7 @@ Publish beautiful, high-converting package landing pages in minutes, collect pil
 * **Reliable Lead Capture**: No lost leads. Uses custom database tables (`{$wpdb->prefix}pothik_inquiries`) with pagination and one-click UTF-8 CSV export for Excel.
 * **Smart Spam Protection**: A nonce-protected, cache-friendly inquiry form with a honeypot, a signed time-trap and configurable IP rate limiting.
 * **Instant Email Notifications**: Get notified via `wp_mail` the moment a pilgrim sends an inquiry, complete with a direct one-tap WhatsApp link to reply immediately.
-* **Payment Receipt Slip**: Generate, print, or copy branded payment proof slips with bKash, Nagad, Rocket, Bank, and Cash channels.
+* **Payment Receipt Slips**: Generate, print, or copy branded payment proof slips with bKash, Nagad, Rocket, Bank, and Cash channels. Every receipt you save is kept in a list you can open, edit, print or delete.
 * **Bilingual English & Bengali (বাংলা)**: Seamless native language toggle with full translation coverage.
 * **Self-Hosted Typography**: Includes subsetted WOFF2 fonts (Noto Sans Bengali and Source Sans 3) for lightning-fast, privacy-friendly page loads without external Google Fonts dependencies.
 * **Shortcodes Included**: Easily embed packages anywhere with `[hejazer_kafela_package id="..."]` or show your entire package offering with `[hejazer_kafela_catalog]`. The older `[pothik_package]`, `[pothik_catalog]` and `[pothik]` shortcodes keep working.
@@ -55,7 +57,7 @@ Yes. Use `[hejazer_kafela_package id="package_id"]` to embed a single package or
 2. Admin Desk overview showing inquiries count, last payment receipt, and quick actions.
 3. Inquiries management table with status filters, phone/WhatsApp quick links, and CSV export.
 4. Package editor with hotels, distances, pricing tiers, inclusions, exclusions, and itinerary.
-5. One-payment receipt generator with print and WhatsApp copy buttons.
+5. Receipt generator with print and WhatsApp copy buttons, and the list of all saved receipts.
 6. Settings screen with agency details, logo picker, and notification setup.
 
 == Credits ==
@@ -69,9 +71,8 @@ Yes. Use `[hejazer_kafela_package id="package_id"]` to embed a single package or
 Add-ons extend Hejazer Kafela through these hooks. The free plugin does not ship add-on behaviour.
 
 * `pothik_admin_header_tools` — actions inside the admin header, before search. Argument: the current page slug.
-* `pothik_admin_sidebar_before_pro` — markup directly under the Pro label in the sidebar. Argument: the current page slug. Give the wrapper the class `pk-side-slot` so mini mode hides its text.
+* `pothik_admin_sidebar_before_pro` — markup directly under the Add-ons label in the sidebar. Argument: the current page slug. Give the wrapper the class `pk-side-slot` so mini mode hides its text.
 * `pothik_admin_before_content` — markup after the header, before the page body. Argument: the current page slug.
-* `pothik_pro_features` — the rows of the Pro comparison table. Argument: an array of groups, each with `group` and `rows`; a row has `title`, `desc`, `free`, `pro`, `status` (`available` or `soon`) and `step`. Default: the list shown on the Pro screen.
 * `pothik_seat_line` — the seat sentence on a package page. Arguments: the current line, then the package array. A callback registered with one argument still receives only the line.
 * `pothik_package_card_badges` — extra pills on a catalog card. Arguments: an array of pills, then the package. Each pill is `['label' => string, 'class' => string]`.
 * `pothik_inquiry_actions` — inside the inquiry drawer footer. Argument: the inquiry row when the drawer was built for one row. The shared drawer passes an empty array because the open row is chosen in the browser.
@@ -93,7 +94,8 @@ Add-ons extend Hejazer Kafela through these hooks. The free plugin does not ship
 * `pothik_inquiry_deleted` — after one inquiry is deleted. Arguments: inquiry id, the row before it was deleted.
 * `pothik_inquiries_bulk` — after a bulk reply or delete. Arguments: `reply` or `delete`, then the number of rows. One action for the whole bulk, not one per row.
 * `pothik_inquiries_exported` — after an inquiry CSV is built. Argument: the number of rows.
-* `pothik_receipt_saved` — after the receipt is saved. Arguments: the option before, the option after.
+* `pothik_receipt_saved` — after a receipt is saved. Arguments: the receipt row before the save (empty for a new one), the receipt after the save.
+* `pothik_receipt_deleted` — after a receipt is deleted. Arguments: receipt id, the receipt row before it was deleted.
 * `pothik_settings_saved` — after settings are saved. Arguments: the option before, the option after.
 * `pothik_settings_data` — inside the Data pane of the settings form. No arguments. Printed fields are saved with the rest of the form.
 * `pothik_inquiry_created` — after a public inquiry is saved. Arguments: the inquiry id, then the saved row.
@@ -116,6 +118,7 @@ WhatsApp terms: https://www.whatsapp.com/legal/terms-of-service. Privacy policy:
 Hejazer Kafela stores the following. Its text is also added to the site's privacy policy guide (Settings → Privacy).
 
 * **Inquiries.** The name, phone, WhatsApp number, city, room share, pilgrim counts, note and referral code that a visitor sends are saved in the `pothik_inquiries` table and emailed to the office. A counter per visitor address (the address is hashed) lives for one hour to limit spam.
+* **Receipts.** The name, amount, channel, transaction ID, date and note that staff type into a payment receipt are saved in the `pothik_receipts` table until staff delete them.
 * **Cookie `pothik_ref`.** A package or catalog page that is opened with `?ref=` followed by 2–10 letters or digits stores that code in a first-party cookie for 30 days (path `/`, SameSite=Lax). The cookie holds only that code. It is not HttpOnly, so the inquiry form can fill itself on a cached page. No name, phone, or other personal data is stored in it. Return false from `pothik_referral_cookie` to disable the cookie. The inquiry row stores the same code and shows it as “Ref: …” in the inquiry drawer and in the CSV export.
 * **Cookie `pothik_lang`.** When a visitor picks English or Bengali, the choice (`en` or `bn`) is stored in a first-party HttpOnly cookie for one year. For a signed-in user it is also saved in their profile as the user meta `pothik_lang`.
 
@@ -126,7 +129,7 @@ Hejazer Kafela stores the following. Its text is also added to the site's privac
 * Package landing pages with Makkah and Madinah hotels, distances, flight route and Quad, Triple, Double and Single prices. No limit on the number of packages.
 * Inquiry form with honeypot, signed time-trap and IP rate limit. Inquiries are saved in a custom table, with search, filters, bulk actions and a UTF-8 CSV export.
 * Email notification and one-tap WhatsApp reply link for every new inquiry.
-* Payment receipt slip with English and Bengali amount in words.
+* Payment receipt slips with English and Bengali amount in words. Every receipt is kept in a list.
 * Analytics, shortcodes `[hejazer_kafela_package]` and `[hejazer_kafela_catalog]`, and a referral code kept in a first-party cookie.
 * English and Bengali (বাংলা) interface with self-hosted fonts.
 * Cookies and inquiry data are added to the site's privacy policy guide.

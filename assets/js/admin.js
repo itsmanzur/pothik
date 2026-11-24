@@ -545,7 +545,6 @@
         { g: i18n.goTo || 'Go to', l: i18n.receipt || 'Receipt', url: adminBase + '?page=pothik-receipt' },
         { g: i18n.goTo || 'Go to', l: i18n.analytics || 'Analytics', url: adminBase + '?page=pothik-analytics' },
         { g: i18n.goTo || 'Go to', l: i18n.settings || 'Settings', url: adminBase + '?page=pothik-settings' },
-        { g: i18n.goTo || 'Go to', l: i18n.pro || 'Hejazer Kafela Pro', url: adminBase + '?page=pothik-pro' },
         { g: i18n.actions || 'Actions', l: i18n.newPackage || 'New package', action: 'new_package' },
         { g: i18n.actions || 'Actions', l: i18n.exportCsv || 'Export inquiries CSV', action: 'export_csv' },
         { g: i18n.actions || 'Actions', l: i18n.copyCatalog || 'Copy [hejazer_kafela_catalog]', action: 'copy_catalog' }
@@ -3410,7 +3409,6 @@
     }
 
     function bootPage() {
-        initProCompare();
         lockReadonly();
         readFlashes();
         checkAppbar();
@@ -3630,22 +3628,6 @@
         }
     });
 
-    /* Pro comparison: show or hide the "coming soon" rows. Without JS the switch stays hidden and every row shows. */
-    function initProCompare() {
-        document.querySelectorAll("[data-pk-cm-switch]").forEach(function (el) {
-            el.hidden = false;
-        });
-    }
-    document.addEventListener("change", function (event) {
-        var box = event.target;
-        if (!box || !box.matches || !box.matches("[data-pk-cm-soon]")) {
-            return;
-        }
-        var table = document.querySelector("[data-pk-cm-table]");
-        if (table) {
-            table.classList.toggle("hide-soon", !box.checked);
-        }
-    });
     /* Boot when DOM is ready */
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', bootPage);

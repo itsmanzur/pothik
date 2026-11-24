@@ -27,6 +27,8 @@ function pothik_clean_single_blog(): void
     // Drop inquiries custom table.
     $table = $wpdb->prefix . 'pothik_inquiries';
     $wpdb->query("DROP TABLE IF EXISTS `{$table}`");
+    $pothik_receipts_table = $wpdb->prefix . 'pothik_receipts';
+    $wpdb->query("DROP TABLE IF EXISTS `{$pothik_receipts_table}`");
 
     // Delete all options starting with pothik_.
     $wpdb->query("DELETE FROM {$wpdb->options} WHERE option_name LIKE 'pothik_%'");

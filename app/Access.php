@@ -1,6 +1,6 @@
 <?php
 /**
- * Who may open a Hejazer Kafela screen. Pro extends this through pothik_can.
+ * Who may open a Hejazer Kafela screen. Add-ons extend this through pothik_can.
  *
  * @package Pothik
  */
@@ -20,7 +20,7 @@ final class Access
     public const AREAS = ['packages', 'inquiries', 'receipt', 'analytics', 'settings'];
 
     /**
-     * Admin page slug to an area name. Pro slugs are names only; this plugin does not grant them.
+     * Admin page slug to an area name. Add-on page slugs are names only; this plugin does not grant them.
      *
      * @var array<string, string>
      */

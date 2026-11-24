@@ -141,7 +141,7 @@ $schema = [
         <div class="grid" data-pk-grid>
             <?php if ($packages === []) : ?>
                 <div class="empty">
-                    <b><?php echo esc_html(I18n::t('New packages are coming soon')); ?></b>
+                    <b><?php echo esc_html(I18n::t('New packages will be added here')); ?></b>
                     <?php if ($wa_general !== '') : ?>
                         <div class="empty-actions">
                             <a class="btn btn-wa btn-sm" href="<?php echo esc_url($wa_general); ?>" target="_blank" rel="noopener"><svg class="i sm"><use href="#i-wa"/></svg><?php echo esc_html(I18n::t('Ask on WhatsApp')); ?></a>

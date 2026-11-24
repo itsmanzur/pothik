@@ -21,7 +21,7 @@ if (!defined('ABSPATH')) {
 
 final class InquiryRepository
 {
-    public const DB_VERSION = '1.2.0';
+    public const DB_VERSION = '1.3.0';
 
     public static function table_name(): string
     {
@@ -81,6 +81,8 @@ final class InquiryRepository
         if (version_compare((string) $current_version, self::DB_VERSION, '<')) {
             self::init_table();
             self::migrate_legacy();
+            ReceiptStore::init_table();
+            ReceiptStore::migrate_legacy();
             update_option('pothik_db_version', self::DB_VERSION, false);
         }
     }

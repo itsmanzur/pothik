@@ -309,7 +309,7 @@ final class InquiryStore
 
             /**
              * Filter notification email arguments before sending.
-             * Return false to prevent sending (e.g. if handled by Pro).
+             * Return false to prevent sending (e.g. if an add-on sends it).
              *
              * @param array<string, mixed>|false $mail_args
              */
